@@ -4,3 +4,5 @@ Banaan
 Appel
 Kiwi
 Aardappel
+
+auto
