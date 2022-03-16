@@ -4,21 +4,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class RobotFollow : MonoBehaviour
+/// <summary>
+/// Moves a character towards a target and looks at it.
+/// </summary>
+public class TargetFollow : MonoBehaviour
 {
-    private MoveState moveState = MoveState.STANDBY;
 
+    [Header("Targets")]
     public RobotFollowTarget moveToTarget;
     public Transform lookAtTarget;
 
+    [Header("Speeds")]
     public float moveSpeed;
     public float rotateSpeed;
 
+    private MoveState moveState = MoveState.STANDBY;
     private Quaternion initRotation;
-    private Quaternion lookAtRotation;
     private float lookAtLerpValue = 0;
-    private float moveToLerpValue = 0;
-
     private Rigidbody rb;
 
     private void Awake()
@@ -32,16 +34,20 @@ public class RobotFollow : MonoBehaviour
         {
             case MoveState.STANDBY:
                 AttemptToStartMoving();
-                LookTowardsTarget();
+                LookTowardsTarget(lookAtTarget);
                 break;
             case MoveState.MOVING:
                 MoveTowardsTarget();
-                LookTowardsTarget();
+                LookTowardsTarget(moveToTarget.transform);
                 break;
             default:
                 break;
         }
     }
+
+    /// <summary>
+    /// Checks whether the character has to start moving and if so, starts moving.
+    /// </summary>
     private void AttemptToStartMoving()
     {
         Vector3 moveDirection = moveToTarget.transform.position - transform.position;
@@ -50,20 +56,30 @@ public class RobotFollow : MonoBehaviour
             SwitchState(MoveState.MOVING);
         }
     }
+
+    /// <summary>
+    /// Initializes the Look At action.
+    /// </summary>
+    /// <param name="target">The target to look at</param>
     private void InitLookAt(Transform target)
     {
-        Vector3 lookDirection = target.position - transform.position;
         initRotation = transform.rotation;
-        lookAtRotation = Quaternion.FromToRotation(this.transform.forward, lookDirection);
         lookAtLerpValue = 0;
     }
 
-    private void LookTowardsTarget()
+    /// <summary>
+    /// Lerps look rotation towards target.
+    /// </summary>
+    /// <param name="target">The target to look at</param>
+    private void LookTowardsTarget(Transform target)
     {
-        this.transform.rotation = Quaternion.Slerp(initRotation, lookAtRotation, lookAtLerpValue);
+        this.transform.rotation = Quaternion.Slerp(initRotation, Quaternion.LookRotation(target.position - transform.position), lookAtLerpValue);
         lookAtLerpValue += rotateSpeed;
     }
 
+    /// <summary>
+    /// Moves character towards moveToTarget by moveSpeed.
+    /// </summary>
     private void MoveTowardsTarget()
     {
         rb.MovePosition(this.transform.position + ((moveToTarget.transform.position - this.transform.position) * moveSpeed * Time.deltaTime));
@@ -73,13 +89,21 @@ public class RobotFollow : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Switches the current state.
+    /// </summary>
+    /// <param name="state"></param>
     private void SwitchState(MoveState state)
     {
+
         moveState = state;
         OnSwitchState(state);
     }
 
+    /// <summary>
+    /// Called on state switch.
+    /// </summary>
+    /// <param name="state">The state that was switched to..</param>
     private void OnSwitchState(MoveState state)
     {
 
