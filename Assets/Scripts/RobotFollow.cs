@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,18 @@ using UnityEngine;
 
 public class RobotFollow : MonoBehaviour
 {
+    private MoveState moveState = MoveState.STANDBY;
+
     public RobotFollowTarget moveToTarget;
     public Transform lookAtTarget;
 
     public float moveSpeed;
     public float rotateSpeed;
-    private bool reached = false;
+
+    private Quaternion initRotation;
+    private Quaternion lookAtRotation;
+    private float lookAtLerpValue = 0;
+    private float moveToLerpValue = 0;
 
     private Rigidbody rb;
 
@@ -21,36 +28,72 @@ public class RobotFollow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
-        Vector3 moveDirection = moveToTarget.transform.position - transform.position;
-        Vector3 lookDirection = lookAtTarget.transform.position - transform.position;
-        Quaternion lookAtRotation = Quaternion.FromToRotation(this.transform.forward, lookDirection);
-
-        if (moveDirection.magnitude >= moveToTarget.Radius)
+        switch (moveState)
         {
-            Debug.Log("1");
-            rb.MovePosition(this.transform.position + moveDirection * Time.deltaTime * moveSpeed);
+            case MoveState.STANDBY:
+                AttemptToStartMoving();
+                LookTowardsTarget();
+                break;
+            case MoveState.MOVING:
+                MoveTowardsTarget();
+                LookTowardsTarget();
+                break;
+            default:
+                break;
         }
-        else
+    }
+    private void AttemptToStartMoving()
+    {
+        Vector3 moveDirection = moveToTarget.transform.position - transform.position;
+        if (moveDirection.magnitude > moveToTarget.Radius)
         {
-            if (!reached)
-            {
-                reached = true;
-                StartCoroutine(LookAtTarget(lookAtRotation));
-            }
+            SwitchState(MoveState.MOVING);
+        }
+    }
+    private void InitLookAt(Transform target)
+    {
+        Vector3 lookDirection = target.position - transform.position;
+        initRotation = transform.rotation;
+        lookAtRotation = Quaternion.FromToRotation(this.transform.forward, lookDirection);
+        lookAtLerpValue = 0;
+    }
+
+    private void LookTowardsTarget()
+    {
+        this.transform.rotation = Quaternion.Slerp(initRotation, lookAtRotation, lookAtLerpValue);
+        lookAtLerpValue += rotateSpeed;
+    }
+
+    private void MoveTowardsTarget()
+    {
+        rb.MovePosition(this.transform.position + ((moveToTarget.transform.position - this.transform.position) * moveSpeed * Time.deltaTime));
+        if ((moveToTarget.transform.position - this.transform.position).magnitude < moveToTarget.Radius)
+        {
+            SwitchState(MoveState.STANDBY);
         }
     }
 
-    public IEnumerator LookAtTarget(Quaternion lookAtRotation)
-    {
-        float lerpValue = 0;
-        while (lerpValue < 1)
-        {
-            transform.rotation = Quaternion.Lerp(transform.rotation, lookAtRotation, lerpValue);
-            lerpValue += rotateSpeed;
-            yield return new WaitForFixedUpdate();
-        }
 
+    private void SwitchState(MoveState state)
+    {
+        moveState = state;
+        OnSwitchState(state);
+    }
+
+    private void OnSwitchState(MoveState state)
+    {
+
+        switch (state)
+        {
+            case MoveState.STANDBY:
+                InitLookAt(lookAtTarget.transform);
+                break;
+            case MoveState.MOVING:
+                InitLookAt(moveToTarget.transform);
+                break;
+            default:
+                break;
+        }
     }
 
 }
