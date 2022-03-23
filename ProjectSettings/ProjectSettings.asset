@@ -135,7 +135,11 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.1
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 0}
+  - {fileID: 552882987558397080, guid: 4784bbb4b2da14d48939823d420d170e, type: 2}
+  - {fileID: 0}
+  - {fileID: -4381024590890758554, guid: d53bc3bbb53ab6546b36ea758b47b44a, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -152,7 +156,8 @@ PlayerSettings:
   resolutionScalingMode: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Standalone: com.DefaultCompany.RobotArmVR
   buildNumber:
     Standalone: 0
     iPhone: 0
