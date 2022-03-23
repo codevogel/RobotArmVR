@@ -137,9 +137,10 @@ PlayerSettings:
   bundleVersion: 0.1
   preloadedAssets:
   - {fileID: 0}
-  - {fileID: 552882987558397080, guid: 4784bbb4b2da14d48939823d420d170e, type: 2}
   - {fileID: 0}
-  - {fileID: -4381024590890758554, guid: d53bc3bbb53ab6546b36ea758b47b44a, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -157,6 +158,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
+    Android: com.DefaultCompany.RobotArmVR
     Standalone: com.DefaultCompany.RobotArmVR
   buildNumber:
     Standalone: 0
@@ -246,7 +248,7 @@ PlayerSettings:
   useCustomBaseGradleTemplate: 0
   useCustomGradlePropertiesTemplate: 0
   useCustomProguardFile: 0
-  AndroidTargetArchitectures: 1
+  AndroidTargetArchitectures: 2
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
@@ -271,7 +273,99 @@ PlayerSettings:
   AndroidValidateAppBundleSize: 1
   AndroidAppBundleSizeToValidate: 100
   m_BuildTargetIcons: []
-  m_BuildTargetPlatformIcons: []
+  m_BuildTargetPlatformIcons:
+  - m_BuildTarget: Android
+    m_Icons:
+    - m_Textures: []
+      m_Width: 432
+      m_Height: 432
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 324
+      m_Height: 324
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 216
+      m_Height: 216
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 162
+      m_Height: 162
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 108
+      m_Height: 108
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 81
+      m_Height: 81
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 192
+      m_Height: 192
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 144
+      m_Height: 144
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 96
+      m_Height: 96
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 72
+      m_Height: 72
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 48
+      m_Height: 48
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 36
+      m_Height: 36
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 192
+      m_Height: 192
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 144
+      m_Height: 144
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 96
+      m_Height: 96
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 72
+      m_Height: 72
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 48
+      m_Height: 48
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 36
+      m_Height: 36
+      m_Kind: 1
+      m_SubKind: 
   m_BuildTargetBatching:
   - m_BuildTarget: Standalone
     m_StaticBatching: 1
@@ -608,6 +702,7 @@ PlayerSettings:
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
+    Android: 1
     Standalone: 0
   il2cppCompilerConfiguration: {}
   managedStrippingLevel: {}
