@@ -26,7 +26,7 @@ public class RobotController : MonoBehaviour
     private void Start()
     {
         xrCustomController = GetComponent<XRCustomController>();
-        xrCustomController.thumbstickValueAction.action.performed += Action_performed;
+        xrCustomController.thumbstickValueAction.action.performed += ThumbstickAction;
         xrCustomController.axisUpAction.action.started += ChangeAxisAction;
     }
 
@@ -37,7 +37,7 @@ public class RobotController : MonoBehaviour
         textUpdater.UpdateText((selectedBone + 1).ToString());
     }
 
-    private void Action_performed(InputAction.CallbackContext obj)
+    private void ThumbstickAction(InputAction.CallbackContext obj)
     {
         modifier = obj.ReadValue<Vector2>().x;
     }

@@ -5,10 +5,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
-public class XRCustomController : ActionBasedController
+public class XRCustomController : CustomActionBasedController
 {
-
-
     [Header("Custom Actions")]
     [SerializeField]
     InputActionProperty m_thumbstickValueAction;
@@ -34,17 +32,17 @@ public class XRCustomController : ActionBasedController
         set => SetInputActionProperty(ref m_axisDownAction, value);
     }
 
-    protected override void EnableAllDirectActions()
+    protected override void CustomEnableAllDirectActions()
     {
-        base.EnableAllDirectActions();
+        base.CustomEnableAllDirectActions();
         m_thumbstickValueAction.EnableDirectAction();
         m_axisDownAction.EnableDirectAction();
         m_axisUpAction.EnableDirectAction();
     }
 
-    protected override void DisableAllDirectActions()
+    protected override void CustomDisableAllDirectActions()
     {
-        base.DisableAllDirectActions();
+        base.CustomDisableAllDirectActions();
         m_thumbstickValueAction.DisableDirectAction();
         m_axisUpAction.DisableDirectAction();
         m_axisDownAction.DisableDirectAction();
