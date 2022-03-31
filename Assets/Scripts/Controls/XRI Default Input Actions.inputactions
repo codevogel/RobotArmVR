@@ -278,6 +278,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Trigger Value",
+                    "type": "Value",
+                    "id": "429ba78e-c33d-4bb5-98e6-8964015b4696",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -456,6 +465,17 @@
                     "action": "Translate Anchor",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "df0d9290-28ce-45b2-a6c4-717855895f6f",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Trigger Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -807,18 +827,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Change Axis Up",
+                    "name": "Change Axis",
                     "type": "Button",
                     "id": "76334da0-7ff1-46a4-9b58-92c0ccb19d41",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Change Axis Down",
-                    "type": "Button",
-                    "id": "fc43aaa8-4a0a-4635-82fa-05f1532ccab6",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1020,18 +1031,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
-                    "action": "Change Axis Up",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e0b76489-eced-4347-b6b4-05180e73e1ae",
-                    "path": "<XRController>{RightHand}/secondaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Change Axis Down",
+                    "action": "Change Axis",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

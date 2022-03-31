@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class RobotController : MonoBehaviour
 {
@@ -18,16 +19,30 @@ public class RobotController : MonoBehaviour
 
     private Vector3 axis;
 
-    private XRCustomController xrCustomController;
+    private XRCustomController controllerLeft, controllerRight;
+
+    private CustomInteractor interactor;
 
     [field: SerializeField]
     private TextUpdater textUpdater;
 
+    [SerializeField]float minTreshHoldTrigger, maxTreshHoldTrigger;
+
+
+    [field: SerializeField]
+    private Image testImage;
+
+    private bool pressureButtonHeld = false;
+
     private void Start()
     {
-        xrCustomController = GetComponent<XRCustomController>();
-        xrCustomController.thumbstickValueAction.action.performed += ThumbstickAction;
-        xrCustomController.axisUpAction.action.started += ChangeAxisAction;
+        controllerLeft = GameObject.FindGameObjectWithTag("ControllerLeft").GetComponent<XRCustomController>();
+        controllerRight = GameObject.FindGameObjectWithTag("ControllerRight").GetComponent<XRCustomController>();
+        controllerLeft.triggerHoldAction.action.performed += TriggerValue;
+        controllerLeft.triggerHoldAction.action.canceled += TriggerValue;
+        controllerRight.thumbstickValueAction.action.performed += ThumbstickAction;
+        controllerRight.changeAxisAction.action.started += ChangeAxisAction;
+        interactor = GetComponent<CustomInteractor>();
     }
 
     private void ChangeAxisAction(InputAction.CallbackContext obj)
@@ -35,6 +50,17 @@ public class RobotController : MonoBehaviour
         selectedBone = (selectedBone + 1) % bones.Length;
         ChangeAxis();
         textUpdater.UpdateText((selectedBone + 1).ToString());
+    }
+
+    private void TriggerValue(InputAction.CallbackContext obj)
+    {
+        if (interactor.HeldObject == null)
+            return;
+        if (interactor.HeldObject.transform.name == "Flexpendant")
+        {
+            pressureButtonHeld = obj.ReadValue<float>() == 1 ? true : false;
+            testImage.color = pressureButtonHeld ? Color.green : Color.red;
+        }
     }
 
     private void ThumbstickAction(InputAction.CallbackContext obj)
@@ -45,17 +71,10 @@ public class RobotController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Math.Abs(modifier) > 0.01)
+        if (Math.Abs(modifier) > 0.01 && pressureButtonHeld)
         {
-            Debug.Log(bones[selectedBone].rotation);
             bones[selectedBone].Rotate(axis, rotateSpeed * modifier * Time.deltaTime);
         }
-    }
-
-    public void SwitchAxis(InputAction.CallbackContext context)
-    {
-        // Get ascii character from control name and decrement by ascii value of 0
-        selectedBone = context.control.name[0] - 48;
     }
 
     private void ChangeAxis()

@@ -17,34 +17,34 @@ public class XRCustomController : CustomActionBasedController
     }
 
     [SerializeField]
-    InputActionProperty m_axisUpAction;
-    public InputActionProperty axisUpAction
+    InputActionProperty m_changeAxisAction;
+    public InputActionProperty changeAxisAction
     {
-        get => m_axisUpAction;
-        set => SetInputActionProperty(ref m_axisUpAction, value);
+        get => m_changeAxisAction;
+        set => SetInputActionProperty(ref m_changeAxisAction, value);
     }
 
     [SerializeField]
-    InputActionProperty m_axisDownAction;
-    public InputActionProperty axisDownAction
+    InputActionProperty m_triggerHoldAction;
+    public InputActionProperty triggerHoldAction
     {
-        get => m_axisDownAction;
-        set => SetInputActionProperty(ref m_axisDownAction, value);
+        get => m_triggerHoldAction;
+        set => SetInputActionProperty(ref m_triggerHoldAction, value);
     }
 
     protected override void CustomEnableAllDirectActions()
     {
         base.CustomEnableAllDirectActions();
         m_thumbstickValueAction.EnableDirectAction();
-        m_axisDownAction.EnableDirectAction();
-        m_axisUpAction.EnableDirectAction();
+        m_changeAxisAction.EnableDirectAction();
+        m_triggerHoldAction.EnableDirectAction();
     }
 
     protected override void CustomDisableAllDirectActions()
     {
         base.CustomDisableAllDirectActions();
         m_thumbstickValueAction.DisableDirectAction();
-        m_axisUpAction.DisableDirectAction();
-        m_axisDownAction.DisableDirectAction();
+        m_changeAxisAction.DisableDirectAction();
+        m_triggerHoldAction.DisableDirectAction();
     }
 }
