@@ -7,7 +7,11 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
 public class XRCustomController : CustomActionBasedController
 {
-    [Header("Custom Actions")]
+
+    #region Right Hand
+
+    [Header("Custom hand actions - Right")]
+    [Space(25)]
     [SerializeField]
     InputActionProperty m_thumbstickValueAction;
     public InputActionProperty thumbstickValueAction
@@ -25,19 +29,36 @@ public class XRCustomController : CustomActionBasedController
     }
 
     [SerializeField]
-    InputActionProperty m_triggerHoldAction;
-    public InputActionProperty triggerHoldAction
+    InputActionProperty m_rightTriggerPressAction;
+    public InputActionProperty rightTriggerPressAction
     {
-        get => m_triggerHoldAction;
-        set => SetInputActionProperty(ref m_triggerHoldAction, value);
+        get => m_rightTriggerPressAction;
+        set => SetInputActionProperty(ref m_rightTriggerPressAction, value);
     }
+
+    #endregion
+
+    #region Left Hand
+    [Header("Custom hand actions - Left")]
+    [Space(10)]
+
+    [SerializeField]
+    InputActionProperty m_leftTriggerPressAction;
+    public InputActionProperty leftTriggerPressAction
+    {
+        get => m_leftTriggerPressAction;
+        set => SetInputActionProperty(ref m_leftTriggerPressAction, value);
+    }
+
+    #endregion
 
     protected override void CustomEnableAllDirectActions()
     {
         base.CustomEnableAllDirectActions();
         m_thumbstickValueAction.EnableDirectAction();
         m_changeAxisAction.EnableDirectAction();
-        m_triggerHoldAction.EnableDirectAction();
+        m_leftTriggerPressAction.EnableDirectAction();
+        m_rightTriggerPressAction.EnableDirectAction();
     }
 
     protected override void CustomDisableAllDirectActions()
@@ -45,6 +66,8 @@ public class XRCustomController : CustomActionBasedController
         base.CustomDisableAllDirectActions();
         m_thumbstickValueAction.DisableDirectAction();
         m_changeAxisAction.DisableDirectAction();
-        m_triggerHoldAction.DisableDirectAction();
+        m_leftTriggerPressAction.DisableDirectAction();
+        m_rightTriggerPressAction.EnableDirectAction();
+
     }
 }

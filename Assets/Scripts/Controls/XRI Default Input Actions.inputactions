@@ -280,7 +280,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Trigger Value",
+                    "name": "Trigger Pressed",
                     "type": "Value",
                     "id": "429ba78e-c33d-4bb5-98e6-8964015b4696",
                     "expectedControlType": "Button",
@@ -473,7 +473,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
-                    "action": "Trigger Value",
+                    "action": "Trigger Pressed",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -834,6 +834,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Trigger Pressed",
+                    "type": "Value",
+                    "id": "c25b65ed-1760-4156-b49a-7661c5bc3d64",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -1032,6 +1041,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Change Axis",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "91053ae5-af4f-49c5-940a-c14bc9d1a797",
+                    "path": "<XRController>{RightHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Trigger Pressed",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
