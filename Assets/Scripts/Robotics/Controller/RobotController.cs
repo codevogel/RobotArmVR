@@ -28,10 +28,6 @@ public class RobotController : MonoBehaviour
 
     [SerializeField]float minTreshHoldTrigger, maxTreshHoldTrigger;
 
-
-    [field: SerializeField]
-    private Image testImage;
-
     private bool pressureButtonHeld = false;
 
     private void Start()
@@ -59,7 +55,6 @@ public class RobotController : MonoBehaviour
         if (interactor.HeldObject.transform.name == "Flexpendant")
         {
             pressureButtonHeld = obj.ReadValue<float>() == 1 ? true : false;
-            testImage.color = pressureButtonHeld ? Color.green : Color.red;
         }
     }
 

@@ -843,6 +843,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Joystick Value",
+                    "type": "Value",
+                    "id": "a37ff1e6-ce12-4fff-b61a-2b75c0a511ac",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -1052,6 +1061,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Trigger Pressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88d52c0a-6b9b-4db9-a5a3-092c69bbaffd",
+                    "path": "<XRController>{RightHand}/joystick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Joystick Value",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
