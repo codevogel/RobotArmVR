@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-[DefaultExecutionOrder(1)]
 public class JoystickInteractor : MonoBehaviour
 {
 
@@ -20,13 +19,11 @@ public class JoystickInteractor : MonoBehaviour
         rightHandController = GetComponent<XRCustomController>();
         rightHandController.rightTriggerPressAction.action.performed += SnapToJoystick;
         rightHandController.rightTriggerPressAction.action.canceled += SnapToJoystick;
-        StartCoroutine(LateStart());
+        rightHandController.OnHandAttached += FindHand;
     }
 
-    private IEnumerator LateStart()
+    private void FindHand()
     {
-        //TODO: investigate why this delay is necessary
-        yield return new WaitForSeconds(2);
         attachpoint = GameObject.FindGameObjectWithTag("Flexpendant").transform.Find("JoystickPivot").Find("Joystick").Find("RightHandAttach");
         handAnimator = transform.Find("[RightHand Controller] Model Parent").Find("HandPrefabRight(Clone)").GetComponent<Animator>();
     }

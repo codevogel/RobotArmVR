@@ -7,21 +7,6 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
 public class XRCustomController : CustomActionBasedController
 {
-
-    #region Black sorcery for resetting tracking offset when it's off
-    public bool resetPosition;
-
-    protected override void ApplyControllerState(XRInteractionUpdateOrder.UpdatePhase updatePhase, XRControllerState controllerState)
-    {
-        base.ApplyControllerState(updatePhase, controllerState);
-        if (!enableInputTracking)
-        {
-            base.transform.localPosition = Vector3.zero;
-            base.transform.localRotation = Quaternion.identity;
-        }
-    }
-    #endregion
-
     #region Right Hand
 
     [Header("Custom hand actions - Right")]
@@ -66,6 +51,24 @@ public class XRCustomController : CustomActionBasedController
 
     #endregion
 
+    #region Hand attachement
+    private bool handAttached = false;
+
+    public delegate void HandAttached();
+
+    public event HandAttached OnHandAttached;
+
+    protected override void UpdateController()
+    {
+        base.UpdateController();
+        if (!handAttached)
+        {
+            OnHandAttached();
+            handAttached = true;
+        }
+    }
+    #endregion
+
     protected override void CustomEnableAllDirectActions()
     {
         base.CustomEnableAllDirectActions();
@@ -84,4 +87,18 @@ public class XRCustomController : CustomActionBasedController
         m_rightTriggerPressAction.EnableDirectAction();
 
     }
+
+    #region Black sorcery for resetting tracking offset when it's off
+    public bool resetPosition;
+
+    protected override void ApplyControllerState(XRInteractionUpdateOrder.UpdatePhase updatePhase, XRControllerState controllerState)
+    {
+        base.ApplyControllerState(updatePhase, controllerState);
+        if (!enableInputTracking)
+        {
+            base.transform.localPosition = Vector3.zero;
+            base.transform.localRotation = Quaternion.identity;
+        }
+    }
+    #endregion
 }
