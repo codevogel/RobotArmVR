@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
+using static HandAnimationManager;
 
 public class XRCustomController : CustomActionBasedController
 {
@@ -51,23 +52,66 @@ public class XRCustomController : CustomActionBasedController
 
     #endregion
 
+    #region Both Hands
+    [Header("Custom hand actions - Both")]
+    [Space(10)]
+    [SerializeField]
+    InputActionProperty m_customSelectAction;
+    public InputActionProperty customSelectAction
+    {
+        get => m_customSelectAction;
+        set => SetInputActionProperty(ref m_customSelectAction, value);
+    }
+    #endregion
+
     #region Hand attachement
     private bool handAttached = false;
 
-    public delegate void HandAttached();
+    public HandType leftOrRight;
+
+    public delegate void HandAttached(HandType left);
 
     public static event HandAttached OnHandAttached;
+
+    private void Start()
+    {
+        customSelectAction.action.performed += CustomSelect;
+        customSelectAction.action.canceled += CustomSelect;
+    }
 
     protected override void UpdateController()
     {
         base.UpdateController();
         if (!handAttached)
         {
-            OnHandAttached();
+            if (leftOrRight.Equals(HandType.LEFT))
+            {
+                HandAnimationManager.Instance.HandAnimatorL = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
+            }
+            else
+            {
+                HandAnimationManager.Instance.HandAnimatorR = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
+            }
+            OnHandAttached(leftOrRight);
             handAttached = true;
         }
     }
     #endregion
+
+    private void CustomSelect(InputAction.CallbackContext obj)
+    {
+        if (! HandAnimationManager.Instance.IsCurrentState("Grab", leftOrRight))
+        {
+            if (obj.ReadValue<float>() == 1f)
+            {
+                HandAnimationManager.Instance.ChangePose(HandPose.SELECT, leftOrRight);
+            }
+            else
+            {
+                HandAnimationManager.Instance.ChangePose(HandPose.IDLE, leftOrRight);
+            }
+        }
+    }
 
     protected override void CustomEnableAllDirectActions()
     {
@@ -76,6 +120,7 @@ public class XRCustomController : CustomActionBasedController
         m_changeAxisAction.EnableDirectAction();
         m_leftTriggerPressAction.EnableDirectAction();
         m_rightTriggerPressAction.EnableDirectAction();
+        m_customSelectAction.EnableDirectAction();
     }
 
     protected override void CustomDisableAllDirectActions()
@@ -85,7 +130,7 @@ public class XRCustomController : CustomActionBasedController
         m_changeAxisAction.DisableDirectAction();
         m_leftTriggerPressAction.DisableDirectAction();
         m_rightTriggerPressAction.EnableDirectAction();
-
+        m_customSelectAction.DisableDirectAction();
     }
 
     #region Black sorcery for resetting tracking offset when it's off

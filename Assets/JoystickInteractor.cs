@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static HandAnimationManager;
 
 [RequireComponent(typeof(JoystickControl))]
 public class JoystickInteractor : MonoBehaviour
@@ -34,28 +35,25 @@ public class JoystickInteractor : MonoBehaviour
         joystickPivot.transform.localRotation = Quaternion.Euler(0, input.x * 30, input.y * 30);
     }
 
-    private void FindHand()
+    private void FindHand(HandType leftRight)
     {
         joystickPivot = GameObject.FindGameObjectWithTag("Flexpendant").transform.Find("JoystickPivot");
         attachpoint = joystickPivot.Find("Joystick").Find("RightHandAttach");
-        handAnimator = transform.Find("[RightHand Controller] Model Parent").Find("HandPrefabRight(Clone)").GetComponent<Animator>();
     }
 
     private void SnapToJoystick(InputAction.CallbackContext obj)
     {
-        Debug.Log(controllerInRange);
-
         if (obj.ReadValue<float>() == 1 && controllerInRange)
         {
             rightHandController.enableInputTracking = false;
             originalParent = transform.parent;
             transform.parent = attachpoint;
-            handAnimator.SetTrigger("Grab");
+            HandAnimationManager.Instance.HandAnimatorR.SetTrigger("Grab");
             return;
         }
         rightHandController.enableInputTracking = true;
         transform.parent = originalParent;
-        handAnimator.SetTrigger("Idle");
+        HandAnimationManager.Instance.HandAnimatorR.SetTrigger("Idle");
     }
 
     public void OnJoystickEnter(OnTriggerDelegation triggerDelegation)
