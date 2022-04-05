@@ -35,7 +35,7 @@ public abstract class ToolHeadBase : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(this.transform.position + (Quaternion.Euler(_rotation - this.transform.localEulerAngles + this.transform.eulerAngles) * Vector3.Scale(_localHeadAttachOffset, this.transform.localScale)), 0.025f);
         Gizmos.color = Color.cyan;
-        Gizmos.DrawRay(this.transform.position, Quaternion.Euler(_rotation - this.transform.localEulerAngles + this.transform.eulerAngles) * (this.transform.up * 0.2f));
+        Gizmos.DrawRay(this.transform.position, Quaternion.Euler(_rotation + this.transform.eulerAngles) * (this.transform.up * 0.2f));
 
         Gizmos.color = previousColor;
     }
