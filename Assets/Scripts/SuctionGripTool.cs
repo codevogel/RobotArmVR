@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class SuctionGripTool : ToolHeadBase
 {
-    [SerializeField] bool _succ;
-    [SerializeField] Rigidbody _affectedObject;
+    [SerializeField] private bool _succ;
+    [SerializeField] private Rigidbody _affectedObject;
 
+    // todo: verwijder Update & OnTriggerStay als tool controls werken.
     private void Update()
     {
-        if (!_succ && _affectedObject != null)
+        if (!_succ)
         {
-            _affectedObject.transform.SetParent(null, true);
-            _affectedObject.useGravity = true;
-            _affectedObject = null;
+            DisableSuctionGrab();
         }
     }
 
@@ -21,16 +20,29 @@ public class SuctionGripTool : ToolHeadBase
     {
         if (_succ && _affectedObject == null && other.TryGetComponent<Rigidbody>(out var rigidbody))
         {
-            _affectedObject = rigidbody;
-            rigidbody.useGravity = false;
-            _affectedObject.transform.SetParent(this.transform, true);
+            EnableSuctionGrab(rigidbody);
         }
     }
 
-//#if UNITY_EDITOR
-//    protected override void OnDrawGizmos()
-//    {
-//        base.OnDrawGizmos();
-//    }
-//#endif
+    public void EnableSuctionGrab(Rigidbody grabbedObject)
+    {
+        if(_affectedObject == null)
+        {
+            _affectedObject = grabbedObject;
+            grabbedObject.useGravity = false;
+            grabbedObject.isKinematic = true;
+            _affectedObject.transform.SetParent(this.transform, true);
+        }
+    }
+    public void DisableSuctionGrab()
+    {
+        if(_affectedObject != null)
+        {
+            _affectedObject.transform.SetParent(null, true);
+            _affectedObject.useGravity = true;
+            _affectedObject.isKinematic = false;
+            _affectedObject = null;
+        }
+    }
+
 }

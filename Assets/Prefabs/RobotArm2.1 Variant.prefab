@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1598511826203619621}
   - component: {fileID: 8985261876837291371}
+  - component: {fileID: 8795599564029922411}
   m_Layer: 0
   m_Name: AttachPoint
   m_TagString: Untagged
@@ -39,11 +40,24 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8003402922738102098}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8795599564029922411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8003402922738102098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c47276bfe5120434fbc2b33fecbd1828, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controller: {fileID: 1692982841466491383}
 --- !u!1001 &334546521986371202
 PrefabInstance:
   m_ObjectHideFlags: 0
