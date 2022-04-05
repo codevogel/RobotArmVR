@@ -30,6 +30,8 @@ public class RobotController : MonoBehaviour
 
     private bool pressureButtonHeld = false;
 
+    private string SelectedBoneText { get { return (selectedBone + 1).ToString(); } }
+
     private void Start()
     {
         controllerLeft = GameObject.FindGameObjectWithTag("ControllerLeft").GetComponent<XRCustomController>();
@@ -39,13 +41,15 @@ public class RobotController : MonoBehaviour
         controllerRight.thumbstickValueAction.action.performed += ThumbstickAction;
         controllerRight.changeAxisAction.action.started += ChangeAxisAction;
         interactor = GetComponent<CustomInteractor>();
+        textUpdater.UpdateText(SelectedBoneText);
+        ChangeAxis();
     }
 
     private void ChangeAxisAction(InputAction.CallbackContext obj)
     {
         selectedBone = (selectedBone + 1) % bones.Length;
         ChangeAxis();
-        textUpdater.UpdateText((selectedBone + 1).ToString());
+        textUpdater.UpdateText(SelectedBoneText);
     }
 
     private void TriggerValue(InputAction.CallbackContext obj)
