@@ -25,11 +25,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2139966241}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.722, y: 0, z: -1.767}
+  m_LocalPosition: {x: -0.95, y: -0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4507247018194819557}
-  m_RootOrder: 3
+  m_Father: {fileID: 4752496864917820529}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &2139966243
 SphereCollider:
@@ -69,12 +69,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2953886440141877885}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.44302535, y: 0, z: -1.7624758}
-  m_LocalScale: {x: 0.13080037, y: 0.13080037, z: 0.13080037}
-  m_Children: []
-  m_Father: {fileID: 4507247018194819557}
-  m_RootOrder: 1
+  m_LocalRotation: {x: -0.7071068, y: 0.00000067128235, z: -0.0000001110287, w: 0.70710677}
+  m_LocalPosition: {x: -0.558, y: 0, z: 0}
+  m_LocalScale: {x: 0.13080038, y: 0.13080037, z: 0.13080037}
+  m_Children:
+  - {fileID: 2139966242}
+  m_Father: {fileID: 5116132479738571415}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8029942308549585726
 MeshFilter:
@@ -139,7 +140,7 @@ GameObject:
   - component: {fileID: 1104961796353770755}
   - component: {fileID: 639755572}
   m_Layer: 0
-  m_Name: Flexpendant
+  m_Name: flexpendant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,9 +158,8 @@ Transform:
   m_LocalScale: {x: 0.07, y: 0.07, z: 0.07}
   m_Children:
   - {fileID: 4388510428668028360}
-  - {fileID: 4752496864917820529}
   - {fileID: 2700237169544495795}
-  - {fileID: 2139966242}
+  - {fileID: 5116132479738571415}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -348,8 +348,39 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4507247018194819557}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!1 &4903770554170093481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5116132479738571415}
+  m_Layer: 0
+  m_Name: JoystickPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5116132479738571415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4903770554170093481}
+  m_LocalRotation: {x: 0.0000000052677365, y: -0.0000004172325, z: 0.000000532104, w: 1}
+  m_LocalPosition: {x: 0.061, y: 0.008, z: -1.765}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4752496864917820529}
+  m_Father: {fileID: 4507247018194819557}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5838115235839446208
 GameObject:
   m_ObjectHideFlags: 0

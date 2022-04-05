@@ -225,22 +225,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2139966241, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_Name
-      value: RightHandTrigger
-      objectReference: {fileID: 0}
     - target: {fileID: 2139966242, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.941
+      value: -3.57
       objectReference: {fileID: 0}
     - target: {fileID: 2139966242, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.165
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 2139966242, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.523
+      value: 0.02
       objectReference: {fileID: 0}
+    - target: {fileID: 2139966242, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.093551405
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139966242, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.47572017
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139966242, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.0063203583
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139966242, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.8745848
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139966242, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 5.743
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139966242, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 56.629
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139966242, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 170.885
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139966243, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_Radius
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139966244, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: Enter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 616188355}
     - target: {fileID: 3875107668792214367, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_Name
       value: Flexpendant
@@ -862,36 +894,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &431649035
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 431649036}
-  m_Layer: 0
-  m_Name: RightHandRevertRotation
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &431649036
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431649035}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 641067262}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &607112966
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,7 +1165,7 @@ MonoBehaviour:
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
-  m_ModelPrefab: {fileID: 8182649778220661475, guid: fd3462253c80767479d6b2b6fc8e9726, type: 3}
+  m_ModelPrefab: {fileID: 8182649778220661475, guid: 3453787546c7943428d6a101df4a9e46, type: 3}
   m_ModelParent: {fileID: 0}
   m_Model: {fileID: 0}
   m_AnimateModel: 1
@@ -1314,6 +1316,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 875253871413052681, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_ButtonPressPoint: 0.5
+  resetPosition: 0
   m_thumbstickValueAction:
     m_UseReference: 1
     m_Action:
@@ -1646,42 +1649,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!4 &639755576 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4507247018194819557, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-  m_PrefabInstance: {fileID: 31898620}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &641067261
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 641067262}
-  m_Layer: 0
-  m_Name: RightHandAttach
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &641067262
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 641067261}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.39, y: -0.51, z: -1.44}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 431649036}
-  m_Father: {fileID: 639755576}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &791746466
 GameObject:
   m_ObjectHideFlags: 0
@@ -2022,6 +1989,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &1223316348 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2139966241, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+  m_PrefabInstance: {fileID: 31898620}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1223316351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223316348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d1403d1c18eab40b1787cd5aa016ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 616188355}
+        m_TargetAssemblyTypeName: JoystickInteractor, Assembly-CSharp
+        m_MethodName: OnJoystickEnter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Exit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 616188355}
+        m_TargetAssemblyTypeName: JoystickInteractor, Assembly-CSharp
+        m_MethodName: OnJoystickExit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1587883938
 GameObject:
   m_ObjectHideFlags: 0
@@ -2354,6 +2368,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 7779212132400271959, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_ButtonPressPoint: 0.5
+  resetPosition: 0
   m_thumbstickValueAction:
     m_UseReference: 0
     m_Action:
@@ -2707,38 +2722,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2139966241 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2139966241, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-  m_PrefabInstance: {fileID: 31898620}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2139966244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2139966241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d1403d1c18eab40b1787cd5aa016ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Enter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 616188355}
-        m_TargetAssemblyTypeName: JoystickInteractor, Assembly-CSharp
-        m_MethodName: OnJoystickEnter
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Exit:
-    m_PersistentCalls:
-      m_Calls: []
