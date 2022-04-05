@@ -56,7 +56,7 @@ public class XRCustomController : CustomActionBasedController
 
     public delegate void HandAttached();
 
-    public event HandAttached OnHandAttached;
+    public static event HandAttached OnHandAttached;
 
     protected override void UpdateController()
     {

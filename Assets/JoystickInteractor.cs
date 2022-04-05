@@ -19,7 +19,7 @@ public class JoystickInteractor : MonoBehaviour
         rightHandController = GetComponent<XRCustomController>();
         rightHandController.rightTriggerPressAction.action.performed += SnapToJoystick;
         rightHandController.rightTriggerPressAction.action.canceled += SnapToJoystick;
-        rightHandController.OnHandAttached += FindHand;
+        XRCustomController.OnHandAttached += FindHand;
     }
 
     private void FindHand()
