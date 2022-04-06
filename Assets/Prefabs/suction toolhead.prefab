@@ -103,6 +103,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8743813690021804245, guid: baeb1ab1a319a7b49bcd301a96c264e8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dd568e3d6011ce846aae2431e19b06be, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baeb1ab1a319a7b49bcd301a96c264e8, type: 3}
 --- !u!1 &9009559366971709124 stripped
@@ -159,8 +163,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _localHeadAttachOffset: {x: 0, y: 0.28, z: 0}
   _rotation: {x: 0, y: 0, z: 90}
-  _succ: 0
-  _affectedObject: {fileID: 0}
 --- !u!114 &6137327062616857378
 MonoBehaviour:
   m_ObjectHideFlags: 0
