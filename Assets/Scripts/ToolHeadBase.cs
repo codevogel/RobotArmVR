@@ -1,31 +1,81 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+using System;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
-[RequireComponent(typeof(Rigidbody))]
+#if UNITY_EDITOR
+using UnityEngine.Assertions;
+#endif
+
+[RequireComponent(typeof(Rigidbody),typeof(XRGrabInteractable))]
 public abstract class ToolHeadBase : MonoBehaviour
 {
     [SerializeField] private Vector3 _localHeadAttachOffset;
     [SerializeField] private Vector3 _rotation;
+    private ToolHeadController _controller;
 
+    public bool Attachable { get; set; }
     public Rigidbody Rigidbody { get; private set; }
+    public XRGrabInteractable GrabInteractable { get; private set; }
 
     public Vector3 HeadAttachOffset => Quaternion.Euler(_rotation) * Vector3.Scale(_localHeadAttachOffset, this.transform.localScale);
 
     private void Awake()
     {
+        Attachable = true;
+
         Rigidbody = GetComponent<Rigidbody>();
+        GrabInteractable = GetComponent<XRGrabInteractable>();
     }
 
+    /// <summary>
+    /// Attaches the tool to a robot arm and removes it from the physics system.
+    /// </summary>
+    /// <param name="toolHeadController"></param>
     public void AttachTool(ToolHeadController toolHeadController)
     {
+        if(!Attachable)
+            return;
+
+        _controller = toolHeadController;
+        toolHeadController.CurrentTool = this;
+
+        GrabInteractable.interactionManager.CancelInteractableSelection((IXRSelectInteractable)GrabInteractable);
+
         transform.localPosition = Vector3.zero;
         transform.SetParent(toolHeadController.ToolHeadAttachPoint.transform, false);
-        toolHeadController.CurrentTool = this;
         transform.localPosition -= HeadAttachOffset;
         transform.localRotation = Quaternion.Euler(_rotation);
+
+        Rigidbody.isKinematic = true;
+        //Rigidbody.useGravity = false;
     }
+
+    /// <summary>
+    /// Detaches the tool from a robot arm.
+    /// </summary>
+    public void DetachTool(SelectEnterEventArgs _)
+    {
+        if(_controller != null && _controller.CurrentTool == this)
+        {
+            _controller.CurrentTool = null;
+            _controller = null;
+        }
+    }
+
+    /// <summary>
+    /// Makes the tool usable again by the physics system.
+    /// </summary>
+    public void ReleaseTool(SelectExitEventArgs _)
+    {
+        Rigidbody.isKinematic = false;
+        Rigidbody.useGravity = true;
+    }
+
+    /// <summary>
+    /// Set the current tool state using raw values.
+    /// </summary>
+    /// <param name="toolStateValue"></param>
+    public abstract void SetToolState(int toolStateValue);
 
 #if UNITY_EDITOR
     protected virtual void OnDrawGizmosSelected()
@@ -35,19 +85,45 @@ public abstract class ToolHeadBase : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(this.transform.position + (Quaternion.Euler(_rotation - this.transform.localEulerAngles + this.transform.eulerAngles) * Vector3.Scale(_localHeadAttachOffset, this.transform.localScale)), 0.025f);
         Gizmos.color = Color.cyan;
-        Gizmos.DrawRay(this.transform.position, Quaternion.Euler(_rotation + this.transform.eulerAngles) * (this.transform.up * 0.2f));
+        Gizmos.DrawSphere(this.transform.position + (Quaternion.Euler(this.transform.eulerAngles) * Vector3.Scale(_localHeadAttachOffset, this.transform.localScale)), 0.0125f);
 
         Gizmos.color = previousColor;
     }
-
-    private void OnGUI()
-    {
-        if (GUILayout.Button("Attach To Arm"))
-        {
-            var toolHeadController = GameObject.FindObjectOfType<ToolHeadController>();
-
-            AttachTool(toolHeadController);
-        }
-    }
 #endif
+}
+
+public abstract class ToolHeadBase<TToolState> : ToolHeadBase
+    where TToolState : unmanaged, Enum
+{
+    public TToolState CurrentState { get; protected set; }
+
+    /// <summary>
+    /// Set the tool's current state.
+    /// </summary>
+    /// <param name="toolState"></param>
+    public abstract void SetToolState(TToolState toolState);
+
+    /// <summary>
+    /// Set the tool's current state.
+    /// </summary>
+    /// <remarks> Prefer using <see cref="SetToolState(TToolState)"/> instead to avoid boxing.</remarks>
+    /// <param name="toolStateValue"></param>
+    public override void SetToolState(int toolStateValue)
+    {
+#if UNITY_EDITOR
+        // safety check die alleen in editor wordt gedaan
+        var values = Enum.GetValues(typeof(TToolState));
+        bool found = false;
+        foreach (var value in values)
+        {
+            if(toolStateValue == (int)value)
+                found = true;
+        }
+
+        Assert.IsTrue(found, $"{toolStateValue} is not a valid state of the tool.");
+#endif
+
+        // slechte hack met boxen om dit te laten werken (RIP geen Unsafe.As<,>())
+        SetToolState((TToolState)(object)toolStateValue);
+    }
 }
