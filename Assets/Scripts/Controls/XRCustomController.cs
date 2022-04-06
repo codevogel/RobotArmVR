@@ -100,16 +100,13 @@ public class XRCustomController : CustomActionBasedController
 
     private void CustomSelect(InputAction.CallbackContext obj)
     {
-        if (! HandAnimationManager.Instance.IsCurrentState("Grab", leftOrRight))
+        if (obj.ReadValue<float>() == 1f)
         {
-            if (obj.ReadValue<float>() == 1f)
-            {
-                HandAnimationManager.Instance.ChangePose(HandPose.SELECT, leftOrRight);
-            }
-            else
-            {
-                HandAnimationManager.Instance.ChangePose(HandPose.IDLE, leftOrRight);
-            }
+            HandAnimationManager.Instance.ChangePose(HandPose.IDLE, HandPose.SELECT, leftOrRight);
+        }
+        else
+        {
+            HandAnimationManager.Instance.ChangePose(HandPose.SELECT, HandPose.IDLE, leftOrRight);
         }
     }
 

@@ -48,12 +48,16 @@ public class JoystickInteractor : MonoBehaviour
             rightHandController.enableInputTracking = false;
             originalParent = transform.parent;
             transform.parent = attachpoint;
-            HandAnimationManager.Instance.HandAnimatorR.SetTrigger("Grab");
+            HandAnimationManager.Instance.ChangePose(HandPose.IDLE, HandPose.GRAB, HandType.RIGHT);
             return;
         }
-        rightHandController.enableInputTracking = true;
-        transform.parent = originalParent;
-        HandAnimationManager.Instance.HandAnimatorR.SetTrigger("Idle");
+        if (transform.parent.name.Equals("RightHandAttach"))
+        {
+            transform.parent = originalParent;
+            rightHandController.enableInputTracking = true;
+            HandAnimationManager.Instance.ChangePose(HandPose.GRAB, HandPose.IDLE, HandType.RIGHT);
+        }
+
     }
 
     public void OnJoystickEnter(OnTriggerDelegation triggerDelegation)

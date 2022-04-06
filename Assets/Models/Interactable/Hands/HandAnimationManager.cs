@@ -12,6 +12,23 @@ public class HandAnimationManager : MonoBehaviour
     public static HandAnimationManager Instance { get { return _instance; } }
     private static HandAnimationManager _instance;
 
+    private HandPose _currentPoseLeft = HandPose.IDLE, _currentPoseRight = HandPose.IDLE;
+
+    private HandPose GetCurrentPose(HandType leftRight)
+    {
+        return leftRight == HandType.LEFT ? _currentPoseLeft : _currentPoseRight;
+    }
+
+    private void SetCurrentPose(HandType leftRight, HandPose pose)
+    {
+        if (leftRight.Equals(HandType.LEFT))
+        {
+            _currentPoseLeft = pose;
+            return;
+        }
+        _currentPoseRight = pose;
+    }
+
     private void Awake()
     {
         _instance = this;
@@ -24,31 +41,69 @@ public class HandAnimationManager : MonoBehaviour
 
     private void FindHand(HandType leftRight)
     {
-        SwitchPose(HandPose.IDLE, leftRight);
+        SwitchPose(HandPose.IDLE, HandPose.IDLE, leftRight);
     }
 
-    public void ChangePose(HandPose pose, HandType leftRight)
+    public void ChangePose(HandPose fromPose, HandPose toPose, HandType leftRight)
     {
-        SwitchPose(pose, leftRight);
+        SwitchPose(fromPose, toPose, leftRight);
     }
 
-    private void SwitchPose(HandPose pose, HandType leftRight)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="fromPose">The pose you intend to move state FROM</param>
+    /// <param name="toPose">The pose you intend to move state TO</param>
+    /// <param name="leftRight"></param>
+    /// <exception cref="ArgumentException"></exception>
+    private void SwitchPose(HandPose fromPose, HandPose toPose, HandType leftRight)
     {
         Animator handAnimator = leftRight.Equals(HandType.LEFT) ? HandAnimatorL : HandAnimatorR;
-        switch (pose)
+
+        ResetTriggers(handAnimator);
+
+        HandPose currentPose = GetCurrentPose(leftRight);
+        bool canIdle = currentPose.Equals(fromPose);
+        bool isIdle = currentPose.Equals(HandPose.IDLE);
+        bool hasSwitched = false;
+        
+        switch (toPose)
         {
             case HandPose.IDLE:
-                handAnimator.SetTrigger("Idle");
+                if (canIdle)
+                {
+                    handAnimator.SetTrigger("Idle");
+                    hasSwitched = true;
+                }
                 break;
             case HandPose.GRAB:
-                handAnimator.SetTrigger("Grab");
+                if (isIdle)
+                {
+                    handAnimator.SetTrigger("Grab");
+                    hasSwitched = true;
+                }
                 break;
             case HandPose.SELECT:
-                handAnimator.SetTrigger("Select");
+                if (isIdle)
+                {
+                    handAnimator.SetTrigger("Select");
+                    hasSwitched = true;
+                }
                 break;
             default:
-                break;
+                throw new ArgumentException();
         }
+        if (hasSwitched)
+        {
+            SetCurrentPose(leftRight, toPose);
+        }
+    }
+
+    private void ResetTriggers(Animator handAnimator)
+    {
+        handAnimator.ResetTrigger("Idle");
+        handAnimator.ResetTrigger("Select");
+        handAnimator.ResetTrigger("Grab");
     }
 
     public bool IsCurrentState(string stateName, HandType leftRight)
