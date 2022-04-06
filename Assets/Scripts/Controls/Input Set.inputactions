@@ -1,5 +1,5 @@
 {
-    "name": "XRI Default Input Actions",
+    "name": "Input Set",
     "maps": [
         {
             "name": "XRI Head",
@@ -845,13 +845,22 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Joystick Value",
+                    "name": "Joystick Axis Value",
                     "type": "Value",
                     "id": "a37ff1e6-ce12-4fff-b61a-2b75c0a511ac",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Joystick Pressed",
+                    "type": "Button",
+                    "id": "074c2df0-ed32-4426-b6f1-71cf5fc26448",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1071,7 +1080,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
-                    "action": "Joystick Value",
+                    "action": "Joystick Axis Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4e11e154-c06f-4cb9-af96-01312c1b63b5",
+                    "path": "<XRController>{RightHand}/joystickClicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Joystick Pressed",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

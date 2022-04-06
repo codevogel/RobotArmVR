@@ -1022,6 +1022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec481eb1ac41bd447ba9f2327761b29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tiltAllowance: 30
 --- !u!114 &616188356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1188,18 +1189,18 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 875253871413052681, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_ButtonPressPoint: 0.5
-  m_thumbstickValueAction:
+  m_joystickAxisValueAction:
     m_UseReference: 1
     m_Action:
-      m_Name: Thumbstick Value
+      m_Name: Joystick Axis Value
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 2d95028e-0ac7-4090-ab6b-2ffd0f0e65ad
+      m_Id: 218541e7-3442-4577-b2d9-281bf1ae4509
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 5436333540548664847, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_Reference: {fileID: 6450965103735208, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_changeAxisAction:
     m_UseReference: 1
     m_Action:
@@ -1224,6 +1225,18 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -8774016028842524970, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_joystickPressedAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Joystick Pressed
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 53c2d773-78e6-4881-85e4-dc906cfb6a9c
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 7816501352396351389, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_leftTriggerPressAction:
     m_UseReference: 0
     m_Action:
@@ -2119,13 +2132,13 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 7779212132400271959, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_ButtonPressPoint: 0.5
-  m_thumbstickValueAction:
+  m_joystickAxisValueAction:
     m_UseReference: 0
     m_Action:
-      m_Name: Thumbstick Value
+      m_Name: 
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 800a4d38-74d1-469d-ac65-4a8b5136e0a3
+      m_Id: 
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -2150,6 +2163,18 @@ MonoBehaviour:
       m_Type: 0
       m_ExpectedControlType: 
       m_Id: 975eca2a-96fb-4c50-9245-916cb10cab21
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_joystickPressedAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []

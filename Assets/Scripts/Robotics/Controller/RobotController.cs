@@ -38,7 +38,7 @@ public class RobotController : MonoBehaviour
         controllerRight = GameObject.FindGameObjectWithTag("ControllerRight").GetComponent<XRCustomController>();
         controllerLeft.leftTriggerPressAction.action.performed += TriggerValue;
         controllerLeft.leftTriggerPressAction.action.canceled += TriggerValue;
-        controllerRight.thumbstickValueAction.action.performed += ThumbstickAction;
+        controllerRight.joystickAxisValueAction.action.performed += ThumbstickAction;
         controllerRight.changeAxisAction.action.started += ChangeAxisAction;
         interactor = GetComponent<CustomInteractor>();
         textUpdater.UpdateText(SelectedBoneText);

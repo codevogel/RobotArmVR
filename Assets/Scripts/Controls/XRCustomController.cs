@@ -13,11 +13,11 @@ public class XRCustomController : CustomActionBasedController
     [Header("Custom hand actions - Right")]
     [Space(25)]
     [SerializeField]
-    InputActionProperty m_thumbstickValueAction;
-    public InputActionProperty thumbstickValueAction
+    InputActionProperty m_joystickAxisValueAction;
+    public InputActionProperty joystickAxisValueAction
     {
-        get => m_thumbstickValueAction;
-        set => SetInputActionProperty(ref m_thumbstickValueAction, value);
+        get => m_joystickAxisValueAction;
+        set => SetInputActionProperty(ref m_joystickAxisValueAction, value);
     }
 
     [SerializeField]
@@ -34,6 +34,14 @@ public class XRCustomController : CustomActionBasedController
     {
         get => m_rightTriggerPressAction;
         set => SetInputActionProperty(ref m_rightTriggerPressAction, value);
+    }
+
+    [SerializeField]
+    InputActionProperty m_joystickPressedAction;
+    public InputActionProperty joystickPressedAction
+    {
+        get => m_joystickPressedAction;
+        set => SetInputActionProperty(ref m_joystickPressedAction, value);
     }
 
     #endregion
@@ -113,7 +121,8 @@ public class XRCustomController : CustomActionBasedController
     protected override void CustomEnableAllDirectActions()
     {
         base.CustomEnableAllDirectActions();
-        m_thumbstickValueAction.EnableDirectAction();
+        m_joystickAxisValueAction.EnableDirectAction();
+        m_joystickPressedAction.EnableDirectAction();
         m_changeAxisAction.EnableDirectAction();
         m_leftTriggerPressAction.EnableDirectAction();
         m_rightTriggerPressAction.EnableDirectAction();
@@ -123,7 +132,8 @@ public class XRCustomController : CustomActionBasedController
     protected override void CustomDisableAllDirectActions()
     {
         base.CustomDisableAllDirectActions();
-        m_thumbstickValueAction.DisableDirectAction();
+        m_joystickAxisValueAction.DisableDirectAction();
+        m_joystickPressedAction.EnableDirectAction();
         m_changeAxisAction.DisableDirectAction();
         m_leftTriggerPressAction.DisableDirectAction();
         m_rightTriggerPressAction.EnableDirectAction();

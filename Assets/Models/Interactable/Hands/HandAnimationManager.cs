@@ -14,7 +14,7 @@ public class HandAnimationManager : MonoBehaviour
 
     private HandPose _currentPoseLeft = HandPose.IDLE, _currentPoseRight = HandPose.IDLE;
 
-    private HandPose GetCurrentPose(HandType leftRight)
+    public HandPose GetCurrentPose(HandType leftRight)
     {
         return leftRight == HandType.LEFT ? _currentPoseLeft : _currentPoseRight;
     }
