@@ -131,10 +131,3 @@ public class JoystickInteractor : MonoBehaviour
         }
     }
 }
-
-enum TiltDirection
-{
-    LEFT,
-    RIGHT,
-    NONE
-}
