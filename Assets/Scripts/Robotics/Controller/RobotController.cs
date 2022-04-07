@@ -45,7 +45,6 @@ public class RobotController : MonoBehaviour
         joystickInteractor = controllerRight.GetComponent<JoystickInteractor>();
         Interactor = GetComponent<CustomInteractor>();
         textUpdater.UpdateText(axisSetOne ? "1  2  3" : "4  5  6");
-
     }
 
     private void ChangeAxisAction(InputAction.CallbackContext obj)
@@ -103,7 +102,7 @@ public class RobotController : MonoBehaviour
             if (modifyingX)
             {
                 move = true;
-                axis = axisSetOne ? Vector3.forward : Vector3.up;
+                axis = axisSetOne ? Vector3.up : Vector3.up;
                 selectedBone = axisSetOne ? 0 : 3;
                 directionModifier = joystickInput.x > 0 ? 1f : -1f;
             }

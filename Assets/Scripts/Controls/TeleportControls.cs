@@ -58,10 +58,10 @@ public class TeleportControls : MonoBehaviour
     {
         yield return null;
         transform.gameObject.AddComponent<CustomInteractor>();
-        CustomInteractor interactor = transform.GetComponent<CustomInteractor>();
         if (transform.name.Equals("RightHand Controller"))
         {
-            transform.GetComponent<RobotController>().Interactor = interactor; 
+            Debug.Log(transform.GetComponent<RobotController>());
+            transform.GetComponent<RobotController>().Interactor = transform.GetComponent<CustomInteractor>(); 
         }
     }
 }
