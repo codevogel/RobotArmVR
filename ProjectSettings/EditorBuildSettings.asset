@@ -6,9 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+    path: Assets/Scenes/BaseScene.unity
+    guid: 9d9c0df454eb2544ab9c04ea3f6dabce
+  - enabled: 1
+    path: Assets/Scenes/Test/handmodels.unity
+    guid: 2ae69dad6eb09164dba790d15562f8f8
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: 08055d5e67ca4443c9225b9576034292, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d53bc3bbb53ab6546b36ea758b47b44a, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 4784bbb4b2da14d48939823d420d170e, type: 2}
