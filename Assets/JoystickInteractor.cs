@@ -16,15 +16,17 @@ public class JoystickInteractor : MonoBehaviour
     private Transform attachpoint;
     private Transform joystickPivot;
 
-    private Animator handAnimator;
-
     private JoystickControl joystickControl;
 
-    private bool thumbstickPressed;
-
+    #region Joystick tilt
+    private bool joystickPressed;
+    private bool setInitialRotation;
+    private Vector3 originalAttachAngle;
+    private float initRotationZ;
     [SerializeField] 
     [Tooltip("Left/Right tilt allowance in degrees")]
     private float tiltAllowance;
+    #endregion 
 
     private void Start()
     {
@@ -38,40 +40,45 @@ public class JoystickInteractor : MonoBehaviour
         joystickControl = GetComponent<JoystickControl>();
     }
 
+
+
     private void PressJoystick(InputAction.CallbackContext obj)
     {
-        thumbstickPressed = obj.ReadValue<float>() == 1;
+        if (HandAnimationManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.GRAB))
+        {
+            joystickPressed = obj.ReadValue<float>() == 1;
+            if (joystickPressed)
+            {
+                setInitialRotation = true;
+            }
+            else
+            {
+                attachpoint.localRotation = Quaternion.Euler(originalAttachAngle);
+            }
+        }
     }
 
     private void RotateController(InputAction.CallbackContext obj)
     {
-        if (thumbstickPressed && HandAnimationManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.GRAB))
+        if (joystickPressed && HandAnimationManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.GRAB))
         {
-            Vector3 handRotation = obj.ReadValue<Quaternion>().eulerAngles;
-            switch (GetTilt(handRotation.z))
+            Quaternion handRotation = obj.ReadValue<Quaternion>();
+            if (setInitialRotation)
             {
-                case TiltDirection.LEFT:
-                    Debug.Log("LEFT");
-                    break;
-                case TiltDirection.RIGHT:
-                    Debug.Log("RIGHT");
-                    break;
-                default:
-                    break;
+                initRotationZ = handRotation.eulerAngles.z;
+                originalAttachAngle = attachpoint.localEulerAngles;
+                setInitialRotation = false;
             }
 
+            TiltHand(Mathf.DeltaAngle(initRotationZ, handRotation.eulerAngles.z));
         }
     }
 
-    private TiltDirection GetTilt(float z)
+    private void TiltHand(float tiltAngle)
     {
-        if (z < 360 - tiltAllowance && z > 180)
-        {
-            return TiltDirection.RIGHT;
-        }
-        if (z > tiltAllowance && z < 180)
-            return TiltDirection.LEFT;
-        return TiltDirection.NONE;
+        Vector3 newAttachAngle = originalAttachAngle;
+        newAttachAngle.z += Mathf.Clamp(tiltAngle, -tiltAllowance, tiltAllowance);
+        attachpoint.localRotation = Quaternion.Euler(newAttachAngle);
     }
 
     private void LateUpdate()
