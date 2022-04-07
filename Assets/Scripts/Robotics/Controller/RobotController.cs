@@ -21,7 +21,6 @@ public class RobotController : MonoBehaviour
 
     private XRCustomController controllerLeft, controllerRight;
 
-    private CustomInteractor interactor;
 
     [field: SerializeField]
     private TextUpdater textUpdater;
@@ -32,6 +31,9 @@ public class RobotController : MonoBehaviour
 
     private bool axisSetOne = true;
 
+    [HideInInspector]
+    public CustomInteractor Interactor;
+
     private void Start()
     {
         controllerLeft = GameObject.FindGameObjectWithTag("ControllerLeft").GetComponent<XRCustomController>();
@@ -41,7 +43,7 @@ public class RobotController : MonoBehaviour
         controllerRight.joystickAxisValueAction.action.performed += ThumbstickAction;
         controllerRight.changeAxisAction.action.started += ChangeAxisAction;
         joystickInteractor = controllerRight.GetComponent<JoystickInteractor>();
-        interactor = GetComponent<CustomInteractor>();
+        Interactor = GetComponent<CustomInteractor>();
         textUpdater.UpdateText(axisSetOne ? "1  2  3" : "4  5  6");
 
     }
@@ -57,9 +59,9 @@ public class RobotController : MonoBehaviour
 
     private void TriggerValue(InputAction.CallbackContext obj)
     {
-        if (interactor.HeldObject == null)
+        if (Interactor.HeldObject == null)
             return;
-        if (interactor.HeldObject.transform.name == "Flexpendant")
+        if (Interactor.HeldObject.transform.name == "Flexpendant")
         {
             pressureButtonHeld = obj.ReadValue<float>() == 1 ? true : false;
         }

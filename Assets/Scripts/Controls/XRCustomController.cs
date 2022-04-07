@@ -70,6 +70,15 @@ public class XRCustomController : CustomActionBasedController
         get => m_customSelectAction;
         set => SetInputActionProperty(ref m_customSelectAction, value);
     }
+
+    [SerializeField]
+    InputActionProperty m_teleportAction;
+    public InputActionProperty teleportAction
+    {   
+        get => m_teleportAction;
+        set => SetInputActionProperty(ref m_teleportAction, value);
+    }
+
     #endregion
 
     #region Hand attachement
@@ -127,6 +136,7 @@ public class XRCustomController : CustomActionBasedController
         m_leftTriggerPressAction.EnableDirectAction();
         m_rightTriggerPressAction.EnableDirectAction();
         m_customSelectAction.EnableDirectAction();
+        m_teleportAction.EnableDirectAction();
     }
 
     protected override void CustomDisableAllDirectActions()
@@ -138,6 +148,7 @@ public class XRCustomController : CustomActionBasedController
         m_leftTriggerPressAction.DisableDirectAction();
         m_rightTriggerPressAction.EnableDirectAction();
         m_customSelectAction.DisableDirectAction();
+        m_teleportAction.DisableDirectAction();
     }
 
     #region Black sorcery for resetting tracking offset when it's off

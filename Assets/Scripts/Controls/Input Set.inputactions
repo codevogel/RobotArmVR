@@ -287,6 +287,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "B Button Pressed",
+                    "type": "Button",
+                    "id": "2cc397a8-e974-4f5e-b9dc-99a9e0dbf3fb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -474,6 +483,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Trigger Pressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "959cf089-8c94-4299-8848-d4f79cbd0a00",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "B Button Pressed",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -861,6 +881,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "B Button Pressed",
+                    "type": "Button",
+                    "id": "e015fdc5-5dd3-4745-bf8a-076781fa7ea0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1092,6 +1121,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Joystick Pressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5611171f-3a6c-4fab-80cc-988cf505033e",
+                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "B Button Pressed",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
