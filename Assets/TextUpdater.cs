@@ -6,15 +6,15 @@ using UnityEngine;
 public class TextUpdater : MonoBehaviour
 {
 
-    private TextMeshProUGUI textMeshProUGUI;
+    private TextMeshPro textMeshPro;
 
     private void Awake()
     {
-        textMeshProUGUI = GetComponent<TextMeshProUGUI>();
+        textMeshPro = GetComponent<TextMeshPro>();
     }
 
     public void UpdateText(string message)
     {
-        textMeshProUGUI.text = message;
+        textMeshPro.text = message;
     }
 }
