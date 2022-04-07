@@ -6,16 +6,7 @@ public class MoveEndEffector : MonoBehaviour
 {
     public void MoveUp()
     {
-        Debug.Log("TEST1");
         transform.position += Vector3.up * Time.deltaTime;
-
-        //for (int i = 1; i > 0; i++)
-        //{
-        //    Debug.Log("Test2");
-        //}
-
-        //float xAs = transform.position.x;
-        // for (float i = this.xAs += Vector3.up * Time.deltaTime;
     }
 
     public void MoveDown()
