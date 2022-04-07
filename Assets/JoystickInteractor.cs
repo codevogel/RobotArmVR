@@ -19,13 +19,21 @@ public class JoystickInteractor : MonoBehaviour
     private JoystickControl joystickControl;
 
     #region Joystick tilt
-    private bool joystickPressed;
+    public bool joystickPressed;
     private bool setInitialRotation;
     private Vector3 originalAttachAngle;
     private float initRotationZ;
     [SerializeField] 
     [Tooltip("Left/Right tilt allowance in degrees")]
     private float tiltAllowance;
+
+    private float _tiltAngle;
+
+    public float TiltAllowance { get { return tiltAllowance; } }
+    
+
+    public float TiltAngle { get { return _tiltAngle; } }
+
     #endregion 
 
     private void Start()
@@ -76,6 +84,7 @@ public class JoystickInteractor : MonoBehaviour
 
     private void TiltHand(float tiltAngle)
     {
+        _tiltAngle = tiltAngle;
         Vector3 newAttachAngle = originalAttachAngle;
         newAttachAngle.z += Mathf.Clamp(tiltAngle, -tiltAllowance, tiltAllowance);
         attachpoint.localRotation = Quaternion.Euler(newAttachAngle);

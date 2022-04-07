@@ -15,7 +15,7 @@ public class RobotController : MonoBehaviour
     public float moveSpeed;
     public float rotateSpeed;
 
-    public float modifier;
+    private float directionModifier;
 
     private Vector3 axis;
 
@@ -32,6 +32,8 @@ public class RobotController : MonoBehaviour
 
     private string SelectedBoneText { get { return (selectedBone + 1).ToString(); } }
 
+    private JoystickInteractor joystickInteractor;
+
     private void Start()
     {
         controllerLeft = GameObject.FindGameObjectWithTag("ControllerLeft").GetComponent<XRCustomController>();
@@ -40,16 +42,15 @@ public class RobotController : MonoBehaviour
         controllerLeft.leftTriggerPressAction.action.canceled += TriggerValue;
         controllerRight.joystickAxisValueAction.action.performed += ThumbstickAction;
         controllerRight.changeAxisAction.action.started += ChangeAxisAction;
+        joystickInteractor = controllerRight.GetComponent<JoystickInteractor>();
         interactor = GetComponent<CustomInteractor>();
         textUpdater.UpdateText(SelectedBoneText);
-        ChangeAxis();
     }
 
     private void ChangeAxisAction(InputAction.CallbackContext obj)
     {
-        selectedBone = (selectedBone + 1) % bones.Length;
-        ChangeAxis();
-        textUpdater.UpdateText(SelectedBoneText);
+        //selectedBone = (selectedBone + 1) % bones.Length;
+        //textUpdater.UpdateText(SelectedBoneText);
     }
 
     private void TriggerValue(InputAction.CallbackContext obj)
@@ -62,37 +63,77 @@ public class RobotController : MonoBehaviour
         }
     }
 
+    private Vector2 joystickInput;
+
     private void ThumbstickAction(InputAction.CallbackContext obj)
     {
-        modifier = obj.ReadValue<Vector2>().x;
+        joystickInput = obj.ReadValue<Vector2>();
     }
 
 
     private void FixedUpdate()
     {
-        if (Math.Abs(modifier) > 0.01 && pressureButtonHeld)
+        if (pressureButtonHeld)
         {
-            bones[selectedBone].Rotate(axis, rotateSpeed * modifier * Time.deltaTime);
+            ManualRobotControls();
         }
     }
 
-    private void ChangeAxis()
+    private void ManualRobotControls()
     {
-        if (selectedBone == 0 || selectedBone == 1)
+        bool move = false;
+        if (joystickInteractor.joystickPressed)
         {
-            axis = Vector3.forward;
+            if (Math.Abs(joystickInteractor.TiltAngle) > joystickInteractor.TiltAllowance)
+            {
+                move = true;
+                axis = Vector3.right;
+                selectedBone = 2;
+                directionModifier = joystickInteractor.TiltAngle > 0 ? 1f : -1f;
+            }
         }
-        else if (selectedBone == 3 || selectedBone == 5)
+        else if (Math.Abs(joystickInput.x) > 0.01f || Math.Abs(joystickInput.y) > 0.01f)
         {
-            axis = Vector3.up;
+            bool modifyingX = Math.Abs(joystickInput.x) > Math.Abs(joystickInput.y) ? true : false;
+
+            if (modifyingX)
+            {
+                move = true;
+                axis = Vector3.forward;
+                selectedBone = 0;
+                directionModifier = joystickInput.x > 0 ? 1f : -1f;
+            }
+            else
+            {
+                move = true;
+                axis = Vector3.forward;
+                selectedBone = 1;
+                directionModifier = joystickInput.y > 0 ? 1f : -1f;
+            }
         }
-        else if (selectedBone == 2 || selectedBone == 4)
+        if (move)
         {
-            axis = Vector3.right;
-        }
-        else
-        {
-            throw new ArgumentException("Selected bone case unsupported.");
+            bones[selectedBone].Rotate(axis, rotateSpeed * directionModifier * Time.deltaTime);
         }
     }
+
+    //private void ChangeAxis()
+    //{
+    //    if (selectedBone == 0 || selectedBone == 1)
+    //    {
+    //        axis = Vector3.forward;
+    //    }
+    //    else if (selectedBone == 3 || selectedBone == 5)
+    //    {
+    //        axis = Vector3.up;
+    //    }
+    //    else if (selectedBone == 2 || selectedBone == 4)
+    //    {
+    //        axis = Vector3.right;
+    //    }
+    //    else
+    //    {
+    //        throw new ArgumentException("Selected bone case unsupported.");
+    //    }
+    //}
 }
