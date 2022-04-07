@@ -12,7 +12,7 @@ public class TestControl : MonoBehaviour
     private void Start()
     {
         xrCustomController = GetComponent<XRCustomController>();
-        xrCustomController.thumbstickValueAction.action.performed += Action_performed;
+        xrCustomController.joystickAxisValueAction.action.performed += Action_performed;
     }
 
     private void Action_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)

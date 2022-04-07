@@ -1,5 +1,5 @@
 {
-    "name": "XRI Default Input Actions",
+    "name": "Input Set",
     "maps": [
         {
             "name": "XRI Head",
@@ -278,6 +278,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Trigger Pressed",
+                    "type": "Value",
+                    "id": "429ba78e-c33d-4bb5-98e6-8964015b4696",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -456,6 +465,17 @@
                     "action": "Translate Anchor",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "df0d9290-28ce-45b2-a6c4-717855895f6f",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Trigger Pressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -807,7 +827,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Change Axis Up",
+                    "name": "Change Axis",
                     "type": "Button",
                     "id": "76334da0-7ff1-46a4-9b58-92c0ccb19d41",
                     "expectedControlType": "Button",
@@ -816,9 +836,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Change Axis Down",
+                    "name": "Trigger Pressed",
+                    "type": "Value",
+                    "id": "c25b65ed-1760-4156-b49a-7661c5bc3d64",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Joystick Axis Value",
+                    "type": "Value",
+                    "id": "a37ff1e6-ce12-4fff-b61a-2b75c0a511ac",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Joystick Pressed",
                     "type": "Button",
-                    "id": "fc43aaa8-4a0a-4635-82fa-05f1532ccab6",
+                    "id": "074c2df0-ed32-4426-b6f1-71cf5fc26448",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1020,18 +1058,40 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
-                    "action": "Change Axis Up",
+                    "action": "Change Axis",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "e0b76489-eced-4347-b6b4-05180e73e1ae",
-                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "id": "91053ae5-af4f-49c5-940a-c14bc9d1a797",
+                    "path": "<XRController>{RightHand}/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
-                    "action": "Change Axis Down",
+                    "action": "Trigger Pressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88d52c0a-6b9b-4db9-a5a3-092c69bbaffd",
+                    "path": "<XRController>{RightHand}/joystick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Joystick Axis Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4e11e154-c06f-4cb9-af96-01312c1b63b5",
+                    "path": "<XRController>{RightHand}/joystickClicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Joystick Pressed",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
