@@ -26,13 +26,11 @@ public class RobotController : MonoBehaviour
     [field: SerializeField]
     private TextUpdater textUpdater;
 
-    [SerializeField]float minTreshHoldTrigger, maxTreshHoldTrigger;
-
     private bool pressureButtonHeld = false;
 
-    private string SelectedBoneText { get { return (selectedBone + 1).ToString(); } }
-
     private JoystickInteractor joystickInteractor;
+
+    private bool axisSetOne = true;
 
     private void Start()
     {
@@ -44,13 +42,17 @@ public class RobotController : MonoBehaviour
         controllerRight.changeAxisAction.action.started += ChangeAxisAction;
         joystickInteractor = controllerRight.GetComponent<JoystickInteractor>();
         interactor = GetComponent<CustomInteractor>();
-        textUpdater.UpdateText(SelectedBoneText);
+        textUpdater.UpdateText(axisSetOne ? "1  2  3" : "4  5  6");
+
     }
 
     private void ChangeAxisAction(InputAction.CallbackContext obj)
     {
-        //selectedBone = (selectedBone + 1) % bones.Length;
-        //textUpdater.UpdateText(SelectedBoneText);
+        if (obj.ReadValue<float>() == 1)
+        {
+            axisSetOne = !axisSetOne;
+            textUpdater.UpdateText(axisSetOne ? "1  2  3" : "4  5  6");
+        }
     }
 
     private void TriggerValue(InputAction.CallbackContext obj)
@@ -87,8 +89,8 @@ public class RobotController : MonoBehaviour
             if (Math.Abs(joystickInteractor.TiltAngle) > joystickInteractor.TiltAllowance)
             {
                 move = true;
-                axis = Vector3.right;
-                selectedBone = 2;
+                axis = axisSetOne ? Vector3.right : Vector3.up;
+                selectedBone = axisSetOne ? 2 : 5;
                 directionModifier = joystickInteractor.TiltAngle > 0 ? 1f : -1f;
             }
         }
@@ -99,15 +101,15 @@ public class RobotController : MonoBehaviour
             if (modifyingX)
             {
                 move = true;
-                axis = Vector3.forward;
-                selectedBone = 0;
+                axis = axisSetOne ? Vector3.forward : Vector3.up;
+                selectedBone = axisSetOne ? 0 : 3;
                 directionModifier = joystickInput.x > 0 ? 1f : -1f;
             }
             else
             {
                 move = true;
-                axis = Vector3.forward;
-                selectedBone = 1;
+                axis =  axisSetOne ? Vector3.forward : Vector3.right;
+                selectedBone = axisSetOne ? 1 : 4;
                 directionModifier = joystickInput.y > 0 ? 1f : -1f;
             }
         }
