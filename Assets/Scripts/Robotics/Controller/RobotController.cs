@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class RobotController : MonoBehaviour
 {
-
     public Transform[] bones = new Transform[8];
 
     public int selectedBone = 0;
