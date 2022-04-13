@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HologramSurround
-  m_Shader: {fileID: -6465566751694194690, guid: 9c2a022b4162f88458d0e774f30947ee, type: 3}
+  m_Name: HologramProjection
+  m_Shader: {fileID: -6465566751694194690, guid: dd619ccdb3505de47b65d309fa59c52b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,8 +19,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_45044272a1e94e32b152e125aabeeedf:
-        m_Texture: {fileID: 2800000, guid: 8d19fc4a749386249bf52bc0f8867d28, type: 3}
+    - Texture2D_37c548fdc36545eabea02bccedd0dc60:
+        m_Texture: {fileID: 2800000, guid: dac990a1db54fe542a8e7a66a490d7f8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_69bd1bc30bd94c75aded9aeb335bd78f:
+        m_Texture: {fileID: 2800000, guid: b4627cb3aebe13a478db68f13748ff6a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -67,6 +71,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_3deadd2839d94413a4e73c5dd0680123_Out_0:
+        m_Texture: {fileID: 2800000, guid: dac990a1db54fe542a8e7a66a490d7f8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -80,11 +88,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_02655939d990402b8d50ae93d2b541a1: 0.77
-    - Vector1_a8ee4e43931b44bb807c85e42da10570: 1.65
-    - Vector1_bec0450f58924613954817b442e790a2: 0.03
-    - Vector1_ce031c9b6a804751adabab5724940e8a: 0.1
-    - Vector1_d8b73e6c6f6b43c4b904411f7d6f1e37: -4.12
+    - Vector1_294d970f6d554321998ab6bbfcffa0a6: 0.5
+    - Vector1_46c67619fad042588bb88219e3c4f4d2: 0.25
+    - Vector1_b2e16754207f4a70ae1d3f3c757c5fe2: 0.1
+    - Vector1_c64d4f0c84664e8aa0533848835f0d4f: -0.2
+    - Vector1_d967a9a6892749d69885901c3466e2e6: 0.5
+    - Vector1_f797329d019f428dadc6c4bcadc7b9bd: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -112,13 +121,14 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_e00966748d0749ec83256a7b1c625ab9: {r: 0, g: 0.078431375, b: 0.7490196, a: 1}
+    - Color_b07960701b314b6da75d0ca1295fa48a: {r: 0.24670693, g: 0.45025438, b: 0.6792453, a: 1}
+    - Color_bdd5451221224ae1817c3a434ffd4f60: {r: 0, g: 0.078431375, b: 0.7490196, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &7806014183267548188
+--- !u!114 &3538229132087760369
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
