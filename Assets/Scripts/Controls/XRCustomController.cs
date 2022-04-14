@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
-using static HandAnimationManager;
+using static HandManager;
 
 public class XRCustomController : CustomActionBasedController
 {
@@ -64,11 +64,11 @@ public class XRCustomController : CustomActionBasedController
     [Header("Custom hand actions - Both")]
     [Space(10)]
     [SerializeField]
-    InputActionProperty m_customSelectAction;
-    public InputActionProperty customSelectAction
+    InputActionProperty m_pointAction;
+    public InputActionProperty pointAction
     {
-        get => m_customSelectAction;
-        set => SetInputActionProperty(ref m_customSelectAction, value);
+        get => m_pointAction;
+        set => SetInputActionProperty(ref m_pointAction, value);
     }
 
     [SerializeField]
@@ -94,8 +94,8 @@ public class XRCustomController : CustomActionBasedController
 
     private void Start()
     {
-        customSelectAction.action.performed += CustomSelect;
-        customSelectAction.action.canceled += CustomSelect;
+        pointAction.action.performed += PointAction;
+        pointAction.action.canceled += PointAction;
         customInteractor = GetComponent<CustomInteractor>();
     }
 
@@ -106,11 +106,11 @@ public class XRCustomController : CustomActionBasedController
         {
             if (leftOrRight.Equals(HandType.LEFT))
             {
-                HandAnimationManager.Instance.HandAnimatorL = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
+                HandManager.Instance.HandAnimatorL = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
             }
             else
             {
-                HandAnimationManager.Instance.HandAnimatorR = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
+                HandManager.Instance.HandAnimatorR = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
             }
             OnHandAttached(leftOrRight);
             handAttached = true;
@@ -118,17 +118,15 @@ public class XRCustomController : CustomActionBasedController
     }
     #endregion
 
-    private void CustomSelect(InputAction.CallbackContext obj)
+    private void PointAction(InputAction.CallbackContext obj)
     {
-        if (obj.ReadValue<float>() == 1f &&!handGrabbing)
+        if (obj.ReadValue<float>() == 1f)
         {
-            HandAnimationManager.Instance.ChangePose(HandPose.IDLE, HandPose.SELECT, leftOrRight);
-            handGrabbing = !handGrabbing;
+            HandManager.Instance.ChangePose(HandPose.IDLE, HandPose.POINT, leftOrRight);
         }
-        else if(obj.ReadValue<float>() == 1f && handGrabbing)
+        else
         {
-            HandAnimationManager.Instance.ChangePose(HandPose.SELECT, HandPose.IDLE, leftOrRight);
-            handGrabbing = !handGrabbing;
+            HandManager.Instance.ChangePose(HandPose.POINT, HandPose.IDLE, leftOrRight);
         }
     }
 
@@ -140,7 +138,7 @@ public class XRCustomController : CustomActionBasedController
         m_changeAxisAction.EnableDirectAction();
         m_leftTriggerPressAction.EnableDirectAction();
         m_rightTriggerPressAction.EnableDirectAction();
-        m_customSelectAction.EnableDirectAction();
+        m_pointAction.EnableDirectAction();
         m_teleportAction.EnableDirectAction();
     }
 
@@ -152,7 +150,7 @@ public class XRCustomController : CustomActionBasedController
         m_changeAxisAction.DisableDirectAction();
         m_leftTriggerPressAction.DisableDirectAction();
         m_rightTriggerPressAction.EnableDirectAction();
-        m_customSelectAction.DisableDirectAction();
+        m_pointAction.DisableDirectAction();
         m_teleportAction.DisableDirectAction();
     }
 

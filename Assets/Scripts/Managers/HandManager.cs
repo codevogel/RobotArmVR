@@ -3,14 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandAnimationManager : MonoBehaviour
+public class HandManager : MonoBehaviour
 {
 
     public Animator HandAnimatorL { get; set; }
     public Animator HandAnimatorR { get; set; }
+    
+    public Transform GetHeldObject(HandType leftRight)
+    {
+        return leftRight.Equals(HandType.LEFT) ? _heldObjectLeft : _heldObjectRight;
+    }
 
-    public static HandAnimationManager Instance { get { return _instance; } }
-    private static HandAnimationManager _instance;
+    public void SetHeldObject(HandType leftRight, Transform heldObject)
+    {
+        if (leftRight.Equals(HandType.LEFT))
+        {
+            _heldObjectLeft = heldObject;
+            return;
+        }
+        _heldObjectRight = heldObject;
+    }
+
+    private Transform _heldObjectLeft;
+    private Transform _heldObjectRight;
+
+    public static HandManager Instance { get { return _instance; } }
+    private static HandManager _instance;
 
     private HandPose _currentPoseLeft = HandPose.IDLE, _currentPoseRight = HandPose.IDLE;
 
@@ -36,10 +54,10 @@ public class HandAnimationManager : MonoBehaviour
 
     private void Start()
     {
-        XRCustomController.OnHandAttached += FindHand;
+        XRCustomController.OnHandAttached += InitHand;
     }
 
-    private void FindHand(HandType leftRight)
+    private void InitHand(HandType leftRight)
     {
         SwitchPose(HandPose.IDLE, HandPose.IDLE, leftRight);
     }
@@ -76,17 +94,24 @@ public class HandAnimationManager : MonoBehaviour
                     hasSwitched = true;
                 }
                 break;
-            case HandPose.GRAB:
+            case HandPose.JOYSTICK_GRAB:
                 if (isIdle)
+                {
+                    handAnimator.SetTrigger("JoystickGrab");
+                    hasSwitched = true;
+                }
+                break;
+            case HandPose.GRAB:
+                if (isIdle && GetHeldObject(leftRight) != null)
                 {
                     handAnimator.SetTrigger("Grab");
                     hasSwitched = true;
                 }
                 break;
-            case HandPose.SELECT:
+            case HandPose.POINT:
                 if (isIdle)
                 {
-                    handAnimator.SetTrigger("Select");
+                    handAnimator.SetTrigger("Point");
                     hasSwitched = true;
                 }
                 break;
@@ -102,8 +127,9 @@ public class HandAnimationManager : MonoBehaviour
     private void ResetTriggers(Animator handAnimator)
     {
         handAnimator.ResetTrigger("Idle");
-        handAnimator.ResetTrigger("Select");
         handAnimator.ResetTrigger("Grab");
+        handAnimator.ResetTrigger("JoystickGrab");
+        handAnimator.ResetTrigger("Point");
     }
 
     public bool IsCurrentState(string stateName, HandType leftRight)
@@ -115,8 +141,9 @@ public class HandAnimationManager : MonoBehaviour
     public enum HandPose
     {
         IDLE,
+        JOYSTICK_GRAB,
         GRAB,
-        SELECT
+        POINT
     }
 
     public enum HandType

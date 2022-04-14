@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static HandAnimationManager;
+using static HandManager;
 
 [RequireComponent(typeof(JoystickControl))]
 public class JoystickInteractor : MonoBehaviour
@@ -52,7 +52,7 @@ public class JoystickInteractor : MonoBehaviour
 
     private void PressJoystick(InputAction.CallbackContext obj)
     {
-        if (HandAnimationManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.GRAB))
+        if (HandManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.JOYSTICK_GRAB))
         {
             joystickPressed = obj.ReadValue<float>() == 1;
             if (joystickPressed)
@@ -68,7 +68,7 @@ public class JoystickInteractor : MonoBehaviour
 
     private void RotateController(InputAction.CallbackContext obj)
     {
-        if (joystickPressed && HandAnimationManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.GRAB))
+        if (joystickPressed && HandManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.JOYSTICK_GRAB))
         {
             Quaternion handRotation = obj.ReadValue<Quaternion>();
             if (setInitialRotation)
@@ -92,7 +92,7 @@ public class JoystickInteractor : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (HandAnimationManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.GRAB))
+        if (HandManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.JOYSTICK_GRAB))
         {
             Vector2 input = joystickControl.JoystickInput * -1;
             joystickPivot.transform.localRotation = Quaternion.Euler(0, input.x * 30, input.y * 30);
@@ -112,14 +112,14 @@ public class JoystickInteractor : MonoBehaviour
             rightHandController.enableInputTracking = false;
             originalParent = transform.parent;
             transform.parent = attachpoint;
-            HandAnimationManager.Instance.ChangePose(HandPose.IDLE, HandPose.GRAB, HandType.RIGHT);
+            HandManager.Instance.ChangePose(HandPose.IDLE, HandPose.JOYSTICK_GRAB, HandType.RIGHT);
             return;
         }
         if (transform.parent.name.Equals("RightHandAttach"))
         {
             transform.parent = originalParent;
             rightHandController.enableInputTracking = true;
-            HandAnimationManager.Instance.ChangePose(HandPose.GRAB, HandPose.IDLE, HandType.RIGHT);
+            HandManager.Instance.ChangePose(HandPose.JOYSTICK_GRAB, HandPose.IDLE, HandType.RIGHT);
         }
 
     }

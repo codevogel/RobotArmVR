@@ -30466,18 +30466,18 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -7512795810554565581, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  m_customSelectAction:
+  m_pointAction:
     m_UseReference: 1
     m_Action:
-      m_Name: Custom Select
+      m_Name: Point
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: dddc819d-82e7-43dc-9910-7f3547b386cf
+      m_Id: 53a9d707-5d5b-432a-bc45-eca29cd57e1a
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_Reference: {fileID: 9142161679251840916, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_teleportAction:
     m_UseReference: 0
     m_Action:
@@ -30945,18 +30945,18 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_customSelectAction:
-    m_UseReference: 1
+  m_pointAction:
+    m_UseReference: 0
     m_Action:
-      m_Name: Custom Select
+      m_Name: Point
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: c433b556-e38b-4d2f-9bd6-9da1e88d403b
+      m_Id: dc45843b-c555-485a-b931-d5525f4cedee
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_Reference: {fileID: 0}
   m_teleportAction:
     m_UseReference: 1
     m_Action:
@@ -30985,32 +30985,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actionReference: {fileID: 6450965103735208, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _text: {fileID: 0}
---- !u!114 &9167835047031645962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9167835047031646067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2caa0de4d3feff479d1dda77432f984, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lineMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
---- !u!114 &9167835047031645963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9167835047031646067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01f69dc1cb084aa42b2f2f8cd87bc770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_System: {fileID: 9167835045886628564}
 --- !u!4 &9167835047031645964
 Transform:
   m_ObjectHideFlags: 0
@@ -31168,8 +31142,6 @@ GameObject:
   - component: {fileID: 9167835047031645965}
   - component: {fileID: 9167835047031645967}
   - component: {fileID: 9167835047031645961}
-  - component: {fileID: 9167835047031645963}
-  - component: {fileID: 9167835047031645962}
   m_Layer: 6
   m_Name: RightHand Controller
   m_TagString: ControllerRight
@@ -31410,7 +31382,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9167835047367305588}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.11, y: -0.7, z: -16.81}
+  m_LocalPosition: {x: -12.610001, y: -0.7, z: -16.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9167835045960205340}

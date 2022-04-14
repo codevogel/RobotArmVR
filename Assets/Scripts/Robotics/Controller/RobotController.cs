@@ -57,9 +57,10 @@ public class RobotController : MonoBehaviour
 
     private void TriggerValue(InputAction.CallbackContext obj)
     {
-        if (Interactor.HeldObject == null)
+        Transform heldDevice = HandManager.Instance.GetHeldObject(HandManager.HandType.LEFT);
+        if (heldDevice == null)
             return;
-        if (Interactor.HeldObject.transform.name == "Flexpendant")
+        if (heldDevice.transform.name == "Flexpendant")
         {
             pressureButtonHeld = obj.ReadValue<float>() == 1 ? true : false;
         }
