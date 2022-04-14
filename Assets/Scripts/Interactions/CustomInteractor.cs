@@ -16,5 +16,4 @@ public class CustomInteractor : XRDirectInteractor
     {
         HeldObject = null;
     }
-
 }

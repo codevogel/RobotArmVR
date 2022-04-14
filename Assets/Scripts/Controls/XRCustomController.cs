@@ -83,6 +83,8 @@ public class XRCustomController : CustomActionBasedController
 
     #region Hand attachement
     private bool handAttached = false;
+    private bool handGrabbing = false;
+    private CustomInteractor customInteractor;
 
     public HandType leftOrRight;
 
@@ -94,6 +96,7 @@ public class XRCustomController : CustomActionBasedController
     {
         customSelectAction.action.performed += CustomSelect;
         customSelectAction.action.canceled += CustomSelect;
+        customInteractor = GetComponent<CustomInteractor>();
     }
 
     protected override void UpdateController()
@@ -117,13 +120,15 @@ public class XRCustomController : CustomActionBasedController
 
     private void CustomSelect(InputAction.CallbackContext obj)
     {
-        if (obj.ReadValue<float>() == 1f)
+        if (obj.ReadValue<float>() == 1f &&!handGrabbing &&customInteractor.HeldObject!=null)
         {
             HandAnimationManager.Instance.ChangePose(HandPose.IDLE, HandPose.SELECT, leftOrRight);
+            handGrabbing = !handGrabbing;
         }
-        else
+        else if(obj.ReadValue<float>() == 1f && handGrabbing)
         {
             HandAnimationManager.Instance.ChangePose(HandPose.SELECT, HandPose.IDLE, leftOrRight);
+            handGrabbing = !handGrabbing;
         }
     }
 
