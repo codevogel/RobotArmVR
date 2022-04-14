@@ -120,7 +120,7 @@ public class XRCustomController : CustomActionBasedController
 
     private void CustomSelect(InputAction.CallbackContext obj)
     {
-        if (obj.ReadValue<float>() == 1f &&!handGrabbing &&customInteractor.HeldObject!=null)
+        if (obj.ReadValue<float>() == 1f &&!handGrabbing)
         {
             HandAnimationManager.Instance.ChangePose(HandPose.IDLE, HandPose.SELECT, leftOrRight);
             handGrabbing = !handGrabbing;
