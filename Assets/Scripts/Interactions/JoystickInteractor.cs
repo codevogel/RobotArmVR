@@ -39,22 +39,15 @@ public class JoystickInteractor : MonoBehaviour
     private void Start()
     {
         rightHandController = GetComponent<XRCustomController>();
-        rightHandController.rightTriggerPressAction.action.performed += SnapToJoystick;
-        rightHandController.rightTriggerPressAction.action.canceled += SnapToJoystick;
-        rightHandController.rotationAction.action.performed += RotateController;
-        rightHandController.joystickPressedAction.action.performed += PressJoystick;
-        rightHandController.joystickPressedAction.action.canceled += PressJoystick;
         XRCustomController.OnHandAttached += FindHand;
         joystickControl = GetComponent<JoystickControl>();
     }
 
-
-
-    private void PressJoystick(InputAction.CallbackContext obj)
+    public void PressJoystick(bool input, HandType leftRight)
     {
-        if (HandManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.JOYSTICK_GRAB))
+        if (HandManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.JOYSTICK_GRAB) && leftRight.Equals(HandType.RIGHT))
         {
-            joystickPressed = obj.ReadValue<float>() == 1;
+            joystickPressed = input;
             if (joystickPressed)
             {
                 setInitialRotation = true;
@@ -66,11 +59,11 @@ public class JoystickInteractor : MonoBehaviour
         }
     }
 
-    private void RotateController(InputAction.CallbackContext obj)
+    public void RotateController(Quaternion input, HandType leftRight)
     {
-        if (joystickPressed && HandManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.JOYSTICK_GRAB))
+        if (joystickPressed && HandManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.JOYSTICK_GRAB) && leftRight.Equals(HandType.RIGHT))
         {
-            Quaternion handRotation = obj.ReadValue<Quaternion>();
+            Quaternion handRotation = input;
             if (setInitialRotation)
             {
                 initRotationZ = handRotation.eulerAngles.z;
@@ -105,9 +98,14 @@ public class JoystickInteractor : MonoBehaviour
         attachpoint = joystickPivot.Find("Joystick").Find("RightHandAttach");
     }
 
-    private void SnapToJoystick(InputAction.CallbackContext obj)
+    public void SnapToJoystick(bool input, HandType leftRight)
     {
-        if (obj.ReadValue<float>() == 1 && controllerInRange)
+        if (leftRight.Equals(HandType.LEFT))
+        {
+            return;
+        }
+
+        if (input.Equals(true) && controllerInRange)
         {
             rightHandController.enableInputTracking = false;
             originalParent = transform.parent;
@@ -121,7 +119,6 @@ public class JoystickInteractor : MonoBehaviour
             rightHandController.enableInputTracking = true;
             HandManager.Instance.ChangePose(HandPose.JOYSTICK_GRAB, HandPose.IDLE, HandType.RIGHT);
         }
-
     }
 
     public void OnJoystickEnter(OnTriggerDelegation triggerDelegation)

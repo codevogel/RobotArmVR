@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static HandManager;
 
 public class RobotController : MonoBehaviour
 {
@@ -18,8 +19,7 @@ public class RobotController : MonoBehaviour
 
     private Vector3 axis;
 
-    private XRCustomController controllerLeft, controllerRight;
-
+    private Vector2 joystickInput;
 
     [field: SerializeField]
     private TextUpdater textUpdater;
@@ -35,44 +35,10 @@ public class RobotController : MonoBehaviour
 
     private void Start()
     {
-        controllerLeft = GameObject.FindGameObjectWithTag("ControllerLeft").GetComponent<XRCustomController>();
-        controllerRight = GameObject.FindGameObjectWithTag("ControllerRight").GetComponent<XRCustomController>();
-        controllerLeft.leftTriggerPressAction.action.performed += TriggerValue;
-        controllerLeft.leftTriggerPressAction.action.canceled += TriggerValue;
-        controllerRight.joystickAxisValueAction.action.performed += ThumbstickAction;
-        controllerRight.changeAxisAction.action.started += ChangeAxisAction;
-        joystickInteractor = controllerRight.GetComponent<JoystickInteractor>();
+        joystickInteractor = HandManager.Instance.RightController.GetComponent<JoystickInteractor>();
         Interactor = GetComponent<CustomInteractor>();
         textUpdater.UpdateText(axisSetOne ? "1  2  3" : "4  5  6");
     }
-
-    private void ChangeAxisAction(InputAction.CallbackContext obj)
-    {
-        if (obj.ReadValue<float>() == 1)
-        {
-            axisSetOne = !axisSetOne;
-            textUpdater.UpdateText(axisSetOne ? "1  2  3" : "4  5  6");
-        }
-    }
-
-    private void TriggerValue(InputAction.CallbackContext obj)
-    {
-        Transform heldDevice = HandManager.Instance.GetHeldObject(HandManager.HandType.LEFT);
-        if (heldDevice == null)
-            return;
-        if (heldDevice.transform.name == "Flexpendant")
-        {
-            pressureButtonHeld = obj.ReadValue<float>() == 1 ? true : false;
-        }
-    }
-
-    private Vector2 joystickInput;
-
-    private void ThumbstickAction(InputAction.CallbackContext obj)
-    {
-        joystickInput = obj.ReadValue<Vector2>();
-    }
-
 
     private void FixedUpdate()
     {
@@ -80,6 +46,42 @@ public class RobotController : MonoBehaviour
         {
             ManualRobotControls();
         }
+    }
+
+    public void ChangeAxisAction(bool input, HandType leftRight)
+    {
+        if (leftRight.Equals(HandType.RIGHT))
+        {
+            return;
+        }
+        if (input.Equals(true))
+        {
+            axisSetOne = !axisSetOne;
+            textUpdater.UpdateText(axisSetOne ? "1  2  3" : "4  5  6");
+        }
+    }
+
+    public void TriggerValue(bool input, HandType leftRight)
+    {
+        if (leftRight.Equals(HandType.RIGHT))
+        {
+            return;
+        }
+
+        Transform heldDevice = HandManager.Instance.GetHeldObject(HandManager.HandType.LEFT);
+
+        if (heldDevice == null)
+            return;
+
+        if (heldDevice.transform.name == "Flexpendant")
+        {
+            pressureButtonHeld = input;
+        }
+    }
+
+    public void ThumbstickAction(Vector2 input)
+    {
+        joystickInput = input;
     }
 
     private void ManualRobotControls()
@@ -119,24 +121,4 @@ public class RobotController : MonoBehaviour
             bones[selectedBone].Rotate(axis, rotateSpeed * directionModifier * Time.deltaTime);
         }
     }
-
-    //private void ChangeAxis()
-    //{
-    //    if (selectedBone == 0 || selectedBone == 1)
-    //    {
-    //        axis = Vector3.forward;
-    //    }
-    //    else if (selectedBone == 3 || selectedBone == 5)
-    //    {
-    //        axis = Vector3.up;
-    //    }
-    //    else if (selectedBone == 2 || selectedBone == 4)
-    //    {
-    //        axis = Vector3.right;
-    //    }
-    //    else
-    //    {
-    //        throw new ArgumentException("Selected bone case unsupported.");
-    //    }
-    //}
 }

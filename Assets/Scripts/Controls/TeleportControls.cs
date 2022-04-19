@@ -15,17 +15,15 @@ public class TeleportControls : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<XRCustomController>();
-        controller.teleportAction.action.performed+=OnTeleportButton;
-        controller.teleportAction.action.canceled += OnTeleportButton;
     }
 
-    public void OnTeleportButton(InputAction.CallbackContext obj)
+    public void OnTeleportButton(float yPosition)
     {
-        if (!teleportActive)
+        if (!teleportActive &&yPosition>0.75f)
         {
             RemoveComponents(transform.gameObject);
         }
-        else
+        else 
         {
             AddComponents(transform.gameObject);
         }

@@ -30407,7 +30407,7 @@ MonoBehaviour:
     m_Reference: {fileID: 7779212132400271959, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_ButtonPressPoint: 0.5
   m_joystickAxisValueAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
       m_Name: Joystick Axis Value
       m_Type: 0
@@ -30417,33 +30417,9 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 0}
-  m_changeAxisAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Change Axis
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 7f39f877-3575-4e83-898e-fb677f57a288
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  m_rightTriggerPressAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Right Trigger Press
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 975eca2a-96fb-4c50-9245-916cb10cab21
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: 302991515001104244, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_joystickPressedAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
       m_Name: Joystick Pressed
       m_Type: 0
@@ -30453,33 +30429,21 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 0}
-  m_leftTriggerPressAction:
+    m_Reference: {fileID: 7816501352396351389, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_primaryButtonPressedAction:
     m_UseReference: 1
     m_Action:
-      m_Name: Left Trigger Press
+      m_Name: Primary Button Pressed
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: be22f59c-4528-46fa-a803-f95b762deee8
+      m_Id: a0c07554-e9b4-43a3-b884-cfabe3b21dfa
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -7512795810554565581, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  m_pointAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Point
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 53a9d707-5d5b-432a-bc45-eca29cd57e1a
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 9142161679251840916, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_Reference: {fileID: 3782851951479553466, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_teleportAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
       m_Name: Teleport
       m_Type: 0
@@ -30490,6 +30454,18 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -7178660066116143662, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_TriggerPressAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Trigger Press
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: e5c56963-ba62-4a29-b53f-d6ea4f58c679
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -7512795810554565581, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   leftOrRight: 0
   resetPosition: 0
 --- !u!1 &9167835045588484462
@@ -30897,30 +30873,6 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 6450965103735208, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  m_changeAxisAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Change Axis
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 10f1979c-21e0-4437-92fb-d94c19827c4f
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -4659389214272227885, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  m_rightTriggerPressAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Right Trigger Press
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 6bb4f618-a344-4e3b-ac68-ee1ae0f3e923
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -8774016028842524970, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_joystickPressedAction:
     m_UseReference: 1
     m_Action:
@@ -30933,30 +30885,18 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 7816501352396351389, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  m_leftTriggerPressAction:
-    m_UseReference: 0
+  m_primaryButtonPressedAction:
+    m_UseReference: 1
     m_Action:
-      m_Name: Left Trigger Press
+      m_Name: Primary Button Pressed
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 6b77c1b4-8a7f-43ae-9542-e2749a919a86
+      m_Id: b1602ad5-ec60-4571-be6f-e49182c30f68
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 0}
-  m_pointAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Point
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: dc45843b-c555-485a-b931-d5525f4cedee
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: -4348833162212184119, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_teleportAction:
     m_UseReference: 1
     m_Action:
@@ -30969,6 +30909,18 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 4137096819501579198, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_TriggerPressAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Trigger Press
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 320c0824-1224-4bb0-9c38-b4c9e5d48bf4
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -8774016028842524970, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   leftOrRight: 1
   resetPosition: 0
 --- !u!114 &9167835047031645961

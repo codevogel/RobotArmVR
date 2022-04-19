@@ -8,32 +8,16 @@ using static HandManager;
 
 public class XRCustomController : CustomActionBasedController
 {
-    #region Right Hand
+    #region Both Hands
+    [Header("Custom hand actions")]
+    [Space(10)]
 
-    [Header("Custom hand actions - Right")]
-    [Space(25)]
     [SerializeField]
     InputActionProperty m_joystickAxisValueAction;
     public InputActionProperty joystickAxisValueAction
     {
         get => m_joystickAxisValueAction;
         set => SetInputActionProperty(ref m_joystickAxisValueAction, value);
-    }
-
-    [SerializeField]
-    InputActionProperty m_changeAxisAction;
-    public InputActionProperty changeAxisAction
-    {
-        get => m_changeAxisAction;
-        set => SetInputActionProperty(ref m_changeAxisAction, value);
-    }
-
-    [SerializeField]
-    InputActionProperty m_rightTriggerPressAction;
-    public InputActionProperty rightTriggerPressAction
-    {
-        get => m_rightTriggerPressAction;
-        set => SetInputActionProperty(ref m_rightTriggerPressAction, value);
     }
 
     [SerializeField]
@@ -44,31 +28,12 @@ public class XRCustomController : CustomActionBasedController
         set => SetInputActionProperty(ref m_joystickPressedAction, value);
     }
 
-    #endregion
-
-    #region Left Hand
-    [Header("Custom hand actions - Left")]
-    [Space(10)]
-
     [SerializeField]
-    InputActionProperty m_leftTriggerPressAction;
-    public InputActionProperty leftTriggerPressAction
+    InputActionProperty m_primaryButtonPressedAction;
+    public InputActionProperty primaryButtonPressedAction
     {
-        get => m_leftTriggerPressAction;
-        set => SetInputActionProperty(ref m_leftTriggerPressAction, value);
-    }
-
-    #endregion
-
-    #region Both Hands
-    [Header("Custom hand actions - Both")]
-    [Space(10)]
-    [SerializeField]
-    InputActionProperty m_pointAction;
-    public InputActionProperty pointAction
-    {
-        get => m_pointAction;
-        set => SetInputActionProperty(ref m_pointAction, value);
+        get => m_primaryButtonPressedAction;
+        set => SetInputActionProperty(ref m_primaryButtonPressedAction, value);
     }
 
     [SerializeField]
@@ -79,6 +44,13 @@ public class XRCustomController : CustomActionBasedController
         set => SetInputActionProperty(ref m_teleportAction, value);
     }
 
+    [SerializeField]
+    InputActionProperty m_TriggerPressAction;
+    public InputActionProperty triggerPressAction
+    {
+        get => m_TriggerPressAction;
+        set => SetInputActionProperty(ref m_TriggerPressAction, value);
+    }
     #endregion
 
     #region Hand attachement
@@ -92,15 +64,14 @@ public class XRCustomController : CustomActionBasedController
 
     public static event HandAttached OnHandAttached;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         HandManager.Instance.SetController(this, leftOrRight);
     }
 
     private void Start()
     {
-        pointAction.action.performed += PointAction;
-        pointAction.action.canceled += PointAction;
         customInteractor = GetComponent<CustomInteractor>();
     }
 
@@ -123,9 +94,9 @@ public class XRCustomController : CustomActionBasedController
     }
     #endregion
 
-    private void PointAction(InputAction.CallbackContext obj)
+    public void PointAction(bool input)
     {
-        if (obj.ReadValue<float>() == 1f)
+        if (input)
         {
             HandManager.Instance.ChangePose(HandPose.IDLE, HandPose.POINT, leftOrRight);
         }
@@ -140,10 +111,8 @@ public class XRCustomController : CustomActionBasedController
         base.CustomEnableAllDirectActions();
         m_joystickAxisValueAction.EnableDirectAction();
         m_joystickPressedAction.EnableDirectAction();
-        m_changeAxisAction.EnableDirectAction();
-        m_leftTriggerPressAction.EnableDirectAction();
-        m_rightTriggerPressAction.EnableDirectAction();
-        m_pointAction.EnableDirectAction();
+        m_primaryButtonPressedAction.EnableDirectAction();
+        m_TriggerPressAction.EnableDirectAction();
         m_teleportAction.EnableDirectAction();
     }
 
@@ -152,10 +121,8 @@ public class XRCustomController : CustomActionBasedController
         base.CustomDisableAllDirectActions();
         m_joystickAxisValueAction.DisableDirectAction();
         m_joystickPressedAction.EnableDirectAction();
-        m_changeAxisAction.DisableDirectAction();
-        m_leftTriggerPressAction.DisableDirectAction();
-        m_rightTriggerPressAction.EnableDirectAction();
-        m_pointAction.DisableDirectAction();
+        m_primaryButtonPressedAction.DisableDirectAction();
+        m_TriggerPressAction.EnableDirectAction();
         m_teleportAction.DisableDirectAction();
     }
 
