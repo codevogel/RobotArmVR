@@ -8,7 +8,28 @@ public class HandManager : MonoBehaviour
 
     public Animator HandAnimatorL { get; set; }
     public Animator HandAnimatorR { get; set; }
-    
+
+    private Transform _heldObjectLeft;
+    private Transform _heldObjectRight;
+
+    public XRCustomController LeftController { get; private set; }
+    public XRCustomController RightController { get; private set; }
+
+    public static HandManager Instance { get { return _instance; } }
+    private static HandManager _instance;
+
+    private HandPose _currentPoseLeft = HandPose.IDLE, _currentPoseRight = HandPose.IDLE;
+
+    private void Awake()
+    {
+        _instance = this;
+    }
+
+    private void Start()
+    {
+        XRCustomController.OnHandAttached += InitHand;
+    }
+
     public Transform GetHeldObject(HandType leftRight)
     {
         return leftRight.Equals(HandType.LEFT) ? _heldObjectLeft : _heldObjectRight;
@@ -24,14 +45,6 @@ public class HandManager : MonoBehaviour
         _heldObjectRight = heldObject;
     }
 
-    private Transform _heldObjectLeft;
-    private Transform _heldObjectRight;
-
-    public static HandManager Instance { get { return _instance; } }
-    private static HandManager _instance;
-
-    private HandPose _currentPoseLeft = HandPose.IDLE, _currentPoseRight = HandPose.IDLE;
-
     public HandPose GetCurrentPose(HandType leftRight)
     {
         return leftRight == HandType.LEFT ? _currentPoseLeft : _currentPoseRight;
@@ -45,16 +58,6 @@ public class HandManager : MonoBehaviour
             return;
         }
         _currentPoseRight = pose;
-    }
-
-    private void Awake()
-    {
-        _instance = this;
-    }
-
-    private void Start()
-    {
-        XRCustomController.OnHandAttached += InitHand;
     }
 
     private void InitHand(HandType leftRight)
@@ -122,6 +125,16 @@ public class HandManager : MonoBehaviour
         {
             SetCurrentPose(leftRight, toPose);
         }
+    }
+
+    internal void SetController(XRCustomController xrCustomController, HandType leftOrRight)
+    {
+        if (leftOrRight.Equals(HandType.LEFT))
+        {
+            LeftController = xrCustomController;
+            return;
+        }
+        RightController = xrCustomController;
     }
 
     private void ResetTriggers(Animator handAnimator)

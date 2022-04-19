@@ -92,6 +92,11 @@ public class XRCustomController : CustomActionBasedController
 
     public static event HandAttached OnHandAttached;
 
+    private void Awake()
+    {
+        HandManager.Instance.SetController(this, leftOrRight);
+    }
+
     private void Start()
     {
         pointAction.action.performed += PointAction;
