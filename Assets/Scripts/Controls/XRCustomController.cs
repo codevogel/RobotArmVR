@@ -51,6 +51,14 @@ public class XRCustomController : CustomActionBasedController
         get => m_TriggerPressAction;
         set => SetInputActionProperty(ref m_TriggerPressAction, value);
     }
+
+    [SerializeField]
+    InputActionProperty m_joystickTouchedAction;
+    public InputActionProperty joystickTouchedAction
+    {
+        get => m_joystickTouchedAction;
+        set => SetInputActionProperty(ref m_joystickTouchedAction, value);
+    }
     #endregion
 
     #region Hand attachement
@@ -114,6 +122,7 @@ public class XRCustomController : CustomActionBasedController
         m_primaryButtonPressedAction.EnableDirectAction();
         m_TriggerPressAction.EnableDirectAction();
         m_teleportAction.EnableDirectAction();
+        m_joystickTouchedAction.EnableDirectAction();
     }
 
     protected override void CustomDisableAllDirectActions()
@@ -124,6 +133,7 @@ public class XRCustomController : CustomActionBasedController
         m_primaryButtonPressedAction.DisableDirectAction();
         m_TriggerPressAction.EnableDirectAction();
         m_teleportAction.DisableDirectAction();
+        m_joystickTouchedAction.DisableDirectAction();
     }
 
     #region Black sorcery for resetting tracking offset when it's off

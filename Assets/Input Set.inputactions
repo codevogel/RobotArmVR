@@ -323,6 +323,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Joystick Touched",
+                    "type": "Button",
+                    "id": "34158c63-ef14-42d3-9ade-e87c84d746c8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -554,6 +563,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Joystick Pressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a1e5411a-710a-4bbc-8b4d-0e2b8e3a057d",
+                    "path": "<OculusTouchController>{LeftHand}/thumbstickTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Joystick Touched",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -950,6 +970,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Joystick Touched",
+                    "type": "Button",
+                    "id": "f0b9388e-e5c0-480b-95e9-a734917762ec",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1192,6 +1221,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "A Button Pressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca28c631-5d0a-49b0-857f-530b183aa097",
+                    "path": "<OculusTouchController>{RightHand}/thumbstickTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Joystick Touched",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

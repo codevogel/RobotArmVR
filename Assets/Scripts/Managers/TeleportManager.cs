@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class TeleportManager : MonoBehaviour
 {
 
-    private Transform directInteractor;
+    private CustomInteractor directInteractor;
     private Transform rayInteractor;
 
     public float joystickYTreshhold;
@@ -18,7 +18,7 @@ public class TeleportManager : MonoBehaviour
 
     private void Start()
     {
-        directInteractor = transform.Find("DirectInteractor");
+        directInteractor = GetComponent<CustomInteractor>();
         rayInteractor = transform.Find("RayInteractor");
         rayInteractor.GetComponent<XRRayInteractor>().maxRaycastDistance = teleportDistance;
         SwitchToDirectInteraction();
@@ -26,24 +26,27 @@ public class TeleportManager : MonoBehaviour
 
     public void ReadJoystickAxis(float joystickY)
     {
-        if (joystickY >= joystickYTreshhold)
+        if (HandManager.Instance.GetHeldObject(HandManager.HandType.LEFT) == null)
         {
-            if (directInteracting)
+            if (joystickY >= joystickYTreshhold)
             {
-                SwitchToTeleport();
+                if (directInteracting)
+                {
+                    SwitchToTeleport();
+                }
+                return;
             }
-            return;
-        }
-        if (!directInteracting)
-        {
-            SwitchToDirectInteraction();
+            if (!directInteracting)
+            {
+                SwitchToDirectInteraction();
+            }
         }
 
     }
 
     public void SwitchToTeleport()
     {
-        directInteractor.gameObject.SetActive(false);
+        directInteractor.enabled = false;
         rayInteractor.gameObject.SetActive(true);
         directInteracting = false;
     }
@@ -51,7 +54,7 @@ public class TeleportManager : MonoBehaviour
     public void SwitchToDirectInteraction()
     {
         RequestTeleport();
-        directInteractor.gameObject.SetActive(true);
+        directInteractor.enabled = true;
         rayInteractor.gameObject.SetActive(false);
         directInteracting = true;
     }

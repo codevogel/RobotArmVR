@@ -105,7 +105,8 @@ public class JoystickInteractor : MonoBehaviour
             return;
         }
 
-        if (input.Equals(true) && controllerInRange)
+        Transform heldObjectInLeft = HandManager.Instance.GetHeldObject(HandType.LEFT);
+        if (input.Equals(true) && heldObjectInLeft != null && heldObjectInLeft.CompareTag("Flexpendant"))
         {
             rightHandController.enableInputTracking = false;
             originalParent = transform.parent;
@@ -113,7 +114,7 @@ public class JoystickInteractor : MonoBehaviour
             HandManager.Instance.ChangePose(HandPose.IDLE, HandPose.JOYSTICK_GRAB, HandType.RIGHT);
             return;
         }
-        if (transform.parent.name.Equals("RightHandAttach"))
+        else if (input.Equals(false) && transform.parent.name.Equals("RightHandAttach"))
         {
             transform.parent = originalParent;
             rightHandController.enableInputTracking = true;

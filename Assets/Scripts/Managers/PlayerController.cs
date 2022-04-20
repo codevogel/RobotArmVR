@@ -33,26 +33,21 @@ public class PlayerController : MonoBehaviour
 
     private void SubscribeToActions(XRCustomController controller, HandType leftRight)
     {
-        //Remove after test
-        controller.primaryButtonPressedAction.action.performed += ctx => PrimaryButtonPressed(ctx, leftRight);
-        controller.selectAction.action.performed += ctx => GripPressed(ctx, leftRight);
-        controller.joystickAxisValueAction.action.performed += ctx => JoystickValue(ctx, leftRight);
-        controller.joystickPressedAction.action.performed += ctx => JoystickPressed(ctx, leftRight);
-        controller.rotationAction.action.performed += ctx => RotateController(ctx, leftRight);
-        controller.triggerPressAction.action.performed += ctx => TriggerPressed(ctx, leftRight);
-        controller.primaryButtonPressedAction.action.canceled += ctx => PrimaryButtonPressed(ctx, leftRight);
-        controller.selectAction.action.canceled += ctx => GripPressed(ctx, leftRight);
-        controller.joystickAxisValueAction.action.canceled += ctx => JoystickValue(ctx, leftRight);
-        controller.joystickPressedAction.action.canceled += ctx => JoystickPressed(ctx, leftRight);
-        controller.rotationAction.action.canceled += ctx => RotateController(ctx, leftRight);
-        controller.triggerPressAction.action.canceled += ctx => TriggerPressed(ctx, leftRight);
+        SubscribeToAction(controller.primaryButtonPressedAction.action, PrimaryButtonPressed, leftRight);
+        SubscribeToAction(controller.selectAction.action, GripPressed, leftRight);
+        SubscribeToAction(controller.joystickAxisValueAction.action, JoystickValue, leftRight);
+        SubscribeToAction(controller.joystickPressedAction.action, JoystickPressed, leftRight);
+        SubscribeToAction(controller.rotationAction.action, RotateController, leftRight);
+        SubscribeToAction(controller.triggerPressAction.action, TriggerPressed, leftRight);
+        SubscribeToAction(controller.joystickTouchedAction.action, JoystickTouched, leftRight);
+    }
 
-        //SubscribeToAction(controller.primaryButtonPressedAction.action, PrimaryButtonPressed, leftRight);
-        //SubscribeToAction(controller.selectAction.action, GripPressed, leftRight);
-        //SubscribeToAction(controller.joystickAxisValueAction.action, JoystickValue, leftRight);
-        //SubscribeToAction(controller.joystickPressedAction.action, JoystickPressed, leftRight);
-        //SubscribeToAction(controller.rotationAction.action, RotateController, leftRight);
-        //SubscribeToAction(controller.triggerPressAction.action, TriggerPressed, leftRight);
+    private void JoystickTouched(InputAction.CallbackContext ctx, HandType leftRight)
+    {
+        ControllerValues controllerValues = leftRight.Equals(HandType.LEFT) ? Left : Right;
+        controllerValues.JoystickTouched = ctx.ReadValue<float>() == 1 ? true : false;
+
+        joystickInteractor.SnapToJoystick(controllerValues.JoystickTouched, leftRight);
     }
 
     private void SubscribeToAction(InputAction action, Action<InputAction.CallbackContext, HandType> callbackFunction, HandType leftRight)
@@ -113,7 +108,6 @@ public class PlayerController : MonoBehaviour
 
         bool pressed = controllerValues.TriggerPressed;
 
-        joystickInteractor.SnapToJoystick(pressed, leftRight);
         robotController.TriggerValue(pressed, leftRight);
 
         XRCustomController controller = leftRight.Equals(HandType.LEFT) ? HandManager.Instance.LeftController : HandManager.Instance.RightController;
@@ -133,8 +127,9 @@ public class PlayerController : MonoBehaviour
         public bool PrimaryButtonPressed { get; internal set; }
 
         public Quaternion Rotation { get; internal set; }
+        public bool JoystickTouched { get; internal set; }
 
-        public ControllerValues(bool triggerPressed, bool gripPressed, Vector2 joystick, bool joystickPressed, bool primaryButton, Quaternion rotation)
+        public ControllerValues(bool triggerPressed, bool gripPressed, Vector2 joystick, bool joystickPressed, bool primaryButton, Quaternion rotation, bool joystickTouched)
         {
             TriggerPressed = triggerPressed;
             GripPressed = gripPressed;
@@ -142,6 +137,7 @@ public class PlayerController : MonoBehaviour
             JoystickAxis = joystick;
             PrimaryButtonPressed = primaryButton;
             Rotation = rotation;
+            JoystickTouched = joystickTouched;
         }
     }
 }
