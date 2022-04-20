@@ -31,6 +31,11 @@ public class PlayerController : MonoBehaviour
         SubscribeToActions(right, HandType.RIGHT);
     }
 
+    /// <summary>
+    /// Subscribe controller in leftRight hand to the input events.
+    /// </summary>
+    /// <param name="controller">The controller to subscribe to.</param>
+    /// <param name="leftRight">Subscribe to left/right hand.</param>
     private void SubscribeToActions(XRCustomController controller, HandType leftRight)
     {
         SubscribeToAction(controller.primaryButtonPressedAction.action, PrimaryButtonPressed, leftRight);
@@ -42,6 +47,13 @@ public class PlayerController : MonoBehaviour
         SubscribeToAction(controller.joystickTouchedAction.action, JoystickTouched, leftRight);
     }
 
+    /// <summary>
+    /// Called when joystick touched action is triggered.
+    /// Contains a float for the touch value.
+    /// </summary>
+    /// <param name="ctx">InputAction callback context.</param>
+    /// <param name="leftRight">Came from left or right controller?</param>
+    /// 
     private void JoystickTouched(InputAction.CallbackContext ctx, HandType leftRight)
     {
         ControllerValues controllerValues = leftRight.Equals(HandType.LEFT) ? Left : Right;
@@ -56,6 +68,12 @@ public class PlayerController : MonoBehaviour
         action.canceled += ctx => callbackFunction(ctx, leftRight);
     }
 
+    /// <summary>
+    /// Called when the rotation action is triggered.
+    /// Contains a Quaternion for the rotation value.
+    /// </summary>
+    /// <param name="ctx">InputAction callback context.</param>
+    /// <param name="leftRight">Came from left or right controller?</param>
     private void RotateController(InputAction.CallbackContext ctx, HandType leftRight)
     {
         ControllerValues controllerValues = leftRight.Equals(HandType.LEFT) ? Left : Right;
@@ -64,6 +82,12 @@ public class PlayerController : MonoBehaviour
         joystickInteractor.RotateController(controllerValues.Rotation, leftRight);
     }
 
+    /// <summary>
+    /// Called when the joystick pressed action is triggered.
+    /// Contains a float for the pressed value.
+    /// </summary>
+    /// <param name="ctx">InputAction callback context.</param>
+    /// <param name="leftRight">Came from left or right controller?</param>
     private void JoystickPressed(InputAction.CallbackContext ctx, HandType leftRight)
     {
         ControllerValues controllerValues = leftRight.Equals(HandType.LEFT) ? Left : Right;
@@ -72,6 +96,12 @@ public class PlayerController : MonoBehaviour
         joystickInteractor.PressJoystick(controllerValues.JoystickPressed, leftRight);
     }
 
+    /// <summary>
+    /// Called when the joystick value action is triggered.
+    /// Contains a Vector2 for the joystick axis.
+    /// </summary>
+    /// <param name="ctx">InputAction callback context.</param>
+    /// <param name="leftRight">Came from left or right controller?</param>
     private void JoystickValue(InputAction.CallbackContext ctx, HandType leftRight)
     {
         ControllerValues controllerValues = leftRight.Equals(HandType.LEFT) ? Left : Right;
@@ -79,7 +109,7 @@ public class PlayerController : MonoBehaviour
 
         if (leftRight.Equals(HandType.LEFT))
         {
-            HandManager.Instance.LeftController.teleportControls.ReadJoystickAxis(controllerValues.JoystickAxis.y);
+            HandManager.Instance.LeftController.teleportControls.SwitchToTeleport(controllerValues.JoystickAxis.y);
         }
         else
         {
@@ -87,12 +117,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when the grip pressed action is triggered.
+    /// Contains a float for the grip press.
+    /// </summary>
+    /// <param name="ctx">InputAction callback context.</param>
+    /// <param name="leftRight">Came from left or right controller?</param>
     private void GripPressed(InputAction.CallbackContext ctx, HandType leftRight)
     {
         ControllerValues controllerValues = leftRight.Equals(HandType.LEFT) ? Left : Right;
         controllerValues.GripPressed = ctx.ReadValue<float>().Equals(1f) ? true : false;
     }
 
+    /// <summary>
+    /// Called when the primary button pressed action is triggered.
+    /// Contains a float for the primary button press.
+    /// </summary>
+    /// <param name="ctx">InputAction callback context.</param>
+    /// <param name="leftRight">Came from left or right controller?</param>
     private void PrimaryButtonPressed(InputAction.CallbackContext ctx, HandType leftRight)
     {
         ControllerValues controllerValues = leftRight.Equals(HandType.LEFT) ? Left : Right;
@@ -101,6 +143,12 @@ public class PlayerController : MonoBehaviour
         robotController.ChangeAxisAction(controllerValues.PrimaryButtonPressed, leftRight);
     }
 
+    /// <summary>
+    /// Called when the trigger action is triggered.
+    /// Contains a float for the trigger press.
+    /// </summary>
+    /// <param name="ctx">InputAction callback context.</param>
+    /// <param name="leftRight">Came from left or right controller?</param>
     private void TriggerPressed(InputAction.CallbackContext ctx, HandType leftRight)
     {
         ControllerValues controllerValues = leftRight.Equals(HandType.LEFT) ? Left : Right;
@@ -108,12 +156,15 @@ public class PlayerController : MonoBehaviour
 
         bool pressed = controllerValues.TriggerPressed;
 
-        robotController.TriggerValue(pressed, leftRight);
+        robotController.SetPressureButton(pressed, leftRight);
 
         XRCustomController controller = leftRight.Equals(HandType.LEFT) ? HandManager.Instance.LeftController : HandManager.Instance.RightController;
         controller.PointAction(pressed);
     }
 
+    /// <summary>
+    /// Stores the current controller values.
+    /// </summary>
     public struct ControllerValues
     {
         public bool TriggerPressed { get; internal set; }

@@ -7,61 +7,75 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class TeleportManager : MonoBehaviour
 {
 
-    private CustomInteractor directInteractor;
     private Transform rayInteractor;
 
     public float joystickYTreshhold;
 
     public float teleportDistance;
 
-    private bool directInteracting;
+    private bool teleportActivated;
 
     private void Start()
     {
-        directInteractor = GetComponent<CustomInteractor>();
         rayInteractor = transform.Find("RayInteractor");
         rayInteractor.GetComponent<XRRayInteractor>().maxRaycastDistance = teleportDistance;
         SwitchToDirectInteraction();
     }
 
-    public void ReadJoystickAxis(float joystickY)
+    /// <summary>
+    /// Switches to teleport controls if joystick Y exceeds the joystickYTreshhold.
+    /// </summary>
+    /// <param name="joystickY">the joystick y axis value</param>
+    public void SwitchToTeleport(float joystickY)
     {
         if (joystickY >= joystickYTreshhold)
         {
-            if (directInteracting)
+            if (!teleportActivated)
             {
                 SwitchToTeleport();
             }
             return;
         }
-        if (!directInteracting)
+        if (teleportActivated)
         {
             SwitchToDirectInteraction();
         }
 
     }
 
+    /// <summary>
+    /// Switch to teleport controls
+    /// </summary>
     public void SwitchToTeleport()
     {
         rayInteractor.gameObject.SetActive(true);
-        directInteracting = false;
+        teleportActivated = false;
     }
 
+    /// <summary>
+    /// Turn off teleport controls
+    /// </summary>
     public void SwitchToDirectInteraction()
     {
         RequestTeleport();
         rayInteractor.gameObject.SetActive(false);
-        directInteracting = true;
+        teleportActivated = true;
     }
 
+    /// <summary>
+    /// Request a teleport
+    /// </summary>
     private void RequestTeleport()
     {
+        // Raycast to teleport area
         RaycastHit hit;
         if (Physics.Raycast(rayInteractor.transform.position, rayInteractor.transform.forward.normalized, out hit, teleportDistance))
         {
+            // If raycast hit a teleport area
             CustomTeleportArea area = hit.transform.GetComponent<CustomTeleportArea>();
             if (area != null)
             {
+                // Request the teleport
                 area.RequestTeleport(rayInteractor.GetComponent<XRRayInteractor>(), hit);
             }
         }
