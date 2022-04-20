@@ -82,11 +82,11 @@ public class XRCustomController : CustomActionBasedController
         {
             if (leftOrRight.Equals(HandType.LEFT))
             {
-                HandManager.Instance.HandAnimatorL = transform.GetChild(2).GetChild(0).GetComponent<Animator>();
+                HandManager.Instance.HandAnimatorL = transform.Find("[LeftHand Controller] Model Parent").GetChild(0).GetComponent<Animator>();
             }
             else
             {
-                HandManager.Instance.HandAnimatorR = transform.GetChild(2).GetChild(0).GetComponent<Animator>();
+                HandManager.Instance.HandAnimatorR = transform.Find("[RightHand Controller] Model Parent").GetChild(0).GetComponent<Animator>();
             }
             OnHandAttached(leftOrRight);
             handAttached = true;
