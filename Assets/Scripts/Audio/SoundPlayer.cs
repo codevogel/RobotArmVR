@@ -15,9 +15,7 @@ public class SoundPlayer : MonoBehaviour, ISoundPlayer
         _audioSource = GetComponent<AudioSource>();
     }
 
-    /// <summary>
-    /// Plays a random clip on the audio source.
-    /// </summary>
+    /// <inheritdoc/>
     public void PlayClip()
     {
         Assert.IsNotNull(_audioSource.outputAudioMixerGroup, $"No mixer group in {this.gameObject.name}. Audio source should have a mixer group assigned in order to get the most control out of it.");
@@ -52,5 +50,11 @@ public class SoundPlayer : MonoBehaviour, ISoundPlayer
 
             _audioSource.Play();
         }
+    }
+
+    /// <inheritdoc/>
+    public void StopClip()
+    {
+        _audioSource.Stop();
     }
 }
