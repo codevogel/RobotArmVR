@@ -26,27 +26,23 @@ public class TeleportManager : MonoBehaviour
 
     public void ReadJoystickAxis(float joystickY)
     {
-        if (HandManager.Instance.GetHeldObject(HandManager.HandType.LEFT) == null)
+        if (joystickY >= joystickYTreshhold)
         {
-            if (joystickY >= joystickYTreshhold)
+            if (directInteracting)
             {
-                if (directInteracting)
-                {
-                    SwitchToTeleport();
-                }
-                return;
+                SwitchToTeleport();
             }
-            if (!directInteracting)
-            {
-                SwitchToDirectInteraction();
-            }
+            return;
+        }
+        if (!directInteracting)
+        {
+            SwitchToDirectInteraction();
         }
 
     }
 
     public void SwitchToTeleport()
     {
-        directInteractor.enabled = false;
         rayInteractor.gameObject.SetActive(true);
         directInteracting = false;
     }
@@ -54,7 +50,6 @@ public class TeleportManager : MonoBehaviour
     public void SwitchToDirectInteraction()
     {
         RequestTeleport();
-        directInteractor.enabled = true;
         rayInteractor.gameObject.SetActive(false);
         directInteracting = true;
     }
@@ -62,9 +57,13 @@ public class TeleportManager : MonoBehaviour
     private void RequestTeleport()
     {
         RaycastHit hit;
-        if (Physics.Raycast(rayInteractor.transform.position, rayInteractor.transform.forward.normalized, out hit, teleportDistance, LayerMask.GetMask("Teleport")))
+        if (Physics.Raycast(rayInteractor.transform.position, rayInteractor.transform.forward.normalized, out hit, teleportDistance))
         {
-            hit.transform.GetComponent<CustomTeleportArea>().RequestTeleport(rayInteractor.GetComponent<XRRayInteractor>(), hit);
+            CustomTeleportArea area = hit.transform.GetComponent<CustomTeleportArea>();
+            if (area != null)
+            {
+                area.RequestTeleport(rayInteractor.GetComponent<XRRayInteractor>(), hit);
+            }
         }
     }
 
