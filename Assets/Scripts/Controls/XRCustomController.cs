@@ -64,15 +64,15 @@ public class XRCustomController : CustomActionBasedController
 
     public static event HandAttached OnHandAttached;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        HandManager.Instance.SetController(this, leftOrRight);
-    }
+    private TeleportManager _teleportControls;
+    public TeleportManager teleportControls { get { return _teleportControls; } }
+
 
     private void Start()
     {
         customInteractor = GetComponent<CustomInteractor>();
+        HandManager.Instance.SetController(this, leftOrRight);
+        _teleportControls = GetComponent<TeleportManager>();
     }
 
     protected override void UpdateController()
@@ -82,11 +82,11 @@ public class XRCustomController : CustomActionBasedController
         {
             if (leftOrRight.Equals(HandType.LEFT))
             {
-                HandManager.Instance.HandAnimatorL = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
+                HandManager.Instance.HandAnimatorL = transform.GetChild(2).GetChild(0).GetComponent<Animator>();
             }
             else
             {
-                HandManager.Instance.HandAnimatorR = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
+                HandManager.Instance.HandAnimatorR = transform.GetChild(2).GetChild(0).GetComponent<Animator>();
             }
             OnHandAttached(leftOrRight);
             handAttached = true;

@@ -9,8 +9,6 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private RobotController robotController;
     [SerializeField] private JoystickInteractor joystickInteractor;
-    [SerializeField] private XRCustomController xrCustomController;
-    [SerializeField] private TeleportControls teleportController;
 
     public static PlayerController Instance { get; private set; }
     public static ControllerValues Left { get; private set; }
@@ -36,7 +34,7 @@ public class PlayerController : MonoBehaviour
     private void SubscribeToActions(XRCustomController controller, HandType leftRight)
     {
         //Remove after test
-        /*controller.primaryButtonPressedAction.action.performed += ctx => PrimaryButtonPressed(ctx, leftRight);
+        controller.primaryButtonPressedAction.action.performed += ctx => PrimaryButtonPressed(ctx, leftRight);
         controller.selectAction.action.performed += ctx => GripPressed(ctx, leftRight);
         controller.joystickAxisValueAction.action.performed += ctx => JoystickValue(ctx, leftRight);
         controller.joystickPressedAction.action.performed += ctx => JoystickPressed(ctx, leftRight);
@@ -47,14 +45,14 @@ public class PlayerController : MonoBehaviour
         controller.joystickAxisValueAction.action.canceled += ctx => JoystickValue(ctx, leftRight);
         controller.joystickPressedAction.action.canceled += ctx => JoystickPressed(ctx, leftRight);
         controller.rotationAction.action.canceled += ctx => RotateController(ctx, leftRight);
-        controller.triggerPressAction.action.canceled += ctx => TriggerPressed(ctx, leftRight);*/
+        controller.triggerPressAction.action.canceled += ctx => TriggerPressed(ctx, leftRight);
 
-        SubscribeToAction(controller.primaryButtonPressedAction.action, PrimaryButtonPressed, leftRight);
-        SubscribeToAction(controller.selectAction.action, GripPressed, leftRight);
-        SubscribeToAction(controller.joystickAxisValueAction.action, JoystickValue, leftRight);
-        SubscribeToAction(controller.joystickPressedAction.action, JoystickPressed, leftRight);
-        SubscribeToAction(controller.rotationAction.action, RotateController, leftRight);
-        SubscribeToAction(controller.triggerPressAction.action, TriggerPressed, leftRight);
+        //SubscribeToAction(controller.primaryButtonPressedAction.action, PrimaryButtonPressed, leftRight);
+        //SubscribeToAction(controller.selectAction.action, GripPressed, leftRight);
+        //SubscribeToAction(controller.joystickAxisValueAction.action, JoystickValue, leftRight);
+        //SubscribeToAction(controller.joystickPressedAction.action, JoystickPressed, leftRight);
+        //SubscribeToAction(controller.rotationAction.action, RotateController, leftRight);
+        //SubscribeToAction(controller.triggerPressAction.action, TriggerPressed, leftRight);
     }
 
     private void SubscribeToAction(InputAction action, Action<InputAction.CallbackContext, HandType> callbackFunction, HandType leftRight)
@@ -86,7 +84,7 @@ public class PlayerController : MonoBehaviour
 
         if (leftRight.Equals(HandType.LEFT))
         {
-            teleportController.OnTeleportButton(controllerValues.JoystickAxis.y);
+            HandManager.Instance.LeftController.teleportControls.ReadJoystickAxis(controllerValues.JoystickAxis.y);
         }
         else
         {
@@ -117,7 +115,9 @@ public class PlayerController : MonoBehaviour
 
         joystickInteractor.SnapToJoystick(pressed, leftRight);
         robotController.TriggerValue(pressed, leftRight);
-        xrCustomController.PointAction(pressed);
+
+        XRCustomController controller = leftRight.Equals(HandType.LEFT) ? HandManager.Instance.LeftController : HandManager.Instance.RightController;
+        controller.PointAction(pressed);
     }
 
     public struct ControllerValues

@@ -11,7 +11,7 @@ public class CustomInteractor : XRDirectInteractor
 
     private void Start()
     {
-        leftOrRight = GetComponent<XRCustomController>().leftOrRight;
+        leftOrRight = GetComponentInParent<XRCustomController>().leftOrRight;
     }
 
     public void OnAttachObject(SelectEnterEventArgs args)
