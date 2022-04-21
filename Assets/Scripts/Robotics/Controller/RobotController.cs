@@ -21,9 +21,6 @@ public class RobotController : MonoBehaviour
 
     private Vector2 joystickInput;
 
-    [field: SerializeField]
-    private TextUpdater textUpdater;
-
     private bool pressureButtonHeld = false;
 
     private JoystickInteractor joystickInteractor;
@@ -37,7 +34,6 @@ public class RobotController : MonoBehaviour
     {
         joystickInteractor = HandManager.Instance.RightController.GetComponent<JoystickInteractor>();
         Interactor = GetComponent<CustomInteractor>();
-        textUpdater.UpdateText(axisSetOne ? "1  2  3" : "4  5  6");
     }
 
     private void FixedUpdate()
@@ -57,7 +53,7 @@ public class RobotController : MonoBehaviour
         if (input.Equals(true))
         {
             axisSetOne = !axisSetOne;
-            textUpdater.UpdateText(axisSetOne ? "1  2  3" : "4  5  6");
+            FlexpendantUIManager.Instance.ChangeAxisSet(axisSetOne);
         }
     }
 
