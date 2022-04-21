@@ -8,7 +8,6 @@ using static HandManager;
 /// <summary>
 /// Handles all joystick related interaction for the flexpendant.
 /// </summary>
-[RequireComponent(typeof(JoystickControl))]
 public class JoystickInteractor : MonoBehaviour
 {
 
@@ -51,7 +50,6 @@ public class JoystickInteractor : MonoBehaviour
         if (HandManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.JOYSTICK_GRAB))
         {
             //Vector2 input = joystickControl.JoystickInput * -1;
-            //TODO check if this also works:
             Vector2 input = PlayerController.Right.JoystickAxis * -1;
 
             joystickPivot.transform.localRotation = Quaternion.Euler(0, input.x * 30, input.y * 30);

@@ -9,7 +9,6 @@ using static HandManager;
 public class RobotController : MonoBehaviour
 {
 
-    //TODO: clean up
     #region axis selection
     public Transform[] bones = new Transform[8];
     private Vector3 axis;
@@ -51,7 +50,6 @@ public class RobotController : MonoBehaviour
 
     /// <summary>
     /// Update axes
-    //TODO: replace with physical button presses
     /// </summary>
     public void ChangeAxisAction(bool input, HandType leftRight)
     {
@@ -93,7 +91,6 @@ public class RobotController : MonoBehaviour
     /// <summary>
     /// Alters the selection and directionModifier
     /// </summary>
-    //TODO: Clean up
     private void MoveArm()
     {
         bool move = false;

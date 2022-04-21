@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorController : MonoBehaviour
+public class DoorAnimationTrigger : MonoBehaviour
 {
     Animator _doorAnim;
 
@@ -10,12 +10,6 @@ public class DoorController : MonoBehaviour
     void Start()
     {
         _doorAnim = this.transform.GetComponentInParent<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter(Collider other)

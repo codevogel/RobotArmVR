@@ -49,7 +49,7 @@ public class TeleportManager : MonoBehaviour
     public void SwitchToTeleport()
     {
         rayInteractor.gameObject.SetActive(true);
-        teleportActivated = false;
+        teleportActivated = true;
     }
 
     /// <summary>
@@ -59,7 +59,7 @@ public class TeleportManager : MonoBehaviour
     {
         RequestTeleport();
         rayInteractor.gameObject.SetActive(false);
-        teleportActivated = true;
+        teleportActivated = false;
     }
 
     /// <summary>

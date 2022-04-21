@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeMaterial : MonoBehaviour
+public class ChangeMaterialOnTriggerEnter : MonoBehaviour
 {
     [SerializeField] private Material material;
 
