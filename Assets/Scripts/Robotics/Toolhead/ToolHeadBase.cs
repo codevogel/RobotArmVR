@@ -33,13 +33,16 @@ public abstract class ToolHeadBase : MonoBehaviour
     /// <param name="toolHeadController"></param>
     public void AttachTool(ToolHeadController toolHeadController)
     {
+        Debug.Log(Attachable);
         if(!Attachable)
             return;
+
+        Attachable = false;
 
         _controller = toolHeadController;
         toolHeadController.CurrentTool = this;
 
-        GrabInteractable.interactionManager.CancelInteractableSelection((IXRSelectInteractable)GrabInteractable);
+        GrabInteractable.interactionManager.CancelInteractableSelection((IXRSelectInteractable)GrabInteractable);//Check if this works after code cleanup
 
         transform.localPosition = Vector3.zero;
         transform.SetParent(toolHeadController.ToolHeadAttachPoint.transform, false);
@@ -47,7 +50,6 @@ public abstract class ToolHeadBase : MonoBehaviour
         transform.localRotation = Quaternion.Euler(_rotation);
 
         Rigidbody.isKinematic = true;
-        //Rigidbody.useGravity = false;
     }
 
     /// <summary>
@@ -57,6 +59,7 @@ public abstract class ToolHeadBase : MonoBehaviour
     {
         if(_controller != null && _controller.CurrentTool == this)
         {
+            transform.localScale = Vector3.one;
             _controller.CurrentTool = null;
             _controller = null;
         }

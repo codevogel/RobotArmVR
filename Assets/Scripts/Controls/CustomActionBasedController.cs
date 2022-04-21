@@ -3,6 +3,10 @@ using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
+/// <summary>
+/// Custom class with reimplemtations needed to override methods 
+/// from the package that were marked as non-virtual.
+/// </summary>
 public class CustomActionBasedController : ActionBasedController
 {
     protected virtual void SetInputActionProperty(ref InputActionProperty property, InputActionProperty value)
