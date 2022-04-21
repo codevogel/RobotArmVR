@@ -3,11 +3,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class typewriterUI : MonoBehaviour
+public class TypeWriterText : MonoBehaviour
 {
-	[SerializeField]private float charWaitTime;
-  [SerializeField]private string displayText;
-  private TextMeshProUGUI textHolder;
+    [SerializeField]private float charWaitTime;
+    [SerializeField]private string displayText;
+    private TextMeshProUGUI textHolder;
 
     // Start is called before the first frame update
     void Start()

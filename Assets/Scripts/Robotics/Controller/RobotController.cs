@@ -8,28 +8,28 @@ using static HandManager;
 
 public class RobotController : MonoBehaviour
 {
+
+    #region axis selection
     public Transform[] bones = new Transform[8];
-
+    private Vector3 axis;
     public int selectedBone = 0;
+    private bool axisSetOne = true;
+    #endregion
 
+    #region Movement modifiers
     public float moveSpeed;
     public float rotateSpeed;
 
     private float directionModifier;
+    #endregion
 
-    private Vector3 axis;
+    private bool pressureButtonHeld = false;
 
-    private Vector2 joystickInput;
 
     [field: SerializeField]
     private TextUpdater textUpdater;
 
-    private bool pressureButtonHeld = false;
-
     private JoystickInteractor joystickInteractor;
-
-    private bool axisSetOne = true;
-
     [HideInInspector]
     public CustomInteractor Interactor;
 
@@ -44,10 +44,13 @@ public class RobotController : MonoBehaviour
     {
         if (pressureButtonHeld)
         {
-            ManualRobotControls();
+            MoveArm();
         }
     }
 
+    /// <summary>
+    /// Update axes
+    /// </summary>
     public void ChangeAxisAction(bool input, HandType leftRight)
     {
         if (leftRight.Equals(HandType.RIGHT))
@@ -61,7 +64,13 @@ public class RobotController : MonoBehaviour
         }
     }
 
-    public void TriggerValue(bool input, HandType leftRight)
+
+    /// <summary>
+    /// Used to control the pressure button.
+    /// </summary>
+    /// <param name="input">Whether the trigger button is held</param>
+    /// <param name="leftRight">On which hand?</param>
+    public void SetPressureButton(bool input, HandType leftRight)
     {
         if (leftRight.Equals(HandType.RIGHT))
         {
@@ -79,14 +88,14 @@ public class RobotController : MonoBehaviour
         }
     }
 
-    public void ThumbstickAction(Vector2 input)
-    {
-        joystickInput = input;
-    }
-
-    private void ManualRobotControls()
+    /// <summary>
+    /// Alters the selection and directionModifier
+    /// </summary>
+    private void MoveArm()
     {
         bool move = false;
+        Vector2 joystickInput = PlayerController.Right.JoystickAxis;
+
         if (joystickInteractor.joystickPressed)
         {
             if (Math.Abs(joystickInteractor.TiltAngle) > joystickInteractor.TiltAllowance)
