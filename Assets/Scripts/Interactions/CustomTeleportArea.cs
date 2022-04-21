@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
+/// <summary>
+/// Used to customly trigger teleportation requests.
+/// Extends the TeleportationArea class.
+/// </summary>
 public class CustomTeleportArea : TeleportationArea
 {
 
@@ -17,6 +21,5 @@ public class CustomTeleportArea : TeleportationArea
         bool succeeded = GenerateTeleportRequest(interactor, raycastHit, ref request);
         teleportationProvider.QueueTeleportRequest(request);
         return succeeded;
-        
     }
 }
