@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
+[RequireComponent(typeof(SignalReceiver))] // hack om het te laten werken
 public abstract class ParameterizedSignalReceiver<T> : MonoBehaviour, INotificationReceiver
 {
     [field: SerializeField] public SignalAssetEventPair[] SignalAssetEventPairs;
