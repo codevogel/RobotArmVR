@@ -9807,6 +9807,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 4996544909117000355, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b567c66c549a49b9bd2371213313eb0, type: 2}
     - target: {fileID: 7836432422736249053, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: isLinear
       value: 1
@@ -30342,18 +30346,6 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 3782851951479553466, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  m_teleportAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Teleport
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 6dfbfba5-c182-4b79-b7a1-9e8d126ba5a9
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -7178660066116143662, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_TriggerPressAction:
     m_UseReference: 1
     m_Action:
@@ -30379,7 +30371,6 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -6079517524988393942, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   leftOrRight: 0
-  resetPosition: 0
 --- !u!1 &9167835045588484462
 GameObject:
   m_ObjectHideFlags: 0
@@ -30939,18 +30930,6 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -4348833162212184119, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  m_teleportAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Teleport
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 2d780d20-35b1-4666-94b8-3df987851c97
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 4137096819501579198, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_TriggerPressAction:
     m_UseReference: 1
     m_Action:
@@ -30976,7 +30955,6 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 8180284648676889122, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   leftOrRight: 1
-  resetPosition: 0
 --- !u!114 &9167835047031645961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30991,6 +30969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actionReference: {fileID: 6450965103735208, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _text: {fileID: 0}
+  joystickInputVector: {x: 0, y: 0}
 --- !u!4 &9167835047031645964
 Transform:
   m_ObjectHideFlags: 0
