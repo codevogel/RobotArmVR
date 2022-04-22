@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class ToolHeadAttachResetArea : MonoBehaviour
 {
+    private ToolHeadAttachPoint toolHeadAttach;
+
+    private void Awake()
+    {
+        toolHeadAttach = transform.parent.GetComponentInChildren<ToolHeadAttachPoint>();
+    }
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.TryGetComponent<ToolHeadBase>(out var tool))
+        if (toolHeadAttach.transform != other.transform.parent && other.gameObject.TryGetComponent<ToolHeadBase>(out var tool))
         {
             tool.Attachable = true;
         }

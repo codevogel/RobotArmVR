@@ -4,86 +4,98 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static HandManager;
 
 public class RobotController : MonoBehaviour
 {
+
+    #region axis selection
     public Transform[] bones = new Transform[8];
-
+    private Vector3 axis;
     public int selectedBone = 0;
+    private bool axisSetOne = true;
+    #endregion
 
+    #region Movement modifiers
     public float moveSpeed;
     public float rotateSpeed;
 
     private float directionModifier;
+    #endregion
 
-    private Vector3 axis;
-
-    private XRCustomController controllerLeft, controllerRight;
+    private bool pressureButtonHeld = false;
 
 
     [field: SerializeField]
     private TextUpdater textUpdater;
 
-    private bool pressureButtonHeld = false;
-
     private JoystickInteractor joystickInteractor;
-
-    private bool axisSetOne = true;
-
     [HideInInspector]
     public CustomInteractor Interactor;
 
     private void Start()
     {
-        controllerLeft = GameObject.FindGameObjectWithTag("ControllerLeft").GetComponent<XRCustomController>();
-        controllerRight = GameObject.FindGameObjectWithTag("ControllerRight").GetComponent<XRCustomController>();
-        controllerLeft.leftTriggerPressAction.action.performed += TriggerValue;
-        controllerLeft.leftTriggerPressAction.action.canceled += TriggerValue;
-        controllerRight.joystickAxisValueAction.action.performed += ThumbstickAction;
-        controllerRight.changeAxisAction.action.started += ChangeAxisAction;
-        joystickInteractor = controllerRight.GetComponent<JoystickInteractor>();
+        joystickInteractor = HandManager.Instance.RightController.GetComponent<JoystickInteractor>();
         Interactor = GetComponent<CustomInteractor>();
         textUpdater.UpdateText(axisSetOne ? "1  2  3" : "4  5  6");
     }
 
-    private void ChangeAxisAction(InputAction.CallbackContext obj)
+    private void FixedUpdate()
     {
-        if (obj.ReadValue<float>() == 1)
+        if (pressureButtonHeld)
+        {
+            MoveArm();
+        }
+    }
+
+    /// <summary>
+    /// Update axes
+    /// </summary>
+    public void ChangeAxisAction(bool input, HandType leftRight)
+    {
+        if (leftRight.Equals(HandType.RIGHT))
+        {
+            return;
+        }
+        if (input.Equals(true))
         {
             axisSetOne = !axisSetOne;
             textUpdater.UpdateText(axisSetOne ? "1  2  3" : "4  5  6");
         }
     }
 
-    private void TriggerValue(InputAction.CallbackContext obj)
+
+    /// <summary>
+    /// Used to control the pressure button.
+    /// </summary>
+    /// <param name="input">Whether the trigger button is held</param>
+    /// <param name="leftRight">On which hand?</param>
+    public void SetPressureButton(bool input, HandType leftRight)
     {
-        if (Interactor.HeldObject == null)
+        if (leftRight.Equals(HandType.RIGHT))
+        {
             return;
-        if (Interactor.HeldObject.transform.name == "Flexpendant")
+        }
+
+        Transform heldDevice = HandManager.Instance.GetHeldObject(HandManager.HandType.LEFT);
+
+        if (heldDevice == null)
+            return;
+
+        if (heldDevice.transform.name == "Flexpendant")
         {
-            pressureButtonHeld = obj.ReadValue<float>() == 1 ? true : false;
+            pressureButtonHeld = input;
         }
     }
 
-    private Vector2 joystickInput;
-
-    private void ThumbstickAction(InputAction.CallbackContext obj)
-    {
-        joystickInput = obj.ReadValue<Vector2>();
-    }
-
-
-    private void FixedUpdate()
-    {
-        if (pressureButtonHeld)
-        {
-            ManualRobotControls();
-        }
-    }
-
-    private void ManualRobotControls()
+    /// <summary>
+    /// Alters the selection and directionModifier
+    /// </summary>
+    private void MoveArm()
     {
         bool move = false;
+        Vector2 joystickInput = PlayerController.Right.JoystickAxis;
+
         if (joystickInteractor.joystickPressed)
         {
             if (Math.Abs(joystickInteractor.TiltAngle) > joystickInteractor.TiltAllowance)
@@ -118,24 +130,4 @@ public class RobotController : MonoBehaviour
             bones[selectedBone].Rotate(axis, rotateSpeed * directionModifier * Time.deltaTime);
         }
     }
-
-    //private void ChangeAxis()
-    //{
-    //    if (selectedBone == 0 || selectedBone == 1)
-    //    {
-    //        axis = Vector3.forward;
-    //    }
-    //    else if (selectedBone == 3 || selectedBone == 5)
-    //    {
-    //        axis = Vector3.up;
-    //    }
-    //    else if (selectedBone == 2 || selectedBone == 4)
-    //    {
-    //        axis = Vector3.right;
-    //    }
-    //    else
-    //    {
-    //        throw new ArgumentException("Selected bone case unsupported.");
-    //    }
-    //}
 }
