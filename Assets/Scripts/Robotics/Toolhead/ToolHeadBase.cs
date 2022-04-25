@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using static FlexpendantUIManager;
 
 #if UNITY_EDITOR
 using UnityEngine.Assertions;
@@ -12,6 +13,9 @@ public abstract class ToolHeadBase : MonoBehaviour
     [SerializeField] private Vector3 _localHeadAttachOffset;
     [SerializeField] private Vector3 _rotation;
     private ToolHeadController _controller;
+
+    [SerializeField]
+    private int toolNumber;
 
     public bool Attachable { get; set; }
     public Rigidbody Rigidbody { get; private set; }
@@ -33,7 +37,6 @@ public abstract class ToolHeadBase : MonoBehaviour
     /// <param name="toolHeadController"></param>
     public void AttachTool(ToolHeadController toolHeadController)
     {
-        Debug.Log(Attachable);
         if(!Attachable)
             return;
 
@@ -50,6 +53,8 @@ public abstract class ToolHeadBase : MonoBehaviour
         transform.localRotation = Quaternion.Euler(_rotation);
 
         Rigidbody.isKinematic = true;
+
+        FlexpendantUIManager.Instance.ChangeProperty(Properties.TOOL, toolNumber);
     }
 
     /// <summary>
@@ -62,6 +67,7 @@ public abstract class ToolHeadBase : MonoBehaviour
             transform.localScale = Vector3.one;
             _controller.CurrentTool = null;
             _controller = null;
+            FlexpendantUIManager.Instance.ChangeProperty(Properties.TOOL, 0);
         }
     }
 
