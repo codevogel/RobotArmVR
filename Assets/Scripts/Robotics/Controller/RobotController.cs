@@ -10,7 +10,7 @@ public class RobotController : MonoBehaviour
 {
 
     #region axis selection
-    public Transform[] bones = new Transform[8];
+    public Transform[] bones = new Transform[6];
     private Vector3 axis;
     public int selectedBone = 0;
     private bool axisSetOne = true;
@@ -25,10 +25,6 @@ public class RobotController : MonoBehaviour
 
     private bool pressureButtonHeld = false;
 
-
-    [field: SerializeField]
-    private TextUpdater textUpdater;
-
     private JoystickInteractor joystickInteractor;
     [HideInInspector]
     public CustomInteractor Interactor;
@@ -37,7 +33,7 @@ public class RobotController : MonoBehaviour
     {
         joystickInteractor = HandManager.Instance.RightController.GetComponent<JoystickInteractor>();
         Interactor = GetComponent<CustomInteractor>();
-        textUpdater.UpdateText(axisSetOne ? "1  2  3" : "4  5  6");
+        FlexpendantUIManager.Instance.SetAxis(bones);
     }
 
     private void FixedUpdate()
@@ -45,6 +41,7 @@ public class RobotController : MonoBehaviour
         if (pressureButtonHeld)
         {
             MoveArm();
+            FlexpendantUIManager.Instance.UpdateAxis(selectedBone, bones[selectedBone]);
         }
     }
 
@@ -53,14 +50,14 @@ public class RobotController : MonoBehaviour
     /// </summary>
     public void ChangeAxisAction(bool input, HandType leftRight)
     {
-        if (leftRight.Equals(HandType.RIGHT))
+        if (leftRight.Equals(HandType.LEFT))
         {
             return;
         }
         if (input.Equals(true))
         {
             axisSetOne = !axisSetOne;
-            textUpdater.UpdateText(axisSetOne ? "1  2  3" : "4  5  6");
+            FlexpendantUIManager.Instance.ChangeAxisSet(axisSetOne);
         }
     }
 
@@ -101,7 +98,7 @@ public class RobotController : MonoBehaviour
             if (Math.Abs(joystickInteractor.TiltAngle) > joystickInteractor.TiltAllowance)
             {
                 move = true;
-                axis = axisSetOne ? Vector3.right : Vector3.up;
+                axis = axisSetOne ? -Vector3.right : -Vector3.up;
                 selectedBone = axisSetOne ? 2 : 5;
                 directionModifier = joystickInteractor.TiltAngle > 0 ? 1f : -1f;
             }
@@ -113,14 +110,14 @@ public class RobotController : MonoBehaviour
             if (modifyingX)
             {
                 move = true;
-                axis = axisSetOne ? Vector3.up : Vector3.up;
+                axis = axisSetOne ? -Vector3.up : Vector3.up;
                 selectedBone = axisSetOne ? 0 : 3;
                 directionModifier = joystickInput.x > 0 ? 1f : -1f;
             }
             else
             {
                 move = true;
-                axis =  axisSetOne ? Vector3.forward : Vector3.right;
+                axis =  axisSetOne ? -Vector3.forward : Vector3.right;
                 selectedBone = axisSetOne ? 1 : 4;
                 directionModifier = joystickInput.y > 0 ? 1f : -1f;
             }
