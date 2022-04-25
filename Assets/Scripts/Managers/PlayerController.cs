@@ -7,7 +7,7 @@ using static HandManager;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private RobotController robotController;
+    [SerializeField] private RobotArmController robotController;
     [SerializeField] private JoystickInteractor joystickInteractor;
 
     public static PlayerController Instance { get; private set; }

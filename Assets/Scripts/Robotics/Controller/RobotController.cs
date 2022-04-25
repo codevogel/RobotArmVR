@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static HandManager;
 
-public class RobotController : MonoBehaviour
+public class RobotArmController : MonoBehaviour
 {
 
     #region axis selection
