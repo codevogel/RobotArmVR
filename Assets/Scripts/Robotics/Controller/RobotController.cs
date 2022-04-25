@@ -98,7 +98,7 @@ public class RobotController : MonoBehaviour
             if (Math.Abs(joystickInteractor.TiltAngle) > joystickInteractor.TiltAllowance)
             {
                 move = true;
-                axis = axisSetOne ? Vector3.right : Vector3.up;
+                axis = axisSetOne ? -Vector3.right : -Vector3.up;
                 selectedBone = axisSetOne ? 2 : 5;
                 directionModifier = joystickInteractor.TiltAngle > 0 ? 1f : -1f;
             }
@@ -110,14 +110,14 @@ public class RobotController : MonoBehaviour
             if (modifyingX)
             {
                 move = true;
-                axis = axisSetOne ? Vector3.up : Vector3.up;
+                axis = axisSetOne ? -Vector3.up : Vector3.up;
                 selectedBone = axisSetOne ? 0 : 3;
                 directionModifier = joystickInput.x > 0 ? 1f : -1f;
             }
             else
             {
                 move = true;
-                axis =  axisSetOne ? Vector3.forward : Vector3.right;
+                axis =  axisSetOne ? -Vector3.forward : Vector3.right;
                 selectedBone = axisSetOne ? 1 : 4;
                 directionModifier = joystickInput.y > 0 ? 1f : -1f;
             }
