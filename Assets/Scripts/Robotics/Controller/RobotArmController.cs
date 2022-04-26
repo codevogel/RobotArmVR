@@ -23,16 +23,21 @@ public class RobotArmController : MonoBehaviour
     private float directionModifier;
     #endregion
 
+    public bool movementOnLinear = true;
+
     private bool pressureButtonHeld = false;
 
     private JoystickInteractor joystickInteractor;
     [HideInInspector]
     public CustomInteractor Interactor;
 
+    private LinearMovement linearMovement;
+
     private void Start()
     {
         joystickInteractor = HandManager.Instance.RightController.GetComponent<JoystickInteractor>();
         Interactor = GetComponent<CustomInteractor>();
+        linearMovement = GetComponent<LinearMovement>();
         FlexpendantUIManager.Instance.SetAxis(bones);
     }
 
@@ -90,6 +95,32 @@ public class RobotArmController : MonoBehaviour
     /// </summary>
     private void MoveArm()
     {
+        if (movementOnLinear)
+        {
+            LinearMovement();
+            return;
+        }
+        ManualMovement();
+    }
+
+    private void LinearMovement()
+    {
+        Vector3 direction = new Vector3();
+
+        if (joystickInteractor.joystickPressed)
+        {
+            direction.z = joystickInteractor.TiltAngle > 0 ? 1f : -1f;
+        }
+        else
+        {
+            direction.x = PlayerController.Right.JoystickAxis.x;
+            direction.y = PlayerController.Right.JoystickAxis.y;
+        }
+        linearMovement.MoveTowards(direction);
+    }
+
+    private void ManualMovement()
+    {
         bool move = false;
         Vector2 joystickInput = PlayerController.Right.JoystickAxis;
 
@@ -117,7 +148,7 @@ public class RobotArmController : MonoBehaviour
             else
             {
                 move = true;
-                axis =  axisSetOne ? -Vector3.forward : Vector3.right;
+                axis = axisSetOne ? -Vector3.forward : Vector3.right;
                 selectedBone = axisSetOne ? 1 : 4;
                 directionModifier = joystickInput.y > 0 ? 1f : -1f;
             }
