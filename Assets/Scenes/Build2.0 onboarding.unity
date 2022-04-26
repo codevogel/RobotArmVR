@@ -9818,6 +9818,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1690276448}
   - component: {fileID: 1690276451}
+  - component: {fileID: 1690276452}
   - component: {fileID: 1690276447}
   - component: {fileID: 1690276450}
   - component: {fileID: 1690276449}
@@ -9838,7 +9839,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 6767f379066cd1046a83d817a86d2393, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -9975,6 +9976,81 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _seconds: 56
   _setOnStart: 0
+--- !u!114 &1690276452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690276446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40c5104e1cf167f46ad0517a890880d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _delay: 1
+  _onDelayedFirstPresence:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1690276447}
+        m_TargetAssemblyTypeName: UnityEngine.Playables.PlayableDirector, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onPresenceGained:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1690276447}
+        m_TargetAssemblyTypeName: UnityEngine.Playables.PlayableDirector, UnityEngine
+        m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onPresenceLost:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1690276447}
+        m_TargetAssemblyTypeName: UnityEngine.Playables.PlayableDirector, UnityEngine
+        m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _userPresenceAction:
+    m_Name: User Presence
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 879d34da-1f51-4ff6-a188-e9b3fa053c58
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 247e5a42-ab8d-49b2-9ecb-30c464f0c5dc
+      m_Path: <XRHMD>/userPresence
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: User Presence
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1001 &1694125670
 PrefabInstance:
   m_ObjectHideFlags: 0
