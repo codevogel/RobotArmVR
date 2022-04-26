@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using MathNet.Numerics.LinearAlgebra.Single;
+using System.Collections.Generic;
 
 namespace IKManager
 {
@@ -29,6 +30,8 @@ namespace IKManager
         private float[] minAngle = new float[6];            // limits of joint rotatation
         private float[] maxAngle = new float[6];
 
+        public List<Transform> transforms;
+
         void Start()
         {
             // slider settings
@@ -39,30 +42,35 @@ namespace IKManager
                 sliderVal[i] = slider[i].GetComponent<Slider>().value;
             }
 
-            // limits of joint rotation
-            for (int i = 0; i < 6; i++) // You can set different values for each joint.
-            {
-                minAngle[i] = -150f;
-                maxAngle[i] = 150f;
-            }
+            minAngle[0] = -180;
+            maxAngle[0] = 180;
+            minAngle[1] = -180;
+            maxAngle[1] = 180;
+            minAngle[2] = -180;
+            maxAngle[2] = 180;
+            minAngle[3] = -180;
+            maxAngle[3] = 180;
+            minAngle[4] = -180;
+            maxAngle[4] = 180;
+            minAngle[5] = -180;
+            maxAngle[5] = 180;
 
             // local dimensions of each joint at initial pose
             // These numbers are taken from transform values in inspector window.
-            dim[0] = new Vector3(0f, 0.08605486f, 0f);
-            dim[1] = new Vector3(0f, 0.06584513f, -0.0643453f);
-            dim[2] = new Vector3(-3.109574e-05f, 0.2422461f, -0.005073354f);
-            dim[3] = new Vector3(3.109574e-05f, 0.1733774f + 0.04468203f, 0.04262526f - 0.04507105f);
-            dim[4] = new Vector3(0f, 0.03749204f, -0.03853976f);
-            dim[5] = new Vector3(0f, 0.045f, -0.047f);
-            dim[6] = new Vector3(0f, 0f, -0.13f);
+            dim[0] = transforms[0].localPosition;
+            dim[1] = transforms[1].localPosition;
+            dim[2] = transforms[2].localPosition;
+            dim[3] = transforms[3].localPosition;
+            dim[4] = transforms[4].localPosition;
+            dim[5] = transforms[5].localPosition;
 
             // local direction of each axis
             axis[0] = new Vector3(0f, 1f, 0f);
             axis[1] = new Vector3(0f, 0f, 1f);
             axis[2] = new Vector3(0f, 0f, 1f);
-            axis[3] = new Vector3(0f, 0f, 1f);
-            axis[4] = new Vector3(0f, 1f, 0f);
-            axis[5] = new Vector3(0f, 0f, 1f);
+            axis[3] = new Vector3(1f, 0f, 0f);
+            axis[4] = new Vector3(0f, 0f, 1f);
+            axis[5] = new Vector3(1f, 0f, 0f);
 
             // local initial rotation around axis
             angle[0] = prevAngle[0] = 0f;
@@ -110,7 +118,7 @@ namespace IKManager
             }
             Debug.Log("angle= " + angle[0] + " " + angle[1] + " " + angle[2] + " " + angle[3] + "_" + angle[4] + "_" + angle[5]);
             
-            for (int i = 0; i < 100; i++)   // iteration
+            for (int i = 0; i < 25; i++)   // iteration
             {
                 count = i;
                 Debug.Log("iter_count=" + count);
