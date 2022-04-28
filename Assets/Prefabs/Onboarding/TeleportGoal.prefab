@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2955860666822216127}
   - component: {fileID: 1916958644707548074}
   - component: {fileID: 1869691837216614753}
+  - component: {fileID: 4866619469499637928}
   m_Layer: 0
   m_Name: TeleportGoal
   m_TagString: Untagged
@@ -96,3 +97,30 @@ CapsuleCollider:
   m_Height: 24.260239
   m_Direction: 1
   m_Center: {x: 0.000000048221843, y: 6.2825866, z: -0.000000096443685}
+--- !u!114 &4866619469499637928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944512093691442374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5c1f2357387de4184a02feee16a08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onPlayerEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.Playables.PlayableDirector, UnityEngine
+        m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

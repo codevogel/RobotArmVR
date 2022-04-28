@@ -9,6 +9,7 @@ public class ControlDirectorTime : MonoBehaviour
     [SerializeField] private bool _setOnStart;
 #endif
     private PlayableDirector _director;
+    private PlayState _currentState;
 
     private void Start()
     {
@@ -28,6 +29,48 @@ public class ControlDirectorTime : MonoBehaviour
 #endif
 
     public void SetTime(float time) => _director.time = time;
-    public void Pause() => _director.Pause();
-    public void Resume() => _director.Resume();
+
+    public void Play()
+    {
+        _currentState = PlayState.Playing;
+        _director.Play();
+    }
+
+    public void Pause()
+    {
+        _currentState = PlayState.Paused;
+        _director.Pause();
+    }
+
+    public void ForcePause()
+    {
+        _director.Pause();
+    }
+
+    public void Resume()
+    {
+        _currentState = PlayState.Playing;
+        _director.Resume();
+    }
+
+    public void ForceResume()
+    {
+        switch (_currentState)
+        {
+            case PlayState.Playing:
+                _director.Resume();
+                break;
+            case PlayState.Stopped:    
+            case PlayState.Paused:
+                break;
+
+        }
+    }
+
+    private enum PlayState
+    {
+        Playing,
+        Paused,
+        Stopped
+    }
 }

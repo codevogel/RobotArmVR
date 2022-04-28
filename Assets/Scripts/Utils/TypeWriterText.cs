@@ -9,6 +9,7 @@ public class TypeWriterText : MonoBehaviour
     //[SerializeField]private string displayText;
     private TextMeshProUGUI textHolder;
 
+    [ExecuteInEditMode]
     private void Awake()
     {
         textHolder = GetComponent<TextMeshProUGUI>();
