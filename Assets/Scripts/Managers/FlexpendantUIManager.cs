@@ -48,11 +48,11 @@ public class FlexpendantUIManager : MonoBehaviour
 
     }
 
-    public void SetAxis(Transform[] axis)
+    public void SetAxis(ArticulationBody[] axis)
     {
         for (int x = 0; x < axis.Length; x++)
         {
-            axisValues[x].axisRotation = ChangeAxis(x, axis[x]);
+            axisValues[x].axisRotation = ChangeAxis(x, axis[x].transform);
         }
         ChangePositionDisplay();
     }

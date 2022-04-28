@@ -40,6 +40,14 @@ public class XRCustomController : CustomActionBasedController
     }
 
     [SerializeField]
+    InputActionProperty m_secondairyButtonPressedAction;
+    public InputActionProperty secondairyButtonPressedAction
+    {
+        get => m_secondairyButtonPressedAction;
+        set => SetInputActionProperty(ref m_secondairyButtonPressedAction, value);
+    }
+
+    [SerializeField]
     InputActionProperty m_TriggerPressAction;
     public InputActionProperty triggerPressAction
     {
@@ -105,6 +113,7 @@ public class XRCustomController : CustomActionBasedController
         m_joystickAxisValueAction.EnableDirectAction();
         m_joystickPressedAction.EnableDirectAction();
         m_primaryButtonPressedAction.EnableDirectAction();
+        m_secondairyButtonPressedAction.EnableDirectAction();
         m_TriggerPressAction.EnableDirectAction();
         m_joystickTouchedAction.EnableDirectAction();
     }
@@ -115,6 +124,7 @@ public class XRCustomController : CustomActionBasedController
         m_joystickAxisValueAction.DisableDirectAction();
         m_joystickPressedAction.EnableDirectAction();
         m_primaryButtonPressedAction.DisableDirectAction();
+        m_secondairyButtonPressedAction.DisableDirectAction();
         m_TriggerPressAction.EnableDirectAction();
         m_joystickTouchedAction.DisableDirectAction();
     }
