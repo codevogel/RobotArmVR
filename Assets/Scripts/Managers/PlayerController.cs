@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private void SubscribeToActions(XRCustomController controller, HandType leftRight)
     {
         SubscribeToAction(controller.primaryButtonPressedAction.action, PrimaryButtonPressed, leftRight);
+        SubscribeToAction(controller.secondairyButtonPressedAction.action, SecondairyButtonPressed, leftRight);
         SubscribeToAction(controller.selectAction.action, GripPressed, leftRight);
         SubscribeToAction(controller.joystickAxisValueAction.action, JoystickAxis, leftRight);
         SubscribeToAction(controller.joystickPressedAction.action, JoystickPressed, leftRight);
@@ -144,6 +145,20 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="ctx"></param>
+    /// <param name="leftRight"></param>
+    private void SecondairyButtonPressed(InputAction.CallbackContext ctx, HandType leftRight)
+    {
+        ControllerValues controllerValues = leftRight.Equals(HandType.LEFT) ? Left : Right;
+        controllerValues.SecondairyButtonPressed = ctx.ReadValue<float>().Equals(1f) ? true : false;
+
+        robotController.ChangeMovementMode(controllerValues.SecondairyButtonPressed, leftRight);
+    }
+
+
+    /// <summary>
     /// Called when the trigger action is triggered.
     /// Contains a float for the trigger press.
     /// </summary>
@@ -177,6 +192,8 @@ public class PlayerController : MonoBehaviour
 
         public bool PrimaryButtonPressed { get; internal set; }
 
+        public bool SecondairyButtonPressed { get; internal set; }
+
         public Quaternion Rotation { get; internal set; }
         public bool JoystickTouched { get; internal set; }
 
@@ -187,6 +204,7 @@ public class PlayerController : MonoBehaviour
             JoystickPressed = false;
             JoystickAxis = Vector2.zero;
             PrimaryButtonPressed = false;
+            SecondairyButtonPressed = false;
             Rotation = Quaternion.identity;
             JoystickTouched = false;
         }

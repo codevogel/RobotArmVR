@@ -27,6 +27,9 @@ namespace IKManager
 
         public List<Transform> transforms;
 
+        [HideInInspector]
+        public bool movementEnabled;
+
         void Start()
         {
             minAngle[0] = -180;
@@ -78,7 +81,10 @@ namespace IKManager
         private void FixedUpdate()
         {
             // IK
-            CalcIK();
+            if (movementEnabled)
+            {
+                CalcIK();
+            }
         }
 
         void CalcIK()
@@ -126,6 +132,8 @@ namespace IKManager
                 if (outOfLimit) break;
             }
 
+            Debug.Log("Reached");
+
             if (count == 99 || outOfLimit)  // did not converge or angle out of limit
             {
                 Debug.Log("did not converge or out of limit");
@@ -134,6 +142,7 @@ namespace IKManager
             {
                 for (int i = 0; i < 6; i++)
                 {
+                    Debug.Log("Moving");
                     var drive = Joint[i].xDrive;
                     drive.target = angle[i];
                     Joint[i].xDrive = drive;

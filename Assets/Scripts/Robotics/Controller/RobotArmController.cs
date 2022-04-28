@@ -1,3 +1,4 @@
+using IKManager;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,11 +24,15 @@ public class RobotArmController : MonoBehaviour
     private float directionModifier;
     #endregion
 
-    public bool movementOnLinear = true;
+    private bool movementOnLinear = true;
 
     private bool pressureButtonHeld = false;
 
     private JoystickInteractor joystickInteractor;
+
+    [SerializeField]
+    private CustomIKManager IKManager;
+
     [HideInInspector]
     public CustomInteractor Interactor;
 
@@ -39,6 +44,8 @@ public class RobotArmController : MonoBehaviour
         Interactor = GetComponent<CustomInteractor>();
         linearMovement = GetComponent<LinearMovement>();
         FlexpendantUIManager.Instance.SetAxis(bones);
+        FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
+        IKManager.movementEnabled = movementOnLinear;
     }
 
     private void FixedUpdate()
@@ -63,6 +70,19 @@ public class RobotArmController : MonoBehaviour
         {
             axisSetOne = !axisSetOne;
             FlexpendantUIManager.Instance.ChangeAxisSet(axisSetOne);
+        }
+    }
+
+    public void ChangeMovementMode(bool input, HandType leftRight)
+    {
+        if (leftRight.Equals(HandType.LEFT))
+        {
+            return;
+        }
+        if (input.Equals(true))
+        {
+            movementOnLinear = !movementOnLinear;
+            FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
         }
     }
 
@@ -105,6 +125,17 @@ public class RobotArmController : MonoBehaviour
 
     private void LinearMovement()
     {
+        if (IKManager.enabled==false)
+        {
+            IKManager.movementEnabled = true;
+            linearMovement.enabled = true;
+
+            foreach (Transform axis in bones)
+            {
+                axis.GetComponent<ArticulationBody>().enabled = true;
+            }
+        }
+        
         Vector3 direction = new Vector3();
 
         if (joystickInteractor.joystickPressed)
@@ -121,6 +152,17 @@ public class RobotArmController : MonoBehaviour
 
     private void ManualMovement()
     {
+        if (IKManager.enabled == true)
+        {
+            IKManager.movementEnabled = true;
+            linearMovement.enabled = false;
+
+            foreach (Transform axis in bones)
+            {
+                axis.GetComponent<ArticulationBody>().enabled = false;
+            }
+        }
+
         bool move = false;
         Vector2 joystickInput = PlayerController.Right.JoystickAxis;
 

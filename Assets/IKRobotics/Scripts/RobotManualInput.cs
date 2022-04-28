@@ -21,7 +21,6 @@ public class RobotManualInput : MonoBehaviour
             }
         }
         robotController.StopAllJointRotations();
-
     }
 
 
