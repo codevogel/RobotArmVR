@@ -8,10 +8,21 @@ public class ArmBoundsCheck : MonoBehaviour
 
     public bool FreeMovement { get; private set; }
 
+    public bool debug;
+
     private void Start()
     {
         FreeMovement = true;
         linearMovement = HandManager.Instance.LeftController.GetComponent<LinearMovement>();
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (debug)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawCube(transform.position, new Vector3(.25f, .25f, .25f));
+        }
     }
 
     private void OnTriggerExit(Collider other)

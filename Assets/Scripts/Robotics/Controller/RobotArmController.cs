@@ -11,9 +11,10 @@ public class RobotArmController : MonoBehaviour
 {
 
     #region axis selection
-    public Transform[] bones = new Transform[6];
+    public ArticulationBody[] articulationBodies = new ArticulationBody[6];
+    private ArticulationJointController[] articulationJointControllers = new ArticulationJointController[6];
     private Vector3 axis;
-    public int selectedBone = 0;
+    public int selectedArticulator = 0;
     private bool axisSetOne = true;
     #endregion
 
@@ -21,7 +22,7 @@ public class RobotArmController : MonoBehaviour
     public float moveSpeed;
     public float rotateSpeed;
 
-    private float directionModifier;
+    private RotationDirection rotationDirection;
     #endregion
 
     private bool movementOnLinear = true;
@@ -38,14 +39,23 @@ public class RobotArmController : MonoBehaviour
 
     private LinearMovement linearMovement;
 
+    [SerializeField]
+    private float joystickThreshold;
+
     private void Start()
     {
         joystickInteractor = HandManager.Instance.RightController.GetComponent<JoystickInteractor>();
         Interactor = GetComponent<CustomInteractor>();
         linearMovement = GetComponent<LinearMovement>();
-        FlexpendantUIManager.Instance.SetAxis(bones);
+        FlexpendantUIManager.Instance.SetAxis(articulationBodies);
         FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
         IKManager.movementEnabled = movementOnLinear;
+
+
+        for (int i = 0; i < articulationBodies.Length; i++)
+        {
+            articulationJointControllers[i] = articulationBodies[i].GetComponent<ArticulationJointController>();
+        }
     }
 
     private void FixedUpdate()
@@ -53,7 +63,7 @@ public class RobotArmController : MonoBehaviour
         if (pressureButtonHeld)
         {
             MoveArm();
-            FlexpendantUIManager.Instance.UpdateAxis(selectedBone, bones[selectedBone]);
+            FlexpendantUIManager.Instance.UpdateAxis(selectedArticulator, articulationBodies[selectedArticulator].transform);
         }
     }
 
@@ -83,6 +93,20 @@ public class RobotArmController : MonoBehaviour
         {
             movementOnLinear = !movementOnLinear;
             FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
+
+            if (movementOnLinear)
+            {
+                StopArticulation();
+                IKManager.enabled = true;
+                linearMovement.enabled = true;
+                linearMovement.followTarget.position = articulationBodies[5].transform.position;
+            }
+            else
+            {
+                StopArticulation();
+                IKManager.enabled = false;
+                linearMovement.enabled = false;
+            }
         }
     }
 
@@ -125,79 +149,86 @@ public class RobotArmController : MonoBehaviour
 
     private void LinearMovement()
     {
-        if (IKManager.enabled==false)
-        {
-            IKManager.movementEnabled = true;
-            linearMovement.enabled = true;
-
-            foreach (Transform axis in bones)
-            {
-                axis.GetComponent<ArticulationBody>().enabled = true;
-            }
-        }
-        
         Vector3 direction = new Vector3();
 
         if (joystickInteractor.joystickPressed)
         {
-            direction.z = joystickInteractor.TiltAngle > 0 ? 1f : -1f;
+            float modifier = joystickInteractor.TiltAngle > 0 ? 1f : -1f;
+            direction.y = Mathf.Clamp(Math.Abs(joystickInteractor.TiltAngle / 180f), .5f, 1f) * modifier;
         }
         else
         {
-            direction.x = PlayerController.Right.JoystickAxis.x;
-            direction.y = PlayerController.Right.JoystickAxis.y;
+            direction.x = PlayerController.Right.JoystickAxis.y;
+            direction.z = -PlayerController.Right.JoystickAxis.x;
         }
         linearMovement.MoveTowards(direction);
     }
 
     private void ManualMovement()
     {
-        if (IKManager.enabled == true)
-        {
-            IKManager.movementEnabled = true;
-            linearMovement.enabled = false;
-
-            foreach (Transform axis in bones)
-            {
-                axis.GetComponent<ArticulationBody>().enabled = false;
-            }
-        }
-
         bool move = false;
         Vector2 joystickInput = PlayerController.Right.JoystickAxis;
 
+        HandleInput(out move, joystickInput);
+
+        if (move)
+        {
+            articulationBodies[selectedArticulator].GetComponent<ArticulationJointController>().rotationState = rotationDirection;
+        }
+        else
+        {
+            StopArticulation();
+        }
+    }
+
+    private void HandleInput(out bool move, Vector2 joystickInput)
+    {
         if (joystickInteractor.joystickPressed)
         {
-            if (Math.Abs(joystickInteractor.TiltAngle) > joystickInteractor.TiltAllowance)
+            // Check whether rotation is more than threshold
+            if (Math.Abs(joystickInteractor.TiltAngle) > joystickInteractor.TiltThreshold)
             {
                 move = true;
-                axis = axisSetOne ? -Vector3.right : -Vector3.up;
-                selectedBone = axisSetOne ? 2 : 5;
-                directionModifier = joystickInteractor.TiltAngle > 0 ? 1f : -1f;
+                selectedArticulator = axisSetOne ? 2 : 5;
+                rotationDirection = joystickInteractor.TiltAngle > 0 ? RotationDirection.Positive : RotationDirection.Negative;
+                return;
             }
         }
-        else if (Math.Abs(joystickInput.x) > 0.01f || Math.Abs(joystickInput.y) > 0.01f)
+        else if (joystickInput.magnitude > joystickThreshold)
         {
             bool modifyingX = Math.Abs(joystickInput.x) > Math.Abs(joystickInput.y) ? true : false;
 
             if (modifyingX)
             {
                 move = true;
-                axis = axisSetOne ? -Vector3.up : Vector3.up;
-                selectedBone = axisSetOne ? 0 : 3;
-                directionModifier = joystickInput.x > 0 ? 1f : -1f;
+                selectedArticulator = axisSetOne ? 0 : 3;
+                rotationDirection = joystickInput.x > 0 ? RotationDirection.Negative : RotationDirection.Positive;
+                return;
             }
             else
             {
+
                 move = true;
-                axis = axisSetOne ? -Vector3.forward : Vector3.right;
-                selectedBone = axisSetOne ? 1 : 4;
-                directionModifier = joystickInput.y > 0 ? 1f : -1f;
+                selectedArticulator = axisSetOne ? 1 : 4;
+                if (selectedArticulator == 1)
+                {
+                    rotationDirection = joystickInput.y > 0 ? RotationDirection.Negative : RotationDirection.Positive;
+                }
+                else
+                {
+                    rotationDirection = joystickInput.y > 0 ? RotationDirection.Positive : RotationDirection.Negative;
+                }
+                return;
             }
         }
-        if (move)
+        move = false;
+    }
+
+    private void StopArticulation()
+    {
+        foreach (ArticulationJointController articulationController in articulationJointControllers)
         {
-            bones[selectedBone].Rotate(axis, rotateSpeed * directionModifier * Time.deltaTime);
+            articulationController.rotationState = RotationDirection.None;
         }
     }
 }

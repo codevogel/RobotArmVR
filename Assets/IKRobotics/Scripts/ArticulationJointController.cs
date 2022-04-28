@@ -12,9 +12,7 @@ public class ArticulationJointController : MonoBehaviour
 
     private ArticulationBody articulation;
 
-
     // LIFE CYCLE
-
     void Start()
     {
         articulation = GetComponent<ArticulationBody>();
@@ -27,13 +25,9 @@ public class ArticulationJointController : MonoBehaviour
             float rotationGoal = CurrentPrimaryAxisRotation() + rotationChange;
             RotateTo(rotationGoal);
         }
-
-
     }
 
-
     // MOVEMENT HELPERS
-
     float CurrentPrimaryAxisRotation()
     {
         float currentRotationRads = articulation.jointPosition[0];

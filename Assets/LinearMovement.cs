@@ -11,8 +11,7 @@ public class LinearMovement : MonoBehaviour
     [HideInInspector]
     public bool inBounds;
 
-    [SerializeField]
-    private Transform followTarget;
+    public Transform followTarget;
 
     public bool followingTarget;
 
@@ -39,7 +38,7 @@ public class LinearMovement : MonoBehaviour
             newPos.z += dir.z * MovementSpeed;
             followTarget.localPosition = newPos;
         }
-        else
+        else // only allow directions that make the robot go in bounds again
         {
             if ((followTarget.localPosition.x>0 && dir.x<0) || (followTarget.localPosition.x<0&&dir.x>0))
             {
