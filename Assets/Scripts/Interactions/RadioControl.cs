@@ -10,7 +10,7 @@ public class RadioControl : MonoBehaviour
     // Bij awake, vraagt naar audio source om af te spelen
     private void Awake()
     {
-        _audioSource = GetComponent<AudioSource>();
+        _audioSource = transform.parent.GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,8 +18,6 @@ public class RadioControl : MonoBehaviour
         //Nu, wanneer collider met tag player collide, gaat de knop aan/uit
         if (other.CompareTag("ControllerRight") || other.CompareTag("ControllerLeft"))
         {
-            // toggle radio aan/uit
-
             if (_isPlaying)
             {
                 _audioSource.Pause();
