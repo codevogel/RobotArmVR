@@ -26,8 +26,7 @@ public class FlexpendantUIManager : MonoBehaviour
     public static FlexpendantUIManager Instance { get { return _instance; } }
     private static FlexpendantUIManager _instance;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         _instance = this;
 
@@ -39,6 +38,11 @@ public class FlexpendantUIManager : MonoBehaviour
         propertyParent = transform.GetChild(3).GetChild(2);
         joystickDirectionParent = transform.GetChild(2).GetChild(1);
         positionParent = transform.GetChild(1);
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
         ChangeAxisSet(true);
     }
 
