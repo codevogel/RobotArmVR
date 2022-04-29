@@ -18,9 +18,9 @@ public class OnboardingProgress : MonoBehaviour
         switch (_currentStep)
         {
             case Step.PlayerStarted:
-                _currentStep = Step.WaitingForTeleport;
-                break;
-            case Step.PlayerTeleported:
+                //_currentStep = Step.WaitingForTeleport;
+                //break;
+            //case Step.PlayerTeleported:
                 _currentStep = Step.WaitingForGrabbedCan;
                 break;
             case Step.PlayerGrabbedCan:

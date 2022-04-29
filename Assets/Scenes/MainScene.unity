@@ -1545,6 +1545,7 @@ GameObject:
   m_Component:
   - component: {fileID: 168372856}
   - component: {fileID: 168372857}
+  - component: {fileID: 168372858}
   m_Layer: 0
   m_Name: TriggerArea
   m_TagString: Untagged
@@ -1579,6 +1580,34 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &168372858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168372855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c41567b6daf745a42842be7459a2e647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _trash: {fileID: 639649587}
+  _trashThrownAway:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1690276453}
+        m_TargetAssemblyTypeName: OnboardingProgress, Assembly-CSharp
+        m_MethodName: HandleCanThrownAway
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &188489311
 GameObject:
   m_ObjectHideFlags: 0
@@ -4741,6 +4770,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6088619915409848906, guid: 98f63f3d14d47406f84ff7da2d9ab842, type: 3}
   m_PrefabInstance: {fileID: 610942408}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &639649587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4015953926661261148, guid: 8d131b65bd097274a8d2deac46fa2b07, type: 3}
+  m_PrefabInstance: {fileID: 4285985387620724721}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &662294417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5101,7 +5135,19 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1690276453}
+        m_TargetAssemblyTypeName: OnboardingProgress, Assembly-CSharp
+        m_MethodName: HandleCanGrabbed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -7030,6 +7076,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1117702969}
     m_Modifications:
+    - target: {fileID: 1724064863, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
+      propertyPath: _onRadioToggled.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1724064863, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
+      propertyPath: _onRadioToggled.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1724064863, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
+      propertyPath: _onRadioToggled.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1690276453}
+    - target: {fileID: 1724064863, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
+      propertyPath: _onRadioToggled.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1724064863, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
+      propertyPath: _onRadioToggled.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HandleRadioTurnedOff
+      objectReference: {fileID: 0}
+    - target: {fileID: 1724064863, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
+      propertyPath: _onRadioToggled.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OnboardingProgress, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1724064863, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
+      propertyPath: _onRadioToggled.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1353625699032123480, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
       propertyPath: m_Name
       value: radio
@@ -10332,6 +10406,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 4996544909117000355, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b567c66c549a49b9bd2371213313eb0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52088ca3966c84047b525842237efeb1, type: 3}
 --- !u!1001 &1521956144
@@ -11525,6 +11603,7 @@ GameObject:
   - component: {fileID: 1690276447}
   - component: {fileID: 1690276450}
   - component: {fileID: 1690276449}
+  - component: {fileID: 1690276453}
   m_Layer: 0
   m_Name: Onboarding Director
   m_TagString: Untagged
@@ -11653,6 +11732,18 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1690276453}
+          m_TargetAssemblyTypeName: OnboardingProgress, Assembly-CSharp
+          m_MethodName: HandleOnPause
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 1690276451}
           m_TargetAssemblyTypeName: ControlDirectorTime, Assembly-CSharp
           m_MethodName: Pause
@@ -11677,7 +11768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34ec6d68b648174bb47f022bed49b73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _seconds: 35
+  _seconds: 45
   _setOnStart: 0
 --- !u!114 &1690276452
 MonoBehaviour:
@@ -11691,7 +11782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c5104e1cf167f46ad0517a890880d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delay: 1
+  _delay: 5
   _onDelayedFirstPresence:
     m_PersistentCalls:
       m_Calls:
@@ -11754,6 +11845,18 @@ MonoBehaviour:
       m_Action: User Presence
       m_Flags: 0
     m_Flags: 0
+--- !u!114 &1690276453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690276446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7acd11ae6b4a23f4da0accf3b8da695a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1694125670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13558,6 +13661,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8833542369440458888, guid: ae644e436d7c6404faf09c48aab9880e, type: 3}
   m_PrefabInstance: {fileID: 1866826217}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1874310160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 671090580165268093, guid: 4862e062361ccf74994555df8c0ae779, type: 3}
+  m_PrefabInstance: {fileID: 7589266714319269545}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1874310161
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874310160}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1900847064
 GameObject:
   m_ObjectHideFlags: 0
