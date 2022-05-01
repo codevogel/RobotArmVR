@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class ChangeMaterialOnTriggerEnter : MonoBehaviour
 {
-    [SerializeField] private Material material;
+    [SerializeField] private Material materialBloom;
+    [SerializeField] private Material materialOG;
 
-    private void OnTriggerEnter(Collider other)
+    public void HighlightObject()
     {
-        if (other.GetComponent<MeshRenderer>()!=null)
-        {
-            other.transform.GetComponent<MeshRenderer>().material = material;
-        }
+        transform.GetComponent<MeshRenderer>().material = materialBloom;
+    }
+
+    public void DeHighlightObject()
+    {
+        transform.GetComponent<MeshRenderer>().material = materialOG;
     }
 }

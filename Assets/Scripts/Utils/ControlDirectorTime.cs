@@ -11,6 +11,9 @@ public class ControlDirectorTime : MonoBehaviour
     private PlayableDirector _director;
     private PlayState _currentState;
 
+    [SerializeField] GameObject Trash;
+    [SerializeField] GameObject Trigger;
+
     private void Start()
     {
         _director = GetComponent<PlayableDirector>();
@@ -29,6 +32,22 @@ public class ControlDirectorTime : MonoBehaviour
 #endif
 
     public void SetTime(float time) => _director.time = time;
+
+    public void SetTimeTeleport(float time)
+    {
+        if (Trash.activeSelf == true)
+        {
+            _director.time = time;
+        }
+    }
+
+    public void SetTimeGrab(float time)
+    {
+        if (Trigger.activeSelf == true)
+        {
+            _director.time = time;
+        }
+    }
 
     public void Play()
     {
