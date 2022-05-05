@@ -13,6 +13,7 @@ public class ControlDirectorTime : MonoBehaviour
 
     [SerializeField] GameObject Trash;
     [SerializeField] GameObject Trigger;
+    [SerializeField] GameObject Trigger2;
 
     private void Start()
     {
@@ -44,6 +45,14 @@ public class ControlDirectorTime : MonoBehaviour
     public void SetTimeGrab(float time)
     {
         if (Trigger.activeSelf == true)
+        {
+            _director.time = time;
+        }
+    }
+
+    public void SetTimePhase1(float time)
+    {
+        if (Trigger2.activeSelf == true)
         {
             _director.time = time;
         }

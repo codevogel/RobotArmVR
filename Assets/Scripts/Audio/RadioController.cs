@@ -4,37 +4,33 @@ using UnityEngine;
 
 public class RadioController : MonoBehaviour
 {
-    [SerializeField] private GameObject audioSourceR1;
-    [SerializeField] private GameObject audioSourceR2;
-    [SerializeField] private GameObject audioSourceR3;
-    bool soundToggle;
+    AudioSource _audioSource;
+    bool _isPlaying = true;
 
-    // Start is called before the first frame update
-    void Start()
+    // Bij awake, vraagt naar audio source om af te spelen
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _audioSource = GetComponentInParent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        soundToggle = !soundToggle;
-        if (soundToggle)
+        //Nu, wanneer collider met tag player collide, gaat de knop aan/uit
+        if (other.CompareTag("ControllerRight") || other.CompareTag("ControllerLeft"))
         {
-            audioSourceR1.SetActive(true);
-            audioSourceR2.SetActive(true);
-            audioSourceR3.SetActive(true);
-        }
-        else
-        {
-            audioSourceR1.SetActive(false);
-            audioSourceR2.SetActive(false);
-            audioSourceR3.SetActive(false);
+            // toggle radio aan/uit
+
+            if (_isPlaying)
+            {
+                _audioSource.Stop();
+            }
+            else
+            {
+                _audioSource.UnPause();
+            }
+
+            // ! maakt van true false en false true
+            _isPlaying = !_isPlaying;
         }
     }
 }

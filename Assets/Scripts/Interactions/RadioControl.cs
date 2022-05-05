@@ -10,7 +10,7 @@ public class RadioControl : MonoBehaviour
     // Bij awake, vraagt naar audio source om af te spelen
     private void Awake()
     {
-        _audioSource = GetComponent<AudioSource>();
+       // _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)

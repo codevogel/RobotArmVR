@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TrashCheck : MonoBehaviour
 {
+    Rigidbody rb2;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -20,7 +22,9 @@ public class TrashCheck : MonoBehaviour
     {
         if (other.CompareTag("Can"))
         {
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
+            rb2 = other.gameObject.GetComponent<Rigidbody>();
+            rb2.useGravity = false;
         }
         else if (other.CompareTag("ControllerLeft"))
         {
