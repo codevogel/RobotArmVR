@@ -3,20 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static HandAnimationManager;
+using static HandManager;
 
-[RequireComponent(typeof(JoystickControl))]
+/// <summary>
+/// Handles all joystick related interaction for the flexpendant.
+/// </summary>
 public class JoystickInteractor : MonoBehaviour
 {
 
     private XRCustomController rightHandController;
-    private bool controllerInRange;
 
+
+    #region Hand attachment
     private Transform originalParent;
     private Transform attachpoint;
     private Transform joystickPivot;
+    #endregion
 
-    private JoystickControl joystickControl;
 
     #region Joystick tilt
     public bool joystickPressed;
@@ -25,12 +28,11 @@ public class JoystickInteractor : MonoBehaviour
     private float initRotationZ;
     [SerializeField] 
     [Tooltip("Left/Right tilt allowance in degrees")]
-    private float tiltAllowance;
+    private float tiltThreshhold;
 
     private float _tiltAngle;
 
-    public float TiltAllowance { get { return tiltAllowance; } }
-    
+    public float TiltThreshold { get { return tiltThreshhold; } }
 
     public float TiltAngle { get { return _tiltAngle; } }
 
@@ -39,38 +41,56 @@ public class JoystickInteractor : MonoBehaviour
     private void Start()
     {
         rightHandController = GetComponent<XRCustomController>();
-        rightHandController.rightTriggerPressAction.action.performed += SnapToJoystick;
-        rightHandController.rightTriggerPressAction.action.canceled += SnapToJoystick;
-        rightHandController.rotationAction.action.performed += RotateController;
-        rightHandController.joystickPressedAction.action.performed += PressJoystick;
-        rightHandController.joystickPressedAction.action.canceled += PressJoystick;
-        XRCustomController.OnHandAttached += FindHand;
-        joystickControl = GetComponent<JoystickControl>();
+        XRCustomController.OnHandAttached += FindAttachPoints;
     }
 
-
-
-    private void PressJoystick(InputAction.CallbackContext obj)
+    private void LateUpdate()
     {
-        if (HandAnimationManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.GRAB))
+        // Pivot joystick in direction based on joystick input
+        if (HandManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.JOYSTICK_GRAB))
         {
-            joystickPressed = obj.ReadValue<float>() == 1;
+            //Vector2 input = joystickControl.JoystickInput * -1;
+            Vector2 input = PlayerController.Right.JoystickAxis * -1;
+
+            joystickPivot.transform.localRotation = Quaternion.Euler(0, input.x * 30, input.y * 30);
+        }
+    }
+
+    /// <summary>
+    /// Called when the joystick is pressed (clicked) or released
+    /// </summary>
+    /// <param name="input">whether the joystick is pressed or released</param>
+    /// <param name="leftRight">Whether the left or right hand triggered this call</param>
+    public void PressJoystick(bool input, HandType leftRight)
+    {
+        if (HandManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.JOYSTICK_GRAB) && leftRight.Equals(HandType.RIGHT))
+        {
+            joystickPressed = input;
             if (joystickPressed)
             {
+                // Ensure we set initial rotation in RotateController
                 setInitialRotation = true;
             }
             else
             {
+                // Reset hand tilt
                 attachpoint.localRotation = Quaternion.Euler(originalAttachAngle);
             }
         }
     }
 
-    private void RotateController(InputAction.CallbackContext obj)
+    /// <summary>
+    /// Attempts to rotate the controller based on current controller rotation
+    /// </summary>
+    /// <param name="input">The current controller rotation</param>
+    /// <param name="leftRight">Whether the left or right hand triggered this call</param>
+    public void RotateController(Quaternion input, HandType leftRight)
     {
-        if (joystickPressed && HandAnimationManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.GRAB))
+        // If right joystick is pressed and hand is snapped to joystick
+        if (joystickPressed && leftRight.Equals(HandType.RIGHT) && HandManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.JOYSTICK_GRAB))
         {
-            Quaternion handRotation = obj.ReadValue<Quaternion>();
+            Quaternion handRotation = input;
+            // Set the initial rotation when you start tilting the hand
             if (setInitialRotation)
             {
                 initRotationZ = handRotation.eulerAngles.z;
@@ -78,65 +98,63 @@ public class JoystickInteractor : MonoBehaviour
                 setInitialRotation = false;
             }
 
+            // Tilt the hand by the rotation
             TiltHand(Mathf.DeltaAngle(initRotationZ, handRotation.eulerAngles.z));
         }
     }
 
+    /// <summary>
+    /// Tilts the hand by tiltAngle
+    /// </summary>
+    /// <param name="tiltAngle">the amount (in degrees) to tilt the hand</param>
     private void TiltHand(float tiltAngle)
     {
         _tiltAngle = tiltAngle;
         Vector3 newAttachAngle = originalAttachAngle;
-        newAttachAngle.z += Mathf.Clamp(tiltAngle, -tiltAllowance, tiltAllowance);
+        newAttachAngle.z += Mathf.Clamp(tiltAngle, -tiltThreshhold, tiltThreshhold);
         attachpoint.localRotation = Quaternion.Euler(newAttachAngle);
     }
 
-    private void LateUpdate()
-    {
-        if (HandAnimationManager.Instance.GetCurrentPose(HandType.RIGHT).Equals(HandPose.GRAB))
-        {
-            Vector2 input = joystickControl.JoystickInput * -1;
-            joystickPivot.transform.localRotation = Quaternion.Euler(0, input.x * 30, input.y * 30);
-        }
-    }
 
-    private void FindHand(HandType leftRight)
+    /// <summary>
+    /// Finds attach points for the hand. Triggered when hand is attached to controller.
+    /// </summary>
+    private void FindAttachPoints(HandType leftRight)
     {
         joystickPivot = GameObject.FindGameObjectWithTag("Flexpendant").transform.Find("JoystickPivot");
         attachpoint = joystickPivot.Find("Joystick").Find("RightHandAttach");
     }
 
-    private void SnapToJoystick(InputAction.CallbackContext obj)
+    /// <summary>
+    /// Snaps the hand to the joystick
+    /// </summary>
+    /// <param name="input">Whether we have to snap to the joystick</param>
+    /// <param name="leftRight">the hand that triggered the joystick touch</param>
+    public void SnapToJoystick(bool input, HandType leftRight)
     {
-        if (obj.ReadValue<float>() == 1 && controllerInRange)
+        // Do nothing on left hand
+        if (leftRight.Equals(HandType.LEFT))
         {
+            return;
+        }
+
+        // If touching joystick and left hand is holding the flexpendant
+        Transform heldObjectInLeft = HandManager.Instance.GetHeldObject(HandType.LEFT);
+        if (input.Equals(true) && heldObjectInLeft != null && heldObjectInLeft.CompareTag("Flexpendant"))
+        {
+            // Snap to joystick
             rightHandController.enableInputTracking = false;
             originalParent = transform.parent;
             transform.parent = attachpoint;
-            HandAnimationManager.Instance.ChangePose(HandPose.IDLE, HandPose.GRAB, HandType.RIGHT);
+            HandManager.Instance.ChangePose(HandPose.IDLE, HandPose.JOYSTICK_GRAB, HandType.RIGHT);
             return;
         }
-        if (transform.parent.name.Equals("RightHandAttach"))
+        else if (input.Equals(false) && transform.parent.name.Equals("RightHandAttach"))
         {
+            // Free hand from joystick
             transform.parent = originalParent;
             rightHandController.enableInputTracking = true;
-            HandAnimationManager.Instance.ChangePose(HandPose.GRAB, HandPose.IDLE, HandType.RIGHT);
-        }
-
-    }
-
-    public void OnJoystickEnter(OnTriggerDelegation triggerDelegation)
-    {
-        if (triggerDelegation.Other.CompareTag("ControllerRight"))
-        {
-            controllerInRange = true;
-        }
-    }
-
-    public void OnJoystickExit(OnTriggerDelegation triggerDelegation)
-    {
-        if (triggerDelegation.Other.CompareTag("ControllerRight"))
-        {
-            controllerInRange = false;
+            HandManager.Instance.ChangePose(HandPose.JOYSTICK_GRAB, HandPose.IDLE, HandType.RIGHT);
         }
     }
 }

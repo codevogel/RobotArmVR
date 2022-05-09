@@ -6,11 +6,6 @@ public class SuctionGripTool : ToolHeadBase<SuctionGripTool.ToolState>
 {
     private Rigidbody _affectedObject;
 
-    private void Start()
-    {
-        SetToolState(ToolState.Grab);
-    }
-
     // todo: kijk of dit vervangen kan worden zo dat dit niet elke keer triggert.
     // moet kijken naar hoe je colliders kan checken zonder dit.
     private void OnTriggerStay(Collider other)
@@ -23,6 +18,7 @@ public class SuctionGripTool : ToolHeadBase<SuctionGripTool.ToolState>
 
     public void EnableSuctionGrab(Rigidbody grabbedObject)
     {
+        Debug.Log("Grabbing");
         if(_affectedObject == null)
         {
             _affectedObject = grabbedObject;

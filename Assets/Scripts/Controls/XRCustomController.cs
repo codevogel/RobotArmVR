@@ -4,36 +4,23 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
-using static HandAnimationManager;
+using static HandManager;
 
+/// <summary>
+/// Stores every custom input action property
+/// </summary>
 public class XRCustomController : CustomActionBasedController
 {
-    #region Right Hand
+    #region Input Actions
+    [Header("Custom hand actions")]
+    [Space(10)]
 
-    [Header("Custom hand actions - Right")]
-    [Space(25)]
     [SerializeField]
     InputActionProperty m_joystickAxisValueAction;
     public InputActionProperty joystickAxisValueAction
     {
         get => m_joystickAxisValueAction;
         set => SetInputActionProperty(ref m_joystickAxisValueAction, value);
-    }
-
-    [SerializeField]
-    InputActionProperty m_changeAxisAction;
-    public InputActionProperty changeAxisAction
-    {
-        get => m_changeAxisAction;
-        set => SetInputActionProperty(ref m_changeAxisAction, value);
-    }
-
-    [SerializeField]
-    InputActionProperty m_rightTriggerPressAction;
-    public InputActionProperty rightTriggerPressAction
-    {
-        get => m_rightTriggerPressAction;
-        set => SetInputActionProperty(ref m_rightTriggerPressAction, value);
     }
 
     [SerializeField]
@@ -44,99 +31,91 @@ public class XRCustomController : CustomActionBasedController
         set => SetInputActionProperty(ref m_joystickPressedAction, value);
     }
 
-    #endregion
-
-    #region Left Hand
-    [Header("Custom hand actions - Left")]
-    [Space(10)]
-
     [SerializeField]
-    InputActionProperty m_leftTriggerPressAction;
-    public InputActionProperty leftTriggerPressAction
+    InputActionProperty m_primaryButtonPressedAction;
+    public InputActionProperty primaryButtonPressedAction
     {
-        get => m_leftTriggerPressAction;
-        set => SetInputActionProperty(ref m_leftTriggerPressAction, value);
+        get => m_primaryButtonPressedAction;
+        set => SetInputActionProperty(ref m_primaryButtonPressedAction, value);
     }
 
-    #endregion
-
-    #region Both Hands
-    [Header("Custom hand actions - Both")]
-    [Space(10)]
     [SerializeField]
-    InputActionProperty m_customSelectAction;
-    public InputActionProperty customSelectAction
+    InputActionProperty m_secondairyButtonPressedAction;
+    public InputActionProperty secondairyButtonPressedAction
     {
-        get => m_customSelectAction;
-        set => SetInputActionProperty(ref m_customSelectAction, value);
+        get => m_secondairyButtonPressedAction;
+        set => SetInputActionProperty(ref m_secondairyButtonPressedAction, value);
     }
 
     [SerializeField]
-    InputActionProperty m_teleportAction;
-    public InputActionProperty teleportAction
-    {   
-        get => m_teleportAction;
-        set => SetInputActionProperty(ref m_teleportAction, value);
+    InputActionProperty m_TriggerPressAction;
+    public InputActionProperty triggerPressAction
+    {
+        get => m_TriggerPressAction;
+        set => SetInputActionProperty(ref m_TriggerPressAction, value);
     }
 
+    [SerializeField]
+    InputActionProperty m_joystickTouchedAction;
+    public InputActionProperty joystickTouchedAction
+    {
+        get => m_joystickTouchedAction;
+        set => SetInputActionProperty(ref m_joystickTouchedAction, value);
+    }
     #endregion
 
-    #region Hand attachement
+    #region Hand attachment
     private bool handAttached = false;
 
     public HandType leftOrRight;
 
     public delegate void HandAttached(HandType left);
 
+    /// <summary>
+    /// This event is triggered when the hand has been attached to the XRCustomController.
+    /// </summary>
     public static event HandAttached OnHandAttached;
+    #endregion
+
+    #region Teleportation
+    private TeleportManager _teleportControls;
+    public TeleportManager teleportControls { get { return _teleportControls; } }
+    #endregion
 
     private void Start()
     {
-        customSelectAction.action.performed += CustomSelect;
-        customSelectAction.action.canceled += CustomSelect;
+        HandManager.Instance.SetController(this, leftOrRight);
+        _teleportControls = GetComponent<TeleportManager>();
     }
 
-    protected override void UpdateController()
+    /// <summary>
+    /// Changes hand state from idle to point based on input.
+    /// Called by PlayerController. 
+    /// </summary>
+    /// <param name="point"></param>
+    public void PointAction(bool point)
     {
-        base.UpdateController();
-        if (!handAttached)
+        if (point)
         {
-            if (leftOrRight.Equals(HandType.LEFT))
-            {
-                HandAnimationManager.Instance.HandAnimatorL = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
-            }
-            else
-            {
-                HandAnimationManager.Instance.HandAnimatorR = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
-            }
-            OnHandAttached(leftOrRight);
-            handAttached = true;
-        }
-    }
-    #endregion
-
-    private void CustomSelect(InputAction.CallbackContext obj)
-    {
-        if (obj.ReadValue<float>() == 1f)
-        {
-            HandAnimationManager.Instance.ChangePose(HandPose.IDLE, HandPose.SELECT, leftOrRight);
+            HandManager.Instance.ChangePose(HandPose.IDLE, HandPose.POINT, leftOrRight);
         }
         else
         {
-            HandAnimationManager.Instance.ChangePose(HandPose.SELECT, HandPose.IDLE, leftOrRight);
+            HandManager.Instance.ChangePose(HandPose.POINT, HandPose.IDLE, leftOrRight);
         }
     }
+
+    #region Package overrides
 
     protected override void CustomEnableAllDirectActions()
     {
         base.CustomEnableAllDirectActions();
         m_joystickAxisValueAction.EnableDirectAction();
         m_joystickPressedAction.EnableDirectAction();
-        m_changeAxisAction.EnableDirectAction();
-        m_leftTriggerPressAction.EnableDirectAction();
-        m_rightTriggerPressAction.EnableDirectAction();
-        m_customSelectAction.EnableDirectAction();
-        m_teleportAction.EnableDirectAction();
+        m_primaryButtonPressedAction.EnableDirectAction();
+        m_secondairyButtonPressedAction.EnableDirectAction();
+        m_TriggerPressAction.EnableDirectAction();
+        m_joystickTouchedAction.EnableDirectAction();
     }
 
     protected override void CustomDisableAllDirectActions()
@@ -144,16 +123,35 @@ public class XRCustomController : CustomActionBasedController
         base.CustomDisableAllDirectActions();
         m_joystickAxisValueAction.DisableDirectAction();
         m_joystickPressedAction.EnableDirectAction();
-        m_changeAxisAction.DisableDirectAction();
-        m_leftTriggerPressAction.DisableDirectAction();
-        m_rightTriggerPressAction.EnableDirectAction();
-        m_customSelectAction.DisableDirectAction();
-        m_teleportAction.DisableDirectAction();
+        m_primaryButtonPressedAction.DisableDirectAction();
+        m_secondairyButtonPressedAction.DisableDirectAction();
+        m_TriggerPressAction.EnableDirectAction();
+        m_joystickTouchedAction.DisableDirectAction();
+    }
+
+    /// <summary>
+    /// Called every frame when the controllers are spawned in.
+    /// Updates the references in HandManager on first call.
+    /// </summary>
+    protected override void UpdateController()
+    {
+        base.UpdateController();
+        if (!handAttached)
+        {
+            if (leftOrRight.Equals(HandType.LEFT))
+            {
+                HandManager.Instance.HandAnimatorL = transform.Find("[LeftHand Controller] Model Parent").GetChild(0).GetComponent<Animator>();
+            }
+            else
+            {
+                HandManager.Instance.HandAnimatorR = transform.Find("[RightHand Controller] Model Parent").GetChild(0).GetComponent<Animator>();
+            }
+            OnHandAttached(leftOrRight);
+            handAttached = true;
+        }
     }
 
     #region Black sorcery for resetting tracking offset when it's off
-    public bool resetPosition;
-
     protected override void ApplyControllerState(XRInteractionUpdateOrder.UpdatePhase updatePhase, XRControllerState controllerState)
     {
         base.ApplyControllerState(updatePhase, controllerState);
@@ -163,5 +161,7 @@ public class XRCustomController : CustomActionBasedController
             base.transform.localRotation = Quaternion.identity;
         }
     }
+    #endregion
+
     #endregion
 }

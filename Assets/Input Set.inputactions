@@ -296,6 +296,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "A Button Pressed",
+                    "type": "Button",
+                    "id": "ac5b1a0e-d681-4a68-90c3-56eee1752b9e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Joystick Axis Value",
+                    "type": "Value",
+                    "id": "719a20fc-41e0-4748-8cab-6fa6eb09496f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Joystick Pressed",
+                    "type": "Button",
+                    "id": "fc712080-e4b5-4f1a-ba03-f1ac86e8db00",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Joystick Touched",
+                    "type": "Button",
+                    "id": "34158c63-ef14-42d3-9ade-e87c84d746c8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -496,6 +532,50 @@
                     "action": "B Button Pressed",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c26d334-837a-4315-9b28-42e91b57c152",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "A Button Pressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "83a6a66e-a45e-489e-9af1-40939ec3f494",
+                    "path": "<XRController>{LeftHand}/joystick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Joystick Axis Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f07114c4-4026-40dd-8170-0fd19dde9a8a",
+                    "path": "<XRController>{LeftHand}/joystickClicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Joystick Pressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a1e5411a-710a-4bbc-8b4d-0e2b8e3a057d",
+                    "path": "<OculusTouchController>{LeftHand}/thumbstickTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Joystick Touched",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -556,7 +636,7 @@
                     "path": "<XRController>{LeftHand}/Primary2DAxis",
                     "interactions": "Sector(directions=-1,sweepBehavior=3)",
                     "processors": "",
-                    "groups": "Noncontinuous Move",
+                    "groups": "Generic XR Controller",
                     "action": "Teleport Select",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -565,9 +645,9 @@
                     "name": "",
                     "id": "8da6ed3a-f621-49fe-8c76-1f6b7d7754d6",
                     "path": "<XRController>{LeftHand}/Primary2DAxis",
-                    "interactions": "Sector(directions=1)",
+                    "interactions": "Sector(directions=1,pressPoint=0.75)",
                     "processors": "",
-                    "groups": "Noncontinuous Move",
+                    "groups": "Generic XR Controller",
                     "action": "Teleport Mode Activate",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -847,15 +927,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Change Axis",
-                    "type": "Button",
-                    "id": "76334da0-7ff1-46a4-9b58-92c0ccb19d41",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Trigger Pressed",
                     "type": "Value",
                     "id": "c25b65ed-1760-4156-b49a-7661c5bc3d64",
@@ -886,6 +957,24 @@
                     "name": "B Button Pressed",
                     "type": "Button",
                     "id": "e015fdc5-5dd3-4745-bf8a-076781fa7ea0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "A Button Pressed",
+                    "type": "Button",
+                    "id": "4f415f37-1202-4220-8b0b-a04f53fef63b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Joystick Touched",
+                    "type": "Button",
+                    "id": "f0b9388e-e5c0-480b-95e9-a734917762ec",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1082,17 +1171,6 @@
                 },
                 {
                     "name": "",
-                    "id": "9ee3f1a5-3fec-4a6d-a714-37ed2ad641c5",
-                    "path": "<XRController>{RightHand}/primaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Change Axis",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "91053ae5-af4f-49c5-940a-c14bc9d1a797",
                     "path": "<XRController>{RightHand}/triggerPressed",
                     "interactions": "",
@@ -1132,6 +1210,28 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "B Button Pressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "108d4832-ec01-456a-b185-7809f9633586",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "A Button Pressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca28c631-5d0a-49b0-857f-530b183aa097",
+                    "path": "<OculusTouchController>{RightHand}/thumbstickTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Joystick Touched",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
