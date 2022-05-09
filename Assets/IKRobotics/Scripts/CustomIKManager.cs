@@ -132,8 +132,6 @@ namespace IKManager
                 if (outOfLimit) break;
             }
 
-            Debug.Log("Reached");
-
             if (count == 99 || outOfLimit)  // did not converge or angle out of limit
             {
                 Debug.Log("did not converge or out of limit");

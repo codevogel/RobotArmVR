@@ -662,6 +662,18 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -4348833162212184119, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_secondairyButtonPressedAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
   m_TriggerPressAction:
     m_UseReference: 1
     m_Action:
@@ -815,7 +827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joystickPressed: 0
-  tiltAllowance: 30
+  tiltThreshhold: 0
 --- !u!135 &7582183617864207624
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1518,6 +1530,18 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 3782851951479553466, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_secondairyButtonPressedAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
   m_TriggerPressAction:
     m_UseReference: 1
     m_Action:
@@ -1555,17 +1579,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2f402ff922d7d468af5058b7103be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bones:
+  articulationBodies:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  selectedBone: 0
+  selectedArticulator: 0
   moveSpeed: 1
   rotateSpeed: 12
+  IKManager: {fileID: 0}
   Interactor: {fileID: 0}
+  joystickThreshold: 0
 --- !u!114 &7582183619641895692
 MonoBehaviour:
   m_ObjectHideFlags: 0
