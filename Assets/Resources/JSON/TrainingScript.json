@@ -1,21 +1,19 @@
 {
   "phases": [
     {
-      "phaseName": "Joystick",
+      "phaseName": "Onboarding",
+      "time": "0" ,
       "subPhases": [
         {
           "subPhaseNumber": "1",
-          "message": "Use the joystick to operate the robot arm"
+          "message": "Hey, I'm RBI-2! Your guide for this training",
+          "time": "202"
         },
 
         {
           "subPhaseNumber": "2",
-          "message": "Change axis 1 with horizontal movement"
-        },
-
-        {
-          "subPhaseNumber": "3",
-          "message": "Change axis 2 with vertical movement"
+          "message": "Let's start with the controls",
+          "time": "688"
         }
       ]
     },
