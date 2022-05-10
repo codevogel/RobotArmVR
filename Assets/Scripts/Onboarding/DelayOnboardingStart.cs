@@ -45,7 +45,6 @@ public class DelayOnboardingStart : MonoBehaviour
     private void HandleUserPresenceDelayedStart(InputAction.CallbackContext context)
     {
         var headsetIsOn = context.ReadValueAsButton();
-        Debug.Log($"headset is on person: {headsetIsOn}");
 
         if (!headsetIsOn)
             return;

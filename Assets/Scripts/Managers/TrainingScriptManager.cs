@@ -66,7 +66,6 @@ public class TrainingScriptManager : MonoBehaviour
         timeLineController.Resume();
     }
 
-
     [Serializable]
     public class TrainingScript
     {
