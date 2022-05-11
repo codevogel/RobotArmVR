@@ -11,7 +11,10 @@ public class TrainingScriptManager : MonoBehaviour
     [SerializeField] private TypeWriterText textWriter;
     [SerializeField] private PlayableDirector timeLine;
     [SerializeField] private ControlDirectorTime timeLineController;
+    [SerializeField] private Transform player;
     [SerializeField] private GameObject confirmationCanvas;
+
+    public List<PhaseTransform> phasesPosition;
 
     private TextAsset trainingScriptJSON;
     private TrainingScript trainingScript;
@@ -96,6 +99,8 @@ public class TrainingScriptManager : MonoBehaviour
         if (timeDifference > 5)
         {
             timeLine.time = newTime / 60f;
+            Vector3 newPosition= phasesPosition[currentPhase.phaseNumber].subPhaseTransforms[currentSubPhase.subPhaseNumber].subPhaseTransform.position;
+            player.transform.position = new Vector3(newPosition.x,player.transform.position.y,newPosition.z);
         }
     }
 
@@ -131,6 +136,21 @@ public class TrainingScriptManager : MonoBehaviour
         public int subPhaseNumber;
         public string message;
         public int startTime;
+    }
+    #endregion
+
+    #region Transform saving
+    [Serializable]
+    public class SubPhaseTransform
+    {
+        public Transform subPhaseTransform;
+    }
+
+    [Serializable]
+    public class PhaseTransform
+    {
+        public Transform phaseTransform;
+        public List<SubPhaseTransform> subPhaseTransforms;
     }
     #endregion
 }
