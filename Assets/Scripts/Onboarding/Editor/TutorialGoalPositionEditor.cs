@@ -47,7 +47,7 @@ public class TutorialGoalPositionEditor : Editor
 
         if (GUILayout.Button("Advance"))
         {
-            tgp.Advance();
+            tgp.AdvanceImmediately();
         }
 
         EditorGUI.EndDisabledGroup();

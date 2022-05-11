@@ -49,11 +49,33 @@ public class TutorialGoalPositions : MonoBehaviour
     /// <summary>
     /// Set the current goal to the next one in line after a set amount of time.
     /// </summary>
-    private IEnumerator Advance()
+    public IEnumerator Advance()
     {
         if (timeRequiredInside > 0)
             yield return new WaitForSeconds(timeRequiredInside);
 
+        _colliders[_currentGoal].gameObject.SetActive(false);
+
+        _currentGoal++;
+
+        // check if this was the last goal
+        if (_currentGoal == _colliders.Length)
+        {
+            _onCompletion.Invoke();
+            _currentGoal = default;
+        }
+        else
+        {
+            _colliders[_currentGoal].gameObject.SetActive(true);
+            _onAdvancedStep.Invoke();
+        }
+    }
+
+    /// <summary>
+    /// Set the current goal to the next one in line.
+    /// </summary>
+    public void AdvanceImmediately()
+    {
         _colliders[_currentGoal].gameObject.SetActive(false);
 
         _currentGoal++;
