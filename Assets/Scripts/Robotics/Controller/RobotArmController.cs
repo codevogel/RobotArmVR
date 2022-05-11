@@ -71,43 +71,29 @@ public class RobotArmController : MonoBehaviour
     /// <summary>
     /// Update axes
     /// </summary>
-    public void ChangeAxisAction(bool input, HandType leftRight)
+    public void ChangeAxisAction()
     {
-        if (leftRight.Equals(HandType.LEFT))
-        {
-            return;
-        }
-        if (input.Equals(true))
-        {
-            axisSetOne = !axisSetOne;
-            FlexpendantUIManager.Instance.ChangeAxisSet(axisSetOne);
-        }
+        axisSetOne = !axisSetOne;
+        FlexpendantUIManager.Instance.ChangeAxisSet(axisSetOne);
     }
 
-    public void ChangeMovementMode(bool input, HandType leftRight)
+    public void ChangeMovementMode()
     {
-        if (leftRight.Equals(HandType.LEFT))
-        {
-            return;
-        }
-        if (input.Equals(true))
-        {
-            movementOnLinear = !movementOnLinear;
-            FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
+        movementOnLinear = !movementOnLinear;
+        FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
 
-            if (movementOnLinear)
-            {
-                StopArticulation();
-                IKManager.enabled = true;
-                linearMovement.enabled = true;
-                linearMovement.followTarget.position = articulationBodies[5].transform.position;
-            }
-            else
-            {
-                StopArticulation();
-                IKManager.enabled = false;
-                linearMovement.enabled = false;
-            }
+        if (movementOnLinear)
+        {
+            StopArticulation();
+            IKManager.enabled = true;
+            linearMovement.enabled = true;
+            linearMovement.followTarget.position = articulationBodies[5].transform.position;
+        }
+        else
+        {
+            StopArticulation();
+            IKManager.enabled = false;
+            linearMovement.enabled = false;
         }
     }
 

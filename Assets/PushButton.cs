@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class PushButton : MonoBehaviour
 {
 
-    private Rigidbody button;
+    public Rigidbody rb;
 
     [Tooltip("The distance this button can travel")]
     [field: SerializeField]
@@ -30,24 +30,24 @@ public class PushButton : MonoBehaviour
 
     private void Start()
     {
-        button = GetComponentInChildren<Rigidbody>();
-        original = button.transform.localPosition;
+        rb = GetComponentInChildren<Rigidbody>();
+        original = rb.transform.localPosition;
     }
 
     private void Update()
     {
-        button.transform.localRotation = Quaternion.identity;
+        rb.transform.localRotation = Quaternion.identity;
         // Clamp button positions
-        button.transform.localPosition = new Vector3(original.x, Mathf.Clamp(button.transform.localPosition.y, original.y - travelDistance, original.y), original.z);
+        rb.transform.localPosition = new Vector3(original.x, Mathf.Clamp(rb.transform.localPosition.y, original.y - travelDistance, original.y), original.z);
 
         // Check if button is up
-        if (triggered && button.transform.localPosition.y >= original.y - toleranceY)
+        if (triggered && rb.transform.localPosition.y >= original.y - toleranceY)
         {
             triggered = false;
             OnButtonUp.Invoke();
         }
 
-        if (!triggered && button.transform.localPosition.y <= original.y - travelDistance + toleranceY)
+        if (!triggered && rb.transform.localPosition.y <= original.y - travelDistance + toleranceY)
         {
             triggered = true;
             OnButtonDown.Invoke();
@@ -56,16 +56,12 @@ public class PushButton : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (transform.parent.parent == null)
-        {
-            button.velocity = Vector3.zero;
-        }
         // Rise button if not on original 
-        if (button.transform.localPosition.y < original.y)
+        if (rb.transform.localPosition.y < original.y)
         {
-            button.AddForce(transform.up * travelSpeed * Time.deltaTime);
+            rb.AddForce(transform.up * travelSpeed * Time.deltaTime);
             return;
         }
-        button.velocity = Vector3.zero;
+        rb.velocity = Vector3.zero;
     }
 }
