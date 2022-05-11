@@ -11,7 +11,6 @@ public class PointAction : MonoBehaviour
 
     private bool isPointing;
     private Transform lastCollision;
-    private HandType leftRight;
 
     private void Start()
     {
@@ -53,8 +52,6 @@ public class PointAction : MonoBehaviour
     /// <param name="point"></param>
     public void PointActivation(bool point, HandType leftOrRight)
     {
-        leftRight = leftOrRight;
-
         isPointing = point;
         if (point)
         {
