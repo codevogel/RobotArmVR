@@ -140,7 +140,6 @@ namespace IKManager
             {
                 for (int i = 0; i < 6; i++)
                 {
-                    Debug.Log("Moving");
                     var drive = Joint[i].xDrive;
                     drive.target = angle[i];
                     Joint[i].xDrive = drive;
