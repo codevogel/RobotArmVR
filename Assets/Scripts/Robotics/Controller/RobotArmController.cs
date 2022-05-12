@@ -42,6 +42,9 @@ public class RobotArmController : MonoBehaviour
     [SerializeField]
     private float joystickThreshold;
 
+    [SerializeField]
+    private List<PushButton> buttons;
+
     private void Start()
     {
         joystickInteractor = HandManager.Instance.RightController.GetComponent<JoystickInteractor>();
@@ -65,6 +68,15 @@ public class RobotArmController : MonoBehaviour
         {
             MoveArm();
             FlexpendantUIManager.Instance.UpdateAxis(selectedArticulator, articulationBodies[selectedArticulator].transform);
+        }
+    }
+
+    
+    public void EnableButtons(bool enabled)
+    {
+        foreach (PushButton button in buttons)
+        {
+            button.rb.isKinematic = !enabled;
         }
     }
 

@@ -1816,6 +1816,11 @@ MonoBehaviour:
   IKManager: {fileID: 369282890}
   Interactor: {fileID: 0}
   joystickThreshold: 0.25
+  buttons:
+  - {fileID: 193646449}
+  - {fileID: 505669350}
+  - {fileID: 1471660912}
+  - {fileID: 1532982027}
 --- !u!114 &188489318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9679,28 +9684,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3812135594222282215, guid: c09de172512fe41ab8f0ec3340aeafff, type: 3}
   m_PrefabInstance: {fileID: 1445341813}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1446512676 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3875107668792214367, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-  m_PrefabInstance: {fileID: 1520234640}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1446512677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446512676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75a0a81945bcedc44ba5e9dd83ba65cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 193646449}
-  - {fileID: 505669350}
-  - {fileID: 1471660912}
-  - {fileID: 1532982027}
 --- !u!1001 &1462343963
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10504,11 +10487,11 @@ PrefabInstance:
     - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1446512677}
+      objectReference: {fileID: 188489317}
     - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1446512677}
+      objectReference: {fileID: 188489317}
     - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -10519,27 +10502,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MakeKinematic
+      value: EnableButtons
       objectReference: {fileID: 0}
     - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MakeKinematic
+      value: EnableButtons
       objectReference: {fileID: 0}
     - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ButtonManager, Assembly-CSharp
+      value: RobotArmController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ButtonManager, Assembly-CSharp
+      value: RobotArmController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -11365,7 +11348,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1646485605}
   m_LocalRotation: {x: -0, y: 0.45441458, z: -0, w: 0.89079034}
-  m_LocalPosition: {x: 36.12, y: -1.41, z: -27}
+  m_LocalPosition: {x: 37.12, y: -1.41, z: -27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 69063028}
