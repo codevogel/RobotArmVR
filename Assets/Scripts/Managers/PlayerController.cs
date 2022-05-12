@@ -140,8 +140,6 @@ public class PlayerController : MonoBehaviour
     {
         ControllerValues controllerValues = leftRight.Equals(HandType.LEFT) ? Left : Right;
         controllerValues.PrimaryButtonPressed = ctx.ReadValue<float>().Equals(1f) ? true : false;
-
-        robotController.ChangeAxisAction(controllerValues.PrimaryButtonPressed, leftRight);
     }
 
     /// <summary>
@@ -153,8 +151,6 @@ public class PlayerController : MonoBehaviour
     {
         ControllerValues controllerValues = leftRight.Equals(HandType.LEFT) ? Left : Right;
         controllerValues.SecondairyButtonPressed = ctx.ReadValue<float>().Equals(1f) ? true : false;
-
-        robotController.ChangeMovementMode(controllerValues.SecondairyButtonPressed, leftRight);
     }
 
 

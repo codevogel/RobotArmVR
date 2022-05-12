@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class PushButton : MonoBehaviour
 {
 
-    private Rigidbody button;
+    public Rigidbody rb;
 
     [Tooltip("The distance this button can travel")]
     [field: SerializeField]
@@ -23,30 +23,31 @@ public class PushButton : MonoBehaviour
     private float toleranceY = 0.05f;
 
 
-    private float originalY;
+    private Vector3 original;
     private bool triggered;
 
     public UnityEvent OnButtonUp, OnButtonDown;
 
     private void Start()
     {
-        button = GetComponentInChildren<Rigidbody>();
-        originalY = button.transform.localPosition.y;
+        rb = GetComponentInChildren<Rigidbody>();
+        original = rb.transform.localPosition;
     }
 
     private void Update()
     {
+        rb.transform.localRotation = Quaternion.identity;
         // Clamp button positions
-        button.transform.localPosition = new Vector3(button.transform.localPosition.x, Mathf.Clamp(button.transform.localPosition.y, originalY - travelDistance, originalY), button.transform.localPosition.z);
-    
+        rb.transform.localPosition = new Vector3(original.x, Mathf.Clamp(rb.transform.localPosition.y, original.y - travelDistance, original.y), original.z);
+
         // Check if button is up
-        if (triggered && button.transform.localPosition.y >= originalY - toleranceY)
+        if (triggered && rb.transform.localPosition.y >= original.y - toleranceY)
         {
             triggered = false;
             OnButtonUp.Invoke();
         }
 
-        if (!triggered && button.transform.localPosition.y <= originalY - travelDistance + toleranceY)
+        if (!triggered && rb.transform.localPosition.y <= original.y - travelDistance + toleranceY)
         {
             triggered = true;
             OnButtonDown.Invoke();
@@ -56,15 +57,11 @@ public class PushButton : MonoBehaviour
     private void FixedUpdate()
     {
         // Rise button if not on original 
-        button.velocity = button.transform.localPosition.y < originalY ? Vector3.up * travelSpeed * Time.deltaTime : Vector3.zero;
-    }
-
-    public virtual void ButtonDown()
-    {
-        GetComponent<MeshRenderer>().material.color = UnityEngine.Random.ColorHSV();
-    }
-    public virtual void ButtonUp()
-    {
-        GetComponent<MeshRenderer>().material.color = UnityEngine.Random.ColorHSV();
+        if (rb.transform.localPosition.y < original.y)
+        {
+            rb.AddForce(transform.up * travelSpeed * Time.deltaTime);
+            return;
+        }
+        rb.velocity = Vector3.zero;
     }
 }

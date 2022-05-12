@@ -15,7 +15,6 @@ public class RobotController : MonoBehaviour
 
 
     // CONTROL
-
     public void StopAllJointRotations()
     {
         for (int i = 0; i < joints.Length; i++)
