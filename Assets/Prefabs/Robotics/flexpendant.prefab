@@ -151,8 +151,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2139966242}
-  - component: {fileID: 2139966243}
-  - component: {fileID: 1223316351}
   m_Layer: 0
   m_Name: RightHandAttach
   m_TagString: Untagged
@@ -174,61 +172,6 @@ Transform:
   m_Father: {fileID: 4752496864917820529}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 5.743, y: 56.629, z: 170.885}
---- !u!135 &2139966243
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2139966241}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 3.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1223316351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2139966241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d1403d1c18eab40b1787cd5aa016ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Enter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: JoystickInteractor, Assembly-CSharp
-        m_MethodName: OnJoystickEnter
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Exit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: JoystickInteractor, Assembly-CSharp
-        m_MethodName: OnJoystickExit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &774394243756274606
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,8 +485,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2953886440141877885}
   m_LocalRotation: {x: -0.7071068, y: 0.00000067128235, z: -0.0000001110287, w: 0.70710677}
-  m_LocalPosition: {x: -0.018, y: 0, z: 0}
-  m_LocalScale: {x: 0.09255043, y: 0.09255042, z: 0.09255042}
+  m_LocalPosition: {x: -0.02, y: 0, z: 0.08}
+  m_LocalScale: {x: 0.12571125, y: 0.12571123, z: 0.12571123}
   m_Children:
   - {fileID: 2139966242}
   m_Father: {fileID: 5116132479738571415}
@@ -829,10 +772,34 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: RobotArmController, Assembly-CSharp
+        m_MethodName: EnableButtons
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: RobotArmController, Assembly-CSharp
+        m_MethodName: EnableButtons
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_Activated:
     m_PersistentCalls:
       m_Calls: []
@@ -3285,7 +3252,7 @@ PrefabInstance:
       objectReference: {fileID: 282968345}
     - target: {fileID: 8859726701566961086, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: m_Name
-      value: PushButton (3)
+      value: Increment
       objectReference: {fileID: 0}
     - target: {fileID: 8859726701566961087, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: m_RootOrder
@@ -3355,6 +3322,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
+    - target: {fileID: 8859726701851120396, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 429f5884a5442da4196907de052e5998, type: 3}
 --- !u!4 &8859726702216757972 stripped
@@ -3386,6 +3357,14 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: OnButtonUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 282968345}
@@ -3393,9 +3372,25 @@ PrefabInstance:
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 282968345}
+    - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ChangeMovementMode
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RobotArmController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8859726701566961086, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: m_Name
-      value: PushButton (1)
+      value: Linear/Manual
       objectReference: {fileID: 0}
     - target: {fileID: 8859726701566961087, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: m_RootOrder
@@ -3465,6 +3460,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
+    - target: {fileID: 8859726701851120396, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 429f5884a5442da4196907de052e5998, type: 3}
 --- !u!4 &8859726702355849549 stripped
@@ -3502,10 +3501,18 @@ PrefabInstance:
     - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 282968345}
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeAxisAction
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RobotArmController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8859726701566961086, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: m_Name
-      value: PushButton (2)
+      value: ChangeAxis
       objectReference: {fileID: 0}
     - target: {fileID: 8859726701566961087, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: m_RootOrder
@@ -3574,6 +3581,10 @@ PrefabInstance:
     - target: {fileID: 8859726701851120396, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: m_Constraints
       value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726701851120396, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 429f5884a5442da4196907de052e5998, type: 3}
@@ -3697,6 +3708,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 8859726701851120396, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8859726701566960962, guid: 429f5884a5442da4196907de052e5998, type: 3}
     - {fileID: 8859726701566961085, guid: 429f5884a5442da4196907de052e5998, type: 3}
@@ -3707,22 +3722,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8859726701566961087, guid: 429f5884a5442da4196907de052e5998, type: 3}
   m_PrefabInstance: {fileID: 1429053613201914139}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7575361122317003280 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8859726701851120395, guid: 429f5884a5442da4196907de052e5998, type: 3}
-  m_PrefabInstance: {fileID: 1429053613201914139}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &646256874
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7575361122317003280}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.0000004
-  m_Height: 2.02
-  m_Direction: 1
-  m_Center: {x: 3.5821273e-15, y: 0.6721873, z: -0.00048828125}

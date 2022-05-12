@@ -10436,54 +10436,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 4752496864917820529, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.12571125
-      objectReference: {fileID: 0}
-    - target: {fileID: 4752496864917820529, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.12571123
-      objectReference: {fileID: 0}
-    - target: {fileID: 4752496864917820529, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.12571123
-      objectReference: {fileID: 0}
-    - target: {fileID: 4752496864917820529, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 4752496864917820529, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 7575361122317003287, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7575361122603261093, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8029942308549585726, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -6177378950161749060, guid: fc7d2737e2800e04c944a5455e389307, type: 3}
-    - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -10492,114 +10444,15 @@ PrefabInstance:
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 188489317}
-    - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EnableButtons
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EnableButtons
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RobotArmController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RobotArmController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047432310522100254, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 8859726702136694782, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8859726702216757973, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_Name
-      value: Increment
-      objectReference: {fileID: 0}
-    - target: {fileID: 8859726702355849548, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_Name
-      value: Linear/Manual
-      objectReference: {fileID: 0}
-    - target: {fileID: 8859726702355849649, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8859726702355849649, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8859726702355849649, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 188489317}
-    - target: {fileID: 8859726702355849649, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8859726702355849649, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: ChangeMovementMode
-      objectReference: {fileID: 0}
-    - target: {fileID: 8859726702355849649, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RobotArmController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8859726702355849649, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 8859726702536586343, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8859726703200102098, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8859726703419248736, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: m_Name
-      value: ChangeAxis
-      objectReference: {fileID: 0}
     - target: {fileID: 8859726703419248797, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 188489317}
-    - target: {fileID: 8859726703419248797, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeAxisAction
-      objectReference: {fileID: 0}
-    - target: {fileID: 8859726703419248797, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RobotArmController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 40395323, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-    - {fileID: 1142600087, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-    - {fileID: 1545111669, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52088ca3966c84047b525842237efeb1, type: 3}
 --- !u!1001 &1521956144
 PrefabInstance:
