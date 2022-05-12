@@ -7,6 +7,7 @@ public class TutorialGoalPositions : MonoBehaviour
 {
     [SerializeField, Min(0)] float timeRequiredInside;
     [SerializeField] OnTriggerColliderFilter[] _colliders;
+    [SerializeField] UnityEvent _onBeginSequence;
     [SerializeField] UnityEvent _onAdvancedStep;
     [SerializeField] UnityEvent _onCompletion;
 
@@ -29,6 +30,8 @@ public class TutorialGoalPositions : MonoBehaviour
 
         _currentGoal = 0;
         _colliders[0].gameObject.SetActive(true);
+
+        _onBeginSequence.Invoke();
     }
 
     /// <summary>
