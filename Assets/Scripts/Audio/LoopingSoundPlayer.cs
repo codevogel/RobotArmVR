@@ -24,8 +24,8 @@ public class LoopingSoundPlayer : MonoBehaviour, ISoundPlayer
     /// <inheritdoc/>
     public void PlayClip()
     {
-        Assert.IsNotNull(_audioSource.outputAudioMixerGroup, $"No mixer group in {this.gameObject.name}. Audio source should have a mixer group assigned in order to get the most control out of it.");
-        Assert.IsNotNull(_audioSource.clip, $"No audio clip in {this.gameObject.name}.");
+        //Assert.IsNotNull(_audioSource.outputAudioMixerGroup, $"No mixer group in {this.gameObject.name}. Audio source should have a mixer group assigned in order to get the most control out of it.");
+        //Assert.IsNotNull(_audioSource.clip, $"No audio clip in {this.gameObject.name}.");
 
         // reset the clip to the start
         _audioSource.timeSamples = 0;

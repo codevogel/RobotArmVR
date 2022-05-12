@@ -42,6 +42,9 @@ public class RobotArmController : MonoBehaviour
     [SerializeField]
     private float joystickThreshold;
 
+    [SerializeField]
+    private List<PushButton> buttons;
+
     private void Start()
     {
         joystickInteractor = HandManager.Instance.RightController.GetComponent<JoystickInteractor>();
@@ -68,46 +71,41 @@ public class RobotArmController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Update axes
-    /// </summary>
-    public void ChangeAxisAction(bool input, HandType leftRight)
+    
+    public void EnableButtons(bool enabled)
     {
-        if (leftRight.Equals(HandType.LEFT))
+        foreach (PushButton button in buttons)
         {
-            return;
-        }
-        if (input.Equals(true))
-        {
-            axisSetOne = !axisSetOne;
-            FlexpendantUIManager.Instance.ChangeAxisSet(axisSetOne);
+            button.rb.isKinematic = !enabled;
         }
     }
 
-    public void ChangeMovementMode(bool input, HandType leftRight)
+    /// <summary>
+    /// Update axes
+    /// </summary>
+    public void ChangeAxisAction()
     {
-        if (leftRight.Equals(HandType.LEFT))
-        {
-            return;
-        }
-        if (input.Equals(true))
-        {
-            movementOnLinear = !movementOnLinear;
-            FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
+        axisSetOne = !axisSetOne;
+        FlexpendantUIManager.Instance.ChangeAxisSet(axisSetOne);
+    }
 
-            if (movementOnLinear)
-            {
-                StopArticulation();
-                IKManager.enabled = true;
-                linearMovement.enabled = true;
-                linearMovement.followTarget.position = articulationBodies[5].transform.position;
-            }
-            else
-            {
-                StopArticulation();
-                IKManager.enabled = false;
-                linearMovement.enabled = false;
-            }
+    public void ChangeMovementMode()
+    {
+        movementOnLinear = !movementOnLinear;
+        FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
+
+        if (movementOnLinear)
+        {
+            StopArticulation();
+            IKManager.enabled = true;
+            linearMovement.enabled = true;
+            linearMovement.followTarget.position = articulationBodies[5].transform.position;
+        }
+        else
+        {
+            StopArticulation();
+            IKManager.enabled = false;
+            linearMovement.enabled = false;
         }
     }
 

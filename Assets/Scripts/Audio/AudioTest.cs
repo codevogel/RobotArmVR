@@ -1,5 +1,3 @@
-#if UNITY_EDITOR
-
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -23,5 +21,3 @@ public class AudioTest : MonoBehaviour
             _player.StopClip();
     }
 }
-
-#endif
