@@ -135,12 +135,16 @@ public class HandManager : MonoBehaviour
         bool canIdle = currentPose.Equals(fromPose);
         bool isIdle = currentPose.Equals(HandPose.IDLE);
         bool hasSwitched = false;
+
+        XRCustomController currentController = leftRight.Equals(HandType.LEFT) ? LeftController : RightController;
         
         switch (toPose)
         {
             case HandPose.IDLE:
                 if (canIdle)
                 {
+                    currentController.GetComponentInChildren<CapsuleCollider>().enabled = false;
+                    Debug.Log(currentController.GetComponentInChildren<CapsuleCollider>().name);
                     handAnimator.SetTrigger("Idle");
                     hasSwitched = true;
                 }
@@ -162,6 +166,7 @@ public class HandManager : MonoBehaviour
             case HandPose.POINT:
                 if (isIdle)
                 {
+                    currentController.GetComponentInChildren<CapsuleCollider>().enabled = true;
                     handAnimator.SetTrigger("Point");
                     hasSwitched = true;
                 }

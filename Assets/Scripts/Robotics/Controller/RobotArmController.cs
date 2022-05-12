@@ -47,6 +47,7 @@ public class RobotArmController : MonoBehaviour
         joystickInteractor = HandManager.Instance.RightController.GetComponent<JoystickInteractor>();
         Interactor = GetComponent<CustomInteractor>();
         linearMovement = GetComponent<LinearMovement>();
+
         FlexpendantUIManager.Instance.SetAxis(articulationBodies);
         FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
         IKManager.movementEnabled = movementOnLinear;
@@ -127,6 +128,7 @@ public class RobotArmController : MonoBehaviour
 
         if (heldDevice == null)
             return;
+
 
         if (heldDevice.transform.name == "Flexpendant")
         {
