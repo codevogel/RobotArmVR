@@ -169,8 +169,23 @@ public class PlayerController : MonoBehaviour
 
         robotController.SetPressureButton(pressed, leftRight);
 
-        XRCustomController controller = leftRight.Equals(HandType.LEFT) ? HandManager.Instance.LeftController : HandManager.Instance.RightController;
-        controller.PointAction(pressed);
+        PointAction pointAction = null;
+
+        if (leftRight.Equals(HandType.LEFT))
+        {
+            pointAction = HandManager.Instance.LeftController.GetComponent<PointAction>();
+        }
+        else
+        {
+            pointAction = HandManager.Instance.RightController.GetComponent<PointAction>();
+        }
+
+        if (ctx.canceled)
+        {
+            pointAction.ResetHoverCollision();
+        }
+
+        pointAction.PointActivation(pressed, leftRight);
     }
 
     /// <summary>
