@@ -11,7 +11,11 @@ public class TrainingScriptManager : MonoBehaviour
     [SerializeField] private TypeWriterText textWriter;
     [SerializeField] private PlayableDirector timeLine;
     [SerializeField] private ControlDirectorTime timeLineController;
+    [SerializeField] private Transform player;
     [SerializeField] private GameObject confirmationCanvas;
+    [SerializeField] private GameObject fadeVisionCanvas;
+
+    public List<PhaseTransform> phasesPosition;
 
     private TextAsset trainingScriptJSON;
     private TrainingScript trainingScript;
@@ -95,8 +99,22 @@ public class TrainingScriptManager : MonoBehaviour
         int timeDifference = Math.Abs(Mathf.RoundToInt((float)timeLine.time * 60) - newTime);
         if (timeDifference > 5)
         {
-            timeLine.time = newTime / 60f;
+            StartCoroutine(Teleport(newTime));
         }
+    }
+
+    private IEnumerator Teleport(int newTime)
+    {
+        fadeVisionCanvas.SetActive(true);
+        fadeVisionCanvas.transform.GetChild(0).GetComponent<Animator>().SetTrigger("FadeVision");
+        yield return new WaitForSeconds(1f);
+
+        Vector3 newPosition = phasesPosition[currentPhase.phaseNumber].subPhaseTransforms[currentSubPhase.subPhaseNumber].subPhaseTransform.position;
+        player.transform.position = new Vector3(newPosition.x, player.transform.position.y, newPosition.z);
+        timeLine.time = newTime / 60f;
+        yield return new WaitForSeconds(1f);
+
+        fadeVisionCanvas.SetActive(false);
     }
 
     public void PauseTimeLine()
@@ -131,6 +149,21 @@ public class TrainingScriptManager : MonoBehaviour
         public int subPhaseNumber;
         public string message;
         public int startTime;
+    }
+    #endregion
+
+    #region Transform saving
+    [Serializable]
+    public class SubPhaseTransform
+    {
+        public Transform subPhaseTransform;
+    }
+
+    [Serializable]
+    public class PhaseTransform
+    {
+        public Transform phaseTransform;
+        public List<SubPhaseTransform> subPhaseTransforms;
     }
     #endregion
 }
