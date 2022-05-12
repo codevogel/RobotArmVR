@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class LinearMovement : MonoBehaviour
 {
-    [field: SerializeField]
-    private float MovementSpeed { get; set; }
 
     [HideInInspector]
     public bool inBounds;
@@ -14,6 +12,18 @@ public class LinearMovement : MonoBehaviour
     public Transform followTarget;
 
     public bool followingTarget;
+
+    #region Continuous
+    [field: SerializeField]
+    private float MovementSpeed { get; set; }
+    #endregion
+
+    #region Increment
+    public static bool incremental = false; 
+    public static int incrementInterval = 10;
+    [field: SerializeField]
+    private float incrementSize;
+    #endregion
 
     private void Start()
     {
@@ -28,34 +38,53 @@ public class LinearMovement : MonoBehaviour
         }
     }
 
+    public void ChangeMode()
+    {
+        incremental = !incremental;
+        FlexpendantUIManager.Instance.ChangeProperty(FlexpendantUIManager.Properties.INCREMENT, incremental ? 3 : 0);
+    }
+
     public void MoveTowards(Vector3 dir)
+    {
+        if (incremental)
+        {
+            if (Time.frameCount % incrementInterval == 0)
+            {
+                _MoveTowards(dir, incrementSize);
+            }
+        }
+        else
+        {
+            _MoveTowards(dir, MovementSpeed);
+        }
+    }
+
+    private void _MoveTowards(Vector3 dir, float distance)
     {
         if (inBounds)
         {
             Vector3 newPos = followTarget.localPosition;
-            newPos.x += dir.x * MovementSpeed;
-            newPos.y += dir.y * MovementSpeed;
-            newPos.z += dir.z * MovementSpeed;
+            newPos += dir * distance;
             followTarget.localPosition = newPos;
         }
         else // only allow directions that make the robot go in bounds again
         {
-            if ((followTarget.localPosition.x>0 && dir.x<0) || (followTarget.localPosition.x<0&&dir.x>0))
+            if ((followTarget.localPosition.x > 0 && dir.x < 0) || (followTarget.localPosition.x < 0 && dir.x > 0))
             {
                 Vector3 newPos = followTarget.localPosition;
-                newPos.x += dir.x * MovementSpeed;
+                newPos.x += dir.x * distance;
                 followTarget.localPosition = newPos;
             }
             if ((followTarget.localPosition.y > 0 && dir.y < 0) || (followTarget.localPosition.y < 0 && dir.y > 0))
             {
                 Vector3 newPos = followTarget.localPosition;
-                newPos.y += dir.y * MovementSpeed;
+                newPos.y += dir.y * distance;
                 followTarget.localPosition = newPos;
             }
             if ((followTarget.localPosition.z > 0 && dir.z < 0) || (followTarget.localPosition.z < 0 && dir.z > 0))
             {
                 Vector3 newPos = followTarget.localPosition;
-                newPos.z += dir.z * MovementSpeed;
+                newPos.z += dir.z * distance;
                 followTarget.localPosition = newPos;
             }
         }

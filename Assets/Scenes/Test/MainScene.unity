@@ -1999,10 +1999,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27aa0f26607d98b46a8f48539635d27f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MovementSpeed>k__BackingField: 0.03
-  inBounds: 0
+  inBounds: 1
   followTarget: {fileID: 369282883}
   followingTarget: 1
+  <MovementSpeed>k__BackingField: 0.03
+  incrementInterval: 10
+  incrementSize: 0.15
 --- !u!135 &188489314
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9548,7 +9550,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1325855928}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.51, y: 0, z: -10.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1646485607}
@@ -10769,7 +10771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4507247018194819557, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 26.385
+      value: 25.881
       objectReference: {fileID: 0}
     - target: {fileID: 4507247018194819557, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10815,6 +10817,38 @@ PrefabInstance:
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 188489317}
+    - target: {fileID: 8859726702216757800, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726702216757800, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726702216757800, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 188489313}
+    - target: {fileID: 8859726702216757800, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726702216757800, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ChangeMode
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726702216757800, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: LinearMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726702216757800, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726702216757800, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8859726702355849649, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -11572,7 +11606,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1646485605}
   m_LocalRotation: {x: -0, y: 0.45441458, z: -0, w: 0.89079034}
-  m_LocalPosition: {x: 37.12, y: -1.41, z: -27}
+  m_LocalPosition: {x: 25.3, y: -1.41, z: -27.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 69063028}
