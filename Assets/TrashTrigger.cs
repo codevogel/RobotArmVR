@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class PhaseITrigger : MonoBehaviour
+public class TrashTrigger : MonoBehaviour
 {
     [SerializeField] PlayableDirector Timeline;
-    
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -16,12 +16,12 @@ public class PhaseITrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
+        if (other.CompareTag("Can"))
         {
             gameObject.SetActive(false);
             Timeline.Resume();

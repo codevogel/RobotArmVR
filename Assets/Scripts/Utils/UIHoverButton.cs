@@ -53,7 +53,7 @@ public class UIHoverButton : MonoBehaviour
                 break;
         }
         hoverTime = 0;
-        TrainingScriptManager.Instance.ResumeTimeLine();
+        TrainingScriptManager.Instance.Newtime();
         TrainingScriptManager.Instance.CloseCanvas();
     }
 

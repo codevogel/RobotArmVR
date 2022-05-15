@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class PhaseITrigger : MonoBehaviour
+public class TeleportTrigger : MonoBehaviour
 {
     [SerializeField] PlayableDirector Timeline;
-    
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -16,7 +16,7 @@ public class PhaseITrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,7 +24,7 @@ public class PhaseITrigger : MonoBehaviour
         if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
         {
             gameObject.SetActive(false);
-            Timeline.Resume();
+            Timeline.time = 1524 / 60f;
         }
     }
 }

@@ -127,6 +127,11 @@ public class TrainingScriptManager : MonoBehaviour
         timeLineController.Resume();
     }
 
+    public void Newtime()
+    {
+        timeLineController.SetTime(currentSubPhase.endTime);
+    }
+
     #region Json reading
     [Serializable]
     public class TrainingScript
@@ -141,6 +146,7 @@ public class TrainingScriptManager : MonoBehaviour
         public int phaseNumber;
         public SubPhase[] subPhases;
         public int startTime;
+        public float endTime;
     }
 
     [Serializable]
@@ -149,6 +155,7 @@ public class TrainingScriptManager : MonoBehaviour
         public int subPhaseNumber;
         public string message;
         public int startTime;
+        public float endTime;
     }
     #endregion
 
