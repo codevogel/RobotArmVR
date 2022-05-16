@@ -20,11 +20,28 @@ public class ArticulationJointController : MonoBehaviour
 
     void FixedUpdate() 
     {
-        if (rotationState != RotationDirection.None) {
-            float rotationChange = (float)rotationState * speed * Time.fixedDeltaTime;
-            float rotationGoal = CurrentPrimaryAxisRotation() + rotationChange;
-            RotateTo(rotationGoal);
+        if (LinearMovement.incremental)
+        {
+            if (rotationState != RotationDirection.None && Time.frameCount % LinearMovement.incrementInterval == 0)
+            {
+                Rotate();
+            }
         }
+        else
+        {
+            if (rotationState != RotationDirection.None )
+            {
+                Rotate();
+            }
+        }
+
+    }
+
+    private void Rotate()
+    {
+        float rotationChange = (float)rotationState * speed * Time.fixedDeltaTime;
+        float rotationGoal = CurrentPrimaryAxisRotation() + rotationChange;
+        RotateTo(rotationGoal);
     }
 
     // MOVEMENT HELPERS
