@@ -10087,7 +10087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -10095,6 +10095,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
@@ -10114,11 +10118,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1396768540}
     - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1261593372}
+    - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
@@ -10130,12 +10142,20 @@ PrefabInstance:
       value: Activate
       objectReference: {fileID: 0}
     - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: FreezeButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: RobotArmController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: IRC5Controller, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: PushButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -10146,11 +10166,19 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8859726701566961086, guid: 429f5884a5442da4196907de052e5998, type: 3}
@@ -11139,7 +11167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6823040709290884534, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6823040709290884534, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
       propertyPath: OnButtonUp.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -11159,6 +11187,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6823040709290884534, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823040709290884534, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6823040709290884534, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
@@ -11182,6 +11214,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1396768540}
     - target: {fileID: 6823040709290884534, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 1261593372}
+    - target: {fileID: 6823040709290884534, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
       propertyPath: OnButtonUp.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -11202,6 +11238,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6823040709290884534, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823040709290884534, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetEmergencyStop
       objectReference: {fileID: 0}
@@ -11216,6 +11256,10 @@ PrefabInstance:
     - target: {fileID: 6823040709290884534, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
       value: Activate
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823040709290884534, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: FreezeButton
       objectReference: {fileID: 0}
     - target: {fileID: 6823040709290884534, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
       propertyPath: OnButtonUp.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -11238,6 +11282,10 @@ PrefabInstance:
       value: IRC5Controller, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6823040709290884534, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: PushButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823040709290884534, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
       propertyPath: OnButtonUp.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 0
       objectReference: {fileID: 0}
@@ -11255,6 +11303,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6823040709290884534, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823040709290884534, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7193387166821164411, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
