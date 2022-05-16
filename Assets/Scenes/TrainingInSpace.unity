@@ -1452,7 +1452,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: -16.87
+  m_characterSpacing: -10
   m_wordSpacing: -31.32
   m_lineSpacing: -28.1
   m_lineSpacingMax: 0
@@ -2130,6 +2130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rayPosition: {fileID: 188489312}
   rayInteractor: {fileID: 971011399}
+  confirmationCanvas: {fileID: 0}
 --- !u!1 &200575512
 GameObject:
   m_ObjectHideFlags: 0
@@ -2990,6 +2991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rayPosition: {fileID: 256692775}
   rayInteractor: {fileID: 2129219078}
+  confirmationCanvas: {fileID: 0}
 --- !u!4 &276901213 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7665e3e4cea6d4c6f80a17ec156b6437, type: 3}
@@ -5016,6 +5018,11 @@ MonoBehaviour:
     startTime: 0
     endTime: 0
   currentSubPhase:
+    subPhaseNumber: 0
+    message: 
+    startTime: 0
+    endTime: 0
+  nextPhase:
     subPhaseNumber: 0
     message: 
     startTime: 0
@@ -10452,8 +10459,8 @@ GameObject:
   - component: {fileID: 1307052444}
   - component: {fileID: 1307052443}
   - component: {fileID: 1307052442}
-  - component: {fileID: 1307052445}
   - component: {fileID: 1307052446}
+  - component: {fileID: 1307052445}
   m_Layer: 5
   m_Name: Resume
   m_TagString: Untagged
@@ -10542,11 +10549,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1307052440}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba1de9be74fc57d40a93ff6b6c85dfa5, type: 3}
+  m_Script: {fileID: 11500000, guid: 711752eb97b234b7ba2a40f278469109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverActivationTime: 1
-  chosenAction: 4
+  chosenAction: 0
 --- !u!54 &1307052446
 Rigidbody:
   m_ObjectHideFlags: 0
