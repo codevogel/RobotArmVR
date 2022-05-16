@@ -24,7 +24,7 @@ public class PhaseITrigger : MonoBehaviour
         if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
         {
             gameObject.SetActive(false);
-            Timeline.Resume();
+            TrainingScriptManager.Instance.Newtime();
         }
     }
 }

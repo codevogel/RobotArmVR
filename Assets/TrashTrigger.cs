@@ -24,7 +24,7 @@ public class TrashTrigger : MonoBehaviour
         if (other.CompareTag("Can"))
         {
             gameObject.SetActive(false);
-            Timeline.Resume();
+            TrainingScriptManager.Instance.Newtime();
         }
     }
 }
