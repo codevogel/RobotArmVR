@@ -64,4 +64,10 @@ public class PushButton : MonoBehaviour
         }
         rb.velocity = Vector3.zero;
     }
+
+    public void Reset()
+    {
+        rb.transform.localPosition = original;
+        triggered = false;
+    }
 }

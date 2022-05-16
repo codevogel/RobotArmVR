@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static HandManager;
@@ -23,6 +24,8 @@ public class RobotArmController : MonoBehaviour
     public float rotateSpeed;
 
     private RotationDirection rotationDirection;
+
+    public static bool emergencyStop;
     #endregion
 
     private bool movementOnLinear = true;
@@ -64,11 +67,16 @@ public class RobotArmController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (pressureButtonHeld)
+        if (pressureButtonHeld && !emergencyStop)
         {
             MoveArm();
             FlexpendantUIManager.Instance.UpdateAxis(selectedArticulator, articulationBodies[selectedArticulator].transform);
         }
+    }
+
+    public void SetEmergencyStop(bool stop)
+    {
+        emergencyStop = stop;
     }
 
     
@@ -130,9 +138,23 @@ public class RobotArmController : MonoBehaviour
 
         if (heldDevice.transform.name == "Flexpendant")
         {
+            if (pressureButtonHeld != input)
+            {
+                if (input)
+                {
+                    OnPressureButtonDown.Invoke();
+                }
+                else
+                {
+                    OnPressureButtonUp.Invoke();
+                }
+            }
             pressureButtonHeld = input;
         }
     }
+
+    public UnityEvent OnPressureButtonDown;
+    public UnityEvent OnPressureButtonUp;
 
     /// <summary>
     /// Alters the selection and directionModifier

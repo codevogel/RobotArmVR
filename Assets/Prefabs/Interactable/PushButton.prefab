@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8859726701566961087}
   - component: {fileID: 8859726701566960963}
+  - component: {fileID: 104071936365283301}
   m_Layer: 8
   m_Name: PushButton
   m_TagString: Untagged
@@ -44,13 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2838598b32ccca2458f8644783fcb93b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   travelDistance: 0.15
   travelSpeed: 4
   toleranceY: 0.03
   OnButtonUp:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 104071936365283301}
         m_TargetAssemblyTypeName: ButtonAudioSource, Assembly-CSharp
         m_MethodName: PlayButtonRelease
         m_Mode: 1
@@ -65,7 +67,7 @@ MonoBehaviour:
   OnButtonDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 104071936365283301}
         m_TargetAssemblyTypeName: ButtonAudioSource, Assembly-CSharp
         m_MethodName: PlayButtonPress
         m_Mode: 1
@@ -77,6 +79,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &104071936365283301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8859726701566961086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72dd5a67beeed0142a0c5753cc2b0973, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonPress: {fileID: 8300000, guid: 480a1ad79b317e14f980e1f0b52ae10b, type: 3}
+  buttonRelease: {fileID: 8300000, guid: 70f939ef585420a45af538537db993c6, type: 3}
+  buttonAudioSource: {fileID: 0}
 --- !u!1 &8859726701851120395
 GameObject:
   m_ObjectHideFlags: 0
