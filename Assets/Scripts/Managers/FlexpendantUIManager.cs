@@ -10,6 +10,7 @@ public class FlexpendantUIManager : MonoBehaviour
     private Transform propertyParent;
     private Transform positionParent;
     private Transform joystickDirectionParent;
+    private Transform flangeTransform;
 
     private bool isLinear;
 
@@ -22,6 +23,11 @@ public class FlexpendantUIManager : MonoBehaviour
 
     private static int spacingNonLinear = 220;
     private static int spacingLinear = 210;
+
+    private static Vector3 minPosition = new Vector3(16.1551f, -33.931f, -1.463f);
+    private static Vector3 maxPosition = new Vector3(21.574f, -28.498f, 1.239f);
+
+    private static int minRangeX = -1028, maxRangeX = 593, minRangeY= -1071,maxRangeY=2051, minRangeZ=-1260,maxRangeZ=2371;
 
     public static FlexpendantUIManager Instance { get { return _instance; } }
     private static FlexpendantUIManager _instance;
@@ -67,6 +73,12 @@ public class FlexpendantUIManager : MonoBehaviour
         ChangePositionDisplay();
     }
 
+    public void ChangeFlangePosition(Transform flange)
+    {
+        flangeTransform = flange;
+        ChangePositionDisplay();
+    }
+
     public float ChangeAxis(int axis, Transform axisTransform)
     {
         float axisValue = 0;
@@ -74,22 +86,22 @@ public class FlexpendantUIManager : MonoBehaviour
         switch (axis)
         {
             case 0:
-            case 4:
-                axisValue = axisTransform.localRotation.eulerAngles.x;
+                axisValue = axisTransform.localRotation.eulerAngles.y;
                 break;
+
             case 1:
+            case 2:
+            case 4:
                 axisValue = axisTransform.localRotation.eulerAngles.z;
                 break;
-            case 2:
-                axisValue = axisTransform.localRotation.eulerAngles.x;
-                break;
+
             case 3:
             case 5:
-                axisValue = axisTransform.localRotation.eulerAngles.y;
+                axisValue = axisTransform.localRotation.eulerAngles.x;
                 break;
         }
 
-        if (axisValue>=355 && axisValue<=360 
+        /*if (axisValue>=355 && axisValue<=360 
             &&axisValues[axis].axisRotation>=0 && axisValues[axis].axisRotation<=5 && !axisValues[axis].negative)
         {
             axisValues[axis].negative = true;
@@ -99,7 +111,7 @@ public class FlexpendantUIManager : MonoBehaviour
             && axisValues[axis].axisRotation >= 355 && axisValues[axis].axisRotation <= 360 && axisValues[axis].negative)
         {
             axisValues[axis].negative = false;
-        }
+        }*/
 
         return axisValue;
     }
@@ -272,17 +284,60 @@ public class FlexpendantUIManager : MonoBehaviour
             switch (x)
             {
                 case 0:
+                    float percentileX= CalculatePercentile(minPosition.x, maxPosition.x, flangeTransform.position.x);
+                    if (percentileX<0)
+                    {
+                        message += Math.Round(percentileX * minRangeX,2)+"\n";
+                    }
+                    else
+                    {
+                        message += Math.Round(-percentileX * maxRangeX,2) + "\n";
+                    }
+                    break;
                 case 1:
+                    float percentileY = CalculatePercentile(minPosition.y, maxPosition.y, flangeTransform.position.z);
+                    if (percentileY < 0)
+                    {
+                        message += Math.Round(percentileY * minRangeY,2) + "\n";
+                    }
+                    else
+                    {
+                        message += Math.Round(-percentileY * maxRangeY, 2)+ "\n";
+                    }
+                    break;
                 case 2:
+                    float percentileZ = CalculatePercentile(minPosition.z, maxPosition.z, flangeTransform.position.y);
+                    if (percentileZ < 0)
+                    {
+                        message += Math.Round(-percentileZ * minRangeZ,2) + "\n";
+                    }
+                    else
+                    {
+                        message += Math.Round(percentileZ * maxRangeZ, 2) + "\n";
+                    }
+                    break;
                 case 3:
+                    message += Math.Round(flangeTransform.rotation.x, 3) + "\n";
+                    break;
                 case 4:
+                    message += Math.Round(flangeTransform.rotation.y, 3) + "\n";
+                    break;
                 case 5:
+                    message += Math.Round(flangeTransform.rotation.z, 3) + "\n";
+                    break;
                 case 6:
-                    message += Math.Round(axisValues[x].axisRotation, 2).ToString() + "\n";
+                    message += Math.Round(flangeTransform.rotation.w, 3) + "\n";
                     break;
             }
         }
         textToChange.text = message;
+    }
+
+    private float CalculatePercentile(float min, float max, float value)
+    {
+        float basePercentage = Mathf.InverseLerp(min,max,value)-0.5f;
+        float percentage = basePercentage * 2;
+        return percentage;
     }
 
     public enum Properties
