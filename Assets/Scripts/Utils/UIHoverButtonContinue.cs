@@ -12,10 +12,11 @@ public class UIHoverButtonContinue : MonoBehaviour
     private int newSubPhase;
     private bool timerActive;
 
-    private void Start()
+    private void Awake()
     {
         hoverIndicator = transform.GetChild(1).GetComponent<Image>();
         hoverIndicator.gameObject.SetActive(false);
+        chosenAction = HoverActions.CONTINUE;
     }
 
     private void FixedUpdate()

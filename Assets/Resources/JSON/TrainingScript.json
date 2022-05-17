@@ -5,73 +5,159 @@
       "phaseName": "Onboarding",
       "startTime": "0",
       "endTime": "3210",
-      "subPhases": [
+        "subPhases": [
             {
                 "subPhaseNumber": "0",
                 "message": "Hey, I'm RBI-2! Your guide for this training",
                 "startTime": "203",
-                "endTime": "570"
+                "endTime": "660"
             },
 
             {
                 "subPhaseNumber": "1",
-                "message": "Let's start with the controls",
-                "startTime": "575",
-                "endTime": "1083"
+                "message": "What's your name?",
+                "startTime": "665",
+                "endTime": "950"
             },
 
             {
                 "subPhaseNumber": "2",
-                "message": "Follow me!",
-                "startTime": "1194",
-                "endTime": "0"
+                "message": "Awesome!",
+                "startTime": "955",
+                "endTime": "1110"
             },
 
             {
                 "subPhaseNumber": "3",
-                "message": "Try to throw the can away",
-                "startTime": "2094",
-                "endTime": "1925"
+                "message": "Time to get to work",
+                "startTime": "1115",
+                "endTime": "1340"
             },
 
             {
                 "subPhaseNumber": "4",
-                "message": "Good job!",
-                "startTime": "2370",
-                "endTime": "1925"
+                "message": "Let's start with the controls",
+                "startTime": "1345",
+                "endTime": "1635"
             },
 
             {
                 "subPhaseNumber": "5",
+                "message": "",
+                "startTime": "1640",
+                "endTime": "1845"
+            },
+
+            {
+                "subPhaseNumber": "6",
+                "message": "",
+                "startTime": "1850",
+                "endTime": "2055"
+            },
+
+            {
+                "subPhaseNumber": "7",
+                "message": "Follow me!",
+                "startTime": "2065",
+                "endTime": "2759"
+            },
+
+            {
+                "subPhaseNumber": "8",
+                "message": "",
+                "startTime": "2759",
+                "endTime": "2964"
+            },
+
+            {
+                "subPhaseNumber": "9",
+                "message": "Try to throw the can away",
+                "startTime": "2969",
+                "endTime": "3240"
+            },
+
+            {
+                "subPhaseNumber": "10",
+                "message": "Good job!",
+                "startTime": "3245",
+                "endTime": "3363"
+            },
+
+            {
+                "subPhaseNumber": "11",
+                "message": "",
+                "startTime": "3368",
+                "endTime": "3573"
+            },
+
+            {
+                "subPhaseNumber": "12",
                 "message": "Let's move on!",
-                "startTime": "2435",
-                "endTime": "1925"
+                "startTime": "3578",
+                "endTime": "3723"
             }
         ]
     },
     {
       "phaseNumber": "1",
       "phaseName": "Phase1",
-      "startTime": "3210",
+      "startTime": "4585",
       "endTime":  "0",
       "subPhases": [
         {
-          "subPhaseNumber": "0",
-          "message": "This is the flexpendant that let's you control the robot arm",
-            "startTime": "3400",
-            "endTime":  "3300"
+            "subPhaseNumber": "0",
+            "message": "This is the flexpendant that let's you control the robot arm",
+            "startTime": "4767",
+            "endTime":  "5277"
         },
 
         {
-          "subPhaseNumber": "1",
-          "message": "Use the joystick to operate the robot arm",
-          "startTime": "202"
+            "subPhaseNumber": "1",
+            "message": "",
+            "startTime": "5759",
+            "endTime":  "6164"
         },
 
         {
-          "subPhaseNumber": "2",
-          "message": "Use the joystick to operate the robot arm",
-          "startTime": "202"
+            "subPhaseNumber": "2",
+            "message": "You can only control the robot arm when the saftey button on the flexpendant is pressed",
+            "startTime": "6169",
+            "endTime": "6904"
+        },
+
+        {
+            "subPhaseNumber": "3",
+            "message": "",
+            "startTime": "6909",
+            "endTime": "7437"
+        },
+
+        {
+            "subPhaseNumber": "4",
+            "message": "",
+            "startTime": "7442",
+            "endTime": "7847"
+        },
+
+        {
+            "subPhaseNumber": "5",
+            "message": "",
+            "startTime": "7852",
+            "endTime": "8257"
+        },
+
+        {
+            "subPhaseNumber": "6",
+            "message": "",
+            "startTime": "8262",
+            "endTime": "9117"
+        },
+
+        {
+            "subPhaseNumber": "7",
+            "message": "Try to move all the 6 Axis",
+            "startTime": "9125",
+            "endTime": "10391"
         }
       ]
     },
