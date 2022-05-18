@@ -140,12 +140,16 @@ namespace IKManager
             {
                 for (int i = 0; i < 6; i++)
                 {
-                    FlexpendantUIManager.Instance.ChangeFlangePosition(Joint[5].transform);
                     var drive = Joint[i].xDrive;
                     drive.target = angle[i];
                     Joint[i].xDrive = drive;
                 }
             }
+        }
+
+        public void UpdateUI()
+        {
+            FlexpendantUIManager.Instance.ChangeFlangePosition(Joint[5].transform);
         }
 
         void ForwardKinematics()

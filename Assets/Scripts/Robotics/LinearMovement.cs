@@ -13,6 +13,9 @@ public class LinearMovement : MonoBehaviour
 
     public bool followingTarget;
 
+    [SerializeField]
+    private CustomIKManager customIKManager;
+
     #region Continuous
     [field: SerializeField]
     private float MovementSpeed { get; set; }
@@ -66,6 +69,7 @@ public class LinearMovement : MonoBehaviour
             Vector3 newPos = followTarget.localPosition;
             newPos += dir * distance;
             followTarget.localPosition = newPos;
+            customIKManager.UpdateUI();
         }
         else // only allow directions that make the robot go in bounds again
         {
@@ -74,18 +78,21 @@ public class LinearMovement : MonoBehaviour
                 Vector3 newPos = followTarget.localPosition;
                 newPos.x += dir.x * distance;
                 followTarget.localPosition = newPos;
+                customIKManager.UpdateUI();
             }
             if ((followTarget.localPosition.y > 0 && dir.y < 0) || (followTarget.localPosition.y < 0 && dir.y > 0))
             {
                 Vector3 newPos = followTarget.localPosition;
                 newPos.y += dir.y * distance;
                 followTarget.localPosition = newPos;
+                customIKManager.UpdateUI();
             }
             if ((followTarget.localPosition.z > 0 && dir.z < 0) || (followTarget.localPosition.z < 0 && dir.z > 0))
             {
                 Vector3 newPos = followTarget.localPosition;
                 newPos.z += dir.z * distance;
                 followTarget.localPosition = newPos;
+                customIKManager.UpdateUI();
             }
         }
     }

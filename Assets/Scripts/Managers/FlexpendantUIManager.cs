@@ -28,6 +28,7 @@ public class FlexpendantUIManager : MonoBehaviour
     private static Vector3 maxPosition = new Vector3(21.574f, -28.498f, 1.239f);
 
     private static int minRangeX = -1028, maxRangeX = 593, minRangeY= -1071,maxRangeY=2051, minRangeZ=-1260,maxRangeZ=2371;
+    private static int minRotationRange = -1, maxRotationRange=1, minRotation=0,maxRotation=360;
 
     public static FlexpendantUIManager Instance { get { return _instance; } }
     private static FlexpendantUIManager _instance;
@@ -277,7 +278,7 @@ public class FlexpendantUIManager : MonoBehaviour
             textToChange.text = message;
             return;
         }
-        positionParent.GetChild(1).GetComponent<TextMeshProUGUI>().text = "X: \nY: \nZ: \nq1: \nq2: \nq3: \nq4: ";
+        positionParent.GetChild(1).GetComponent<TextMeshProUGUI>().text = "X: \nY: \nZ:"; //"nq1: \nq2: \nq3: \nq4: "
 
         for (int x = 0; x < axisValues.Length; x++)
         {
@@ -297,8 +298,8 @@ public class FlexpendantUIManager : MonoBehaviour
                     float percentileZ = CalculatePercentile(minPosition.z, maxPosition.z, flangeTransform.position.y);
                     message += Math.Round(Mathf.Lerp(minRangeZ, maxRangeZ, percentileZ), 2) + " mm"+"\n";
                     break;
-                case 3:
-                    message += Math.Round(flangeTransform.rotation.x, 3) + "\n";
+                /*case 3:
+                    message += Math.Round(flangeTransform.rotation.y, 3)+ "\n";
                     break;
                 case 4:
                     message += Math.Round(flangeTransform.rotation.y, 3) + "\n";
@@ -308,7 +309,7 @@ public class FlexpendantUIManager : MonoBehaviour
                     break;
                 case 6:
                     message += Math.Round(flangeTransform.rotation.w, 3) + "\n";
-                    break;
+                    break;*/
             }
         }
         textToChange.text = message;
