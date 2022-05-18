@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIHoverButton : MonoBehaviour
 {
@@ -36,13 +37,30 @@ public class UIHoverButton : MonoBehaviour
         }
     }
 
-    public void SubPhasesToRevert(int subPhaseAmount)
+    public void SubPhaseToRevertTo(int subPhaseAmount)
     {
         newSubPhase = subPhaseAmount;
     }
 
     private void ActivationAction()
     {
+        if (transform.name.Equals("Resume"))
+        {
+            chosenAction = HoverActions.CONTINUE;
+        }
+        else if (transform.gameObject.Equals("Back"))
+        {
+            TextMeshProUGUI backButton = GetComponentInChildren<TextMeshProUGUI>();
+            if (backButton.text.Equals("Restart"))
+            {
+                chosenAction = HoverActions.RESTARTCURRENTPHASE;
+            }
+            else if (backButton.text.Equals("Back"))
+            {
+                chosenAction = HoverActions.RESTARTCURRENTSUBPHASE;
+            }
+        }
+
         switch (chosenAction)
         {
             case HoverActions.RESTARTCURRENTPHASE:
@@ -51,9 +69,11 @@ public class UIHoverButton : MonoBehaviour
             case HoverActions.RESTARTCURRENTSUBPHASE:
                 TrainingScriptManager.Instance.ChangebyButton(newSubPhase);
                 break;
+            case HoverActions.CONTINUE:
+                TrainingScriptManager.Instance.Newtime();
+                break;
         }
         hoverTime = 0;
-        TrainingScriptManager.Instance.Newtime();
         TrainingScriptManager.Instance.CloseCanvas();
     }
 
@@ -70,6 +90,7 @@ public class UIHoverButton : MonoBehaviour
     public enum HoverActions
     {
         RESTARTCURRENTPHASE,
-        RESTARTCURRENTSUBPHASE
+        RESTARTCURRENTSUBPHASE,
+        CONTINUE
     }
 }

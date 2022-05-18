@@ -49,7 +49,7 @@ public class TrainingScriptManager : MonoBehaviour
         confirmationCanvas.SetActive(true);
         confirmationCanvas.transform.GetChild(0).gameObject.SetActive(true);
         Transform backButton = confirmationCanvas.transform.GetChild(1);
-        backButton.GetComponent<UIHoverButton>().chosenAction = HoverActions.RESTARTCURRENTPHASE;
+        //backButton.GetComponent<UIHoverButton>().chosenAction = HoverActions.RESTARTCURRENTPHASE;
         backButton.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Restart";
     }
 
@@ -58,7 +58,6 @@ public class TrainingScriptManager : MonoBehaviour
         confirmationCanvas.SetActive(true);
         confirmationCanvas.transform.GetChild(0).gameObject.SetActive(false);
         Transform backButton = confirmationCanvas.transform.GetChild(1);
-        backButton.GetComponent<UIHoverButton>().chosenAction = HoverActions.RESTARTCURRENTSUBPHASE;
         backButton.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Back";
     }
 
@@ -91,6 +90,7 @@ public class TrainingScriptManager : MonoBehaviour
 
     public void ChangebyButton(int subPhaseNumber)
     {
+        Debug.Log(subPhaseNumber);
         changeByButton = true;
         ChangeSubPhase(subPhaseNumber);
     }
@@ -130,6 +130,7 @@ public class TrainingScriptManager : MonoBehaviour
 
     public void Newtime()
     {
+        Debug.Log(currentSubPhase.subPhaseNumber);
         timeLineController.SetTime(currentSubPhase.endTime);
     }
 

@@ -28,7 +28,12 @@ public class ControlDirectorTime : MonoBehaviour
     public void SetTime() => _director.time = _seconds;
 #endif
 
-    public void SetTime(float time) => _director.time = time / 60f;
+    public void SetTime(float time)
+    {
+        _director.time = time / 60f;
+        Debug.Log(_director.time);
+    }
+    
 
     public void Play()
     {

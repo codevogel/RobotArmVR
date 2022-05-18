@@ -13,6 +13,14 @@ public class Rotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 0, 0.75f, Space.Self);
+        if (gameObject.CompareTag("Flexpendant"))
+        {
+            transform.Rotate(0, 0, 0.75f, Space.Self);
+        }
+
+        if (gameObject.CompareTag("Logo"))
+        {
+            transform.Rotate(0, 0.05f, 0, Space.World);
+        }
     }
 }

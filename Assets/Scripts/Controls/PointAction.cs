@@ -55,16 +55,9 @@ public class PointAction : MonoBehaviour
                 hit.transform.GetComponent<UIHoverButton>().TimerActive(true);
                 lastCollision = hit.transform;
             }
-            else if (Physics.Raycast(rayInteractor.transform.position, rayInteractor.transform.forward.normalized, out hit, rayInteractor.GetComponent<XRRayInteractor>().maxRaycastDistance)
-                && hit.transform.GetComponent<UIHoverButtonContinue>() != null)
-            {
-                hit.transform.GetComponent<UIHoverButtonContinue>().TimerActive(true);
-                lastCollision = hit.transform;
-            }
             else if (lastCollision!=null)
             {
                 lastCollision.transform.GetComponent<UIHoverButton>().TimerActive(false);
-                lastCollision.transform.GetComponent<UIHoverButtonContinue>().TimerActive(false);
                 lastCollision = null;
             }
         }

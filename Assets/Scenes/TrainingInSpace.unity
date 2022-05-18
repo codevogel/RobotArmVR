@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.024901927, g: 0.022690432, b: 0.07040433, a: 1}
+  m_IndirectSpecularColor: {r: 0.02495846, g: 0.02274444, b: 0.07047759, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10283,9 +10283,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1307052440}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 711752eb97b234b7ba2a40f278469109, type: 3}
+  m_Script: {fileID: 11500000, guid: ba1de9be74fc57d40a93ff6b6c85dfa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverActivationTime: 1
   chosenAction: 0
 --- !u!54 &1307052446
 Rigidbody:
@@ -10648,10 +10649,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1338286273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18f598041e3454cb48bc2338f209b47f, type: 3}
+  m_Script: {fileID: 11500000, guid: 349d2faee6c798a44ab9804f1fe5e9be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charWaitTime: 0.02
 --- !u!114 &1338286275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13539,7 +13539,7 @@ MonoBehaviour:
     <Events>k__BackingField:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1338286274}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: TypeWriterText, Assembly-CSharp
           m_MethodName: Write
           m_Mode: 0
@@ -13584,7 +13584,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1338286274}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: TypeWriterText, Assembly-CSharp
           m_MethodName: Clear
           m_Mode: 1
@@ -13816,7 +13816,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 386786159}
           m_TargetAssemblyTypeName: UIHoverButton, Assembly-CSharp
-          m_MethodName: SubPhasesToRevert
+          m_MethodName: SubPhaseToRevertTo
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
