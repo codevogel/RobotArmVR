@@ -285,36 +285,17 @@ public class FlexpendantUIManager : MonoBehaviour
             {
                 case 0:
                     float percentileX= CalculatePercentile(minPosition.x, maxPosition.x, flangeTransform.position.x);
-                    if (percentileX<0)
-                    {
-                        message += Math.Round(percentileX * minRangeX,2)+"\n";
-                    }
-                    else
-                    {
-                        message += Math.Round(-percentileX * maxRangeX,2) + "\n";
-                    }
+                    //Start at max as the percentage should be inverted
+                    message += Math.Round(Mathf.Lerp(maxRangeX, minRangeX, percentileX),2) + " mm\n";
                     break;
                 case 1:
                     float percentileY = CalculatePercentile(minPosition.y, maxPosition.y, flangeTransform.position.z);
-                    if (percentileY < 0)
-                    {
-                        message += Math.Round(percentileY * minRangeY,2) + "\n";
-                    }
-                    else
-                    {
-                        message += Math.Round(-percentileY * maxRangeY, 2)+ "\n";
-                    }
+                    //Start at max as the percentage should be inverted
+                    message += Math.Round(Mathf.Lerp(maxRangeY, minRangeY, percentileY), 2) + " mm\n";
                     break;
                 case 2:
                     float percentileZ = CalculatePercentile(minPosition.z, maxPosition.z, flangeTransform.position.y);
-                    if (percentileZ < 0)
-                    {
-                        message += Math.Round(-percentileZ * minRangeZ,2) + "\n";
-                    }
-                    else
-                    {
-                        message += Math.Round(percentileZ * maxRangeZ, 2) + "\n";
-                    }
+                    message += Math.Round(Mathf.Lerp(minRangeZ, maxRangeZ, percentileZ), 2) + " mm"+"\n";
                     break;
                 case 3:
                     message += Math.Round(flangeTransform.rotation.x, 3) + "\n";
@@ -335,9 +316,8 @@ public class FlexpendantUIManager : MonoBehaviour
 
     private float CalculatePercentile(float min, float max, float value)
     {
-        float basePercentage = Mathf.InverseLerp(min,max,value)-0.5f;
-        float percentage = basePercentage * 2;
-        return percentage;
+        float basePercentage = Mathf.InverseLerp(min,max,value);
+        return basePercentage;
     }
 
     public enum Properties
