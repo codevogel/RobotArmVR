@@ -24,11 +24,17 @@ public class FlexpendantUIManager : MonoBehaviour
     private static int spacingNonLinear = 220;
     private static int spacingLinear = 210;
 
+    private int quadrantAxis4;
+    private float thirdValueAxis4;
+    private float secondValueAxis4;
+    private int quadrantAxis6;
+    private float thirdValueAxis6;
+    private float secondValueAxis6;
+
     private static Vector3 minPosition = new Vector3(16.1551f, -33.931f, -1.463f);
     private static Vector3 maxPosition = new Vector3(21.574f, -28.498f, 1.239f);
 
     private static int minRangeX = -1028, maxRangeX = 593, minRangeY= -1071,maxRangeY=2051, minRangeZ=-1260,maxRangeZ=2371;
-    private static int minRotationRange = -1, maxRotationRange=1, minRotation=0,maxRotation=360;
 
     public static FlexpendantUIManager Instance { get { return _instance; } }
     private static FlexpendantUIManager _instance;
@@ -51,12 +57,6 @@ public class FlexpendantUIManager : MonoBehaviour
     void Start()
     {
         ChangeAxisSet(true);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void SetAxis(ArticulationBody[] axis)
@@ -102,17 +102,17 @@ public class FlexpendantUIManager : MonoBehaviour
                 break;
         }
 
-        /*if (axisValue>=355 && axisValue<=360 
-            &&axisValues[axis].axisRotation>=0 && axisValues[axis].axisRotation<=5 && !axisValues[axis].negative)
+        if (axisValue>=355 && axisValue<=360
+            &&axisValues[axis].axisRotation>=0 && axisValues[axis].axisRotation<=5 && axisValues[axis].negative)
+        {
+            axisValues[axis].negative = false;
+        }
+
+        if (axisValue>=0 && axisValue <=5 
+            && axisValues[axis].axisRotation >= 355 && axisValues[axis].axisRotation <= 360 && !axisValues[axis].negative)
         {
             axisValues[axis].negative = true;
         }
-
-        if (axisValue>0 && axisValue <=5 
-            && axisValues[axis].axisRotation >= 355 && axisValues[axis].axisRotation <= 360 && axisValues[axis].negative)
-        {
-            axisValues[axis].negative = false;
-        }*/
 
         return axisValue;
     }
@@ -125,10 +125,10 @@ public class FlexpendantUIManager : MonoBehaviour
                 switch (option)
                 {
                     case 0:
-                        propertyParent.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Axis 1 - 3...";
+                        propertyParent.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Axis 1-3...";
                         break;
                     case 1:
-                        propertyParent.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Axis 4 - 6...";
+                        propertyParent.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Axis 4-6...";
                         break;
                     case 2:
                         propertyParent.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Linear...";
@@ -236,42 +236,29 @@ public class FlexpendantUIManager : MonoBehaviour
 
             for (int x = 0; x < axisValues.Length - 1; x++)
             {
-                
                 switch (x)
                 {
                     case 0:
+                    case 2:
+                    case 4:
                         if (axisValues[x].negative)
                         {
-                            message += Math.Round((360 - axisValues[x].axisRotation)-360, 2).ToString() + "°\n";
+                            message += "-"+Math.Round(axisValues[x].axisRotation, 2) + "°\n";
                             break;
                         }
-                        message += Math.Round(360 - axisValues[x].axisRotation, 2).ToString() + "°\n";
+                        message += Math.Round(360-axisValues[x].axisRotation, 2) + "°\n";
                         break;
                     case 1:
                         if (axisValues[x].negative)
                         {
-                            message += Math.Round(axisValues[x].axisRotation-360, 2).ToString() + "°\n";
+                            message += Math.Round(axisValues[x].axisRotation, 2) + "°\n";
                             break;
                         }
-                        message += Math.Round(axisValues[x].axisRotation, 2).ToString() + "°\n";
-                        break;
-                    case 2:
-                        if (axisValues[x].negative)
-                        {
-                            message += Math.Round(axisValues[x].axisRotation - 360, 2).ToString() + "°\n";
-                            break;
-                        }
-                        message += Math.Round(axisValues[x].axisRotation, 2).ToString() + "°\n";
+                        message += "-" + Math.Round(360 - axisValues[x].axisRotation, 2) + "°\n";
                         break;
                     case 3:
-                    case 4:
                     case 5:
-                        if (axisValues[x].negative)
-                        {
-                            message += Math.Round((360 - axisValues[x].axisRotation)-360, 2).ToString() + "°\n";
-                            break;
-                        }
-                        message += Math.Round(360 - axisValues[x].axisRotation, 2).ToString() + "°\n";
+                        message += "-" + Math.Round(360 - axisValues[x].axisRotation, 2) + "°\n";
                         break;
                 }
             }
@@ -296,7 +283,7 @@ public class FlexpendantUIManager : MonoBehaviour
                     break;
                 case 2:
                     float percentileZ = CalculatePercentile(minPosition.z, maxPosition.z, flangeTransform.position.y);
-                    message += Math.Round(Mathf.Lerp(minRangeZ, maxRangeZ, percentileZ), 2) + " mm"+"\n";
+                    message += Math.Round(Mathf.Lerp(minRangeZ, maxRangeZ, percentileZ), 2) + " mm\n";
                     break;
                 /*case 3:
                     message += Math.Round(flangeTransform.rotation.y, 3)+ "\n";
