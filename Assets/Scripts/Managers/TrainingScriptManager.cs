@@ -85,7 +85,7 @@ public class TrainingScriptManager : MonoBehaviour
         }
         changeByButton = false;
 
-        //CheckTimeLineDifference(currentSubPhase.startTime);
+        CheckTimeLineDifference(currentSubPhase.startTime);
     }
 
     public void ChangebyButton(int subPhaseNumber)
@@ -95,14 +95,14 @@ public class TrainingScriptManager : MonoBehaviour
         ChangeSubPhase(subPhaseNumber);
     }
 
-    /*private void CheckTimeLineDifference(int newTime)
+    private void CheckTimeLineDifference(int newTime)
     {
         int timeDifference = Math.Abs(Mathf.RoundToInt((float)timeLine.time * 60) - newTime);
         if (timeDifference > 5)
         {
             StartCoroutine(Teleport(newTime));
         }
-    }*/
+    }
 
     private IEnumerator Teleport(int newTime)
     {
@@ -130,7 +130,10 @@ public class TrainingScriptManager : MonoBehaviour
 
     public void Newtime()
     {
+        Debug.Log("subPhaseNumber");
         Debug.Log(currentSubPhase.subPhaseNumber);
+        Debug.Log("endTime");
+        Debug.Log(currentSubPhase.endTime);
         timeLineController.SetTime(currentSubPhase.endTime);
     }
 

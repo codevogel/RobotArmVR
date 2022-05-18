@@ -30,7 +30,9 @@ public class ControlDirectorTime : MonoBehaviour
 
     public void SetTime(float time)
     {
+        _director.Pause();
         _director.time = time / 60f;
+        _director.Resume();
         Debug.Log(_director.time);
     }
     
