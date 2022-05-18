@@ -38,11 +38,6 @@ public class PushButton : MonoBehaviour
 
     private void Update()
     {
-        if (frozen)
-        {
-            rb.isKinematic = true;
-        }
-
         rb.transform.localRotation = Quaternion.identity;
         // Clamp button positions
         rb.transform.localPosition = new Vector3(original.x, Mathf.Clamp(rb.transform.localPosition.y, original.y - travelDistance, original.y), original.z);
