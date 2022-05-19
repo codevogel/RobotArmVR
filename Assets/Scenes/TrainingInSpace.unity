@@ -1586,7 +1586,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1543165532}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &158082572
 Light:
@@ -4947,10 +4947,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1142003027}
     m_Modifications:
-    - target: {fileID: 3153176435188328181, guid: 8218a8a33e00b420bb82be990ce4b91a, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 5b28e730c37cd40fdbef0a533637c6f5, type: 2}
     - target: {fileID: 3513556694790031136, guid: 8218a8a33e00b420bb82be990ce4b91a, type: 3}
       propertyPath: m_Name
       value: TeleportHexagon (11)
@@ -4958,18 +4954,6 @@ PrefabInstance:
     - target: {fileID: 4290093841062010266, guid: 8218a8a33e00b420bb82be990ce4b91a, type: 3}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4290093841062010266, guid: 8218a8a33e00b420bb82be990ce4b91a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 7.8699994
-      objectReference: {fileID: 0}
-    - target: {fileID: 4290093841062010266, guid: 8218a8a33e00b420bb82be990ce4b91a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.06606634
-      objectReference: {fileID: 0}
-    - target: {fileID: 4290093841062010266, guid: 8218a8a33e00b420bb82be990ce4b91a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 8.38
       objectReference: {fileID: 0}
     - target: {fileID: 4290093841062010266, guid: 8218a8a33e00b420bb82be990ce4b91a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5121,13 +5105,13 @@ Transform:
   m_Children:
   - {fileID: 1711760617}
   - {fileID: 1050653219}
-  - {fileID: 1445341814}
   - {fileID: 1847519940}
+  - {fileID: 1445341814}
   - {fileID: 1234414974}
   - {fileID: 1284657276}
   - {fileID: 1011720450}
-  - {fileID: 1396768539}
   - {fileID: 1497268227}
+  - {fileID: 1396768539}
   - {fileID: 5563266327707463895}
   - {fileID: 1757624658}
   m_Father: {fileID: 1117702969}
@@ -5895,95 +5879,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2369492874194109293, guid: 7f6094e6ec8b14b068f9f14f4cdee073, type: 3}
   m_PrefabInstance: {fileID: 662294417}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &666762698 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3513556694790031136, guid: 8218a8a33e00b420bb82be990ce4b91a, type: 3}
-  m_PrefabInstance: {fileID: 4324512150483362133}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &666762699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 666762698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5491496b2f57c4c44a01d4f4461fa254, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 1959383333}
-  m_Colliders: []
-  m_InteractionLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_InteractionLayers:
-    m_Bits: 1
-  m_SelectMode: 1
-  m_CustomReticle: {fileID: 0}
-  m_FirstHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_LastHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_HoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_HoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FirstSelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_LastSelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_SelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_SelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Activated:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Deactivated:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnFirstHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnLastHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectCanceled:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnActivate:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnDeactivate:
-    m_PersistentCalls:
-      m_Calls: []
-  m_TeleportationProvider: {fileID: 0}
-  m_MatchOrientation: 0
-  m_TeleportTrigger: 0
-  m_Teleporting:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1001 &697736305
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6300,6 +6195,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &731359454
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731359451}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.124248505, y: 0.23137331, z: 0.10808754}
+  m_Center: {x: 0.002878189, y: -0.00031152368, z: -0.005057335}
 --- !u!1001 &746013785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12141,7 +12049,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 1.2, z: 1.42}
   m_Children: []
   m_Father: {fileID: 543590446}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: -120, z: 0}
 --- !u!65 &1497268228
 BoxCollider:
@@ -12688,10 +12596,10 @@ Transform:
   - {fileID: 824027693}
   - {fileID: 28210769}
   - {fileID: 1859488729}
+  - {fileID: 158082571}
   - {fileID: 934881234168457729}
   - {fileID: 1787215334}
   - {fileID: 34084497}
-  - {fileID: 158082571}
   m_Father: {fileID: 1117702969}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 120, z: 0}
@@ -14351,109 +14259,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2369492874194109293, guid: 7f6094e6ec8b14b068f9f14f4cdee073, type: 3}
   m_PrefabInstance: {fileID: 1694668651}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1696220262 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6934527586107920466, guid: 58736f66d237844a9b1586cf3d831114, type: 3}
-  m_PrefabInstance: {fileID: 7853448481610625337}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1696220263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1696220262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5491496b2f57c4c44a01d4f4461fa254, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 0}
-  m_Colliders: []
-  m_InteractionLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_InteractionLayers:
-    m_Bits: 1
-  m_SelectMode: 1
-  m_CustomReticle: {fileID: 0}
-  m_FirstHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_LastHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_HoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_HoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FirstSelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_LastSelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_SelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_SelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Activated:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Deactivated:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnFirstHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnLastHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectCanceled:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnActivate:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnDeactivate:
-    m_PersistentCalls:
-      m_Calls: []
-  m_TeleportationProvider: {fileID: 0}
-  m_MatchOrientation: 0
-  m_TeleportTrigger: 0
-  m_Teleporting:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!64 &1696220264
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1696220262}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2534964839176971238, guid: 46ccc0d9b5a6248d99e743bc46392cf6, type: 3}
 --- !u!1001 &1702406212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15695,7 +15500,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 1.2, z: 1.42}
   m_Children: []
   m_Father: {fileID: 543590446}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -120, z: 0}
 --- !u!65 &1847519941
 BoxCollider:
@@ -17874,10 +17679,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1142003027}
     m_Modifications:
-    - target: {fileID: 3153176435188328181, guid: 8218a8a33e00b420bb82be990ce4b91a, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+    - target: {fileID: 666762699, guid: 8218a8a33e00b420bb82be990ce4b91a, type: 3}
+      propertyPath: m_InteractionManager
       value: 
-      objectReference: {fileID: 2100000, guid: 5b28e730c37cd40fdbef0a533637c6f5, type: 2}
+      objectReference: {fileID: 1959383333}
     - target: {fileID: 3513556694790031136, guid: 8218a8a33e00b420bb82be990ce4b91a, type: 3}
       propertyPath: m_Name
       value: TeleportHexagon (5)
@@ -17885,18 +17690,6 @@ PrefabInstance:
     - target: {fileID: 4290093841062010266, guid: 8218a8a33e00b420bb82be990ce4b91a, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4290093841062010266, guid: 8218a8a33e00b420bb82be990ce4b91a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 7.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 4290093841062010266, guid: 8218a8a33e00b420bb82be990ce4b91a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.06606634
-      objectReference: {fileID: 0}
-    - target: {fileID: 4290093841062010266, guid: 8218a8a33e00b420bb82be990ce4b91a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 8.38
       objectReference: {fileID: 0}
     - target: {fileID: 4290093841062010266, guid: 8218a8a33e00b420bb82be990ce4b91a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18431,10 +18224,6 @@ PrefabInstance:
     - target: {fileID: 6934527586107920466, guid: 58736f66d237844a9b1586cf3d831114, type: 3}
       propertyPath: m_Name
       value: TeleportHexagon (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6934527586107920466, guid: 58736f66d237844a9b1586cf3d831114, type: 3}
-      propertyPath: m_Layer
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7743856777353775848, guid: 58736f66d237844a9b1586cf3d831114, type: 3}
       propertyPath: m_RootOrder
