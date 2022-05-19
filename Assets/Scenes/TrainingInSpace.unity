@@ -2290,6 +2290,10 @@ PrefabInstance:
       value: TeleportHexagon (14)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 46ccc0d9b5a6248d99e743bc46392cf6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46ccc0d9b5a6248d99e743bc46392cf6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -8134,7 +8138,7 @@ MonoBehaviour:
   m_SphereCastRadius: 0.1
   m_RaycastMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8
   m_RaycastTriggerInteraction: 1
   m_HitClosestOnly: 0
   m_HoverToSelect: 0
@@ -18383,6 +18387,10 @@ PrefabInstance:
     - target: {fileID: 6934527586107920466, guid: 58736f66d237844a9b1586cf3d831114, type: 3}
       propertyPath: m_Name
       value: TeleportHexagon (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6934527586107920466, guid: 58736f66d237844a9b1586cf3d831114, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7743856777353775848, guid: 58736f66d237844a9b1586cf3d831114, type: 3}
       propertyPath: m_RootOrder
