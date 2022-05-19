@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class PushButton : MonoBehaviour
 {
-
+    [HideInInspector]
     public Rigidbody rb;
 
     [Tooltip("The distance this button can travel")]
