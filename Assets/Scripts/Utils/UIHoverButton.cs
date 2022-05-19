@@ -44,7 +44,7 @@ public class UIHoverButton : MonoBehaviour
 
     private void ActivationAction()
     {
-        if (transform.name.Equals("Resume"))
+        if (transform.name.Equals("Resume") || transform.name.Equals("Continue"))
         {
             chosenAction = HoverActions.CONTINUE;
         }

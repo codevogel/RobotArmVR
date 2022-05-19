@@ -23,7 +23,6 @@ public class PhaseITrigger : MonoBehaviour
     {
         if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
         {
-            gameObject.SetActive(false);
             Timeline.Pause();
             Timeline.time = 4395 / 60f;
             Timeline.Resume();

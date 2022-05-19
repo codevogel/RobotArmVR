@@ -23,7 +23,6 @@ public class TeleportTrigger : MonoBehaviour
     {
         if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
         {
-            gameObject.SetActive(false);
             Timeline.Pause();
             Timeline.time = 2563 / 60f;
             Timeline.Resume();

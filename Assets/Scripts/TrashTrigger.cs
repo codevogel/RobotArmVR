@@ -23,7 +23,6 @@ public class TrashTrigger : MonoBehaviour
     {
         if (other.CompareTag("Can"))
         {
-            gameObject.SetActive(false);
             Timeline.Pause();
             Timeline.time = 3240 / 60f;
             Timeline.Resume();

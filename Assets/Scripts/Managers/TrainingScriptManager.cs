@@ -27,7 +27,6 @@ public class TrainingScriptManager : MonoBehaviour
 
     [HideInInspector]
     public SubPhase currentSubPhase;
-    public SubPhase nextPhase;
 
     public static TrainingScriptManager Instance {get; private set;}
 
@@ -47,17 +46,29 @@ public class TrainingScriptManager : MonoBehaviour
     public void EndPhaseConfirmation()
     {
         confirmationCanvas.SetActive(true);
-        confirmationCanvas.transform.GetChild(0).gameObject.SetActive(true);
-        Transform backButton = confirmationCanvas.transform.GetChild(1);
+        Transform backButton = confirmationCanvas.transform.GetChild(0);
         backButton.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Restart";
+        confirmationCanvas.transform.GetChild(0).gameObject.SetActive(true);
+        confirmationCanvas.transform.GetChild(1).gameObject.SetActive(true);
+        confirmationCanvas.transform.GetChild(2).gameObject.SetActive(false);
     }
 
     public void EndSubPhaseConfirmation()
     {
         confirmationCanvas.SetActive(true);
-        confirmationCanvas.transform.GetChild(0).gameObject.SetActive(false);
-        Transform backButton = confirmationCanvas.transform.GetChild(1);
+        Transform backButton = confirmationCanvas.transform.GetChild(0);
         backButton.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Back";
+        confirmationCanvas.transform.GetChild(0).gameObject.SetActive(true);
+        confirmationCanvas.transform.GetChild(1).gameObject.SetActive(true);
+        confirmationCanvas.transform.GetChild(2).gameObject.SetActive(false);
+    }
+
+    public void ContinueButton()
+    {
+        confirmationCanvas.SetActive(true);
+        confirmationCanvas.transform.GetChild(0).gameObject.SetActive(false);
+        confirmationCanvas.transform.GetChild(1).gameObject.SetActive(false);
+        confirmationCanvas.transform.GetChild(2).gameObject.SetActive(true);
     }
 
     public void CloseCanvas()
@@ -68,18 +79,14 @@ public class TrainingScriptManager : MonoBehaviour
 
     public void ChangePhase(int phaseNumber)
     {
-        timeLineController.Pause();
         currentPhase = phases[phaseNumber];
-        timeLineController.Resume();
-        //CheckTimeLineDifference(currentPhase.startTime);
+        CheckTimeLineDifference(currentPhase.startTime);
     }
 
     public void ChangeSubPhase(int subPhaseNumber)
     {
         textWriter.Clear();
-        timeLineController.Pause();
         currentSubPhase = currentPhase.subPhases[subPhaseNumber];
-        timeLineController.Resume();
 
         if (!changeByButton)
         {
@@ -110,10 +117,11 @@ public class TrainingScriptManager : MonoBehaviour
         fadeVisionCanvas.SetActive(true);
         fadeVisionCanvas.transform.GetChild(0).GetComponent<Animator>().SetTrigger("FadeVision");
         yield return new WaitForSeconds(1f);
-
         Vector3 newPosition = phasesPosition[currentPhase.phaseNumber].subPhaseTransforms[currentSubPhase.subPhaseNumber].subPhaseTransform.position;
         player.transform.position = new Vector3(newPosition.x, player.transform.position.y, newPosition.z);
+        timeLine.Pause();
         timeLine.time = newTime / 60f;
+        timeLine.Resume();
         yield return new WaitForSeconds(1f);
 
         fadeVisionCanvas.SetActive(false);
