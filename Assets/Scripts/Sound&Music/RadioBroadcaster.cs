@@ -57,7 +57,6 @@ public class RadioBroadcaster : MonoBehaviour
     private void BroadcastToClosestListener()
     {
         RadioListener closest = GetClosestListener();
-        Debug.Log(closest);
         SwitchListener(closest);
     }
 
