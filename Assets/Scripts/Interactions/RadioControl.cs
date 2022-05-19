@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,12 +9,13 @@ public class RadioControl : MonoBehaviour
     AudioSource _audioSource;
     bool _isPlaying = true;
 
-    [SerializeField] UnityEvent _onRadioToggled;
+    [SerializeField] UnityEvent pauseRadio;
+    [SerializeField] UnityEvent unpauseRadio;
 
     // Bij awake, vraagt naar audio source om af te spelen
     private void Awake()
     {
-        _audioSource = transform.parent.GetComponent<AudioSource>();
+        _audioSource = GetComponentInParent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,16 +26,26 @@ public class RadioControl : MonoBehaviour
             if (_isPlaying)
             {
                 _audioSource.Pause();
+                PauseOtherRadios();
             }
             else
             {
                 _audioSource.UnPause();
+                UnPauseOtherRadios();
             }
 
             // ! maakt van true false en false true
             _isPlaying = !_isPlaying;
-
-            _onRadioToggled.Invoke();
         }
+    }
+
+    public void PauseOtherRadios()
+    {
+        pauseRadio.Invoke();
+    }
+
+    public void UnPauseOtherRadios()
+    {
+        unpauseRadio.Invoke();
     }
 }

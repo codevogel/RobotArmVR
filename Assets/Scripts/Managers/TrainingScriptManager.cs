@@ -49,7 +49,6 @@ public class TrainingScriptManager : MonoBehaviour
         confirmationCanvas.SetActive(true);
         confirmationCanvas.transform.GetChild(0).gameObject.SetActive(true);
         Transform backButton = confirmationCanvas.transform.GetChild(1);
-        //backButton.GetComponent<UIHoverButton>().chosenAction = HoverActions.RESTARTCURRENTPHASE;
         backButton.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Restart";
     }
 
@@ -69,15 +68,18 @@ public class TrainingScriptManager : MonoBehaviour
 
     public void ChangePhase(int phaseNumber)
     {
+        timeLineController.Pause();
         currentPhase = phases[phaseNumber];
-        ResumeTimeLine();
+        timeLineController.Resume();
         //CheckTimeLineDifference(currentPhase.startTime);
     }
 
     public void ChangeSubPhase(int subPhaseNumber)
     {
         textWriter.Clear();
+        timeLineController.Pause();
         currentSubPhase = currentPhase.subPhases[subPhaseNumber];
+        timeLineController.Resume();
 
         if (!changeByButton)
         {
@@ -90,7 +92,6 @@ public class TrainingScriptManager : MonoBehaviour
 
     public void ChangebyButton(int subPhaseNumber)
     {
-        Debug.Log(subPhaseNumber);
         changeByButton = true;
         ChangeSubPhase(subPhaseNumber);
     }
@@ -130,10 +131,6 @@ public class TrainingScriptManager : MonoBehaviour
 
     public void Newtime()
     {
-        Debug.Log("subPhaseNumber");
-        Debug.Log(currentSubPhase.subPhaseNumber);
-        Debug.Log("endTime");
-        Debug.Log(currentSubPhase.endTime);
         timeLineController.SetTime(currentSubPhase.endTime);
     }
 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1724064860}
   - component: {fileID: 1724064863}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Radio Hub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,6 +109,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdaee74bed4baba46bcbc41be9b02066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseRadio:
+    m_PersistentCalls:
+      m_Calls: []
+  unpauseRadio:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1353625699032123480
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +219,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

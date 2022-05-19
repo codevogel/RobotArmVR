@@ -46,9 +46,7 @@ public class UIHoverButton : MonoBehaviour
     {
         if (transform.name.Equals("Resume"))
         {
-            Debug.Log("ContinueActivate");
             chosenAction = HoverActions.CONTINUE;
-            Debug.Log("CONTUINUEDONE");
         }
         else if (transform.name.Equals("Back"))
         {
@@ -72,9 +70,7 @@ public class UIHoverButton : MonoBehaviour
                 TrainingScriptManager.Instance.ChangebyButton(newSubPhase);
                 break;
             case HoverActions.CONTINUE:
-                Debug.Log("NewTimeBefore");
                 TrainingScriptManager.Instance.Newtime();
-                Debug.Log("NewTimeAfter");
                 break;
         }
         hoverTime = 0;

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class TrashTrigger : MonoBehaviour
+public class PhaseITrigger : MonoBehaviour
 {
     [SerializeField] PlayableDirector Timeline;
-
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -16,15 +16,17 @@ public class TrashTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Can"))
+        if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
         {
             gameObject.SetActive(false);
-            TrainingScriptManager.Instance.Newtime();
+            Timeline.Pause();
+            Timeline.time = 4395 / 60f;
+            Timeline.Resume();
         }
     }
 }

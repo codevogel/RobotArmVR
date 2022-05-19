@@ -1,34 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
-public class TrashCheck : MonoBehaviour
+public class TrashTrigger : MonoBehaviour
 {
-    Rigidbody rb2;
+    [SerializeField] PlayableDirector Timeline;
 
     // Start is called before the first frame update
     void Awake()
     {
-
+        Timeline = Timeline.GetComponent<PlayableDirector>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Can"))
         {
-            other.gameObject.SetActive(false);
-            rb2 = other.gameObject.GetComponent<Rigidbody>();
-            rb2.useGravity = false;
-        }
-        else if (other.CompareTag("ControllerLeft"))
-        {
             gameObject.SetActive(false);
+            Timeline.Pause();
+            Timeline.time = 3240 / 60f;
+            Timeline.Resume();
         }
     }
 }
