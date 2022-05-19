@@ -85,6 +85,10 @@ public class RobotArmController : MonoBehaviour
         foreach (PushButton button in buttons)
         {
             button.rb.isKinematic = !enabled;
+            if (button.frozen)
+            {
+                button.rb.isKinematic = true;
+            }
         }
     }
 

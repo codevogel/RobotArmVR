@@ -144,7 +144,6 @@ public class HandManager : MonoBehaviour
                 if (canIdle)
                 {
                     currentController.GetComponentInChildren<CapsuleCollider>().enabled = false;
-                    Debug.Log(currentController.GetComponentInChildren<CapsuleCollider>().name);
                     handAnimator.SetTrigger("Idle");
                     hasSwitched = true;
                 }
