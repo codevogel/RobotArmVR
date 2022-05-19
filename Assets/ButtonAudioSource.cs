@@ -6,7 +6,6 @@ public class ButtonAudioSource : MonoBehaviour
 {
     public AudioClip buttonPress, buttonRelease;
 
-    [SerializeField]
     private AudioSource buttonAudioSource;
 
     private void Start()
