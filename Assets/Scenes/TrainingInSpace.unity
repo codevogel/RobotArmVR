@@ -1756,6 +1756,7 @@ MonoBehaviour:
   inBounds: 1
   followTarget: {fileID: 369282883}
   followingTarget: 1
+  customIKManager: {fileID: 369282890}
   <MovementSpeed>k__BackingField: 0.03
   incrementSize: 0.15
 --- !u!135 &188489314
@@ -12538,6 +12539,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 79794036}
     m_Modifications:
+    - target: {fileID: 2997554661176200748, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -85
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997554661176200748, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 11.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3875107668792214367, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_Name
       value: Flexpendant

@@ -98,20 +98,41 @@ public class FlexpendantUIManager : MonoBehaviour
 
             case 3:
             case 5:
-                axisValue = axisTransform.localRotation.eulerAngles.x;
+                axisValue = axisTransform.rotation.x;
                 break;
         }
 
-        if (axisValue>=355 && axisValue<=360
-            &&axisValues[axis].axisRotation>=0 && axisValues[axis].axisRotation<=5 && axisValues[axis].negative)
+        switch (axis)
         {
-            axisValues[axis].negative = false;
-        }
+            case 0:
+            case 1:
+            case 2:
+            case 4:
+                if (axisValue >= 355 && axisValue <= 360
+                && axisValues[axis].axisRotation >= 0 && axisValues[axis].axisRotation <= 5 && axisValues[axis].negative)
+                {
+                    axisValues[axis].negative = false;
+                }
 
-        if (axisValue>=0 && axisValue <=5 
-            && axisValues[axis].axisRotation >= 355 && axisValues[axis].axisRotation <= 360 && !axisValues[axis].negative)
-        {
-            axisValues[axis].negative = true;
+                if (axisValue >= 0 && axisValue <= 5
+                    && axisValues[axis].axisRotation >= 355 && axisValues[axis].axisRotation <= 360 && !axisValues[axis].negative)
+                {
+                    axisValues[axis].negative = true;
+                }
+                break;
+
+            case 3:
+            case 5:
+                if (axisValue>=0.8f &&axisValue<=1 &&axisValues[axis].axisRotation>=-1&&axisValues[axis].axisRotation<=0.8f&&!axisValues[axis].negative)
+                {
+                    axisValues[axis].negative = false;
+                }
+
+                if (axisValues[axis].axisRotation >= -1 && axisValue <= 0.8f && axisValues[axis].axisRotation >= 0.8f&& axisValues[axis].negative)
+                {
+                    axisValues[axis].negative = true;
+                }
+                break;
         }
 
         return axisValue;
@@ -258,7 +279,9 @@ public class FlexpendantUIManager : MonoBehaviour
                         break;
                     case 3:
                     case 5:
-                        message += "-" + Math.Round(360 - axisValues[x].axisRotation, 2) + "°\n";
+                        float rotation = (axisValues[x].axisRotation / 2) + 0.5f;
+                        float rotationDisplay= Mathf.Lerp(-360,360,rotation);
+                        message += Math.Round(rotationDisplay, 2) + "°\n";
                         break;
                 }
             }
@@ -285,6 +308,7 @@ public class FlexpendantUIManager : MonoBehaviour
                     float percentileZ = CalculatePercentile(minPosition.z, maxPosition.z, flangeTransform.position.y);
                     message += Math.Round(Mathf.Lerp(minRangeZ, maxRangeZ, percentileZ), 2) + " mm\n";
                     break;
+                //Left in cases for the rotation quaternion of the robot arm
                 /*case 3:
                     message += Math.Round(flangeTransform.rotation.y, 3)+ "\n";
                     break;
@@ -328,4 +352,3 @@ public class FlexpendantUIManager : MonoBehaviour
         }
     }
 }
-
