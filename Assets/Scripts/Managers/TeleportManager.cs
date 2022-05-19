@@ -69,8 +69,11 @@ public class TeleportManager : MonoBehaviour
     {
         // Raycast to teleport area
         RaycastHit hit;
-        if (Physics.Raycast(rayInteractor.transform.position, rayInteractor.transform.forward.normalized, out hit, teleportDistance))
+        LayerMask teleportLayerMask = 1<<3;
+        Debug.Log("Reached");
+        if (Physics.Raycast(rayInteractor.transform.position, rayInteractor.transform.forward.normalized, out hit, teleportDistance,teleportLayerMask))
         {
+            Debug.Log("Teleport");
             // If raycast hit a teleport area
             CustomTeleportArea area = hit.transform.GetComponent<CustomTeleportArea>();
             if (area != null)
