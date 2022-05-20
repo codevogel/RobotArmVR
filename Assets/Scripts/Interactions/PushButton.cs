@@ -26,9 +26,9 @@ public class PushButton : MonoBehaviour
     private Vector3 original;
     private bool triggered;
 
-    public UnityEvent OnButtonUp, OnButtonDown;
-    
     public bool frozen;
+
+    public UnityEvent OnButtonUp, OnButtonDown;
 
     private void Start()
     {
