@@ -12,6 +12,8 @@ public class IRC5Controller : MonoBehaviour
     [field: SerializeField]
     private AudioClip clip;
 
+    private bool emergencyState;
+
     private void Start()
     {
         light = transform.GetChild(0);
@@ -20,8 +22,13 @@ public class IRC5Controller : MonoBehaviour
 
     public void Activate(bool on)
     {
-        light.gameObject.SetActive(on);
-        audioSource.PlayOneShot(clip);
+        emergencyState = RobotArmController.emergencyStop;
+        if (!emergencyState)
+        {
+            light.gameObject.SetActive(on);
+            audioSource.PlayOneShot(clip);
+            return;
+        }
+        light.gameObject.SetActive(true);
     }
-
 }

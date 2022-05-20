@@ -48,6 +48,14 @@ public class RobotArmController : MonoBehaviour
     [SerializeField]
     private List<PushButton> buttons;
 
+
+    public UnityEvent OnPressureButtonDown;
+    public UnityEvent OnPressureButtonUp;
+
+    private bool armMoving;
+    [field: SerializeField]
+    private RobotAudio robotAudio;
+
     private void Start()
     {
         joystickInteractor = HandManager.Instance.RightController.GetComponent<JoystickInteractor>();
@@ -157,12 +165,6 @@ public class RobotArmController : MonoBehaviour
         }
     }
 
-    public UnityEvent OnPressureButtonDown;
-    public UnityEvent OnPressureButtonUp;
-
-    private bool armMoving;
-    [field: SerializeField]
-    private RobotAudio robotAudio;
 
     /// <summary>
     /// Alters the selection and directionModifier
