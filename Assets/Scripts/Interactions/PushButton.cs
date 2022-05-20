@@ -76,9 +76,6 @@ public class PushButton : MonoBehaviour
     public void FreezeButton(bool freeze)
     {
         frozen = freeze;
-        if (!freeze)
-        {
-            rb.isKinematic = false;
-        }
+        rb.isKinematic = freeze;
     }
 }
