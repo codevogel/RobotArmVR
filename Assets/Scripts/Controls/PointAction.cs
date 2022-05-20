@@ -78,6 +78,11 @@ public class PointAction : MonoBehaviour
     /// <param name="point"></param>
     public void PointActivation(bool point, HandType leftOrRight)
     {
+        if (HandManager.Instance.GetHeldObject(leftOrRight))
+        {
+            return;
+        }
+
         isPointing = point;
         if (point)
         {

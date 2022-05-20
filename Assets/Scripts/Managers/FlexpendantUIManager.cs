@@ -10,6 +10,7 @@ public class FlexpendantUIManager : MonoBehaviour
     private Transform propertyParent;
     private Transform positionParent;
     private Transform joystickDirectionParent;
+    private Transform flangeTransform;
 
     private bool isLinear;
 
@@ -22,6 +23,18 @@ public class FlexpendantUIManager : MonoBehaviour
 
     private static int spacingNonLinear = 220;
     private static int spacingLinear = 210;
+
+    private int quadrantAxis4;
+    private float thirdValueAxis4;
+    private float secondValueAxis4;
+    private int quadrantAxis6;
+    private float thirdValueAxis6;
+    private float secondValueAxis6;
+
+    private static Vector3 minPosition = new Vector3(16.1551f, -33.931f, -1.463f);
+    private static Vector3 maxPosition = new Vector3(21.574f, -28.498f, 1.239f);
+
+    private static int minRangeX = -1028, maxRangeX = 593, minRangeY= -1071,maxRangeY=2051, minRangeZ=-1260,maxRangeZ=2371;
 
     public static FlexpendantUIManager Instance { get { return _instance; } }
     private static FlexpendantUIManager _instance;
@@ -46,12 +59,6 @@ public class FlexpendantUIManager : MonoBehaviour
         ChangeAxisSet(true);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void SetAxis(ArticulationBody[] axis)
     {
         for (int x = 0; x < axis.Length; x++)
@@ -67,6 +74,12 @@ public class FlexpendantUIManager : MonoBehaviour
         ChangePositionDisplay();
     }
 
+    public void ChangeFlangePosition(Transform flange)
+    {
+        flangeTransform = flange;
+        ChangePositionDisplay();
+    }
+
     public float ChangeAxis(int axis, Transform axisTransform)
     {
         float axisValue = 0;
@@ -74,31 +87,52 @@ public class FlexpendantUIManager : MonoBehaviour
         switch (axis)
         {
             case 0:
-            case 4:
-                axisValue = axisTransform.localRotation.eulerAngles.x;
-                break;
-            case 1:
-                axisValue = axisTransform.localRotation.eulerAngles.z;
-                break;
-            case 2:
-                axisValue = axisTransform.localRotation.eulerAngles.x;
-                break;
-            case 3:
-            case 5:
                 axisValue = axisTransform.localRotation.eulerAngles.y;
                 break;
+
+            case 1:
+            case 2:
+            case 4:
+                axisValue = axisTransform.localRotation.eulerAngles.z;
+                break;
+
+            case 3:
+            case 5:
+                axisValue = axisTransform.rotation.x;
+                break;
         }
 
-        if (axisValue>=355 && axisValue<=360 
-            &&axisValues[axis].axisRotation>=0 && axisValues[axis].axisRotation<=5 && !axisValues[axis].negative)
+        switch (axis)
         {
-            axisValues[axis].negative = true;
-        }
+            case 0:
+            case 1:
+            case 2:
+            case 4:
+                if (axisValue >= 355 && axisValue <= 360
+                && axisValues[axis].axisRotation >= 0 && axisValues[axis].axisRotation <= 5 && axisValues[axis].negative)
+                {
+                    axisValues[axis].negative = false;
+                }
 
-        if (axisValue>0 && axisValue <=5 
-            && axisValues[axis].axisRotation >= 355 && axisValues[axis].axisRotation <= 360 && axisValues[axis].negative)
-        {
-            axisValues[axis].negative = false;
+                if (axisValue >= 0 && axisValue <= 5
+                    && axisValues[axis].axisRotation >= 355 && axisValues[axis].axisRotation <= 360 && !axisValues[axis].negative)
+                {
+                    axisValues[axis].negative = true;
+                }
+                break;
+
+            case 3:
+            case 5:
+                if (axisValue>=0.8f &&axisValue<=1 &&axisValues[axis].axisRotation>=-1&&axisValues[axis].axisRotation<=0.8f&&!axisValues[axis].negative)
+                {
+                    axisValues[axis].negative = false;
+                }
+
+                if (axisValues[axis].axisRotation >= -1 && axisValue <= 0.8f && axisValues[axis].axisRotation >= 0.8f&& axisValues[axis].negative)
+                {
+                    axisValues[axis].negative = true;
+                }
+                break;
         }
 
         return axisValue;
@@ -112,10 +146,10 @@ public class FlexpendantUIManager : MonoBehaviour
                 switch (option)
                 {
                     case 0:
-                        propertyParent.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Axis 1 - 3...";
+                        propertyParent.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Axis 1-3...";
                         break;
                     case 1:
-                        propertyParent.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Axis 4 - 6...";
+                        propertyParent.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Axis 4-6...";
                         break;
                     case 2:
                         propertyParent.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Linear...";
@@ -223,66 +257,79 @@ public class FlexpendantUIManager : MonoBehaviour
 
             for (int x = 0; x < axisValues.Length - 1; x++)
             {
-                
                 switch (x)
                 {
                     case 0:
+                    case 2:
+                    case 4:
                         if (axisValues[x].negative)
                         {
-                            message += Math.Round((360 - axisValues[x].axisRotation)-360, 2).ToString() + "°\n";
+                            message += "-"+Math.Round(axisValues[x].axisRotation, 2) + "°\n";
                             break;
                         }
-                        message += Math.Round(360 - axisValues[x].axisRotation, 2).ToString() + "°\n";
+                        message += Math.Round(360-axisValues[x].axisRotation, 2) + "°\n";
                         break;
                     case 1:
                         if (axisValues[x].negative)
                         {
-                            message += Math.Round(axisValues[x].axisRotation-360, 2).ToString() + "°\n";
+                            message += Math.Round(axisValues[x].axisRotation, 2) + "°\n";
                             break;
                         }
-                        message += Math.Round(axisValues[x].axisRotation, 2).ToString() + "°\n";
-                        break;
-                    case 2:
-                        if (axisValues[x].negative)
-                        {
-                            message += Math.Round(axisValues[x].axisRotation - 360, 2).ToString() + "°\n";
-                            break;
-                        }
-                        message += Math.Round(axisValues[x].axisRotation, 2).ToString() + "°\n";
+                        message += "-" + Math.Round(360 - axisValues[x].axisRotation, 2) + "°\n";
                         break;
                     case 3:
-                    case 4:
                     case 5:
-                        if (axisValues[x].negative)
-                        {
-                            message += Math.Round((360 - axisValues[x].axisRotation)-360, 2).ToString() + "°\n";
-                            break;
-                        }
-                        message += Math.Round(360 - axisValues[x].axisRotation, 2).ToString() + "°\n";
+                        float rotation = (axisValues[x].axisRotation / 2) + 0.5f;
+                        float rotationDisplay= Mathf.Lerp(-360,360,rotation);
+                        message += Math.Round(rotationDisplay, 2) + "°\n";
                         break;
                 }
             }
             textToChange.text = message;
             return;
         }
-        positionParent.GetChild(1).GetComponent<TextMeshProUGUI>().text = "X: \nY: \nZ: \nq1: \nq2: \nq3: \nq4: ";
+        positionParent.GetChild(1).GetComponent<TextMeshProUGUI>().text = "X: \nY: \nZ:"; //"nq1: \nq2: \nq3: \nq4: "
 
         for (int x = 0; x < axisValues.Length; x++)
         {
             switch (x)
             {
                 case 0:
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                    message += Math.Round(axisValues[x].axisRotation, 2).ToString() + "\n";
+                    float percentileX= CalculatePercentile(minPosition.x, maxPosition.x, flangeTransform.position.x);
+                    //Start at max as the percentage should be inverted
+                    message += Math.Round(Mathf.Lerp(maxRangeX, minRangeX, percentileX),2) + " mm\n";
                     break;
+                case 1:
+                    float percentileY = CalculatePercentile(minPosition.y, maxPosition.y, flangeTransform.position.z);
+                    //Start at max as the percentage should be inverted
+                    message += Math.Round(Mathf.Lerp(maxRangeY, minRangeY, percentileY), 2) + " mm\n";
+                    break;
+                case 2:
+                    float percentileZ = CalculatePercentile(minPosition.z, maxPosition.z, flangeTransform.position.y);
+                    message += Math.Round(Mathf.Lerp(minRangeZ, maxRangeZ, percentileZ), 2) + " mm\n";
+                    break;
+                //Left in cases for the rotation quaternion of the robot arm
+                /*case 3:
+                    message += Math.Round(flangeTransform.rotation.y, 3)+ "\n";
+                    break;
+                case 4:
+                    message += Math.Round(flangeTransform.rotation.y, 3) + "\n";
+                    break;
+                case 5:
+                    message += Math.Round(flangeTransform.rotation.z, 3) + "\n";
+                    break;
+                case 6:
+                    message += Math.Round(flangeTransform.rotation.w, 3) + "\n";
+                    break;*/
             }
         }
         textToChange.text = message;
+    }
+
+    private float CalculatePercentile(float min, float max, float value)
+    {
+        float basePercentage = Mathf.InverseLerp(min,max,value);
+        return basePercentage;
     }
 
     public enum Properties
@@ -305,4 +352,3 @@ public class FlexpendantUIManager : MonoBehaviour
         }
     }
 }
-
