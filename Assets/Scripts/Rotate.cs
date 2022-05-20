@@ -20,7 +20,7 @@ public class Rotate : MonoBehaviour
 
         if (gameObject.CompareTag("Logo"))
         {
-            transform.Rotate(0, -0.1f, 0, Space.Self);
+            transform.Rotate(0, 0, -0.1f, Space.Self);
         }
     }
 }

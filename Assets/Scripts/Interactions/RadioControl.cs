@@ -9,8 +9,7 @@ public class RadioControl : MonoBehaviour
     AudioSource _audioSource;
     bool _isPlaying = true;
 
-    [SerializeField] UnityEvent pauseRadio;
-    [SerializeField] UnityEvent unpauseRadio;
+    [SerializeField] UnityEvent radioToggle;
 
     // Bij awake, vraagt naar audio source om af te spelen
     private void Awake()
@@ -26,26 +25,15 @@ public class RadioControl : MonoBehaviour
             if (_isPlaying)
             {
                 _audioSource.Pause();
-                PauseOtherRadios();
             }
             else
             {
                 _audioSource.UnPause();
-                UnPauseOtherRadios();
             }
 
             // ! maakt van true false en false true
             _isPlaying = !_isPlaying;
+            radioToggle.Invoke();
         }
-    }
-
-    public void PauseOtherRadios()
-    {
-        pauseRadio.Invoke();
-    }
-
-    public void UnPauseOtherRadios()
-    {
-        unpauseRadio.Invoke();
     }
 }
