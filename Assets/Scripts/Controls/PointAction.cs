@@ -8,6 +8,7 @@ public class PointAction : MonoBehaviour
 {
     [SerializeField] private Transform rayPosition;
     [SerializeField] private XRRayInteractor rayInteractor;
+    [SerializeField] private GameObject confirmationCanvas;
 
     private bool isPointing;
     private Transform lastCollision;

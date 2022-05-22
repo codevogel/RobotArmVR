@@ -26,9 +26,9 @@ public class PushButton : MonoBehaviour
     private Vector3 original;
     private bool triggered;
 
-    public UnityEvent OnButtonUp, OnButtonDown;
-    
     public bool frozen;
+
+    public UnityEvent OnButtonUp, OnButtonDown;
 
     private void Start()
     {
@@ -76,9 +76,6 @@ public class PushButton : MonoBehaviour
     public void FreezeButton(bool freeze)
     {
         frozen = freeze;
-        if (!freeze)
-        {
-            rb.isKinematic = false;
-        }
+        rb.isKinematic = freeze;
     }
 }

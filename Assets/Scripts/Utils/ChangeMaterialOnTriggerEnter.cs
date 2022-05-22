@@ -9,11 +9,17 @@ public class ChangeMaterialOnTriggerEnter : MonoBehaviour
 
     public void HighlightObject()
     {
-        transform.GetComponent<MeshRenderer>().material = materialBloom;
+        if (gameObject.CompareTag("Hue"))
+        {
+            transform.GetComponent<MeshRenderer>().material = materialBloom;
+        }
     }
 
     public void DeHighlightObject()
     {
-        transform.GetComponent<MeshRenderer>().material = materialOG;
+        if (gameObject.CompareTag("Hue"))
+        {
+            transform.GetComponent<MeshRenderer>().material = materialOG;
+        }
     }
 }
