@@ -70,6 +70,27 @@ public class TrainingScriptManager : MonoBehaviour
         confirmationCanvas.transform.GetChild(2).gameObject.SetActive(true);
     }
 
+    public void ActivateTrigger(int trigger)
+    {
+        switch (trigger)
+        {
+            //Teleport case
+            case 0:
+                if (currentSubPhase.subPhaseNumber== 6)
+                {
+                    Newtime();
+                }
+                break;
+            //Radio case
+            case 1:
+                if (currentSubPhase.subPhaseNumber == 11)
+                {
+                    Newtime();
+                }
+                break;
+        }
+    }
+
     public void CloseCanvas()
     {
         confirmationCanvas.SetActive(false);

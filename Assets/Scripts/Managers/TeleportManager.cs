@@ -78,6 +78,7 @@ public class TeleportManager : MonoBehaviour
             {
                 // Request the teleport
                 area.RequestTeleport(rayInteractor.GetComponent<XRRayInteractor>(), hit);
+                TrainingScriptManager.Instance.ActivateTrigger(0);
             }
         }
     }
