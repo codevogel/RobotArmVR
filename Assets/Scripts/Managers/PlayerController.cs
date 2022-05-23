@@ -128,6 +128,26 @@ public class PlayerController : MonoBehaviour
     {
         ControllerValues controllerValues = leftRight.Equals(HandType.LEFT) ? Left : Right;
         controllerValues.GripPressed = ctx.ReadValue<float>().Equals(1f) ? true : false;
+
+        PointAction pointAction = null;
+
+        if (leftRight.Equals(HandType.LEFT))
+        {
+            pointAction = HandManager.Instance.LeftController.GetComponent<PointAction>();
+        }
+        else
+        {
+            pointAction = HandManager.Instance.RightController.GetComponent<PointAction>();
+        }
+
+        if (ctx.canceled)
+        {
+            pointAction.ResetHoverCollision();
+        }
+
+        bool pressed = controllerValues.GripPressed;
+
+        pointAction.PointActivation(pressed, leftRight);
     }
 
     /// <summary>
@@ -168,24 +188,6 @@ public class PlayerController : MonoBehaviour
         bool pressed = controllerValues.TriggerPressed;
 
         robotController.SetPressureButton(pressed, leftRight);
-
-        PointAction pointAction = null;
-
-        if (leftRight.Equals(HandType.LEFT))
-        {
-            pointAction = HandManager.Instance.LeftController.GetComponent<PointAction>();
-        }
-        else
-        {
-            pointAction = HandManager.Instance.RightController.GetComponent<PointAction>();
-        }
-
-        if (ctx.canceled)
-        {
-            pointAction.ResetHoverCollision();
-        }
-
-        pointAction.PointActivation(pressed, leftRight);
     }
 
     /// <summary>
