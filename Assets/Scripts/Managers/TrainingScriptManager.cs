@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
-using static UIHoverButton;
 
 public class TrainingScriptManager : MonoBehaviour
 {
