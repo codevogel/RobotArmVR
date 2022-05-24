@@ -76,14 +76,14 @@ public class TrainingScriptManager : MonoBehaviour
         {
             //Teleport case
             case 0:
-                if (currentSubPhase.subPhaseNumber== 6)
+                if (currentSubPhase.subPhaseNumber== 5)
                 {
                     Newtime();
                 }
                 break;
             //Radio case
             case 1:
-                if (currentSubPhase.subPhaseNumber == 11)
+                if (currentSubPhase.subPhaseNumber == 8)
                 {
                     Newtime();
                 }

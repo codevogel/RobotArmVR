@@ -15,7 +15,7 @@ public class Rotate : MonoBehaviour
     {
         if (gameObject.CompareTag("Flexpendant"))
         {
-            transform.Rotate(0, 0.75f, 0, Space.Self);
+            transform.Rotate(0, 0, 0.5f, Space.Self);
         }
 
         if (gameObject.CompareTag("Logo"))

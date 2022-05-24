@@ -21,16 +21,6 @@ public class Triggers : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (CompareTag("Trash"))
-        {
-            if (other.CompareTag("Can"))
-            {
-                Timeline.Pause();
-                Timeline.time = 3240 / 60f;
-                Timeline.Resume();
-            }
-        }
-
         if (CompareTag("Teleport"))
         {
             if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
