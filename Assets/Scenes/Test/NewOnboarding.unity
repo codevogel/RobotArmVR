@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.02464202, g: 0.022430405, b: 0.06982411, a: 1}
+  m_IndirectSpecularColor: {r: 0.024654023, g: 0.022441743, b: 0.069850236, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4547,8 +4547,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2126464174175165440, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2126464174175165440, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 2155893286205024901, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_RootOrder
@@ -4675,6 +4679,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6002561039547279424, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002561039547279424, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -4708,43 +4716,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6357922626770203071, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.679
+      value: -0.70679903
       objectReference: {fileID: 0}
     - target: {fileID: 6357922626770203071, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8759426
+      value: 0.8828522
       objectReference: {fileID: 0}
     - target: {fileID: 6357922626770203071, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.047778912
+      value: -0.052695252
       objectReference: {fileID: 0}
     - target: {fileID: 6357922626770203071, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.47083837
+      value: -0.45835066
       objectReference: {fileID: 0}
     - target: {fileID: 6357922626770203071, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.09355776
+      value: 0.08780687
       objectReference: {fileID: 0}
     - target: {fileID: 6357922626770203071, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.852
+      value: 0.87017554
       objectReference: {fileID: 0}
     - target: {fileID: 6357922626770203071, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.433
+      value: 0.40408677
       objectReference: {fileID: 0}
     - target: {fileID: 6357922626770203071, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.252
+      value: -0.719
       objectReference: {fileID: 0}
     - target: {fileID: 6357922626770203071, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -56.491
+      value: -54.948
       objectReference: {fileID: 0}
     - target: {fileID: 6357922626770203071, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 12.058
+      value: 11.734
       objectReference: {fileID: 0}
     - target: {fileID: 6710488814480802906, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_SizeDelta.x
@@ -13583,6 +13591,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5a262aa313a8e214bb7bbc5eda025940, type: 2}
     - {fileID: 11400000, guid: 5043037043794734b9dd897f117c78b9, type: 2}
     - {fileID: 11400000, guid: 2e08121a645d94aae89c03b588ad4f14, type: 2}
+    - {fileID: 11400000, guid: eccde7487f8ce404e908f631795f362e, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -13668,6 +13677,20 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls: []
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2071272513}
+          m_TargetAssemblyTypeName: ChangeMaterialOnTriggerEnter, Assembly-CSharp
+          m_MethodName: HighlightObject
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &1565918670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19024,6 +19047,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f406590f4487f438a9e07c2af59f135e, type: 3}
+--- !u!114 &2071272513 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1836624733704173314, guid: 5eb228f90ff6946fc8fc4b0b913308fb, type: 3}
+  m_PrefabInstance: {fileID: 1159830887}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a8f989f2923a8d43a5646777d47b204, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2071888511
 PrefabInstance:
   m_ObjectHideFlags: 0
