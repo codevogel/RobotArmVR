@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.022109354, g: 0.020088512, b: 0.06353987, a: 1}
+  m_IndirectSpecularColor: {r: 0.02470349, g: 0.022480508, b: 0.069891945, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8019,6 +8019,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1342539990772913053, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1342539990772913053, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 538276818}
@@ -8027,7 +8031,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 553588556}
     - target: {fileID: 1342539990772913053, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 553588555}
+    - target: {fileID: 1342539990772913053, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1342539990772913053, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1342539990772913053, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
@@ -8039,6 +8051,10 @@ PrefabInstance:
       value: ActivateTrigger
       objectReference: {fileID: 0}
     - target: {fileID: 1342539990772913053, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1342539990772913053, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: RadioBroadcaster, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -8047,8 +8063,16 @@ PrefabInstance:
       value: TrainingScriptManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1342539990772913053, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: TrainingScriptManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1342539990772913053, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1342539990772913053, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1342539990772913053, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -8057,6 +8081,10 @@ PrefabInstance:
     - target: {fileID: 1342539990772913053, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1342539990772913053, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1353625699032123480, guid: d89fa3c59a94a468a995031751a46bb8, type: 3}
       propertyPath: m_Name
@@ -13702,6 +13730,14 @@ PlayableDirector:
     value: {fileID: 1481137836}
   - key: {fileID: 6637534117995077808, guid: 6767f379066cd1046a83d817a86d2393, type: 2}
     value: {fileID: 1481137835}
+  - key: {fileID: -5099624261589274740, guid: 6767f379066cd1046a83d817a86d2393, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -6440673023104014906, guid: 6767f379066cd1046a83d817a86d2393, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -1122134344017516127, guid: 6767f379066cd1046a83d817a86d2393, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -4446076115133672620, guid: 6767f379066cd1046a83d817a86d2393, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1690276448

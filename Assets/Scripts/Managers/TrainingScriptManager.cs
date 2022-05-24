@@ -81,8 +81,15 @@ public class TrainingScriptManager : MonoBehaviour
                     Newtime();
                 }
                 break;
-            //Radio case
+            //Point case
             case 1:
+                if (currentSubPhase.subPhaseNumber == 7)
+                { 
+                    Newtime();
+                }
+                break;
+            //Radio case
+            case 2:
                 if (currentSubPhase.subPhaseNumber == 8)
                 {
                     Newtime();

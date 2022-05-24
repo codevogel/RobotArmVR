@@ -147,6 +147,7 @@ public class PlayerController : MonoBehaviour
 
         bool pressed = controllerValues.GripPressed;
 
+        TrainingScriptManager.Instance.ActivateTrigger(1);
         pointAction.PointActivation(pressed, leftRight);
     }
 

@@ -26,7 +26,7 @@ public class Triggers : MonoBehaviour
             if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
             {
                 Timeline.Pause();
-                Timeline.time = 2563 / 60f;
+                Timeline.time = 2218 / 60f;
                 Timeline.Resume();
             }
         }
@@ -36,7 +36,7 @@ public class Triggers : MonoBehaviour
             if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
             {
                 Timeline.Pause();
-                Timeline.time = 4395 / 60f;
+                Timeline.time = 3971 / 60f;
                 Timeline.Resume();
             }
         }
