@@ -113,7 +113,6 @@ MonoBehaviour:
     - {fileID: -4351558852781776184}
     - {fileID: 7573196457550537822}
     - {fileID: -1594015543868729272}
-    - {fileID: -3473035765189827753}
     - {fileID: 5917753458988851217}
     - {fileID: 7244693269708404873}
     - {fileID: 7382513615051734729}
@@ -142,6 +141,7 @@ MonoBehaviour:
     - {fileID: -5155731259267955223}
     - {fileID: 3937824168500939436}
     - {fileID: 7005849579874779918}
+    - {fileID: -1766846484604251725}
 --- !u!114 &-8130542857812522645
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1313,23 +1313,6 @@ MonoBehaviour:
   m_Loop: 1
   m_Version: 1
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
---- !u!114 &-3473035765189827753
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6be8bb99ee2eb2244a0b06c74303849f, type: 3}
-  m_Name: Confirmation Signal Emitter
-  m_EditorClassIdentifier: 
-  m_Time: 129.43333333333334
-  m_Retroactive: 0
-  m_EmitOnce: 0
-  m_Asset: {fileID: 11400000, guid: 5a262aa313a8e214bb7bbc5eda025940, type: 2}
-  <Parameter>k__BackingField: 4
 --- !u!114 &-3466030636836196228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2244,6 +2227,22 @@ MonoBehaviour:
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 5a262aa313a8e214bb7bbc5eda025940, type: 2}
   <Parameter>k__BackingField: 5
+--- !u!114 &-1766846484604251725
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 124.03333333333342
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 73f1f6a1d2188f546aa26e651ea7df8b, type: 2}
 --- !u!114 &-1724683896819811824
 MonoBehaviour:
   m_ObjectHideFlags: 1
