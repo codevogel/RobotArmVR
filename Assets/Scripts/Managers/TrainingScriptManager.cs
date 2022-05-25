@@ -102,6 +102,13 @@ public class TrainingScriptManager : MonoBehaviour
                     Newtime();
                 }
                 break;
+            //Switch Axis
+            case 4:
+                if (currentSubPhase.subPhaseNumber == 10)
+                {
+                    Newtime();
+                }
+                break;
         }
     }
 
