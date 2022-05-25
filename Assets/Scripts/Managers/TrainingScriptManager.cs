@@ -95,6 +95,13 @@ public class TrainingScriptManager : MonoBehaviour
                     Newtime();
                 }
                 break;
+            //Safety Button
+            case 3:
+                if (currentSubPhase.subPhaseNumber == 3)
+                {
+                    Newtime();
+                }
+                break;
         }
     }
 

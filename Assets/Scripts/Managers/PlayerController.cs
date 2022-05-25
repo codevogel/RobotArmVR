@@ -188,6 +188,7 @@ public class PlayerController : MonoBehaviour
 
         bool pressed = controllerValues.TriggerPressed;
 
+        TrainingScriptManager.Instance.ActivateTrigger(3);
         robotController.SetPressureButton(pressed, leftRight);
     }
 
