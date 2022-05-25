@@ -75,10 +75,22 @@ public class RobotArmController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        bool moved = false;
         if (pressureButtonHeld && !emergencyStop)
         {
-            MoveArm();
+            moved = MoveArm();
             FlexpendantUIManager.Instance.UpdateAxis(selectedArticulator, articulationBodies[selectedArticulator].transform);
+        }
+
+        if (!armMoving && moved)
+        {
+            armMoving = true;
+            robotAudio.StartLoop();
+        }
+        if (armMoving && !moved)
+        {
+            armMoving = false;
+            robotAudio.Stop();
         }
     }
 
@@ -169,7 +181,7 @@ public class RobotArmController : MonoBehaviour
     /// <summary>
     /// Alters the selection and directionModifier
     /// </summary>
-    private void MoveArm()
+    private bool MoveArm()
     {
         bool moved;
         if (movementOnLinear)
@@ -181,17 +193,7 @@ public class RobotArmController : MonoBehaviour
             ManualMovement(out moved);
         }
 
-        if (!armMoving && moved)
-        {
-            armMoving = true;
-            robotAudio.StartLoop(); 
-        }
-        if (armMoving && !moved)
-        {
-            armMoving = false;
-            robotAudio.Stop();
-        }
-
+        return moved;
     }
 
     private void LinearMovement(out bool moved)
