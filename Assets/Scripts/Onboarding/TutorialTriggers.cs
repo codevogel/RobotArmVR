@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class Triggers : MonoBehaviour
+public class TutorialTriggers : MonoBehaviour
 {
     [SerializeField] PlayableDirector Timeline;
 
@@ -11,12 +11,6 @@ public class Triggers : MonoBehaviour
     void Awake()
     {
         Timeline = Timeline.GetComponent<PlayableDirector>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void OnTriggerEnter(Collider other)
