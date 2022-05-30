@@ -1,5 +1,41 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4131108151712854926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a108e5185fc44aa8a6f37f53d6464a, type: 3}
+  m_Name: NewSunShaftFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    passEvent: 550
+    sunShaftMaterial: {fileID: 2100000, guid: 44b46f49e391d4d46b15e54072331234, type: 2}
+    renderMode: 0
+    resolution: 1
+    blendMode: 0
+    depthThreshold: 0.073
+    opacity: 0.196
+    sunPosition: {x: 0, y: 0, z: 10}
+    radialBlurIterations: 2
+    sunColor:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
+    sunIntensity: 2.19
+    sunColorThreshold:
+      r: 0
+      g: 0
+      b: 0
+      a: 1
+    sunBlurRadius: 3.04
+    maxRadius: 0.75
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,3 +78,39 @@ MonoBehaviour:
   m_ShadowTransparentReceive: 1
   m_RenderingMode: 0
   m_AccurateGbufferNormals: 0
+--- !u!114 &1732747419209524202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a108e5185fc44aa8a6f37f53d6464a, type: 3}
+  m_Name: NewSunShaftFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    passEvent: 600
+    sunShaftMaterial: {fileID: 2100000, guid: 44b46f49e391d4d46b15e54072331234, type: 2}
+    renderMode: 0
+    resolution: 2
+    blendMode: 4
+    depthThreshold: 0.018
+    opacity: 1
+    sunPosition: {x: 0, y: 0, z: 10}
+    radialBlurIterations: 2
+    sunColor:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
+    sunIntensity: 1.15
+    sunColorThreshold:
+      r: 0
+      g: 0
+      b: 0
+      a: 1
+    sunBlurRadius: 2.5
+    maxRadius: 0.75
