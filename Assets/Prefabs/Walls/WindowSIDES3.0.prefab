@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1685669790789770786}
   - component: {fileID: 3494869140813998824}
   - component: {fileID: -5047621008073394732}
+  - component: {fileID: 1637513186193871847}
   m_Layer: 0
   m_Name: WindowSIDES3.0
   m_TagString: Untagged
@@ -96,3 +97,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4493585093827132993, guid: 8005ec98cd53d45faa5cbb57ae605ffe, type: 3}
+--- !u!65 &1637513186193871847
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3134708233766095677}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0066495477, y: 0.05289392, z: 0.07211674}
+  m_Center: {x: 0.00026741842, y: -0.01928848, z: 0.004641793}

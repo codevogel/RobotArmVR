@@ -8,6 +8,7 @@ public class PointAction : MonoBehaviour
 {
     [SerializeField] private Transform rayPosition;
     [SerializeField] private XRRayInteractor rayInteractor;
+    [SerializeField] private GameObject confirmationCanvas;
 
     private bool isPointing;
     private Transform lastCollision;
@@ -77,6 +78,11 @@ public class PointAction : MonoBehaviour
     /// <param name="point"></param>
     public void PointActivation(bool point, HandType leftOrRight)
     {
+        if (HandManager.Instance.GetHeldObject(leftOrRight))
+        {
+            return;
+        }
+
         isPointing = point;
         if (point)
         {

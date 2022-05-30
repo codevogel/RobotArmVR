@@ -147,6 +147,11 @@ namespace IKManager
             }
         }
 
+        public void UpdateUI()
+        {
+            FlexpendantUIManager.Instance.ChangeFlangePosition(Joint[5].transform);
+        }
+
         void ForwardKinematics()
         {
             point[0] = dim[0];

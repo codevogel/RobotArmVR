@@ -48,6 +48,14 @@ public class RobotArmController : MonoBehaviour
     [SerializeField]
     private List<PushButton> buttons;
 
+
+    public UnityEvent OnPressureButtonDown;
+    public UnityEvent OnPressureButtonUp;
+
+    private bool armMoving;
+    [field: SerializeField]
+    private RobotAudio robotAudio;
+
     private void Start()
     {
         joystickInteractor = HandManager.Instance.RightController.GetComponent<JoystickInteractor>();
@@ -85,6 +93,10 @@ public class RobotArmController : MonoBehaviour
         foreach (PushButton button in buttons)
         {
             button.rb.isKinematic = !enabled;
+            if (button.frozen)
+            {
+                button.rb.isKinematic = true;
+            }
         }
     }
 
@@ -153,23 +165,36 @@ public class RobotArmController : MonoBehaviour
         }
     }
 
-    public UnityEvent OnPressureButtonDown;
-    public UnityEvent OnPressureButtonUp;
 
     /// <summary>
     /// Alters the selection and directionModifier
     /// </summary>
     private void MoveArm()
     {
+        bool moved;
         if (movementOnLinear)
         {
-            LinearMovement();
-            return;
+            LinearMovement(out moved);
         }
-        ManualMovement();
+        else
+        {
+            ManualMovement(out moved);
+        }
+
+        if (!armMoving && moved)
+        {
+            armMoving = true;
+            robotAudio.StartLoop(); 
+        }
+        if (armMoving && !moved)
+        {
+            armMoving = false;
+            robotAudio.Stop();
+        }
+
     }
 
-    private void LinearMovement()
+    private void LinearMovement(out bool moved)
     {
         Vector3 direction = new Vector3();
 
@@ -183,17 +208,17 @@ public class RobotArmController : MonoBehaviour
             direction.x = PlayerController.Right.JoystickAxis.y;
             direction.z = -PlayerController.Right.JoystickAxis.x;
         }
+        moved = direction != Vector3.zero;
         linearMovement.MoveTowards(direction);
     }
 
-    private void ManualMovement()
+    private void ManualMovement(out bool moved)
     {
-        bool move = false;
         Vector2 joystickInput = PlayerController.Right.JoystickAxis;
 
-        HandleInput(out move, joystickInput);
+        HandleInput(out moved, joystickInput);
 
-        if (move)
+        if (moved)
         {
             articulationBodies[selectedArticulator].GetComponent<ArticulationJointController>().rotationState = rotationDirection;
         }

@@ -298,6 +298,62 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0b6402d32e8d8a648b71855feae4ca73, type: 2}
+    - target: {fileID: 8073630174344007764, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073630174344007764, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073630174344007764, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073630174344007764, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073630174344007764, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 2013193495242252368}
+    - target: {fileID: 8073630174344007764, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073630174344007764, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073630174344007764, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetEmergencyStop
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073630174344007764, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Activate
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073630174344007764, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RobotArmController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073630174344007764, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: IRC5Controller, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073630174344007764, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073630174344007764, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073630174344007764, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8859726701566960963, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.size
       value: 1
