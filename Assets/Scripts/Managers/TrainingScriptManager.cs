@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
-using static UIHoverButton;
 
 public class TrainingScriptManager : MonoBehaviour
 {
@@ -69,6 +68,48 @@ public class TrainingScriptManager : MonoBehaviour
         confirmationCanvas.transform.GetChild(0).gameObject.SetActive(false);
         confirmationCanvas.transform.GetChild(1).gameObject.SetActive(false);
         confirmationCanvas.transform.GetChild(2).gameObject.SetActive(true);
+    }
+
+    public void ActivateTrigger(int trigger)
+    {
+        switch (trigger)
+        {
+            //Teleport case
+            case 0:
+                if (currentSubPhase.subPhaseNumber== 5)
+                {
+                    Newtime();
+                }
+                break;
+            //Point case
+            case 1:
+                if (currentSubPhase.subPhaseNumber == 7)
+                { 
+                    Newtime();
+                }
+                break;
+            //Radio case
+            case 2:
+                if (currentSubPhase.subPhaseNumber == 8)
+                {
+                    Newtime();
+                }
+                break;
+            //Safety Button
+            case 3:
+                if (currentSubPhase.subPhaseNumber == 3)
+                {
+                    Newtime();
+                }
+                break;
+            //Switch Axis
+            case 4:
+                if (currentSubPhase.subPhaseNumber == 10)
+                {
+                    Newtime();
+                }
+                break;
+        }
     }
 
     public void CloseCanvas()

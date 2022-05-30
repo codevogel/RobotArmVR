@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class Triggers : MonoBehaviour
+public class TutorialTriggers : MonoBehaviour
 {
     [SerializeField] PlayableDirector Timeline;
 
@@ -13,30 +13,14 @@ public class Triggers : MonoBehaviour
         Timeline = Timeline.GetComponent<PlayableDirector>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (CompareTag("Trash"))
-        {
-            if (other.CompareTag("Can"))
-            {
-                Timeline.Pause();
-                Timeline.time = 3240 / 60f;
-                Timeline.Resume();
-            }
-        }
-
         if (CompareTag("Teleport"))
         {
             if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
             {
                 Timeline.Pause();
-                Timeline.time = 2563 / 60f;
+                Timeline.time = 2218 / 60f;
                 Timeline.Resume();
             }
         }
@@ -46,7 +30,7 @@ public class Triggers : MonoBehaviour
             if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
             {
                 Timeline.Pause();
-                Timeline.time = 4395 / 60f;
+                Timeline.time = 3670 / 60f;
                 Timeline.Resume();
             }
         }
