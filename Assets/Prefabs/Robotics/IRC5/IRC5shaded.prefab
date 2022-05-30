@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2512995622984304250
 Transform:
@@ -111,7 +111,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7538985268243267521
 Transform:
@@ -382,6 +382,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PushButton
       objectReference: {fileID: 0}
+    - target: {fileID: 8859726701566961086, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8859726701566961087, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -437,6 +441,10 @@ PrefabInstance:
     - target: {fileID: 8859726701566961087, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859726701851120395, guid: 429f5884a5442da4196907de052e5998, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 429f5884a5442da4196907de052e5998, type: 3}
