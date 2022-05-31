@@ -24,13 +24,6 @@ public class FlexpendantUIManager : MonoBehaviour
     private static int spacingNonLinear = 220;
     private static int spacingLinear = 210;
 
-    private int quadrantAxis4;
-    private float thirdValueAxis4;
-    private float secondValueAxis4;
-    private int quadrantAxis6;
-    private float thirdValueAxis6;
-    private float secondValueAxis6;
-
     private static Vector3 minPosition = new Vector3(16.1551f, -33.931f, -1.463f);
     private static Vector3 maxPosition = new Vector3(21.574f, -28.498f, 1.239f);
 
@@ -38,6 +31,8 @@ public class FlexpendantUIManager : MonoBehaviour
 
     public static FlexpendantUIManager Instance { get { return _instance; } }
     private static FlexpendantUIManager _instance;
+
+    private bool firstCheck=true;
 
     private void Awake()
     {
@@ -57,6 +52,15 @@ public class FlexpendantUIManager : MonoBehaviour
     void Start()
     {
         ChangeAxisSet(true);
+    }
+
+    private void LateUpdate()
+    {
+        if (firstCheck)
+        {
+            transform.parent.gameObject.SetActive(false);
+            firstCheck = false;
+        }
     }
 
     public void SetAxis(ArticulationBody[] axis)

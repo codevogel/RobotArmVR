@@ -20,9 +20,15 @@ public class PointAction : MonoBehaviour
     private Gradient validGradient;
     private Gradient invalidGradient;
 
+    [SerializeField]
+    private bool rayInteractorEnabled;
+
     private void Start()
     {
-        rayInteractor.transform.gameObject.SetActive(false);
+        if (rayInteractorEnabled)
+        {
+            rayInteractor.transform.gameObject.SetActive(false);
+        }
         pointGradient = new Gradient();
 
         pointColorKey = new GradientColorKey[2];
@@ -39,14 +45,18 @@ public class PointAction : MonoBehaviour
 
         pointGradient.SetKeys(pointColorKey, alphaColorKey);
 
-        validGradient = rayInteractor.transform.GetComponent<XRInteractorLineVisual>().validColorGradient;
-        invalidGradient = rayInteractor.transform.GetComponent<XRInteractorLineVisual>().invalidColorGradient;
+        if (rayInteractorEnabled)
+        {
+            validGradient = rayInteractor.transform.GetComponent<XRInteractorLineVisual>().validColorGradient;
+            invalidGradient = rayInteractor.transform.GetComponent<XRInteractorLineVisual>().invalidColorGradient;
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isPointing)
+        if (isPointing&& rayInteractorEnabled)
         {
             RaycastHit hit;
             if (Physics.Raycast(rayInteractor.transform.position, rayInteractor.transform.forward.normalized, out hit, rayInteractor.GetComponent<XRRayInteractor>().maxRaycastDistance)
@@ -86,17 +96,25 @@ public class PointAction : MonoBehaviour
         isPointing = point;
         if (point)
         {
-            rayInteractor.transform.GetComponent<XRInteractorLineVisual>().validColorGradient = pointGradient;
-            rayInteractor.transform.GetComponent<XRInteractorLineVisual>().invalidColorGradient= pointGradient;
+            if (rayInteractorEnabled)
+            {
+                rayInteractor.transform.GetComponent<XRInteractorLineVisual>().validColorGradient = pointGradient;
+                rayInteractor.transform.GetComponent<XRInteractorLineVisual>().invalidColorGradient = pointGradient;
+                rayInteractor.gameObject.SetActive(true);
+            }
+
+
             HandManager.Instance.ChangePose(HandPose.IDLE, HandPose.POINT, leftOrRight);
-            rayInteractor.gameObject.SetActive(true);
         }
         else
         {
-            rayInteractor.transform.GetComponent<XRInteractorLineVisual>().validColorGradient = validGradient;
-            rayInteractor.transform.GetComponent<XRInteractorLineVisual>().invalidColorGradient = invalidGradient;
+            if (rayInteractorEnabled)
+            {
+                rayInteractor.transform.GetComponent<XRInteractorLineVisual>().validColorGradient = validGradient;
+                rayInteractor.transform.GetComponent<XRInteractorLineVisual>().invalidColorGradient = invalidGradient;
+                rayInteractor.gameObject.SetActive(false);
+            }
             HandManager.Instance.ChangePose(HandPose.POINT, HandPose.IDLE, leftOrRight);
-            rayInteractor.gameObject.SetActive(false);
         }
     }
 }

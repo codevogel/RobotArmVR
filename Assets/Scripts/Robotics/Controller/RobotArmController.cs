@@ -20,7 +20,6 @@ public class RobotArmController : MonoBehaviour
     #endregion
 
     #region Movement modifiers
-    public float moveSpeed;
     public float rotateSpeed;
 
     private RotationDirection rotationDirection;
@@ -45,32 +44,37 @@ public class RobotArmController : MonoBehaviour
     [SerializeField]
     private float joystickThreshold;
 
+    [field: SerializeField]
+    private RobotAudio robotAudio;
+
     [SerializeField]
     private List<PushButton> buttons;
-
 
     public UnityEvent OnPressureButtonDown;
     public UnityEvent OnPressureButtonUp;
 
     private bool armMoving;
-    [field: SerializeField]
-    private RobotAudio robotAudio;
+
+
+    private void Awake()
+    {
+        FlexpendantUIManager.Instance.SetAxis(articulationBodies);
+        FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
+    }
 
     private void Start()
     {
         joystickInteractor = HandManager.Instance.RightController.GetComponent<JoystickInteractor>();
         Interactor = GetComponent<CustomInteractor>();
         linearMovement = GetComponent<LinearMovement>();
-
-        FlexpendantUIManager.Instance.SetAxis(articulationBodies);
-        FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
+       
         IKManager.movementEnabled = movementOnLinear;
-
 
         for (int i = 0; i < articulationBodies.Length; i++)
         {
             articulationJointControllers[i] = articulationBodies[i].GetComponent<ArticulationJointController>();
         }
+        ChangeMovementMode();
     }
 
     private void FixedUpdate()
@@ -79,18 +83,23 @@ public class RobotArmController : MonoBehaviour
         if (pressureButtonHeld && !emergencyStop)
         {
             moved = MoveArm();
-            FlexpendantUIManager.Instance.UpdateAxis(selectedArticulator, articulationBodies[selectedArticulator].transform);
         }
 
         if (!armMoving && moved)
         {
             armMoving = true;
+            
             robotAudio.StartLoop();
         }
         if (armMoving && !moved)
         {
             armMoving = false;
             robotAudio.Stop();
+        }
+
+        if (armMoving)
+        {
+            FlexpendantUIManager.Instance.UpdateAxis(selectedArticulator, articulationBodies[selectedArticulator].transform);
         }
     }
 
