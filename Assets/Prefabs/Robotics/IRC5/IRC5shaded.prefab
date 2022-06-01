@@ -292,6 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 4a05833f78308c74d96a522b6c5a56a2, type: 3}
+  canvas: {fileID: 5041556386369825416}
 --- !u!82 &1804135612059629226
 AudioSource:
   m_ObjectHideFlags: 0
@@ -477,30 +478,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7538985268243267521}
     m_Modifications:
-    - target: {fileID: 1805349988, guid: 429f5884a5442da4196907de052e5998, type: 3}
-      propertyPath: m_Height
-      value: 5.1902843
-      objectReference: {fileID: 0}
-    - target: {fileID: 1805349988, guid: 429f5884a5442da4196907de052e5998, type: 3}
-      propertyPath: m_Radius
-      value: 2.541275
-      objectReference: {fileID: 0}
-    - target: {fileID: 1805349988, guid: 429f5884a5442da4196907de052e5998, type: 3}
-      propertyPath: m_Center.x
-      value: 1.1911228e-14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1805349988, guid: 429f5884a5442da4196907de052e5998, type: 3}
-      propertyPath: m_Center.y
-      value: -1.0172945
-      objectReference: {fileID: 0}
-    - target: {fileID: 1805349988, guid: 429f5884a5442da4196907de052e5998, type: 3}
-      propertyPath: m_Center.z
-      value: -0.00048825567
-      objectReference: {fileID: 0}
-    - target: {fileID: 1805349988, guid: 429f5884a5442da4196907de052e5998, type: 3}
-      propertyPath: m_Direction
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6468135525219080686, guid: 429f5884a5442da4196907de052e5998, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

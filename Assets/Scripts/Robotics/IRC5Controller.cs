@@ -12,7 +12,8 @@ public class IRC5Controller : MonoBehaviour
     [field: SerializeField]
     private AudioClip clip;
 
-    private Canvas canvas;
+    [field: SerializeField]
+    private Transform canvas;
 
     private bool emergencyState;
 
@@ -20,7 +21,6 @@ public class IRC5Controller : MonoBehaviour
     {
         light = transform.GetChild(0);
         audioSource = GetComponent<AudioSource>();
-        canvas = GetComponentInChildren<Canvas>();
     }
 
     public void Activate(bool on)
