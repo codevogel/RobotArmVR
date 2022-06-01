@@ -7,13 +7,57 @@ public class ChangeMaterialOnTriggerEnter : MonoBehaviour
     [SerializeField] private Material materialBloom;
     [SerializeField] private Material materialOG;
 
-    public void HighlightObject()
+    public void HighlightObject(int trigger)
     {
-            transform.GetComponent<MeshRenderer>().material = materialBloom;
+        switch (trigger)
+        {
+            case 0:
+                if (CompareTag("Hue1"))
+                {
+                    transform.GetComponent<MeshRenderer>().material = materialBloom;
+                }
+                break;
+
+            case 1:
+                if (CompareTag("Hues2"))
+                {
+                    transform.GetComponent<MeshRenderer>().material = materialBloom;
+                }
+                break;
+
+            case 2:
+                if (CompareTag("Hues3"))
+                {
+                    transform.GetComponent<MeshRenderer>().material = materialBloom;
+                }
+                break;
+        }
     }
 
-    public void DeHighlightObject()
+    public void DeHighlightObject(int trigger)
     {
-            transform.GetComponent<MeshRenderer>().material = materialOG;
+        switch (trigger)
+        {
+            case 0:
+                if (CompareTag("Hue1"))
+                {
+                    transform.GetComponent<MeshRenderer>().material = materialOG;
+                }
+                break;
+
+            case 1:
+                if (CompareTag("Hues2"))
+                {
+                    transform.GetComponent<MeshRenderer>().material = materialOG;
+                }
+                break;
+
+            case 2:
+                if (CompareTag("Hues3"))
+                {
+                    transform.GetComponent<MeshRenderer>().material = materialOG;
+                }
+                break;
+        }
     }
 }
