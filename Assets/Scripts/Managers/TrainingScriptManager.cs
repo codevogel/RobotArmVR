@@ -154,7 +154,7 @@ public class TrainingScriptManager : MonoBehaviour
     private void CheckTimeLineDifference(int newTime)
     {
         int timeDifference = Math.Abs(Mathf.RoundToInt((float)timeLine.time * 60) - newTime);
-        if (timeDifference > 5)
+        if (timeDifference > 15)
         {
             StartCoroutine(Teleport(newTime));
         }
