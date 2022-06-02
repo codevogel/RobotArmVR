@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7760883163408610543}
   - component: {fileID: 9106201297541027522}
   - component: {fileID: 4082467358236594003}
-  m_Layer: 0
+  - component: {fileID: 618007040441636440}
+  m_Layer: 3
   m_Name: Arc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,6 +82,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &618007040441636440
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3155267632513985874}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4493585093827132993, guid: d4d46155309c64444b7139e09ba07aeb, type: 3}
 --- !u!1 &5989700329500299299
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +216,7 @@ GameObject:
   - component: {fileID: 5989700329649335989}
   - component: {fileID: 5989700329649335986}
   - component: {fileID: 5989700329649335987}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +312,7 @@ GameObject:
   - component: {fileID: 5989700329891084570}
   - component: {fileID: 5989700329891084571}
   - component: {fileID: 5989700329891084568}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: CanvasLeftDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +412,7 @@ GameObject:
   - component: {fileID: 5989700330025486735}
   - component: {fileID: 5989700330025486732}
   - component: {fileID: 5989700330025486733}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -644,7 +659,7 @@ GameObject:
   - component: {fileID: 5989700330479498930}
   - component: {fileID: 5989700330479498932}
   - component: {fileID: 5989700330479498933}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -781,7 +796,7 @@ GameObject:
   - component: {fileID: 5989700330988432821}
   - component: {fileID: 5989700330988432818}
   - component: {fileID: 5989700330988432819}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: CanvasRightDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -880,7 +895,7 @@ GameObject:
   - component: {fileID: 5989700331448234434}
   - component: {fileID: 5989700331448234436}
   - component: {fileID: 5989700331448234437}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
