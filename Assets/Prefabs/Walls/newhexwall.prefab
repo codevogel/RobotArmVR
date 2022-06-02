@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 2363715546651199873}
   - component: {fileID: 6426860232335163167}
   - component: {fileID: 3185952311834289088}
-  m_Layer: 0
+  - component: {fileID: 8897230261198167729}
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,6 +82,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8897230261198167729
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781990208870598507}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5495902117074765545, guid: 7f4139a93c954c341ad09e21dbf5d8aa, type: 3}
 --- !u!1 &2303570295886956638
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1494135517179777764}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: newhexwall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +139,7 @@ GameObject:
   - component: {fileID: 3142676370571570338}
   - component: {fileID: 4500939123779653263}
   - component: {fileID: 8687131363313768222}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
