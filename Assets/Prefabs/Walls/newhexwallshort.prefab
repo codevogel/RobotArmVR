@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8429818109381566736}
   - component: {fileID: 6996114573907591997}
   - component: {fileID: 2877622697033046700}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5466667618585993046}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: newhexwallshort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,8 @@ GameObject:
   - component: {fileID: 9199771768314643507}
   - component: {fileID: 455275050234458797}
   - component: {fileID: 8311247792212209266}
-  m_Layer: 0
+  - component: {fileID: 6506922139301975608}
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,3 +195,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6506922139301975608
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5177833133655821017}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.021483084, y: 0.012629999, z: 0.029999992}
+  m_Center: {x: -0.0007794959, y: -0.000013473208, z: 0.015471411}
