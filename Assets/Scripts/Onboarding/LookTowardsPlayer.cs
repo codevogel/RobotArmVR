@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class LookTowardsPlayer : MonoBehaviour
 {
-    private int offset = 90;
+    private int assistantOffset = 90;
+    private bool active=true;
 
     // Update is called once per frame
     void LateUpdate()
     {
-        Quaternion rotation=Quaternion.LookRotation(transform.position-Camera.main.transform.position, transform.up);
-        rotation=Quaternion.Euler(0, rotation.eulerAngles.y- offset, 0);
-        transform.rotation = rotation;
+        if (active)
+        {
+            Quaternion rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position, transform.up);
+            rotation = Quaternion.Euler(0, rotation.eulerAngles.y - assistantOffset, rotation.eulerAngles.z);
+            transform.rotation = rotation;
+        }
+    }
+
+    public void Active(bool activate)
+    {
+        active = activate;
     }
 }
