@@ -121,6 +121,14 @@ public class RobotArmController : MonoBehaviour
         }
     }
 
+    public void ResetButtons()
+    {
+        foreach (PushButton button in buttons)
+        {
+            button.Reset();
+        }
+    }
+
     /// <summary>
     /// Update axes
     /// </summary>

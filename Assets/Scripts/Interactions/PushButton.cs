@@ -71,6 +71,8 @@ public class PushButton : MonoBehaviour
     public void Reset()
     {
         rb.transform.localPosition = original;
+        rb.isKinematic = false;
+        rb.velocity = Vector3.zero;
         triggered = false;
     }
 

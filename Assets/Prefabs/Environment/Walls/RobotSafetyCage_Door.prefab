@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 5112712146168687396}
   - component: {fileID: 8168363204644873345}
   - component: {fileID: 6250763492931555403}
-  m_Layer: 0
+  - component: {fileID: 9144673243844748308}
+  - component: {fileID: 8996191307912025272}
+  m_Layer: 3
   m_Name: RobotSafetyCage_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,3 +83,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9144673243844748308
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5602425397548806558}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.00093080447, y: 0.009970173, z: 0.020509873}
+  m_Center: {x: 0.000031207444, y: 0.009764341, z: 0.0014871074}
+--- !u!65 &8996191307912025272
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5602425397548806558}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0009308045, y: 0.009569014, z: 0.020509873}
+  m_Center: {x: 0.0000005830824, y: -0.0094663445, z: 0.0014871072}
