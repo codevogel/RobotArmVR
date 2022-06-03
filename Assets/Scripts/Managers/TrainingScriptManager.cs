@@ -104,7 +104,14 @@ public class TrainingScriptManager : MonoBehaviour
                 break;
             //Switch Axis
             case 4:
-                if (currentSubPhase.subPhaseNumber == 10)
+                if (currentSubPhase.subPhaseNumber == 11)
+                {
+                    Newtime();
+                }
+                break;
+            //Switch Mode
+            case 5:
+                if (currentSubPhase.subPhaseNumber == 16)
                 {
                     Newtime();
                 }
@@ -147,7 +154,7 @@ public class TrainingScriptManager : MonoBehaviour
     private void CheckTimeLineDifference(int newTime)
     {
         int timeDifference = Math.Abs(Mathf.RoundToInt((float)timeLine.time * 60) - newTime);
-        if (timeDifference > 5)
+        if (timeDifference > 15)
         {
             StartCoroutine(Teleport(newTime));
         }
