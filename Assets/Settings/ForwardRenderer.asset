@@ -48,10 +48,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e86daa1d60d6a4bbfb4c4bbb2dfd6f, type: 3}
   m_Name: Volumetric Light
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   settings:
+    downsampling: 1
+    stage: 0
+    intensity: 2.5
+    scattering: -0.5
+    steps: 24
+    maxDistance: 75
+    jitter: 250
+    gaussBlur:
+      amount: 1
+      samples: 1
     material: {fileID: 0}
-    renderPassEvent: 600
+    renderPassEvent: 550
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
