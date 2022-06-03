@@ -17,6 +17,7 @@ public class TutorialGoalRotation : MonoBehaviour
 
     int _currentStepIndex;
     Coroutine _currentCoroutine;
+    private bool tutorialActive;
 
     /// <summary>
     /// Resets the active goal rotation and starts with the first one.
@@ -41,6 +42,7 @@ public class TutorialGoalRotation : MonoBehaviour
         };
 
         RecordRotation();
+        tutorialActive = true;
     }
 
     private void FixedUpdate()
@@ -159,13 +161,16 @@ public class TutorialGoalRotation : MonoBehaviour
 
     public void ResetRotation()
     {
-        var currentStep = _steps[_currentStepIndex];
-
-        Assert.IsNotNull(currentStep.Highlight, "Cannot call ResetRotation at this point, as no rotations have been recorded.");
-
-        for (int i = 0; i < currentStep.InitialRotations.Length; i++)
+        if (tutorialActive)
         {
-            _trackPerStep[i].xDrive = currentStep.InitialRotations[i];
+            var currentStep = _steps[_currentStepIndex];
+
+            Assert.IsNotNull(currentStep.Highlight, "Cannot call ResetRotation at this point, as no rotations have been recorded.");
+
+            for (int i = 0; i < currentStep.InitialRotations.Length; i++)
+            {
+                _trackPerStep[i].xDrive = currentStep.InitialRotations[i];
+            }
         }
     }
 
