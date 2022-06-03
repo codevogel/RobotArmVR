@@ -95,22 +95,29 @@ public class TrainingScriptManager : MonoBehaviour
                     Newtime();
                 }
                 break;
-            //Safety Button
+            //Snap turn
             case 3:
+                if (currentSubPhase.subPhaseNumber == 10)
+                {
+                    Newtime();
+                }
+                break;
+            //Safety Button
+            case 4:
                 if (currentSubPhase.subPhaseNumber == 3)
                 {
                     Newtime();
                 }
                 break;
             //Switch Axis
-            case 4:
+            case 5:
                 if (currentSubPhase.subPhaseNumber == 12)
                 {
                     Newtime();
                 }
                 break;
             //Switch Mode
-            case 5:
+            case 6:
                 if (currentSubPhase.subPhaseNumber == 17)
                 {
                     Newtime();

@@ -115,6 +115,10 @@ public class PlayerController : MonoBehaviour
         if (leftRight.Equals(HandType.LEFT))
         {
             HandManager.Instance.LeftController.teleportControls.SwitchToTeleport(leftValues.JoystickAxis.y);
+            if (Mathf.Abs(controllerValues.JoystickAxis.y) > 0.75f)
+            {
+                TrainingScriptManager.Instance.ActivateTrigger(3);
+            }
         }
     }
 

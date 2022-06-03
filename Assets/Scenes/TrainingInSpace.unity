@@ -9320,11 +9320,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a6fcf4a5c8dcb9c40bb9842d408801a9, type: 2}
+    - target: {fileID: 7862801334095567662, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
+      propertyPath: charWaitTime
+      value: 0.07
+      objectReference: {fileID: 0}
     - target: {fileID: 9134291806798011141, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 812430452239736932, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
 --- !u!4 &1491068657 stripped
 Transform:
@@ -9459,6 +9464,10 @@ PrefabInstance:
     - target: {fileID: 1083607476494426571, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: ActivateTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083607476494426571, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1343401377853914878, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: buttonAudioSource
@@ -9638,7 +9647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8073630175659533706, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8073630175659533706, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -10699,6 +10708,22 @@ MonoBehaviour:
         - m_Target: {fileID: 547014222}
           m_TargetAssemblyTypeName: TypeWriterText, Assembly-CSharp
           m_MethodName: Write
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - <SignalAsset>k__BackingField: {fileID: 11400000, guid: 2e08121a645d94aae89c03b588ad4f14, type: 2}
+    <Events>k__BackingField:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 874548782}
+          m_TargetAssemblyTypeName: TypeWriterText, Assembly-CSharp
+          m_MethodName: 
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
