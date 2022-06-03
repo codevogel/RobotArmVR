@@ -19,14 +19,14 @@ public class ChangeMaterialOnTriggerEnter : MonoBehaviour
                 break;
 
             case 1:
-                if (CompareTag("Hues2"))
+                if (CompareTag("Hue2"))
                 {
                     transform.GetComponent<MeshRenderer>().material = materialBloom;
                 }
                 break;
 
             case 2:
-                if (CompareTag("Hues3"))
+                if (CompareTag("Hue3"))
                 {
                     transform.GetComponent<MeshRenderer>().material = materialBloom;
                 }
@@ -46,14 +46,14 @@ public class ChangeMaterialOnTriggerEnter : MonoBehaviour
                 break;
 
             case 1:
-                if (CompareTag("Hues2"))
+                if (CompareTag("Hue2"))
                 {
                     transform.GetComponent<MeshRenderer>().material = materialOG;
                 }
                 break;
 
             case 2:
-                if (CompareTag("Hues3"))
+                if (CompareTag("Hue3"))
                 {
                     transform.GetComponent<MeshRenderer>().material = materialOG;
                 }

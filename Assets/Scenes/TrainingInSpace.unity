@@ -536,6 +536,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1384024340}
     m_Modifications:
+    - target: {fileID: 4962444618184139458, guid: 5eb228f90ff6946fc8fc4b0b913308fb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e563d50027191844ca487b06a803e446, type: 2}
     - target: {fileID: 5989700330255287538, guid: 5eb228f90ff6946fc8fc4b0b913308fb, type: 3}
       propertyPath: m_Name
       value: SlidingDoorParent (1)
@@ -595,6 +599,10 @@ PrefabInstance:
     - target: {fileID: 5989700330255287540, guid: 5eb228f90ff6946fc8fc4b0b913308fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908197913676317463, guid: 5eb228f90ff6946fc8fc4b0b913308fb, type: 3}
+      propertyPath: m_TagString
+      value: Hue3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5989700331315911495, guid: 5eb228f90ff6946fc8fc4b0b913308fb, type: 3}
@@ -1824,6 +1832,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1384024340}
     m_Modifications:
+    - target: {fileID: 4962444618184139458, guid: 5eb228f90ff6946fc8fc4b0b913308fb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e563d50027191844ca487b06a803e446, type: 2}
     - target: {fileID: 5989700330255287538, guid: 5eb228f90ff6946fc8fc4b0b913308fb, type: 3}
       propertyPath: m_Name
       value: SlidingDoorParent (2)
@@ -1883,6 +1895,10 @@ PrefabInstance:
     - target: {fileID: 5989700330255287540, guid: 5eb228f90ff6946fc8fc4b0b913308fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908197913676317463, guid: 5eb228f90ff6946fc8fc4b0b913308fb, type: 3}
+      propertyPath: m_TagString
+      value: Hue2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5989700331315911495, guid: 5eb228f90ff6946fc8fc4b0b913308fb, type: 3}
@@ -8111,6 +8127,17 @@ ReflectionProbe:
   m_UseOcclusionCulling: 1
   m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
+--- !u!114 &1367222443 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1836624733704173314, guid: 5eb228f90ff6946fc8fc4b0b913308fb, type: 3}
+  m_PrefabInstance: {fileID: 222661237}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a8f989f2923a8d43a5646777d47b204, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1384024339
 GameObject:
   m_ObjectHideFlags: 0
@@ -10634,6 +10661,8 @@ PlayableDirector:
     value: {fileID: 166642457}
   - key: {fileID: 8524222575636886607, guid: 6767f379066cd1046a83d817a86d2393, type: 2}
     value: {fileID: 1932568519}
+  - key: {fileID: -6402678682596176938, guid: 6767f379066cd1046a83d817a86d2393, type: 2}
+    value: {fileID: 1942353522}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1690276448
@@ -10934,6 +10963,22 @@ MonoBehaviour:
         - m_Target: {fileID: 553588556}
           m_TargetAssemblyTypeName: TrainingScriptManager, Assembly-CSharp
           m_MethodName: ChangePhase
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - <SignalAsset>k__BackingField: {fileID: 11400000, guid: eccde7487f8ce404e908f631795f362e, type: 2}
+    <Events>k__BackingField:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1367222443}
+          m_TargetAssemblyTypeName: ChangeMaterialOnTriggerEnter, Assembly-CSharp
+          m_MethodName: HighlightObject
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -12564,6 +12609,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936630629}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1942353522 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5989700329500299299, guid: 5eb228f90ff6946fc8fc4b0b913308fb, type: 3}
+  m_PrefabInstance: {fileID: 2140617640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1958783091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13595,6 +13645,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1384024340}
     m_Modifications:
+    - target: {fileID: 4962444618184139458, guid: 5eb228f90ff6946fc8fc4b0b913308fb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e563d50027191844ca487b06a803e446, type: 2}
     - target: {fileID: 5989700330025486728, guid: 5eb228f90ff6946fc8fc4b0b913308fb, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -13662,6 +13716,10 @@ PrefabInstance:
     - target: {fileID: 5989700330255287540, guid: 5eb228f90ff6946fc8fc4b0b913308fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908197913676317463, guid: 5eb228f90ff6946fc8fc4b0b913308fb, type: 3}
+      propertyPath: m_TagString
+      value: Hue1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5989700331315911495, guid: 5eb228f90ff6946fc8fc4b0b913308fb, type: 3}

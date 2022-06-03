@@ -90,7 +90,7 @@ public class TrainingScriptManager : MonoBehaviour
                 break;
             //Radio case
             case 2:
-                if (currentSubPhase.subPhaseNumber == 8)
+                if (currentSubPhase.subPhaseNumber == 9)
                 {
                     Newtime();
                 }
@@ -104,14 +104,14 @@ public class TrainingScriptManager : MonoBehaviour
                 break;
             //Switch Axis
             case 4:
-                if (currentSubPhase.subPhaseNumber == 11)
+                if (currentSubPhase.subPhaseNumber == 12)
                 {
                     Newtime();
                 }
                 break;
             //Switch Mode
             case 5:
-                if (currentSubPhase.subPhaseNumber == 16)
+                if (currentSubPhase.subPhaseNumber == 17)
                 {
                     Newtime();
                 }
