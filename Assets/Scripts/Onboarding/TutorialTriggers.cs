@@ -30,7 +30,7 @@ public class TutorialTriggers : MonoBehaviour
             if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
             {
                 Timeline.Pause();
-                Timeline.time = 4068 / 60f;
+                Timeline.time = 4174 / 60f;
                 Timeline.Resume();
             }
         }

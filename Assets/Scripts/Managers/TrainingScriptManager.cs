@@ -123,6 +123,26 @@ public class TrainingScriptManager : MonoBehaviour
                     Newtime();
                 }
                 break;
+            //Left / Right
+            case 7: if(currentSubPhase.subPhaseNumber == 18)
+                {
+                    Newtime();
+                }
+                break;
+            //Back / Forth
+            case 8:
+                if (currentSubPhase.subPhaseNumber == 19)
+                {
+                    Newtime();
+                }
+                break;
+            //Up / Down
+            case 9:
+                if (currentSubPhase.subPhaseNumber == 20)
+                {
+                    Newtime();
+                }
+                break;
         }
     }
 

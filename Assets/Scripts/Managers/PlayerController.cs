@@ -120,6 +120,22 @@ public class PlayerController : MonoBehaviour
                 TrainingScriptManager.Instance.ActivateTrigger(3);
             }
         }
+
+        if (leftRight.Equals(HandType.RIGHT))
+        {
+            if (Mathf.Abs(controllerValues.JoystickAxis.x) > 0.75f)
+            {
+                TrainingScriptManager.Instance.ActivateTrigger(7);
+            }
+        }
+
+        if (leftRight.Equals(HandType.RIGHT))
+        {
+            if (Mathf.Abs(controllerValues.JoystickAxis.y) > 0.75f)
+            {
+                TrainingScriptManager.Instance.ActivateTrigger(8);
+            }
+        }
     }
 
     /// <summary>
