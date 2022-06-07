@@ -1988,15 +1988,15 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1384024340}
+    m_TransformParent: {fileID: 967421760}
     m_Modifications:
     - target: {fileID: 7241608508132319100, guid: 8969021f12399104d83da2256a637fdb, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7241608508132319100, guid: 8969021f12399104d83da2256a637fdb, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.8450525
+      value: 3.8450522
       objectReference: {fileID: 0}
     - target: {fileID: 7241608508132319100, guid: 8969021f12399104d83da2256a637fdb, type: 3}
       propertyPath: m_LocalScale.y
@@ -2004,7 +2004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7241608508132319100, guid: 8969021f12399104d83da2256a637fdb, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.2743582
+      value: 1.274358
       objectReference: {fileID: 0}
     - target: {fileID: 7241608508132319100, guid: 8969021f12399104d83da2256a637fdb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6269,6 +6269,53 @@ MonoBehaviour:
   - {fileID: 6104183948583313974}
   - {fileID: 1859488730}
   player: {fileID: 1646485607}
+--- !u!1 &967421759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 967421760}
+  - component: {fileID: 967421761}
+  m_Layer: 0
+  m_Name: Doors
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &967421760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967421759}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1016569078}
+  - {fileID: 1952120351}
+  - {fileID: 292330188}
+  m_Father: {fileID: 1384024340}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &967421761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967421759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a8f989f2923a8d43a5646777d47b204, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialBloom: {fileID: 2100000, guid: 4a04b47b8edf18b46a6bf60748a2e3e6, type: 2}
 --- !u!1001 &969790311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6565,23 +6612,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1384024340}
+    m_TransformParent: {fileID: 967421760}
     m_Modifications:
+    - target: {fileID: 919132148314079148, guid: 8969021f12399104d83da2256a637fdb, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 7241608508132319100, guid: 8969021f12399104d83da2256a637fdb, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7241608508132319100, guid: 8969021f12399104d83da2256a637fdb, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.8450525
-      objectReference: {fileID: 0}
-    - target: {fileID: 7241608508132319100, guid: 8969021f12399104d83da2256a637fdb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.2568115
+      value: 3.8450527
       objectReference: {fileID: 0}
     - target: {fileID: 7241608508132319100, guid: 8969021f12399104d83da2256a637fdb, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.2743582
+      value: 1.2743583
       objectReference: {fileID: 0}
     - target: {fileID: 7241608508132319100, guid: 8969021f12399104d83da2256a637fdb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8226,9 +8273,7 @@ Transform:
   m_Children:
   - {fileID: 1847616671}
   - {fileID: 1778554759}
-  - {fileID: 1016569078}
-  - {fileID: 1952120351}
-  - {fileID: 292330188}
+  - {fileID: 967421760}
   m_Father: {fileID: 1304311632}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10668,6 +10713,7 @@ GameObject:
   - component: {fileID: 1690276454}
   - component: {fileID: 1690276457}
   - component: {fileID: 1690276456}
+  - component: {fileID: 1690276458}
   - component: {fileID: 1690276453}
   m_Layer: 0
   m_Name: Onboarding Director
@@ -10813,6 +10859,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 73f1f6a1d2188f546aa26e651ea7df8b, type: 2}
     - {fileID: 11400000, guid: 64213ea1627e8b94fa84b66954136549, type: 2}
     - {fileID: 0}
+    - {fileID: 11400000, guid: eccde7487f8ce404e908f631795f362e, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -10910,6 +10957,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls: []
     - m_PersistentCalls:
         m_Calls: []
 --- !u!114 &1690276451
@@ -11108,6 +11157,35 @@ MonoBehaviour:
         - m_Target: {fileID: 1690276451}
           m_TargetAssemblyTypeName: ControlDirectorTime, Assembly-CSharp
           m_MethodName: SetTime
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1690276458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690276446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 488a1a06be5707a4799e285f2e9fbb39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SignalAssetEventPairs:
+  - <SignalAsset>k__BackingField: {fileID: 11400000, guid: eccde7487f8ce404e908f631795f362e, type: 2}
+    <Events>k__BackingField:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 967421761}
+          m_TargetAssemblyTypeName: ChangeMaterialOnTriggerEnter, Assembly-CSharp
+          m_MethodName: HighlightObject
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -12726,15 +12804,19 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1384024340}
+    m_TransformParent: {fileID: 967421760}
     m_Modifications:
+    - target: {fileID: 919132148314079148, guid: 8969021f12399104d83da2256a637fdb, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 7241608508132319100, guid: 8969021f12399104d83da2256a637fdb, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7241608508132319100, guid: 8969021f12399104d83da2256a637fdb, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.8450525
+      value: 3.8450527
       objectReference: {fileID: 0}
     - target: {fileID: 7241608508132319100, guid: 8969021f12399104d83da2256a637fdb, type: 3}
       propertyPath: m_LocalScale.y
