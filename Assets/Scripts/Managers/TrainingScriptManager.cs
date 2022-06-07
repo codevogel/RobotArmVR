@@ -125,6 +125,14 @@ public class TrainingScriptManager : MonoBehaviour
         textWriter.Clear();
     }
 
+    public void ChangePhaseAndSubPhase(int phaseNumber, int subPhaseNumber)
+    {
+        textWriter.Clear();
+        currentPhase = phases[phaseNumber];
+        currentSubPhase = currentPhase.subPhases[subPhaseNumber];
+        CheckTimeLineDifference(currentSubPhase.startTime);
+    }
+
     public void ChangePhase(int phaseNumber)
     {
         currentPhase = phases[phaseNumber];
