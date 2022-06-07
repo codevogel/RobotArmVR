@@ -36,6 +36,31 @@ MonoBehaviour:
       a: 1
     sunBlurRadius: 3.04
     maxRadius: 0.75
+--- !u!114 &-2092613339315814757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e86daa1d60d6a4bbfb4c4bbb2dfd6f, type: 3}
+  m_Name: Volumetric Light
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    downsampling: 1
+    material: {fileID: 0}
+    renderPassEvent: 550
+    intensity: 2.5
+    scattering: -0.5
+    steps: 24
+    maxDistance: 75
+    jitter: 250
+    gaussBlur:
+      amount: 1
+      samples: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,8 +73,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
   m_Name: ForwardRenderer
   m_EditorClassIdentifier: 
-  m_RendererFeatures: []
-  m_RendererFeatureMap: 
+  m_RendererFeatures:
+  - {fileID: 8957852621965907374}
+  m_RendererFeatureMap: ae5594ba7faf507c
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
@@ -114,3 +140,28 @@ MonoBehaviour:
       a: 1
     sunBlurRadius: 2.5
     maxRadius: 0.75
+--- !u!114 &8957852621965907374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e86daa1d60d6a4bbfb4c4bbb2dfd6f, type: 3}
+  m_Name: Volumetric Light
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    downsampling: 2
+    material: {fileID: 2100000, guid: 69418dc2e7d9a2b4889ff9f03fca654e, type: 2}
+    renderPassEvent: 550
+    intensity: 2.76
+    scattering: -0.43
+    steps: 25
+    maxDistance: 75
+    jitter: 120
+    gaussBlur:
+      amount: 1
+      samples: 4
