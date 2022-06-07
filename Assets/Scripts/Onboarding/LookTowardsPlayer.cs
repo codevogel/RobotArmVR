@@ -8,15 +8,15 @@ public class LookTowardsPlayer : MonoBehaviour
     private bool active = true;
 
     [SerializeField]
-    Transform _object;
+    Transform _target;
 
     [SerializeField]
     MinMaxSliderFloat _headVerticalRotationBounds;
 
     private void Awake()
     {
-        if (_object == null)
-            _object = Camera.main.transform;
+        if (_target == null)
+            _target = Camera.main.transform;
     }
 
     // Update is called once per frame
@@ -24,22 +24,16 @@ public class LookTowardsPlayer : MonoBehaviour
     {
         if (active)
         {
-            Vector3 direction = transform.position - _object.position;
+            // make the head look at the target
+            transform.LookAt(_target);
 
-            Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
-            rotation = Quaternion.Euler(0, rotation.eulerAngles.y - assistantOffset, rotation.eulerAngles.z);
+            // clamp the vertical swivel
+            var oldRotation = transform.localRotation.eulerAngles;
+            Debug.Log("Before clamp: " + oldRotation.x);
+            oldRotation.x = Mathf.Clamp(oldRotation.x > 180 ? (oldRotation.x - 360) : oldRotation.x, _headVerticalRotationBounds.Min, _headVerticalRotationBounds.Max);
 
-            var desiredAngle = Vector3.SignedAngle(transform.position, direction, Vector3.right);
-
-            Debug.Log("pre-clamp angle: " + desiredAngle);
-
-            desiredAngle = Mathf.Clamp(desiredAngle, _headVerticalRotationBounds.Min, _headVerticalRotationBounds.Max);
-
-            Debug.Log("post-clamp angle: " + desiredAngle);
-
-            rotation = rotation * Quaternion.Euler(0, 0, desiredAngle);
-
-            transform.rotation = rotation;
+            // swap x & z due to weird model rotations
+            transform.localRotation = Quaternion.Euler(oldRotation.z, oldRotation.y + assistantOffset, oldRotation.x);
         }
     }
 
