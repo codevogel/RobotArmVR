@@ -6,7 +6,16 @@ public class TouchButton : MonoBehaviour
 {
     [SerializeField] private int phaseNumber;
     [SerializeField] private int subPhaseNumber;
-    [SerializeField] private bool isPhaseChanger;
+    [SerializeField] private bool isPhaseChanger, isSkipButton;
+    private PhaseChanger phaseChanger;
+
+    private void Start()
+    {
+        if (isSkipButton)
+        {
+            phaseChanger = transform.GetComponentInParent<PhaseChanger>();
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,6 +26,12 @@ public class TouchButton : MonoBehaviour
                 TrainingScriptManager.Instance.ChangePhaseAndSubPhase(phaseNumber,subPhaseNumber);
                 return;
             }
+
+            if (isSkipButton)
+            {
+                phaseChanger.DeactivateWarning();
+            }
+
             Application.Quit();
         }
     }
