@@ -5,21 +5,18 @@ using UnityEngine;
 public class ChangeMaterialOnTriggerEnter : MonoBehaviour
 {
     [SerializeField] private Material materialBloom;
-    [SerializeField] private Material materialOG;
+    private List<Transform> children = new List<Transform>();
 
-    public void HighlightObject()
+    private void Start()
     {
-        if (gameObject.CompareTag("Hue"))
+        foreach (Transform child in transform)
         {
-            transform.GetComponent<MeshRenderer>().material = materialBloom;
+            children.Add(child.GetChild(3));
         }
     }
 
-    public void DeHighlightObject()
+    public void HighlightObject(int trigger)
     {
-        if (gameObject.CompareTag("Hue"))
-        {
-            transform.GetComponent<MeshRenderer>().material = materialOG;
-        }
+        children[trigger].GetComponent<MeshRenderer>().material = materialBloom;
     }
 }

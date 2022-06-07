@@ -58,6 +58,7 @@ public class PushButton : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.DrawRay(transform.position, transform.up * 10);
         // Rise button if not on original 
         if (rb.transform.localPosition.y < original.y)
         {
@@ -70,6 +71,8 @@ public class PushButton : MonoBehaviour
     public void Reset()
     {
         rb.transform.localPosition = original;
+        rb.isKinematic = false;
+        rb.velocity = Vector3.zero;
         triggered = false;
     }
 
@@ -78,4 +81,5 @@ public class PushButton : MonoBehaviour
         frozen = freeze;
         rb.isKinematic = freeze;
     }
+
 }

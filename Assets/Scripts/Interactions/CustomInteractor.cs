@@ -8,7 +8,7 @@ using static HandManager;
 /// Extends from XRDirectInteractor.
 /// Used to change hand poses and store held objects.
 /// </summary>
-public class CustomInteractor : XRDirectInteractor
+public class CustomInteractor : MonoBehaviour
 {
     private HandType leftOrRight;
 
@@ -20,18 +20,16 @@ public class CustomInteractor : XRDirectInteractor
     /// <summary>
     /// Called when object is attached to this interactor.
     /// </summary>
-    /// <param name="args">The SelectEnterEventArgs</param>
-    public void OnAttachObject(SelectEnterEventArgs args)
+    public void OnAttachObject(Transform attachedObject )
     {
-        HandManager.Instance.SetHeldObject(leftOrRight, args.interactableObject.transform);
+        HandManager.Instance.SetHeldObject(leftOrRight, attachedObject);
         HandManager.Instance.ChangePose(HandPose.IDLE, HandPose.GRAB, leftOrRight);
     }
 
     /// <summary>
     /// Called when object is detached from this interactor.
     /// </summary>
-    /// <param name="args">The SelectEnterEventArgs</param>
-    public void OnDetachObject(SelectExitEventArgs args)
+    public void OnDetachObject()
     {
         HandManager.Instance.SetHeldObject(leftOrRight, null);
         HandManager.Instance.ChangePose(HandPose.GRAB, HandPose.IDLE, leftOrRight);

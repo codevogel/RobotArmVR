@@ -12,6 +12,9 @@ public class IRC5Controller : MonoBehaviour
     [field: SerializeField]
     private AudioClip clip;
 
+    [field: SerializeField]
+    private Transform canvas;
+
     private bool emergencyState;
 
     private void Start()
@@ -30,5 +33,10 @@ public class IRC5Controller : MonoBehaviour
             return;
         }
         light.gameObject.SetActive(true);
+    }
+    
+    public void ActivateCanvas(bool on)
+    {
+        canvas.gameObject.SetActive(on);
     }
 }

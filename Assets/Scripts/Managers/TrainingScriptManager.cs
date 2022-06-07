@@ -76,14 +76,42 @@ public class TrainingScriptManager : MonoBehaviour
         {
             //Teleport case
             case 0:
-                if (currentSubPhase.subPhaseNumber== 6)
+                if (currentSubPhase.subPhaseNumber== 5)
                 {
                     Newtime();
                 }
                 break;
-            //Radio case
+            //Point case
             case 1:
+                if (currentSubPhase.subPhaseNumber == 7)
+                { 
+                    Newtime();
+                }
+                break;
+            //Radio case
+            case 2:
+                if (currentSubPhase.subPhaseNumber == 8)
+                {
+                    Newtime();
+                }
+                break;
+            //Safety Button
+            case 3:
+                if (currentSubPhase.subPhaseNumber == 3)
+                {
+                    Newtime();
+                }
+                break;
+            //Switch Axis
+            case 4:
                 if (currentSubPhase.subPhaseNumber == 11)
+                {
+                    Newtime();
+                }
+                break;
+            //Switch Mode
+            case 5:
+                if (currentSubPhase.subPhaseNumber == 16)
                 {
                     Newtime();
                 }
@@ -126,7 +154,7 @@ public class TrainingScriptManager : MonoBehaviour
     private void CheckTimeLineDifference(int newTime)
     {
         int timeDifference = Math.Abs(Mathf.RoundToInt((float)timeLine.time * 60) - newTime);
-        if (timeDifference > 5)
+        if (timeDifference > 15)
         {
             StartCoroutine(Teleport(newTime));
         }

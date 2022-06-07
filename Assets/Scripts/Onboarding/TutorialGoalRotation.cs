@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
@@ -12,8 +13,25 @@ public class TutorialGoalRotation : MonoBehaviour
     [SerializeField] UnityEvent _onAdvancedStep;
     [SerializeField] UnityEvent _onCompletion;
 
+    [SerializeField] ArticulationBody[] _trackPerStep;
+
+    [SerializeField]
+    private LinearMovement linearMovement;
+
+    private ArticulationDrive[] initPosition= new ArticulationDrive[6];
+
     int _currentStepIndex;
     Coroutine _currentCoroutine;
+    private bool tutorialActive;
+
+
+    private void Start()
+    {
+        for (int x = 0; x < initPosition.Length; x++)
+        {
+            initPosition[x] = _trackPerStep[x].xDrive;
+        }
+    }
 
     /// <summary>
     /// Resets the active goal rotation and starts with the first one.
@@ -36,6 +54,10 @@ public class TutorialGoalRotation : MonoBehaviour
             Axis.Z => Quaternion.Euler(0, 0, currentStep.TargetRotation),
             _ => throw new System.NotImplementedException()
         };
+
+        RecordRotation();
+
+        tutorialActive = true;
     }
 
     private void FixedUpdate()
@@ -103,6 +125,8 @@ public class TutorialGoalRotation : MonoBehaviour
             currentStep = _steps[_currentStepIndex];
             currentStep.Highlight.gameObject.SetActive(true);
 
+            RecordRotation();
+
             _onAdvancedStep.Invoke();
         }
     }
@@ -130,10 +154,54 @@ public class TutorialGoalRotation : MonoBehaviour
             currentStep = _steps[_currentStepIndex];
             currentStep.Highlight.gameObject.SetActive(true);
 
+            RecordRotation();
+
             _onAdvancedStep.Invoke();
 
             this.enabled = false;
         }
+    }
+
+    private void RecordRotation()
+    {
+        var currentStep = _steps[_currentStepIndex];
+
+        currentStep.InitialRotations = new ArticulationDrive[_trackPerStep.Length];
+
+        for (int i = 0; i < _trackPerStep.Length; i++)
+        {
+            currentStep.InitialRotations[i] = _trackPerStep[i].xDrive;
+        }
+    }
+
+    public void ResetRotation()
+    {
+        if (tutorialActive)
+        {
+            var currentStep = _steps[_currentStepIndex];
+
+            Assert.IsNotNull(currentStep.Highlight, "Cannot call ResetRotation at this point, as no rotations have been recorded.");
+
+            for (int i = 0; i < currentStep.InitialRotations.Length; i++)
+            {
+                _trackPerStep[i].xDrive = currentStep.InitialRotations[i];
+                StartCoroutine(WaitForDrive());
+            }
+        }
+        else
+        {
+            for (int x=0; x<initPosition.Length;x++)
+            {
+                _trackPerStep[x].xDrive = initPosition[x];
+                StartCoroutine(WaitForDrive());
+            }
+        }
+    }
+
+    private IEnumerator WaitForDrive()
+    {
+        yield return new WaitForSeconds(0.2f);
+        linearMovement.followTarget.position = _trackPerStep[5].transform.position;
     }
 
     [System.Serializable]
@@ -150,6 +218,7 @@ public class TutorialGoalRotation : MonoBehaviour
 
         [field: SerializeField, Tooltip("The axis to be tested.")]
         public Axis Axis { get; private set; }
+        public ArticulationDrive[] InitialRotations { get; set; }
     }
     public enum Axis { X, Y, Z }
 }

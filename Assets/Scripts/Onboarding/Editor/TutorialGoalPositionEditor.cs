@@ -30,6 +30,8 @@ public class TutorialGoalPositionEditor : Editor
                 if (prop.GetArrayElementAtIndex(i).objectReferenceValue is OnTriggerColliderFilter triggerFilter)
                 {
                     triggerFilter.Filter = _triggerFilter;
+                    Undo.RecordObject(triggerFilter, "set filter of trigger");
+                    PrefabUtility.RecordPrefabInstancePropertyModifications(triggerFilter);
                 }
             }
         }

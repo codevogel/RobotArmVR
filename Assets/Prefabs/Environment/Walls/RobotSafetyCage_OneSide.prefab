@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 5166769495932752358}
   - component: {fileID: 8078286674836741699}
   - component: {fileID: 6340823805622659721}
-  m_Layer: 0
+  - component: {fileID: 3100309030460659385}
+  m_Layer: 3
   m_Name: RobotSafetyCage_OneSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5166769495932752358
 Transform:
@@ -60,6 +61,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a29065aa109484788895c030efe2fe62, type: 2}
+  - {fileID: 2100000, guid: 1c80494eb1b2ba441b3e7bf513418ba4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -81,3 +83,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3100309030460659385
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5548397184716966748}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.001, y: 0.029000215, z: 0.01853098}
+  m_Center: {x: 0, y: -0.019761438, z: 0.011234505}
