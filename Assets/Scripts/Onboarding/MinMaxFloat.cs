@@ -1,5 +1,5 @@
 ﻿[System.Serializable]
-    struct MinMaxSliderFloat
+    struct MinMaxFloat
     {
         public float Min;
         public float Max;

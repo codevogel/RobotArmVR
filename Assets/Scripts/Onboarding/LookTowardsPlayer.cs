@@ -11,7 +11,7 @@ public class LookTowardsPlayer : MonoBehaviour
     Transform _target;
 
     [SerializeField]
-    MinMaxSliderFloat _headVerticalRotationBounds;
+    MinMaxFloat _headVerticalRotationBounds;
 
     private void Awake()
     {
