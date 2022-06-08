@@ -284,6 +284,8 @@ MonoBehaviour:
     - {fileID: 2145913579039751895}
     - {fileID: 642587911151777300}
     - {fileID: -1155300635438742402}
+    - {fileID: 3034333190890846395}
+    - {fileID: -493973450985650423}
 --- !u!114 &-8339421499100668203
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1961,7 +1963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ccb13833534d7e4092bbebe1653175b, type: 3}
   m_Name: Int Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 61.800000000000004
+  m_Time: 61.65
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: eccde7487f8ce404e908f631795f362e, type: 2}
@@ -4658,6 +4660,23 @@ MonoBehaviour:
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 00fe249c2e3e8a443b9de99e7957ed20, type: 2}
   <Parameter>k__BackingField: 4
+--- !u!114 &-493973450985650423
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4eb990addad4154c8315fe431061c3f, type: 3}
+  m_Name: Bool Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 92.04999999999981
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: c56cc40473997d143aad1d645229949d, type: 2}
+  <Parameter>k__BackingField: 1
 --- !u!114 &-473330777630528732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10284,6 +10303,23 @@ MonoBehaviour:
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 2e08121a645d94aae89c03b588ad4f14, type: 2}
   <Parameter>k__BackingField: Up/Down
+--- !u!114 &3034333190890846395
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4eb990addad4154c8315fe431061c3f, type: 3}
+  m_Name: Bool Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 29.466666666666708
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: c56cc40473997d143aad1d645229949d, type: 2}
+  <Parameter>k__BackingField: 0
 --- !u!114 &3058007060756457975
 MonoBehaviour:
   m_ObjectHideFlags: 1
