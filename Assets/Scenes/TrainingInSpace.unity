@@ -1634,6 +1634,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9ddea894cac7f54ba1ac91fe3d2df18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _target: {fileID: 0}
+  _headVerticalRotationBounds:
+    Min: 0
+    Max: 0
 --- !u!1 &168470200
 GameObject:
   m_ObjectHideFlags: 0
@@ -3616,7 +3620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a13fa261ad39c324ba0c8bb7a15bd4f7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a13fa261ad39c324ba0c8bb7a15bd4f7, type: 3}
@@ -9330,6 +9334,14 @@ PrefabInstance:
       propertyPath: isCanvas
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4603956465532249665, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
+      propertyPath: _headVerticalRotationBounds.Max
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603956465532249665, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
+      propertyPath: _headVerticalRotationBounds.Min
+      value: -30
+      objectReference: {fileID: 0}
     - target: {fileID: 5440537006630420935, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.471046e-15
@@ -9434,12 +9446,27 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a6fcf4a5c8dcb9c40bb9842d408801a9, type: 2}
+    - target: {fileID: 7862801334095567662, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
+      propertyPath: charWaitTime
+      value: 0.075
+      objectReference: {fileID: 0}
     - target: {fileID: 9134291806798011141, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
+--- !u!114 &1481137835 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6629669912686160341, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
+  m_PrefabInstance: {fileID: 1481137834}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874548782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 349d2faee6c798a44ab9804f1fe5e9be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1491068657 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4204393446070633531, guid: c2d09a00b45749f468a599e787521e19, type: 3}
@@ -9573,6 +9600,10 @@ PrefabInstance:
     - target: {fileID: 1083607476494426571, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: ActivateTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083607476494426571, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1343401377853914878, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: buttonAudioSource
@@ -9752,7 +9783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8073630175659533706, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8073630175659533706, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -10793,6 +10824,8 @@ PlayableDirector:
     value: {fileID: 166642457}
   - key: {fileID: 8524222575636886607, guid: 6767f379066cd1046a83d817a86d2393, type: 2}
     value: {fileID: 1932568519}
+  - key: {fileID: 5950008690019193177, guid: 6767f379066cd1046a83d817a86d2393, type: 2}
+    value: {fileID: 1771453967}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1690276448
@@ -10838,6 +10871,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - <SignalAsset>k__BackingField: {fileID: 11400000, guid: 2e08121a645d94aae89c03b588ad4f14, type: 2}
+    <Events>k__BackingField:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1481137835}
+          m_TargetAssemblyTypeName: WriteTitle, Assembly-CSharp
+          m_MethodName: WriteText
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &1690276450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10860,6 +10909,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 64213ea1627e8b94fa84b66954136549, type: 2}
     - {fileID: 0}
     - {fileID: 11400000, guid: eccde7487f8ce404e908f631795f362e, type: 2}
+    - {fileID: 11400000, guid: 2e08121a645d94aae89c03b588ad4f14, type: 2}
+    - {fileID: 11400000, guid: c56cc40473997d143aad1d645229949d, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -10957,6 +11008,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls: []
+    - m_PersistentCalls:
+        m_Calls: []
     - m_PersistentCalls:
         m_Calls: []
     - m_PersistentCalls:
@@ -11867,6 +11922,11 @@ Transform:
   m_Father: {fileID: 1636775645}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1771453967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8678063690930406499, guid: c2d09a00b45749f468a599e787521e19, type: 3}
+  m_PrefabInstance: {fileID: 369282882}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1775039881 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
@@ -12950,7 +13010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d43718b63b0efa24cb562cfbff9d3441, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d43718b63b0efa24cb562cfbff9d3441, type: 3}

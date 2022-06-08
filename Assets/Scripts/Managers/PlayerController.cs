@@ -115,6 +115,26 @@ public class PlayerController : MonoBehaviour
         if (leftRight.Equals(HandType.LEFT))
         {
             HandManager.Instance.LeftController.teleportControls.SwitchToTeleport(leftValues.JoystickAxis.y);
+            if (Mathf.Abs(controllerValues.JoystickAxis.x) > 0.75f)
+            {
+                TrainingScriptManager.Instance.ActivateTrigger(3);
+            }
+        }
+
+        if (leftRight.Equals(HandType.RIGHT))
+        {
+            if (Mathf.Abs(controllerValues.JoystickAxis.x) > 0.75f)
+            {
+                TrainingScriptManager.Instance.ActivateTrigger(7);
+            }
+        }
+
+        if (leftRight.Equals(HandType.RIGHT))
+        {
+            if (Mathf.Abs(controllerValues.JoystickAxis.y) > 0.75f)
+            {
+                TrainingScriptManager.Instance.ActivateTrigger(8);
+            }
         }
     }
 
@@ -188,7 +208,7 @@ public class PlayerController : MonoBehaviour
 
         bool pressed = controllerValues.TriggerPressed;
 
-        TrainingScriptManager.Instance.ActivateTrigger(3);
+        TrainingScriptManager.Instance.ActivateTrigger(4);
         robotController.SetPressureButton(pressed, leftRight);
     }
 
