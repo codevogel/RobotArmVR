@@ -43,6 +43,9 @@ public class TrainingScriptManager : MonoBehaviour
         phases = trainingScript.phases;
     }
 
+    /// <summary>
+    /// Activates the confirmation canvas with the restart message displayed
+    /// </summary>
     public void EndPhaseConfirmation()
     {
         confirmationCanvas.SetActive(true);
@@ -53,6 +56,9 @@ public class TrainingScriptManager : MonoBehaviour
         confirmationCanvas.transform.GetChild(2).gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Activates the confirmation canvas with the back message displayed
+    /// </summary>
     public void EndSubPhaseConfirmation()
     {
         confirmationCanvas.SetActive(true);
@@ -63,6 +69,9 @@ public class TrainingScriptManager : MonoBehaviour
         confirmationCanvas.transform.GetChild(2).gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Deactivates the confirmation canvas
+    /// </summary>
     public void ContinueButton()
     {
         confirmationCanvas.SetActive(true);
@@ -71,6 +80,10 @@ public class TrainingScriptManager : MonoBehaviour
         confirmationCanvas.transform.GetChild(2).gameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// Activates a change in subphase when a trigger is activated
+    /// </summary>
+    /// <param name="trigger">The specific trigger for a subphase</param>
     public void ActivateTrigger(int trigger)
     {
         switch (trigger)
@@ -120,12 +133,19 @@ public class TrainingScriptManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Closes the confirmation canvas
+    /// </summary>
     public void CloseCanvas()
     {
         confirmationCanvas.SetActive(false);
         textWriter.Clear();
     }
 
+    /// <summary>
+    /// Change between phases 
+    /// </summary>
+    /// <param name="phaseNumber">What phase it needs to change to</param>
     public void ChangePhase(int phaseNumber)
     {
         currentPhase = phases[phaseNumber];
@@ -135,6 +155,10 @@ public class TrainingScriptManager : MonoBehaviour
         CheckPhaseButton();
     }
 
+    /// <summary>
+    /// Change the current subphase within a phase
+    /// </summary>
+    /// <param name="subPhaseNumber">Subphase it needs to change to</param>
     public void ChangeSubPhase(int subPhaseNumber)
     {
         textWriter.Clear();
@@ -151,6 +175,10 @@ public class TrainingScriptManager : MonoBehaviour
         CheckPhaseButton();
     }
 
+    /// <summary>
+    /// Change the subphase through a button
+    /// </summary>
+    /// <param name="subPhaseNumber">Subphase it needs to change to</param>
     public void ChangebyButton(int subPhaseNumber)
     {
         changeByButton = true;
@@ -159,11 +187,18 @@ public class TrainingScriptManager : MonoBehaviour
         CheckPhaseButton();
     }
 
+    /// <summary>
+    /// Activates a button on the phasechange canvas
+    /// </summary>
     private void CheckPhaseButton()
     {
         phaseChanger.ActivatePhaseButton(currentPhase.phaseNumber);
     }
 
+    /// <summary>
+    /// Checks difference between timeline time and new (sub)phase time
+    /// </summary>
+    /// <param name="newTime">Time to change to</param>
     private void CheckTimeLineDifference(int newTime)
     {
         int timeDifference = Math.Abs(Mathf.RoundToInt((float)timeLine.time * 60) - newTime);
@@ -173,43 +208,67 @@ public class TrainingScriptManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Teleports the player with a fade transition
+    /// </summary>
+    /// <param name="newTime">Time to change to</param>
+    /// <returns></returns>
     private IEnumerator Teleport(int newTime)
     {
         fadeVisionCanvas.SetActive(true);
         fadeVisionCanvas.transform.GetChild(0).GetComponent<Animator>().SetTrigger("FadeVision");
+
+        //Wait on the animation of the vision fader
         yield return new WaitForSeconds(1f);
         Vector3 newPosition = phasesPosition[currentPhase.phaseNumber].subPhaseTransforms[currentSubPhase.subPhaseNumber].subPhaseTransform.position;
         player.transform.position = new Vector3(newPosition.x, player.transform.position.y, newPosition.z);
         timeLine.Pause();
         timeLine.time = newTime / 60f;
         timeLine.Resume();
+
+        //Wait on the animation of the vision coming back
         yield return new WaitForSeconds(1f);
 
         fadeVisionCanvas.SetActive(false);
     }
 
+    /// <summary>
+    /// Pauses the timeline
+    /// </summary>
     public void PauseTimeLine()
     {
         timeLineController.Pause();
     }
 
+    /// <summary>
+    /// Resumes the timeline
+    /// </summary>
     public void ResumeTimeLine()
     {
         timeLineController.Resume();
     }
 
+    /// <summary>
+    /// Set the timeline to the endtime of the current subphase
+    /// </summary>
     public void Newtime()
     {
         timeLineController.SetTime(currentSubPhase.endTime);
     }
 
     #region Json reading
+    /// <summary>
+    /// Holds all the phases in the JSON file
+    /// </summary>
     [Serializable]
     public class TrainingScript
     {
         public Phase[] phases;
     }
 
+    /// <summary>
+    /// A specific phase in the JSON file holds: name, number, all subphases for that phase, start and end time
+    /// </summary>
     [Serializable]
     public class Phase
     {
@@ -220,6 +279,9 @@ public class TrainingScriptManager : MonoBehaviour
         public float endTime;
     }
 
+    /// <summary>
+    /// A specific subphase within a phase holds: a number, message, start and end time
+    /// </summary>
     [Serializable]
     public class SubPhase
     {
@@ -231,12 +293,18 @@ public class TrainingScriptManager : MonoBehaviour
     #endregion
 
     #region Transform saving
+    /// <summary>
+    /// Holds a transform to teleport to
+    /// </summary>
     [Serializable]
     public class SubPhaseTransform
     {
         public Transform subPhaseTransform;
     }
 
+    /// <summary>
+    /// Holds a transform for that phase and a list of transforms for each subphase
+    /// </summary>
     [Serializable]
     public class PhaseTransform
     {
