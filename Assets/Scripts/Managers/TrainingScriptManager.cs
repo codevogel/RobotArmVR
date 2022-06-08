@@ -118,27 +118,27 @@ public class TrainingScriptManager : MonoBehaviour
                 break;
             //Switch Mode
             case 6:
-                if (currentSubPhase.subPhaseNumber == 17)
+                if (currentSubPhase.subPhaseNumber == 0)
                 {
                     Newtime();
                 }
                 break;
             //Left / Right
-            case 7: if(currentSubPhase.subPhaseNumber == 18)
+            case 7: if(currentSubPhase.subPhaseNumber == 2)
                 {
                     Newtime();
                 }
                 break;
             //Back / Forth
             case 8:
-                if (currentSubPhase.subPhaseNumber == 19)
+                if (currentSubPhase.subPhaseNumber == 3)
                 {
                     Newtime();
                 }
                 break;
             //Up / Down
             case 9:
-                if (currentSubPhase.subPhaseNumber == 20)
+                if (currentSubPhase.subPhaseNumber == 4)
                 {
                     Newtime();
                 }
