@@ -104,14 +104,14 @@ public class TrainingScriptManager : MonoBehaviour
                 break;
             //Radio case
             case 2:
-                if (currentSubPhase.subPhaseNumber == 9)
+                if (currentSubPhase.subPhaseNumber == 8)
                 {
                     Newtime();
                 }
                 break;
             //Snap turn
             case 3:
-                if (currentSubPhase.subPhaseNumber == 10)
+                if (currentSubPhase.subPhaseNumber == 9)
                 {
                     Newtime();
                 }
