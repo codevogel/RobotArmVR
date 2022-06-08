@@ -30,6 +30,7 @@ public class TouchButton : MonoBehaviour
             if (isSkipButton)
             {
                 phaseChanger.DeactivateWarning();
+                return;
             }
 
             Application.Quit();
