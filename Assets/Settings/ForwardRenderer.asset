@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Active: 1
   settings:
     downsampling: 1
-    material: {fileID: 0}
     renderPassEvent: 550
     intensity: 2.5
     scattering: -0.5
@@ -61,6 +60,7 @@ MonoBehaviour:
     gaussBlur:
       amount: 1
       samples: 1
+  shader: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,8 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    downsampling: 2
-    material: {fileID: 2100000, guid: 69418dc2e7d9a2b4889ff9f03fca654e, type: 2}
+    downsampling: 4
     renderPassEvent: 550
     intensity: 2.76
     scattering: -0.43
@@ -165,3 +164,4 @@ MonoBehaviour:
     gaussBlur:
       amount: 1
       samples: 4
+  shader: {fileID: 4800000, guid: 5a8c267d78bfb1f48ba38ddb70ebb482, type: 3}

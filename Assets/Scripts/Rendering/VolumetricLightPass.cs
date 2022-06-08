@@ -93,29 +93,37 @@ class VolumetricLightPass : ScriptableRenderPass
                 _material.SetFloat("_GaussSamples", settings.gaussBlur.samples);
                 _material.SetFloat("_GaussAmount", settings.gaussBlur.amount);
 
-                //// Raymarch.
-                //cmd.Blit(_source, _tempTexture.Identifier(), settings.material, 0);
+                // Raymarch.
+                cmd.Blit(_source, _tempTexture.Identifier(), _material, 0);
 
-                //// Bilateral blur x.
-                //cmd.Blit(_tempTexture.Identifier(), _tempTexture2.Identifier(), settings.material, 1);
+                ////test copy back
+                //cmd.Blit(_tempTexture.Identifier(), _source);
 
-                //// Bilateral blur y.
-                //cmd.Blit(_tempTexture2.Identifier(), _tempTexture.Identifier(), settings.material, 2);
-                //cmd.SetGlobalTexture("_VolumetricTexture", _tempTexture.Identifier());
+                // Bilateral blur x.
+                cmd.Blit(_tempTexture.Identifier(), _tempTexture2.Identifier(), _material, 1);
 
-                //// Downsample depth.
-                //cmd.Blit(_source, _tempTexture2.Identifier(), settings.material, 4);
-                //cmd.SetGlobalTexture("_LowResDepth", _tempTexture2.Identifier());
+                // Bilateral blur y.
+                cmd.Blit(_tempTexture2.Identifier(), _tempTexture.Identifier(), _material, 2);
+                cmd.SetGlobalTexture("_VolumetricTexture", _tempTexture.Identifier());
 
-                //// Upsample and composite
-                //cmd.Blit(_source, _tempTexture3.Identifier(), settings.material, 3);
-                //cmd.Blit(_tempTexture3.Identifier(), _source);
+                // Downsample depth.
+                cmd.Blit(_source, _tempTexture2.Identifier(), _material, 4);
+                cmd.SetGlobalTexture("_LowResDepth", _tempTexture2.Identifier());
+
+                // Upsample and composite
+                cmd.Blit(_source, _tempTexture3.Identifier(), _material, 3);
+                cmd.Blit(_tempTexture3.Identifier(), _source);
 
 
+
+                //cmd.SetRenderTarget(_tempTexture.Identifier());
+
+                //cmd.DrawProcedural(Matrix4x4.identity, _material, (int)ShaderPass.RayMarching, MeshTopology.Quads, 4, 1, null);
 
                 //cmd.DrawMesh(RenderingUtils.fullscreenMesh, Matrix4x4.identity, _material, 0, (int)ShaderPass.RayMarching);
-                //cmd.CopyTexture(_source, _tempTexture.Identifier());
-                //cmd.SetRenderTarget(_tempTexture.Identifier());
+                //cmd.SetGlobalTexture("_MainTex", _material.mainTexture);
+
+
 
                 //cmd.DrawMesh(RenderingUtils.fullscreenMesh, Matrix4x4.identity, _material, 0, (int)ShaderPass.GaussianBlurX);
                 //cmd.DrawMesh(RenderingUtils.fullscreenMesh, Matrix4x4.identity, _material, 0, (int)ShaderPass.GaussianBlurY);
@@ -127,7 +135,7 @@ class VolumetricLightPass : ScriptableRenderPass
 
 
                 // raymarch
-                Blit(cmd, _source, _tempTexture.Identifier(), _material, ShaderPass.RayMarching);
+                //Blit(cmd, _source, _tempTexture.Identifier(), _material, ShaderPass.RayMarching);
 
                 //// gaus blur
                 //Blit(cmd, _tempTexture.Identifier(), _tempTexture2.Identifier(), _material, ShaderPass.GaussianBlurX);
@@ -148,6 +156,29 @@ class VolumetricLightPass : ScriptableRenderPass
                 //cmd.CopyTexture(_tempTexture3.Identifier(), _source);
                 //cmd.SetRenderTarget(_source);
 
+
+
+                //cmd.SetGlobalVector("_BlitScaleBiasRt", new Vector4(1, 1, 0, 0));
+                //cmd.SetGlobalVector("_BlitScaleBias", new Vector4(1, 1, 0, 0));
+                //cmd.SetRenderTarget(new RenderTargetIdentifier(_source,0,CubemapFace.Unknown,-1), RenderBufferLoadAction.Load, RenderBufferStoreAction.Store);
+                ////cmd.DrawMesh(RenderingUtils.fullscreenMesh, Matrix4x4.identity, _material, 0, (int)ShaderPass.RayMarching);
+
+                //cmd.DrawProcedural(Matrix4x4.identity, _material, (int)ShaderPass.RayMarching, MeshTopology.Quads, 4, 1, null);
+
+                //cmd.SetRenderTarget(_source);
+                //cmd.SetGlobalTexture("_SourceTex", _tempTexture.Identifier());
+                //cmd.DrawMesh(RenderingUtils.fullscreenMesh, Matrix4x4.identity, _blitMat);
+
+
+                //Blit2(cmd, _source, _tempTexture.Identifier(), _material, ShaderPass.RayMarching);
+
+                //Blit2(cmd, _tempTexture.Identifier(), _tempTexture2.Identifier(), _material, ShaderPass.GaussianBlurX);
+
+
+
+
+
+
                 context.ExecuteCommandBuffer(cmd);
             }
             catch
@@ -167,5 +198,12 @@ class VolumetricLightPass : ScriptableRenderPass
         cmd.DrawMesh(RenderingUtils.fullscreenMesh, Matrix4x4.identity, material, 0, (int)pass);
         cmd.CopyTexture(source, destination);
         cmd.SetRenderTarget(destination);
+    }
+
+    private static void Blit2(CommandBuffer cmd, RenderTargetIdentifier source, RenderTargetIdentifier destination, Material material, ShaderPass pass)
+    {
+        cmd.SetGlobalTexture("_MainTex", source);
+        cmd.SetRenderTarget(destination, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store);
+        cmd.DrawProcedural(Matrix4x4.identity, material, (int)pass, MeshTopology.Quads, 4, 1);
     }
 }
