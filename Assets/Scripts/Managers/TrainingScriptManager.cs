@@ -13,6 +13,7 @@ public class TrainingScriptManager : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private GameObject confirmationCanvas;
     [SerializeField] private GameObject fadeVisionCanvas;
+    [SerializeField] private PhaseChanger phaseChanger;
 
     public List<PhaseTransform> phasesPosition;
 
@@ -125,18 +126,13 @@ public class TrainingScriptManager : MonoBehaviour
         textWriter.Clear();
     }
 
-    public void ChangePhaseAndSubPhase(int phaseNumber, int subPhaseNumber)
-    {
-        textWriter.Clear();
-        currentPhase = phases[phaseNumber];
-        currentSubPhase = currentPhase.subPhases[subPhaseNumber];
-        CheckTimeLineDifference(currentSubPhase.startTime);
-    }
-
     public void ChangePhase(int phaseNumber)
     {
         currentPhase = phases[phaseNumber];
+        currentSubPhase = phases[phaseNumber].subPhases[0];
         CheckTimeLineDifference(currentPhase.startTime);
+
+        CheckPhaseButton();
     }
 
     public void ChangeSubPhase(int subPhaseNumber)
@@ -151,12 +147,21 @@ public class TrainingScriptManager : MonoBehaviour
         changeByButton = false;
 
         CheckTimeLineDifference(currentSubPhase.startTime);
+
+        CheckPhaseButton();
     }
 
     public void ChangebyButton(int subPhaseNumber)
     {
         changeByButton = true;
         ChangeSubPhase(subPhaseNumber);
+
+        CheckPhaseButton();
+    }
+
+    private void CheckPhaseButton()
+    {
+        phaseChanger.ActivatePhaseButton(currentPhase.phaseNumber);
     }
 
     private void CheckTimeLineDifference(int newTime)

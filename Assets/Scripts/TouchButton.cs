@@ -5,7 +5,6 @@ using UnityEngine;
 public class TouchButton : MonoBehaviour
 {
     [SerializeField] private int phaseNumber;
-    [SerializeField] private int subPhaseNumber;
     [SerializeField] private bool isPhaseChanger, isSkipButton;
     private PhaseChanger phaseChanger;
 
@@ -23,13 +22,15 @@ public class TouchButton : MonoBehaviour
         {
             if (isPhaseChanger)
             {
-                TrainingScriptManager.Instance.ChangePhaseAndSubPhase(phaseNumber,subPhaseNumber);
+                Debug.Log(transform.gameObject.name);
+                TrainingScriptManager.Instance.ChangePhase(phaseNumber);
                 return;
             }
 
             if (isSkipButton)
             {
                 phaseChanger.DeactivateWarning();
+                phaseChanger.UnlockAllButtons();
                 return;
             }
 
