@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class Rotate : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Awake()
+    [SerializeField] private float rotateSpeed;
+    [SerializeField] private float bobbingHeight;
+    [SerializeField] private float bobbingSpeed;
+
+    private float timePassed;
+    private float initYPosition;
+
+    private void Start()
     {
-
+        initYPosition = transform.position.y;
     }
-
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.CompareTag("Flexpendant"))
-        {
-            transform.Rotate(0, 0.5f, 0, Space.Self);
-        }
-
-        if (gameObject.CompareTag("Logo"))
-        {
-            transform.Rotate(0, 0, -0.1f, Space.Self);
-        }
+        timePassed += Time.deltaTime* bobbingSpeed;
+        float yChange = Mathf.Sin(timePassed)/ bobbingHeight;
+        transform.position = new Vector3(transform.position.x,yChange+ initYPosition, transform.position.z);
+        transform.Rotate(0, 0, -rotateSpeed, Space.Self);
     }
 }

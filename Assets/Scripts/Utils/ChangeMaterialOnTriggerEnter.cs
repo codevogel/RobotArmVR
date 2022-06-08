@@ -5,59 +5,18 @@ using UnityEngine;
 public class ChangeMaterialOnTriggerEnter : MonoBehaviour
 {
     [SerializeField] private Material materialBloom;
-    [SerializeField] private Material materialOG;
+    private List<Transform> children = new List<Transform>();
 
-    public void HighlightObject(int trigger)
+    private void Start()
     {
-        switch (trigger)
+        foreach (Transform child in transform)
         {
-            case 0:
-                if (CompareTag("Hue1"))
-                {
-                    transform.GetComponent<MeshRenderer>().material = materialBloom;
-                }
-                break;
-
-            case 1:
-                if (CompareTag("Hue2"))
-                {
-                    transform.GetComponent<MeshRenderer>().material = materialBloom;
-                }
-                break;
-
-            case 2:
-                if (CompareTag("Hue3"))
-                {
-                    transform.GetComponent<MeshRenderer>().material = materialBloom;
-                }
-                break;
+            children.Add(child.GetChild(3));
         }
     }
 
-    public void DeHighlightObject(int trigger)
+    public void HighlightObject(int trigger)
     {
-        switch (trigger)
-        {
-            case 0:
-                if (CompareTag("Hue1"))
-                {
-                    transform.GetComponent<MeshRenderer>().material = materialOG;
-                }
-                break;
-
-            case 1:
-                if (CompareTag("Hue2"))
-                {
-                    transform.GetComponent<MeshRenderer>().material = materialOG;
-                }
-                break;
-
-            case 2:
-                if (CompareTag("Hue3"))
-                {
-                    transform.GetComponent<MeshRenderer>().material = materialOG;
-                }
-                break;
-        }
+        children[trigger].GetComponent<MeshRenderer>().material = materialBloom;
     }
 }

@@ -95,6 +95,11 @@ public class RobotArmController : MonoBehaviour
         {
             armMoving = false;
             robotAudio.Stop();
+
+            foreach (ArticulationJointController art in articulationJointControllers)
+            {
+                art.rotationState= RotationDirection.None;
+            }
         }
 
         if (armMoving)

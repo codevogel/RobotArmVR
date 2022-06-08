@@ -15,9 +15,23 @@ public class TutorialGoalRotation : MonoBehaviour
 
     [SerializeField] ArticulationBody[] _trackPerStep;
 
+    [SerializeField]
+    private LinearMovement linearMovement;
+
+    private ArticulationDrive[] initPosition= new ArticulationDrive[6];
+
     int _currentStepIndex;
     Coroutine _currentCoroutine;
     private bool tutorialActive;
+
+
+    private void Start()
+    {
+        for (int x = 0; x < initPosition.Length; x++)
+        {
+            initPosition[x] = _trackPerStep[x].xDrive;
+        }
+    }
 
     /// <summary>
     /// Resets the active goal rotation and starts with the first one.
@@ -42,6 +56,7 @@ public class TutorialGoalRotation : MonoBehaviour
         };
 
         RecordRotation();
+
         tutorialActive = true;
     }
 
@@ -170,8 +185,23 @@ public class TutorialGoalRotation : MonoBehaviour
             for (int i = 0; i < currentStep.InitialRotations.Length; i++)
             {
                 _trackPerStep[i].xDrive = currentStep.InitialRotations[i];
+                StartCoroutine(WaitForDrive());
             }
         }
+        else
+        {
+            for (int x=0; x<initPosition.Length;x++)
+            {
+                _trackPerStep[x].xDrive = initPosition[x];
+                StartCoroutine(WaitForDrive());
+            }
+        }
+    }
+
+    private IEnumerator WaitForDrive()
+    {
+        yield return new WaitForSeconds(0.2f);
+        linearMovement.followTarget.position = _trackPerStep[5].transform.position;
     }
 
     [System.Serializable]
