@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LookTowardsPlayer : MonoBehaviour
+public class AssistantLookTowardsPlayer : MonoBehaviour
 {
     private int assistantOffset = 90;
     private bool active = true;
