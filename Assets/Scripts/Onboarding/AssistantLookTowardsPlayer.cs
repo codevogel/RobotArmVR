@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LookTowardsPlayer : MonoBehaviour
+public class AssistantLookTowardsPlayer : MonoBehaviour
 {
     private int assistantOffset = 90;
     private bool active = true;
@@ -29,7 +29,6 @@ public class LookTowardsPlayer : MonoBehaviour
 
             // clamp the vertical swivel
             var oldRotation = transform.localRotation.eulerAngles;
-            Debug.Log("Before clamp: " + oldRotation.x);
             oldRotation.x = Mathf.Clamp(oldRotation.x > 180 ? (oldRotation.x - 360) : oldRotation.x, _headVerticalRotationBounds.Min, _headVerticalRotationBounds.Max);
 
             // swap x & z due to weird model rotations

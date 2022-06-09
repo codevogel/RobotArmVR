@@ -23,6 +23,7 @@ public class FlexpendantUIManager : MonoBehaviour
 
     private static int spacingNonLinear = 220;
     private static int spacingLinear = 210;
+    private static int maxAxisRange = 360;
 
     private static Vector3 minPosition = new Vector3(16.1551f, -33.931f, -1.463f);
     private static Vector3 maxPosition = new Vector3(21.574f, -28.498f, 1.239f);
@@ -271,7 +272,7 @@ public class FlexpendantUIManager : MonoBehaviour
                             message += "-"+Math.Round(axisValues[x].axisRotation, 2) + "°\n";
                             break;
                         }
-                        message += Math.Round(360-axisValues[x].axisRotation, 2) + "°\n";
+                        message += Math.Round(maxAxisRange - axisValues[x].axisRotation, 2) + "°\n";
                         break;
                     case 1:
                         if (axisValues[x].negative)
@@ -279,12 +280,12 @@ public class FlexpendantUIManager : MonoBehaviour
                             message += Math.Round(axisValues[x].axisRotation, 2) + "°\n";
                             break;
                         }
-                        message += "-" + Math.Round(360 - axisValues[x].axisRotation, 2) + "°\n";
+                        message += "-" + Math.Round(maxAxisRange - axisValues[x].axisRotation, 2) + "°\n";
                         break;
                     case 3:
                     case 5:
                         float rotation = (axisValues[x].axisRotation / 2) + 0.5f;
-                        float rotationDisplay= Mathf.Lerp(-360,360,rotation);
+                        float rotationDisplay= Mathf.Lerp(-maxAxisRange, maxAxisRange, rotation);
                         message += Math.Round(rotationDisplay, 2) + "°\n";
                         break;
                 }
