@@ -7,6 +7,11 @@ public class DisplayCaseOpen : MonoBehaviour
 
     private DisplayCaseOpener opener;
 
+    private void Start()
+    {
+        opener = GetComponent<DisplayCaseOpener>();
+    }
+
     public void Open()
     {
         if (opener != null)
