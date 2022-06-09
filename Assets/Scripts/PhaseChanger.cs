@@ -6,12 +6,31 @@ public class PhaseChanger : MonoBehaviour
 {
     [SerializeField] private GameObject[] phaseMenus;
     [SerializeField] private Transform[] contentHolders;
+    [SerializeField] private float lockTimeButtons;
+
+    private float timer;
+    private bool locked;
 
     public static PhaseChanger Instance { get; private set; }
 
     private void Start()
     {
         Instance = this;
+    }
+
+    private void Update()
+    {
+        if (locked)
+        {
+            timer += Time.deltaTime;
+        }
+
+        if (locked && timer > lockTimeButtons)
+        {
+            timer = 0;
+            locked = false;
+            UnlockPushingButtons();
+        }
     }
 
     /// <summary>
@@ -61,13 +80,25 @@ public class PhaseChanger : MonoBehaviour
     /// <summary>
     /// Disables the button after a button press
     /// </summary>
-    public void LockButtons()
+    public void LockPushingButtons()
+    {
+        locked = true;
+        foreach (Transform content in contentHolders)
+        {
+            foreach (Transform child in content)
+            {
+                child.GetComponent<TouchButton>().locked = locked;
+            }
+        }
+    }
+
+    public void UnlockPushingButtons()
     {
         foreach (Transform content in contentHolders)
         {
             foreach (Transform child in content)
             {
-
+                child.GetComponent<TouchButton>().locked = locked;
             }
         }
     }
