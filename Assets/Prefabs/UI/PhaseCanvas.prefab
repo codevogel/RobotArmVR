@@ -2000,7 +2000,6 @@ GameObject:
   - component: {fileID: 6528855615633859528}
   - component: {fileID: 580499223534168336}
   - component: {fileID: 6193116421678897219}
-  - component: {fileID: 8978331276765048065}
   m_Layer: 5
   m_Name: PhaseCanvas
   m_TagString: Untagged
@@ -2109,23 +2108,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8978331276765048065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6675853342855538745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04777f03aee054d439d5077cffeaf2c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contentHolder: {fileID: 3758691348056668495}
-  phaseMenus:
-  - {fileID: 6675853342855538745}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &6848071934814176316
 GameObject:
   m_ObjectHideFlags: 0

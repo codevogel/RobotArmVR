@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class PhaseChanger : MonoBehaviour
 {
-    [SerializeField] private Transform contentHolder;
     [SerializeField] private GameObject[] phaseMenus;
-    
+    [SerializeField] private Transform[] contentHolders;
+
+    public static PhaseChanger Instance { get; private set; }
+
+    private void Start()
+    {
+        Instance = this;
+    }
+
+    /// <summary>
+    /// Deactivates the initial warning on the phase changing menu
+    /// </summary>
     public void DeactivateWarning()
     {
         foreach (GameObject menu in phaseMenus)
@@ -16,21 +26,45 @@ public class PhaseChanger : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Activate a specific button on the phase changing menu
+    /// </summary>
+    /// <param name="buttonNumber">The number for the button that will be activated</param>
     public void ActivatePhaseButton(int buttonNumber)
     {
-        if (!contentHolder.GetChild(buttonNumber).gameObject.activeSelf)
+        foreach (Transform contentHolder in contentHolders)
         {
-            contentHolder.GetChild(buttonNumber).gameObject.SetActive(true);
+            if (!contentHolder.GetChild(buttonNumber).gameObject.activeSelf)
+            {
+                contentHolder.GetChild(buttonNumber).gameObject.SetActive(true);
+            }
         }
     }
 
+    /// <summary>
+    /// Unlock all buttons on the phase changing menu
+    /// </summary>
     public void UnlockAllButtons()
     {
-        foreach (Transform child in contentHolder.transform)
+        foreach (Transform content in contentHolders)
         {
-            if (!child.gameObject.activeSelf)
+            foreach (Transform child in content)
             {
-                child.gameObject.SetActive(true);
+                if (!child.gameObject.activeSelf)
+                {
+                    child.gameObject.SetActive(true);
+                }
+            }
+        }
+    }
+
+    public void LockButtons()
+    {
+        foreach (Transform content in contentHolders)
+        {
+            foreach (Transform child in content)
+            {
+
             }
         }
     }
