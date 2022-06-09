@@ -36,15 +36,6 @@ public class TypeWriterText : MonoBehaviour
     }
 
     /// <summary>
-    /// Appends the text to already displayed text in the area.
-    /// </summary>
-    /// <param name="text"> The text to be written.</param>
-    public void Append(string text)
-    {
-        writeCoroutine = StartCoroutine(TextChange(text));
-    }
-
-    /// <summary>
     /// Stops the active writing coroutine and clears the text area of any text.
     /// </summary>
     public void Clear()
