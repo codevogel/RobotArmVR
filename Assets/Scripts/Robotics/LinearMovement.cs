@@ -16,13 +16,16 @@ public class LinearMovement : MonoBehaviour
     [SerializeField]
     private CustomIKManager customIKManager;
 
+    float previousAngle;
+    Transform robot;
+
     #region Continuous
     [field: SerializeField]
     private float MovementSpeed { get; set; }
     #endregion
 
     #region Increment
-    public static bool incremental = false; 
+    public static bool incremental = false;
     public static int incrementInterval = 10;
     [field: SerializeField]
     private float incrementSize;
@@ -31,12 +34,23 @@ public class LinearMovement : MonoBehaviour
     private void Start()
     {
         CustomIKManager.PRef = followTarget.localPosition;
+        previousAngle = 0;
+        robot = customIKManager.Joint[0].transform.parent;
     }
 
     private void Update()
     {
         if (followingTarget)
         {
+            var currentPosition = followTarget.localPosition;
+            var rotationAxis = new Vector3(currentPosition.x, 0, currentPosition.z);
+
+            // check if the follow target wrapped around
+            Debug.Log(Vector3.SignedAngle(rotationAxis, robot.right, Vector3.up));
+
+            // check if same sign
+            // (num1 ^ num2) >= 0
+
             CustomIKManager.PRef = followTarget.localPosition;
         }
     }
