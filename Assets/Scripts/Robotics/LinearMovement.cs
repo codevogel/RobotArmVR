@@ -42,15 +42,6 @@ public class LinearMovement : MonoBehaviour
     {
         if (followingTarget)
         {
-            var currentPosition = followTarget.localPosition;
-            var rotationAxis = new Vector3(currentPosition.x, 0, currentPosition.z);
-
-            // check if the follow target wrapped around
-            Debug.Log(Vector3.SignedAngle(rotationAxis, robot.right, Vector3.up));
-
-            // check if same sign
-            // (num1 ^ num2) >= 0
-
             CustomIKManager.PRef = followTarget.localPosition;
         }
     }
@@ -59,6 +50,14 @@ public class LinearMovement : MonoBehaviour
     {
         incremental = !incremental;
         FlexpendantUIManager.Instance.ChangeProperty(FlexpendantUIManager.Properties.INCREMENT, incremental ? 3 : 0);
+    }
+
+    public void RecalculatePreviousAngle()
+    {
+        var position = followTarget.localPosition;
+        var rotationAxis = new Vector3(position.x, 0, position.z);
+
+        previousAngle = Vector3.SignedAngle(rotationAxis, robot.right, Vector3.up);
     }
 
     public void MoveTowards(Vector3 dir)
@@ -82,6 +81,7 @@ public class LinearMovement : MonoBehaviour
         {
             Vector3 newPos = followTarget.localPosition;
             newPos += dir * distance;
+            CorrectForBaseJoint(ref newPos);
             followTarget.localPosition = newPos;
             customIKManager.UpdateUI();
         }
@@ -91,6 +91,7 @@ public class LinearMovement : MonoBehaviour
             {
                 Vector3 newPos = followTarget.localPosition;
                 newPos.x += dir.x * distance;
+                CorrectForBaseJoint(ref newPos);
                 followTarget.localPosition = newPos;
                 customIKManager.UpdateUI();
             }
@@ -98,6 +99,7 @@ public class LinearMovement : MonoBehaviour
             {
                 Vector3 newPos = followTarget.localPosition;
                 newPos.y += dir.y * distance;
+                CorrectForBaseJoint(ref newPos);
                 followTarget.localPosition = newPos;
                 customIKManager.UpdateUI();
             }
@@ -105,9 +107,35 @@ public class LinearMovement : MonoBehaviour
             {
                 Vector3 newPos = followTarget.localPosition;
                 newPos.z += dir.z * distance;
+                CorrectForBaseJoint(ref newPos);
                 followTarget.localPosition = newPos;
                 customIKManager.UpdateUI();
             }
         }
+    }
+
+    private void CorrectForBaseJoint(ref Vector3 position)
+    {
+        var rotationAxis = new Vector3(position.x, 0, position.z);
+
+        // check if the follow target wrapped around
+        var currentAngle = Vector3.SignedAngle(rotationAxis, robot.right, Vector3.up);
+
+        if (!((previousAngle * currentAngle) >= 0) && Mathf.Abs(currentAngle) > 90f)
+        {
+            position = Quaternion.Euler(0, previousAngle - currentAngle, 0) * position;
+
+            // determine the sign to be stored
+            if (currentAngle > 0)
+            {
+                currentAngle = 180f;
+            }
+            else
+            {
+                currentAngle = -180f;
+            }
+        }
+
+        previousAngle = currentAngle;
     }
 }
