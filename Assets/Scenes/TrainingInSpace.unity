@@ -4410,6 +4410,7 @@ MonoBehaviour:
   - {fileID: 1640143425}
   - {fileID: 457676022}
   - {fileID: 1562161771}
+  lockTimeButtons: 1
 --- !u!1 &663707068
 GameObject:
   m_ObjectHideFlags: 0
@@ -7836,9 +7837,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1919734057155548722, guid: a98d7c9a97eff464499e644481f1317c, type: 3}
+      propertyPath: lockTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6675853342855538745, guid: a98d7c9a97eff464499e644481f1317c, type: 3}
       propertyPath: m_Name
       value: PhaseCanvasRoom1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684034052300542194, guid: a98d7c9a97eff464499e644481f1317c, type: 3}
+      propertyPath: lockTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377134716109602003, guid: a98d7c9a97eff464499e644481f1317c, type: 3}
+      propertyPath: lockTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974992703521877196, guid: a98d7c9a97eff464499e644481f1317c, type: 3}
+      propertyPath: lockTime
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a98d7c9a97eff464499e644481f1317c, type: 3}
