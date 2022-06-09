@@ -58,6 +58,9 @@ public class PhaseChanger : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Disables the button after a button press
+    /// </summary>
     public void LockButtons()
     {
         foreach (Transform content in contentHolders)

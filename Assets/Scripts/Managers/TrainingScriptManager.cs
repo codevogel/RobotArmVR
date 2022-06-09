@@ -14,8 +14,9 @@ public class TrainingScriptManager : MonoBehaviour
     [SerializeField] private GameObject confirmationCanvas;
     [SerializeField] private GameObject fadeVisionCanvas;
     [SerializeField] private PhaseChanger phaseChanger;
+    [SerializeField] private float differenceAllowance;
 
-    public List<PhaseTransform> phasesPosition;
+    public List<Transform> phasesPosition;
 
     private TextAsset trainingScriptJSON;
     private TrainingScript trainingScript;
@@ -197,7 +198,8 @@ public class TrainingScriptManager : MonoBehaviour
         }
         changeByButton = false;
 
-        CheckTimeLineDifference(currentSubPhase.startTime);
+        //Originally used in the confirmation menu
+        //CheckTimeLineDifference(currentSubPhase.startTime);
 
         CheckPhaseButton();
     }
@@ -228,8 +230,12 @@ public class TrainingScriptManager : MonoBehaviour
     /// <param name="newTime">Time to change to</param>
     private void CheckTimeLineDifference(int newTime)
     {
+        if (currentSubPhase.subPhaseNumber==15)
+        {
+            Debug.Log(newTime + "newtime, " + timeLine.time*60 + "timeline time");
+        }
         int timeDifference = Math.Abs(Mathf.RoundToInt((float)timeLine.time * 60) - newTime);
-        if (timeDifference > 15)
+        if (timeDifference > differenceAllowance)
         {
             StartCoroutine(Teleport(newTime));
         }
@@ -247,7 +253,7 @@ public class TrainingScriptManager : MonoBehaviour
 
         //Wait on the animation of the vision fader
         yield return new WaitForSeconds(1f);
-        Vector3 newPosition = phasesPosition[currentPhase.phaseNumber].subPhaseTransforms[currentSubPhase.subPhaseNumber].subPhaseTransform.position;
+        Vector3 newPosition = phasesPosition[currentPhase.phaseNumber].position;
         player.transform.position = new Vector3(newPosition.x, player.transform.position.y, newPosition.z);
         timeLine.Pause();
         timeLine.time = newTime / 60f;
@@ -316,27 +322,6 @@ public class TrainingScriptManager : MonoBehaviour
         public string message;
         public int startTime;
         public float endTime;
-    }
-    #endregion
-
-    #region Transform saving
-    /// <summary>
-    /// Holds a transform to teleport to
-    /// </summary>
-    [Serializable]
-    public class SubPhaseTransform
-    {
-        public Transform subPhaseTransform;
-    }
-
-    /// <summary>
-    /// Holds a transform for that phase and a list of transforms for each subphase
-    /// </summary>
-    [Serializable]
-    public class PhaseTransform
-    {
-        public Transform phaseTransform;
-        public List<SubPhaseTransform> subPhaseTransforms;
     }
     #endregion
 }
