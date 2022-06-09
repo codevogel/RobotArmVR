@@ -32,7 +32,7 @@ public class TypeWriterText : MonoBehaviour
     {
         Clear();
 
-        StartCoroutine(TextChange(text));
+        writeCoroutine = StartCoroutine(TextChange(text));
     }
 
     /// <summary>
@@ -41,7 +41,7 @@ public class TypeWriterText : MonoBehaviour
     /// <param name="text"> The text to be written.</param>
     public void Append(string text)
     {
-        StartCoroutine(TextChange(text));
+        writeCoroutine = StartCoroutine(TextChange(text));
     }
 
     /// <summary>
@@ -50,7 +50,10 @@ public class TypeWriterText : MonoBehaviour
     public void Clear()
     {
         if (writeCoroutine != null)
+        {
             StopCoroutine(writeCoroutine);
+            writeCoroutine = null;
+        }
 
         textHolder.text = string.Empty;
     }
@@ -66,5 +69,7 @@ public class TypeWriterText : MonoBehaviour
             textHolder.text += c;
             yield return new WaitForSeconds(charWaitTime);
         }
+
+        writeCoroutine = null;
     }
 }
