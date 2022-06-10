@@ -437,6 +437,8 @@ MonoBehaviour:
     - {fileID: -9111914350623988736}
     - {fileID: 1405114880984326114}
     - {fileID: 1544344839733303567}
+    - {fileID: 6923432193547029667}
+    - {fileID: 730953124551240078}
 --- !u!114 &-8355140345924034943
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7096,6 +7098,23 @@ MonoBehaviour:
   m_Loop: 0
   m_Version: 1
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+--- !u!114 &730953124551240078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4eb990addad4154c8315fe431061c3f, type: 3}
+  m_Name: Bool Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 341.9
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: c56cc40473997d143aad1d645229949d, type: 2}
+  <Parameter>k__BackingField: 1
 --- !u!114 &828586575302572623
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15128,6 +15147,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde0d25a170598d46a0b9dc16b4527a5, type: 3}
   m_Name: ActivationPlayableAsset(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
+--- !u!114 &6923432193547029667
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4eb990addad4154c8315fe431061c3f, type: 3}
+  m_Name: Bool Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 337.6333333333333
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: c56cc40473997d143aad1d645229949d, type: 2}
+  <Parameter>k__BackingField: 1
 --- !u!114 &6977769367051316473
 MonoBehaviour:
   m_ObjectHideFlags: 1

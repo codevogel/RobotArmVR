@@ -2475,15 +2475,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 17.25
         value: {x: 0, y: 0, z: 14.626}
-        inSlope: {x: 0, y: 0, z: 219.272}
-        outSlope: {x: 0, y: 0, z: 219.272}
+        inSlope: {x: 0, y: 0, z: 201.812}
+        outSlope: {x: 0, y: 0, z: 201.812}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 17.333334
-        value: {x: 0, y: 0, z: 40.826}
+        value: {x: 19.803, y: -24.632, z: 36.461}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -2492,7 +2492,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 17.75
-        value: {x: 0, y: 0, z: 40.826}
+        value: {x: 19.803, y: -24.632, z: 36.461}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -24375,7 +24375,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 17.333334
-        value: 0
+        value: 19.803
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -24384,7 +24384,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 17.75
-        value: 0
+        value: 19.803
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -25006,7 +25006,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 17.333334
-        value: 0
+        value: -24.632
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -25015,7 +25015,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 17.75
-        value: 0
+        value: -24.632
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -25629,15 +25629,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 17.25
         value: 14.626
-        inSlope: 219.272
-        outSlope: 219.272
+        inSlope: 201.812
+        outSlope: 201.812
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 17.333334
-        value: 40.826
+        value: 36.461
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -25646,7 +25646,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 17.75
-        value: 40.826
+        value: 36.461
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -39885,7 +39885,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Robot V3 Variant/Robo Armature/Base Bone/Head Bone
+    path: Robot V3 Variant/Robo Armature/Base Bone/Base/Wheel
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -39895,7 +39895,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Robot V3 Variant/Robo Armature/Base Bone/Head Bone
+    path: Robot V3 Variant/Robo Armature/Base Bone/Base/Wheel
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -39905,7 +39905,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Robot V3 Variant/Robo Armature/Base Bone/Head Bone
+    path: Robot V3 Variant/Robo Armature/Base Bone/Base/Wheel
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -40014,66 +40014,6 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Robot V3 Variant/Robo Armature/Base Bone
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Robot V3 Variant/Robo Armature/Base Bone
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Robot V3 Variant/Robo Armature/Base Bone
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Robot V3 Variant/Robo Armature/Base Bone/Base/Wheel
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Robot V3 Variant/Robo Armature/Base Bone/Base/Wheel
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Robot V3 Variant/Robo Armature/Base Bone/Base/Wheel
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
     path: 
     classID: 4
     script: {fileID: 0}
@@ -40084,6 +40024,16 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
+    path: 
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
     path: 
     classID: 4
     script: {fileID: 0}
@@ -40094,7 +40044,57 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: 
+    path: Robot V3 Variant/Robo Armature/Base Bone
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Robot V3 Variant/Robo Armature/Base Bone
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Robot V3 Variant/Robo Armature/Base Bone
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Robot V3 Variant/Robo Armature/Base Bone/Head Bone
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Robot V3 Variant/Robo Armature/Base Bone/Head Bone
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Robot V3 Variant/Robo Armature/Base Bone/Head Bone
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 1
