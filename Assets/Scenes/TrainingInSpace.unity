@@ -3133,6 +3133,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5166769495932752358, guid: ca3369ca9bb8743539221d883d2aebea, type: 3}
   m_PrefabInstance: {fileID: 379290908}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &384792938 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2051096421660552565, guid: eee022051019c644d8ede8511426581c, type: 3}
+  m_PrefabInstance: {fileID: 1991530964}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &387407245 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4588250531583868765, guid: c09de172512fe41ab8f0ec3340aeafff, type: 3}
@@ -6551,7 +6556,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1204603523317580260, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_Name
-      value: Arrow Parent Poster
+      value: Arrow Poster Parent
       objectReference: {fileID: 0}
     - target: {fileID: 1204603523317580260, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_IsActive
@@ -6614,6 +6619,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2051096421660552565, guid: eee022051019c644d8ede8511426581c, type: 3}
+      propertyPath: m_Name
+      value: Arrow Poster
+      objectReference: {fileID: 0}
+    - target: {fileID: 2051096421660552565, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -6622,11 +6631,6 @@ PrefabInstance:
 --- !u!4 &950670874 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1204603523317580261, guid: eee022051019c644d8ede8511426581c, type: 3}
-  m_PrefabInstance: {fileID: 950670873}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &950670875 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1204603523317580260, guid: eee022051019c644d8ede8511426581c, type: 3}
   m_PrefabInstance: {fileID: 950670873}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &958962387
@@ -6802,6 +6806,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8833542369440458888, guid: ae644e436d7c6404faf09c48aab9880e, type: 3}
   m_PrefabInstance: {fileID: 969790311}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &975178459 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2051096421660552565, guid: eee022051019c644d8ede8511426581c, type: 3}
+  m_PrefabInstance: {fileID: 950670873}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &988417798 stripped
 Transform:
@@ -9221,6 +9230,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 6799639291300473867, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
+      propertyPath: m_Name
+      value: Arrow IRC5 Emergency
+      objectReference: {fileID: 0}
     - target: {fileID: 6823040709290884534, guid: 1387b578dca8140cda8d6ebf58656a2f, type: 3}
       propertyPath: OnButtonUp.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -9551,6 +9564,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4835543690952503662, guid: 0522c056803b54ddcab51f0bfd9ca70a, type: 3}
   m_PrefabInstance: {fileID: 1397157543}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1406469226 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2051096421660552565, guid: eee022051019c644d8ede8511426581c, type: 3}
+  m_PrefabInstance: {fileID: 1901604782}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1410349668
 GameObject:
@@ -11888,11 +11906,11 @@ PlayableDirector:
   - key: {fileID: 3644990239273339777, guid: 6767f379066cd1046a83d817a86d2393, type: 2}
     value: {fileID: 2059783089}
   - key: {fileID: 8664748722468912312, guid: 6767f379066cd1046a83d817a86d2393, type: 2}
-    value: {fileID: 1901604784}
+    value: {fileID: 1406469226}
   - key: {fileID: 911353671636651889, guid: 6767f379066cd1046a83d817a86d2393, type: 2}
-    value: {fileID: 950670875}
+    value: {fileID: 975178459}
   - key: {fileID: -5195828394937589034, guid: 6767f379066cd1046a83d817a86d2393, type: 2}
-    value: {fileID: 1991530965}
+    value: {fileID: 384792938}
   - key: {fileID: 4143895529736219025, guid: 6767f379066cd1046a83d817a86d2393, type: 2}
     value: {fileID: 1520234641}
   - key: {fileID: -995475881694039501, guid: 6767f379066cd1046a83d817a86d2393, type: 2}
@@ -13979,7 +13997,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1204603523317580260, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_Name
-      value: Arrow Parent P3
+      value: Arrow P3 Parent
       objectReference: {fileID: 0}
     - target: {fileID: 1204603523317580260, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_IsActive
@@ -14042,6 +14060,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2051096421660552565, guid: eee022051019c644d8ede8511426581c, type: 3}
+      propertyPath: m_Name
+      value: Arrow P3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2051096421660552565, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -14050,11 +14072,6 @@ PrefabInstance:
 --- !u!4 &1901604783 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1204603523317580261, guid: eee022051019c644d8ede8511426581c, type: 3}
-  m_PrefabInstance: {fileID: 1901604782}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1901604784 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1204603523317580260, guid: eee022051019c644d8ede8511426581c, type: 3}
   m_PrefabInstance: {fileID: 1901604782}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1902250193
@@ -14548,7 +14565,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1204603523317580260, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_Name
-      value: Arrow Parent Cage
+      value: Arrow Cage Parent
       objectReference: {fileID: 0}
     - target: {fileID: 1204603523317580260, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_IsActive
@@ -14611,16 +14628,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2051096421660552565, guid: eee022051019c644d8ede8511426581c, type: 3}
+      propertyPath: m_Name
+      value: Arrow Cage
+      objectReference: {fileID: 0}
+    - target: {fileID: 2051096421660552565, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eee022051019c644d8ede8511426581c, type: 3}
---- !u!1 &1991530965 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1204603523317580260, guid: eee022051019c644d8ede8511426581c, type: 3}
-  m_PrefabInstance: {fileID: 1991530964}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1991530966 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1204603523317580261, guid: eee022051019c644d8ede8511426581c, type: 3}
