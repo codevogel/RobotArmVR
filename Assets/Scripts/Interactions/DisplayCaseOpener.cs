@@ -2,20 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Opens the display case
+/// </summary>
+[RequireComponent(typeof(DisplayCaseOpen))]
 public class DisplayCaseOpener : MonoBehaviour
 {
 
     private Transform glassTop;
-    public bool open;
-    private float originalRotation;
+    private bool open;
 
     private void Start()
     {
         glassTop = transform.Find("Glass Top");
-
-        originalRotation = glassTop.localRotation.x; 
     }
 
+    /// <summary>
+    /// Sets flag to open display case
+    /// </summary>
     public void Open()
     {
         open = true;
@@ -26,8 +30,10 @@ public class DisplayCaseOpener : MonoBehaviour
         if (open)
         {
             glassTop.Rotate(Vector3.down, 1f);
+            // If glasstop is open
             if (glassTop.localRotation.eulerAngles.x >= 350)
             {
+                // Destroy script to prevent further polling
                 Destroy(this);
             }
         }

@@ -23,15 +23,23 @@ public class IRC5Controller : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    /// <summary>
+    /// Activates IRC5
+    /// </summary>
+    /// <param name="on"></param>
     public void Activate(bool on)
     {
+        // Is activated because of emergency?
         emergencyState = RobotArmController.emergencyStop;
+
         if (!emergencyState)
         {
+            // Turn on light based on bool and play sound
             light.gameObject.SetActive(on);
             audioSource.PlayOneShot(clip);
             return;
         }
+        // Turn on light
         light.gameObject.SetActive(true);
     }
     
