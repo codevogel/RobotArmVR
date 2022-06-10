@@ -15,6 +15,9 @@ public class Swapper : MonoBehaviour
     [Tooltip("Lists object B for the A/B swap")]
     public List<Transform> toSwapB;
 
+    /// <summary>
+    /// Swaps positions and rotations of objects from list A with those from list B
+    /// </summary>
     public void Swap()
     {
         for (int i = 0; i < toSwapA.Count; i++)

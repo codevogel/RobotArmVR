@@ -6,12 +6,18 @@ public class PlayerOrigin : MonoBehaviour
 {
     public Transform player;
 
+    /// <summary>
+    /// Set player origin to this transform
+    /// </summary>
     private void Awake()
     {
         player.position = transform.position;
         player.rotation = transform.rotation;
     }
 
+    /// <summary>
+    /// Draw player gizmo
+    /// </summary>
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;

@@ -25,11 +25,18 @@ public class RadioListener : MonoBehaviour
         audioSource.Play();
     }
 
+    /// <summary>
+    /// Get sample time
+    /// </summary>
+    /// <returns>The current sample time</returns>
     internal int GetTime()
     {
         return audioSource.timeSamples;
     }
 
+    /// <summary>
+    /// Set current sample time
+    /// </summary>
     internal void SetTime(int time)
     {
         audioSource.timeSamples = time;

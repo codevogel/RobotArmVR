@@ -60,10 +60,15 @@ public class LinearMovement : MonoBehaviour
         previousAngle = Vector3.SignedAngle(rotationAxis, robot.right, Vector3.up);
     }
 
+    /// <summary>
+    /// Move end effector towards dir
+    /// </summary>
+    /// <param name="dir">the direction to move to</param>
     public void MoveTowards(Vector3 dir)
     {
         if (incremental)
         {
+            // Incremental movement
             if (Time.frameCount % incrementInterval == 0)
             {
                 _MoveTowards(dir, incrementSize);
@@ -71,10 +76,16 @@ public class LinearMovement : MonoBehaviour
         }
         else
         {
+            // Normal movement
             _MoveTowards(dir, MovementSpeed);
         }
     }
 
+    /// <summary>
+    /// Move end effector towards dir by distance
+    /// </summary>
+    /// <param name="dir">the direction to move to</param>
+    /// <param name="distance">the distance to move</param>
     private void _MoveTowards(Vector3 dir, float distance)
     {
         if (inBounds)

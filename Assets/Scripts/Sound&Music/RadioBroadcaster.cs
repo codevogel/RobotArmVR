@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Broadcasts to multiple radios, only plays on the closest listener.
+/// </summary>
 public class RadioBroadcaster : MonoBehaviour
 {
 
@@ -20,6 +23,9 @@ public class RadioBroadcaster : MonoBehaviour
         StartBroadcast();
     }
 
+    /// <summary>
+    /// Starts or stops broadcast based on current broadcast state
+    /// </summary>
     public void StartStopBroadcast()
     {
         if (broadcasting)
@@ -30,6 +36,9 @@ public class RadioBroadcaster : MonoBehaviour
         StartBroadcast();
     }
 
+    /// <summary>
+    /// Starts broadcasting
+    /// </summary>
     private void StartBroadcast()
     {
         oldListener = GetClosestListener();
@@ -37,6 +46,9 @@ public class RadioBroadcaster : MonoBehaviour
         broadcasting = true;
     }
 
+    /// <summary>
+    /// Stop broadcasting
+    /// </summary>
     public void StopBroadcast()
     {
         broadcasting = false;
@@ -54,12 +66,19 @@ public class RadioBroadcaster : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Play broadcast on closest radio
+    /// </summary>
     private void BroadcastToClosestListener()
     {
-        RadioListener closest = GetClosestListener();
-        SwitchListener(closest);
+        SwitchListener(GetClosestListener());
     }
 
+
+    /// <summary>
+    /// Gets the closest listener
+    /// </summary>
+    /// <returns>The closest RadioListener</returns>
     private RadioListener GetClosestListener()
     {
         RadioListener closest = null;
@@ -78,6 +97,10 @@ public class RadioBroadcaster : MonoBehaviour
         return closest;
     }
 
+    /// <summary>
+    /// Switch the old closest listener for the current closest
+    /// </summary>
+    /// <param name="closest">the current closest listener</param>
     public void SwitchListener(RadioListener closest)
     {
         if (closest != oldListener)
