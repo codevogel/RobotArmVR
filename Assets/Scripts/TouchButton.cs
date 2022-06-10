@@ -7,14 +7,19 @@ public class TouchButton : MonoBehaviour
     [SerializeField] private int phaseNumber;
     [SerializeField] private bool isPhaseChanger, isSkipButton;
 
+    [HideInInspector]
+    public bool locked;
+
     /// <summary>
     /// Activation of the buttons function if the player touches it
     /// </summary>
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("LeftFinger")||other.CompareTag("RightFinger"))
+        if ((other.CompareTag("LeftFinger")||other.CompareTag("RightFinger")) &&!locked)
         {
+            PhaseChanger.Instance.LockPushingButtons();
+
             //If the button is a button on the phase changing menu, change to the correct training phase
             if (isPhaseChanger)
             {
