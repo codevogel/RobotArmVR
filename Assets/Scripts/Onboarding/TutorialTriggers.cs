@@ -34,5 +34,35 @@ public class TutorialTriggers : MonoBehaviour
                 Timeline.Resume();
             }
         }
+
+        if (CompareTag("P3"))
+        {
+            if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
+            {
+                Timeline.Pause();
+                Timeline.time = 3440 / 60f;
+                Timeline.Resume();
+            }
+        }
+
+        if (CompareTag("Poster"))
+        {
+            if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
+            {
+                Timeline.Pause();
+                Timeline.time = 13810 / 60f;
+                Timeline.Resume();
+            }
+        }
+
+        if (CompareTag("Cage"))
+        {
+            if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
+            {
+                Timeline.Pause();
+                Timeline.time = 16500 / 60f;
+                Timeline.Resume();
+            }
+        }
     }
 }
