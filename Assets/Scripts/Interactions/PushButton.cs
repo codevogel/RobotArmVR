@@ -38,6 +38,7 @@ public class PushButton : MonoBehaviour
 
     private void Update()
     {
+        // Prevent rotation
         rb.transform.localRotation = Quaternion.identity;
         // Clamp button positions
         rb.transform.localPosition = new Vector3(original.x, Mathf.Clamp(rb.transform.localPosition.y, original.y - travelDistance, original.y), original.z);
@@ -48,7 +49,7 @@ public class PushButton : MonoBehaviour
             triggered = false;
             OnButtonUp.Invoke();
         }
-
+        // Check if button is down
         if (!triggered && rb.transform.localPosition.y <= original.y - travelDistance + toleranceY)
         {
             triggered = true;
@@ -58,16 +59,19 @@ public class PushButton : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.DrawRay(transform.position, transform.up * 10);
         // Rise button if not on original 
         if (rb.transform.localPosition.y < original.y)
         {
             rb.AddForce(transform.up * travelSpeed * Time.deltaTime);
             return;
         }
+        // Otherwise make sure button doesn't move.
         rb.velocity = Vector3.zero;
     }
 
+    /// <summary>
+    /// Resets this button
+    /// </summary>
     public void Reset()
     {
         rb.transform.localPosition = original;
@@ -76,6 +80,10 @@ public class PushButton : MonoBehaviour
         triggered = false;
     }
 
+    /// <summary>
+    /// Freezes this button based on the bool
+    /// </summary>
+    /// <param name="freeze">whether to freeze this button</param>
     public void FreezeButton(bool freeze)
     {
         frozen = freeze;
