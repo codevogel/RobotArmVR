@@ -81,7 +81,9 @@ public class LinearMovement : MonoBehaviour
         {
             Vector3 newPos = followTarget.localPosition;
             newPos += dir * distance;
+            Debug.Log($"old position: {followTarget.localPosition}\nold angle: {previousAngle}\nnew position: {newPos}");
             CorrectForBaseJoint(ref newPos);
+            Debug.Log($"corrected position: {newPos}\ncorrected angle: {previousAngle}");
             followTarget.localPosition = newPos;
             customIKManager.UpdateUI();
         }
@@ -123,19 +125,11 @@ public class LinearMovement : MonoBehaviour
 
         if (!((previousAngle * currentAngle) >= 0) && Mathf.Abs(currentAngle) > 90f)
         {
-            position = Quaternion.Euler(0, previousAngle - currentAngle, 0) * position;
-
-            // determine the sign to be stored
-            if (currentAngle > 0)
-            {
-                currentAngle = 180f;
-            }
-            else
-            {
-                currentAngle = -180f;
-            }
+            position = Quaternion.Euler(0, currentAngle - previousAngle, 0) * position;
         }
-
-        previousAngle = currentAngle;
+        else
+        {
+            previousAngle = currentAngle;
+        }
     }
 }
