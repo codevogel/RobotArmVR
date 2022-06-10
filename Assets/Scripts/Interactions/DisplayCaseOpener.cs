@@ -10,7 +10,7 @@ public class DisplayCaseOpener : MonoBehaviour
 {
 
     private Transform glassTop;
-    private bool open;
+    public bool open;
 
     private void Start()
     {
