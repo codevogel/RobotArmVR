@@ -3,8 +3,8 @@
     {
         "phaseNumber": "0",
         "phaseName": "Onboarding",
-        "startTime": "0",
-        "endTime": "3189",
+        "startTime": "195",
+        "endTime": "3289",
         "subPhases": [
             {
                 "subPhaseNumber": "0",
@@ -286,133 +286,120 @@
           "subPhaseNumber": "8",
           "message": "Well done!",
           "startTime": "12080",
-          "endTime": "12394"
+          "endTime": "12395"
         }
       ]
     },
 
     {
-      "phaseNumber": "3",
-      "phaseName": "Onboarding",
-      "startTime": "0",
-      "subPhases": [
-        {
-          "subPhaseNumber": "0",
-          "message": "Use the joystick to operate the robot arm",
-          "startTime": "202"
-        },
+        "phaseNumber": "3",
+        "phaseName": "Safety",
+        "startTime": "13887",
+        "subPhases": [
+            {
+                "subPhaseNumber": "0",
+                "message": "On this poster you can find the main safety rules",
+                "startTime": "13892",
+                "endTime": "14321"
+            },
 
-        {
-          "subPhaseNumber": "1",
-          "message": "Use the joystick to operate the robot arm",
-          "startTime": "202"
-        },
+            {
+                "subPhaseNumber": "1",
+                "message": "Always follow these rules when operating the robot arm",
+                "startTime": "14326",
+                "endTime": "14761"
+            },
 
-        {
-          "subPhaseNumber": "2",
-          "message": "Use the joystick to operate the robot arm",
-          "startTime": "202"
-        }
-      ]
+            {
+                "subPhaseNumber": "2",
+                "message": "If an accident occurs, you can press 1 of 3 emergency buttons",
+                "startTime": "14766",
+                "endTime": "15201"
+            },
+
+            {
+                "subPhaseNumber": "3",
+                "message": "The brakes will then lock the robot arm immediately",
+                "startTime": "15206",
+                "endTime": "15641"
+            },
+
+            {
+                "subPhaseNumber": "4",
+                "message": "The first one is on the flexpendant",
+                "startTime": "15646",
+                "endTime": "16021"
+            },
+
+            {
+                "subPhaseNumber": "5",
+                "message": "The second one is when you enter the cage while the robot arm is running",
+                "startTime": "16584",
+                "endTime": "17098"
+            },
+
+            {
+                "subPhaseNumber": "6",
+                "message": "And the third one is on the IRC5",
+                "startTime": "17806",
+                "endTime": "18148"
+            },
+
+            {
+                "subPhaseNumber": "7",
+                "message": "To unlock the robot arm you have to press this button on the IRC5",
+                "startTime": "18153",
+                "endTime": "18630"
+            }
+        ]
     },
     {
-      "phaseNumber": "4",
-      "phaseName": "Onboarding",
-      "startTime": "0",
-      "subPhases": [
-        {
-          "subPhaseNumber": "0",
-          "message": "Use the joystick to operate the robot arm",
-          "startTime": "202"
-        },
+        "phaseNumber": "4",
+        "phaseName": "Offboarding",
+        "startTime": "19125",
+        "subPhases": [
+            {
+                "subPhaseNumber": "0",
+                "message": "You have finished the training!",
+                "startTime": "19130",
+                "endTime": "19446"
+            },
 
-        {
-          "subPhaseNumber": "1",
-          "message": "Use the joystick to operate the robot arm",
-          "startTime": "202"
-        },
+            {
+                "subPhaseNumber": "1",
+                "message": "You have earned the yellow gloves",
+                "startTime": "19451",
+                "endTime": "19817"
+            },
 
-        {
-          "subPhaseNumber": "2",
-          "message": "Use the joystick to operate the robot arm",
-          "startTime": "202"
-        }
-      ]
-    },
+            {
+                "subPhaseNumber": "2",
+                "message": "Use this menu to go back to a certain phase",
+                "startTime": "19822",
+                "endTime": "20253"
+            },
 
-    {
-      "phaseNumber": "5",
-      "phaseName": "Onboarding",
-      "startTime": "0",
-      "subPhases": [
-        {
-          "subPhaseNumber": "0",
-          "message": "Use the joystick to operate the robot arm",
-          "startTime": "202"
-        },
-
-        {
-          "subPhaseNumber": "1",
-          "message": "Use the joystick to operate the robot arm",
-          "startTime": "202"
-        },
-
-        {
-          "subPhaseNumber": "2",
-          "message": "Use the joystick to operate the robot arm",
-          "startTime": "202"
-        }
-      ]
-    },
-
-    {
-      "phaseNumber": "6",
-      "phaseName": "Onboarding",
-      "startTime": "0",
-      "subPhases": [
-        {
-          "subPhaseNumber": "0",
-          "message": "Use the joystick to operate the robot arm",
-          "startTime": "202"
-        },
-
-        {
-          "subPhaseNumber": "1",
-          "message": "Use the joystick to operate the robot arm",
-          "startTime": "202"
-        },
-
-        {
-          "subPhaseNumber": "2",
-          "message": "Use the joystick to operate the robot arm",
-          "startTime": "202"
-        }
-      ]
+            {
+                "subPhaseNumber": "3",
+                "message": "Or press this button to play a minigame",
+                "startTime": "20514",
+                "endTime": "20920"
+            }
+        ]
     },
 
     {
-      "phaseNumber": "7",
-      "phaseName": "Onboarding",
-      "startTime": "0",
-      "subPhases": [
-        {
-          "subPhaseNumber": "0",
-          "message": "Use the joystick to operate the robot arm",
-          "startTime": "202"
-        },
-
-        {
-          "subPhaseNumber": "1",
-          "message": "Use the joystick to operate the robot arm",
-          "startTime": "202"
-        },
-
-        {
-          "subPhaseNumber": "2",
-          "message": "Use the joystick to operate the robot arm",
-          "startTime": "202"
-        }
-      ]
+        "phaseNumber": "5",
+        "phaseName": "Minigame",
+        "startTime": "21002",
+        "subPhases": [
+            {
+                "subPhaseNumber": "0",
+                "message": "Get the end-effector in the sphere within 10 seconds",
+                "startTime": "21100",
+                "endTime": "21200"
+            }
+        ]
     }
   ]
 }

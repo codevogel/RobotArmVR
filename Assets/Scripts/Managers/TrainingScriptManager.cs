@@ -91,69 +91,69 @@ public class TrainingScriptManager : MonoBehaviour
         {
             //Teleport case
             case 0:
-                if (currentSubPhase.subPhaseNumber== 5)
+                if (currentPhase.phaseNumber==0 && currentSubPhase.subPhaseNumber== 5)
                 {
                     Newtime();
                 }
                 break;
             //Point case
             case 1:
-                if (currentSubPhase.subPhaseNumber == 7)
+                if (currentPhase.phaseNumber == 0 && currentSubPhase.subPhaseNumber == 7)
                 { 
                     Newtime();
                 }
                 break;
             //Radio case
             case 2:
-                if (currentSubPhase.subPhaseNumber == 9)
+                if (currentPhase.phaseNumber == 0 && currentSubPhase.subPhaseNumber == 9)
                 {
                     Newtime();
                 }
                 break;
             //Snap turn
             case 3:
-                if (currentSubPhase.subPhaseNumber == 10)
+                if (currentPhase.phaseNumber == 0 && currentSubPhase.subPhaseNumber == 10)
                 {
                     Newtime();
                 }
                 break;
             //Safety Button
             case 4:
-                if (currentSubPhase.subPhaseNumber == 3)
+                if (currentPhase.phaseNumber == 1 && currentSubPhase.subPhaseNumber == 3)
                 {
                     Newtime();
                 }
                 break;
             //Switch Axis
             case 5:
-                if (currentSubPhase.subPhaseNumber == 12)
+                if (currentPhase.phaseNumber == 1 && currentSubPhase.subPhaseNumber == 12)
                 {
                     Newtime();
                 }
                 break;
             //Switch Mode
             case 6:
-                if (currentSubPhase.subPhaseNumber == 0)
+                if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 0)
                 {
                     Newtime();
                 }
                 break;
             //Left / Right
-            case 7: if(currentSubPhase.subPhaseNumber == 2)
+            case 7: if(currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 2)
                 {
                     Newtime();
                 }
                 break;
             //Back / Forth
             case 8:
-                if (currentSubPhase.subPhaseNumber == 3)
+                if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 3)
                 {
                     Newtime();
                 }
                 break;
             //Up / Down
             case 9:
-                if (currentSubPhase.subPhaseNumber == 4)
+                if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 4)
                 {
                     Newtime();
                 }
