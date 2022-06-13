@@ -980,6 +980,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7224979425097568667, guid: 626eab70c8df397429d23010c4e75eb2, type: 3}
   m_PrefabInstance: {fileID: 7224979424944214011}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &91956062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 91956064}
+  - component: {fileID: 91956063}
+  m_Layer: 0
+  m_Name: super gaming
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &91956063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91956062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e060bcdcdf783d041b3589878e74cca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obstaclesPerRound: 2
+  _objectRadius: 1
+  _endEffector: {fileID: 1843783722}
+  _endEffectorRadius: 1
+  _goalPrefab: {fileID: 8512013116014930380, guid: 0151bfed79fc5db4493b205b4e53e8e3, type: 3}
+  _obstaclePrefab: {fileID: 6190468694509478093, guid: 0105e47c9548e064f8e6b43968ce9c23, type: 3}
+--- !u!4 &91956064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91956062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.2, y: 0, z: -36.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &98613861 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6432497218002021611, guid: b741603aecc12444ea8f3f5ecfe4aef8, type: 3}
@@ -13333,6 +13382,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5466667618585993046, guid: f6899a6639e2a2d4eb35a09c244e0955, type: 3}
   m_PrefabInstance: {fileID: 1839647764}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1843783722 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4308325684685252028, guid: c2d09a00b45749f468a599e787521e19, type: 3}
+  m_PrefabInstance: {fileID: 369282882}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1847616670
 GameObject:

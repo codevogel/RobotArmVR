@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class MinigameController : MonoBehaviour
 {
@@ -10,28 +11,37 @@ public class MinigameController : MonoBehaviour
     float _radius;
     float _verticalRadius;
 
-    [SerializeField,Min(0)]
+    [SerializeField, Min(0)]
     int _obstaclesPerRound;
     [SerializeField]
     float _objectRadius;
 
     [SerializeField]
     Transform _endEffector;
-    [SerializeField,Min(float.Epsilon)]
+    [SerializeField, Min(float.Epsilon)]
     float _endEffectorRadius;
 
     [SerializeField]
-    GameObject _goalPrefab;
+    OnTriggerColliderFilter _goalPrefab;
     [SerializeField]
-    GameObject _obstaclePrefab;
+    OnTriggerColliderFilter _obstaclePrefab;
 
     GameObject[] _authoredChildren = System.Array.Empty<GameObject>();
+
+    private void Start()
+    {
+        GenerateRound();
+    }
 
     /// <summary>
     /// Generate a set of obstacles and a goal point to navigate towards.
     /// </summary>
     public void GenerateRound()
     {
+        Assert.IsNotNull(_goalPrefab);
+        Assert.IsNotNull(_obstaclePrefab);
+        Assert.IsNotNull(_endEffector);
+
         ClearSpawnedObjects();
 
         Vector3[] positions = new Vector3[_obstaclesPerRound + 1];
@@ -66,14 +76,27 @@ public class MinigameController : MonoBehaviour
                 if (isInvalid)
                     continue;
 
+
                 // spawn a goal for the first index, obstacles for anything after
-                if(i == 0)
+                if (i == 0)
                 {
-                    Instantiate(_goalPrefab, pos, Quaternion.identity, this.transform);
+                    var goal = Instantiate(_goalPrefab, pos, Quaternion.identity, this.transform);
+                    goal.OnTriggerEnterRelay.AddListener(() =>
+                    {
+                        Score++;
+
+                        GenerateRound();
+                    });
                 }
                 else
                 {
-                    Instantiate(_obstaclePrefab, pos, Quaternion.identity, this.transform);
+                    var obstacle = Instantiate(_obstaclePrefab, pos, Quaternion.identity, this.transform);
+                    obstacle.OnTriggerExitRelay.AddListener(() =>
+                    {
+                        Score--;
+
+                        GenerateRound();
+                    });
                 }
             } while (isInvalid);
         }
