@@ -357,49 +357,56 @@
         "phaseNumber": "4",
         "phaseName": "Offboarding",
         "startTime": "19125",
-        "subPhases": [
-            {
-                "subPhaseNumber": "0",
-                "message": "You have finished the training!",
-                "startTime": "19130",
-                "endTime": "19446"
-            },
+      "subPhases": [
+        {
+          "subPhaseNumber": "0",
+          "message": "You have finished the training!",
+          "startTime": "19130",
+          "endTime": "19446"
+        },
 
-            {
-                "subPhaseNumber": "1",
-                "message": "You have earned the yellow gloves",
-                "startTime": "19451",
-                "endTime": "19817"
-            },
+        {
+          "subPhaseNumber": "1",
+          "message": "You have earned the yellow gloves",
+          "startTime": "19451",
+          "endTime": "19817"
+        },
 
-            {
-                "subPhaseNumber": "2",
-                "message": "Use this menu to go back to a certain phase",
-                "startTime": "19822",
-                "endTime": "20253"
-            },
+        {
+          "subPhaseNumber": "2",
+          "message": "Press the big red button to open the case",
+          "startTime": "19822",
+          "endTime": "20217"
+        },
 
-            {
-                "subPhaseNumber": "3",
-                "message": "Or press this button to play a minigame",
-                "startTime": "20514",
-                "endTime": "20920"
-            }
-        ]
+        {
+          "subPhaseNumber": "3",
+          "message": "Use this menu to go back to a certain phase",
+          "startTime": "202222",
+          "endTime": "20653"
+        },
+
+        {
+          "subPhaseNumber": "4",
+          "message": "Or press this button to play a minigame",
+          "startTime": "20914",
+          "endTime": "21320"
+        }
+      ]
     },
 
     {
-        "phaseNumber": "5",
-        "phaseName": "Minigame",
-        "startTime": "21002",
-        "subPhases": [
-            {
-                "subPhaseNumber": "0",
-                "message": "Get the end-effector in the sphere within 10 seconds",
-                "startTime": "21100",
-                "endTime": "21200"
-            }
-        ]
+      "phaseNumber": "5",
+      "phaseName": "Minigame",
+      "startTime": "21400",
+      "subPhases": [
+        {
+          "subPhaseNumber": "0",
+          "message": "Move the end-effector in the green sphere while dodging the red ones",
+          "startTime": "21500",
+          "endTime": "21200"
+        }
+      ]
     }
   ]
 }
