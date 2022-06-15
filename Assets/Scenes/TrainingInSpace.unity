@@ -10471,28 +10471,32 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 2013193494491455306}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 188489317}
     - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Activate
-      objectReference: {fileID: 0}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1775039881}
     - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
-      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: SetEmergencyStop
       objectReference: {fileID: 0}
     - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: FreezeButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: IRC5Controller, Assembly-CSharp
+      value: RobotArmController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: RobotArmController, Assembly-CSharp
+      value: PushButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8073630174595372198, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: travelSpeed
@@ -16808,6 +16812,10 @@ PrefabInstance:
       propertyPath: robotAudio
       value: 
       objectReference: {fileID: 8033909}
+    - target: {fileID: 7224979425097568670, guid: 626eab70c8df397429d23010c4e75eb2, type: 3}
+      propertyPath: irc5controller
+      value: 
+      objectReference: {fileID: 2013193494491455306}
     - target: {fileID: 7224979425097568670, guid: 626eab70c8df397429d23010c4e75eb2, type: 3}
       propertyPath: buttons.Array.size
       value: 5

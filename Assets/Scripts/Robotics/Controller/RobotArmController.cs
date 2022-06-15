@@ -53,6 +53,14 @@ public class RobotArmController : MonoBehaviour
     public UnityEvent OnPressureButtonDown;
     public UnityEvent OnPressureButtonUp;
 
+    [SerializeField]
+    private IRC5Controller irc5controller;
+
+    private bool emergencyStopEnabled;
+    private bool axisButtonEnabled;
+    private bool movementButtonEnabled=true;
+    private bool firstStart;
+
     private bool armMoving;
 
 
@@ -110,7 +118,13 @@ public class RobotArmController : MonoBehaviour
 
     public void SetEmergencyStop(bool stop)
     {
-        emergencyStop = stop;
+        if (emergencyStopEnabled)
+        {
+            emergencyStop = stop;
+            irc5controller.Activate(stop);
+            return;
+        }
+        buttons[4].FreezeButton(false);
     }
 
     
@@ -139,30 +153,42 @@ public class RobotArmController : MonoBehaviour
     /// </summary>
     public void ChangeAxisAction()
     {
-        axisSetOne = !axisSetOne;
-        FlexpendantUIManager.Instance.ChangeAxisSet(axisSetOne);
+        if (axisButtonEnabled)
+        {
+            axisSetOne = !axisSetOne;
+            FlexpendantUIManager.Instance.ChangeAxisSet(axisSetOne);
+        }
     }
 
     public void ChangeMovementMode()
     {
-        movementOnLinear = !movementOnLinear;
-        FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
+        if (movementButtonEnabled)
+        {
+            //If the function is called during the start
+            if (firstStart)
+            {
+                movementButtonEnabled = false;
+                firstStart = false;
+            }
 
-        if (movementOnLinear)
-        {
-            StopArticulation();
-            IKManager.enabled = true;
-            linearMovement.enabled = true;
-            linearMovement.followTarget.position = articulationBodies[5].transform.position;
-        }
-        else
-        {
-            StopArticulation();
-            IKManager.enabled = false;
-            linearMovement.enabled = false;
+            movementOnLinear = !movementOnLinear;
+            FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
+
+            if (movementOnLinear)
+            {
+                StopArticulation();
+                IKManager.enabled = true;
+                linearMovement.enabled = true;
+                linearMovement.followTarget.position = articulationBodies[5].transform.position;
+            }
+            else
+            {
+                StopArticulation();
+                IKManager.enabled = false;
+                linearMovement.enabled = false;
+            }
         }
     }
-
 
     /// <summary>
     /// Used to control the pressure button.
@@ -181,7 +207,6 @@ public class RobotArmController : MonoBehaviour
         if (heldDevice == null)
             return;
 
-
         if (heldDevice.transform.name == "Flexpendant")
         {
             if (pressureButtonHeld != input)
@@ -196,6 +221,26 @@ public class RobotArmController : MonoBehaviour
                 }
             }
             pressureButtonHeld = input;
+        }
+    }
+
+    /// <summary>
+    /// Enables a buttons functionality depending on the number given
+    /// </summary>
+    /// <param name="buttonNumber">The button that needs to be enabled</param>
+    public void EnableButtonFunction(int buttonNumber)
+    {
+        switch (buttonNumber)
+        {
+            case 0:
+                axisButtonEnabled = true;
+                break;
+            case 1:
+                movementButtonEnabled = true;
+                break;
+            case 2:
+                emergencyStopEnabled = true;
+                break;
         }
     }
 
