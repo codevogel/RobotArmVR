@@ -2,35 +2,84 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 public class MinigameController : MonoBehaviour
 {
-    public int Score { get; set; }
+    readonly private List<GameObject> _authoredChildren = new List<GameObject>();
+    private Coroutine _minigameCoroutine;
+    private float _timeStarted;
 
-    float _deadzone;
-    float _radius;
-    float _verticalRadius;
+    public int Score { get; set; }
+    public float TimeRemaining => Mathf.Clamp(_timeLimit - (Time.time - _timeStarted), 0, float.MaxValue);
 
     [SerializeField, Min(0)]
-    int _obstaclesPerRound;
+    private float _timeLimit;
     [SerializeField]
-    float _objectRadius;
-
-    [SerializeField]
-    Transform _endEffector;
+    private Collider _pointer;
+    
+    [Header("Bounds")]
     [SerializeField, Min(float.Epsilon)]
-    float _endEffectorRadius;
+    private float _radius;
+    [SerializeField, Min(0)]
+    private float _deadzone;
+    [SerializeField, Min(0)]
+    private float _verticalRadius;
+    [SerializeField, Min(float.Epsilon)]
+    private float _pointerRadius;
 
+    [Header("Obstacles")]
+    [SerializeField, Min(0)]
+    private int _obstaclesPerRound;
     [SerializeField]
-    OnTriggerColliderFilter _goalPrefab;
+    private float _objectRadius;
+
+    [Header("Goal")]
     [SerializeField]
-    OnTriggerColliderFilter _obstaclePrefab;
+    private OnTriggerColliderFilter _goalPrefab;
+    [SerializeField]
+    private OnTriggerColliderFilter _obstaclePrefab;
 
-    GameObject[] _authoredChildren = System.Array.Empty<GameObject>();
+    [field: Header("Events")]
+    [field: SerializeField]
+    public UnityEvent OnMinigameStarted { get; private set; }
+    [field: SerializeField]
+    public UnityEvent OnMinigameFinished { get; private set; }
 
-    private void Start()
+    [field: SerializeField]
+    public UnityEvent OnGoalTouched { get; private set; }
+
+    [field: SerializeField]
+    public UnityEvent OnObstacleTouched { get; private set; }
+
+    /// <summary>
+    /// Resets the minigame stats and starts the minigame.
+    /// </summary>
+    public void BeginMinigame()
+    {
+        Score = 0;
+        _timeStarted = Time.time;
+        _minigameCoroutine = StartCoroutine(MinigameCoroutine());
+    }
+
+    /// <summary>
+    /// Tells the minigame to stop running and cleans up any left over objects.
+    /// </summary>
+    /// <remarks> This will not call <see cref="OnMinigameFinished"/></remarks>
+    public void EndMinigame()
+    {
+        if (_minigameCoroutine != null)
+            StopCoroutine(_minigameCoroutine);
+
+        ClearSpawnedObjects();
+    }
+
+    private IEnumerator MinigameCoroutine()
     {
         GenerateRound();
+        yield return new WaitForSeconds(_timeLimit);
+        ClearSpawnedObjects();
+        _minigameCoroutine = null;
     }
 
     /// <summary>
@@ -40,7 +89,9 @@ public class MinigameController : MonoBehaviour
     {
         Assert.IsNotNull(_goalPrefab);
         Assert.IsNotNull(_obstaclePrefab);
-        Assert.IsNotNull(_endEffector);
+        Assert.IsNotNull(_pointer);
+        Assert.IsTrue(_radius > 0);
+        Assert.IsTrue(_radius > _deadzone);
 
         ClearSpawnedObjects();
 
@@ -50,15 +101,22 @@ public class MinigameController : MonoBehaviour
         {
             Vector3 pos;
             bool isInvalid;
+            int iterations = default;
             do
             {
+                if (iterations++ > 100)
+                {
+                    Debug.LogError("Oh shit, er gaat iets goed mis of ik heb heel veel pech.");
+                    break;
+                }
+
                 isInvalid = false;
 
                 pos = GenerateRandomPoint();
                 Vector3 worldPos = pos + transform.position;
 
                 // determine if the point is in range of the end effector
-                if (IsInsideRange(worldPos, _objectRadius, _endEffector.position, _endEffectorRadius))
+                if (IsInsideRange(worldPos, _objectRadius, _pointer.transform.position, _pointerRadius))
                 {
                     isInvalid = true;
                     continue;
@@ -80,23 +138,34 @@ public class MinigameController : MonoBehaviour
                 // spawn a goal for the first index, obstacles for anything after
                 if (i == 0)
                 {
-                    var goal = Instantiate(_goalPrefab, pos, Quaternion.identity, this.transform);
+                    var goal = Instantiate(_goalPrefab, this.transform);
+                    goal.transform.localPosition = pos;
+                    goal.Filter = _pointer;
                     goal.OnTriggerEnterRelay.AddListener(() =>
                     {
                         Score++;
+                        OnGoalTouched?.Invoke();
 
                         GenerateRound();
                     });
+
+                    _authoredChildren.Add(goal.gameObject);
                 }
                 else
                 {
-                    var obstacle = Instantiate(_obstaclePrefab, pos, Quaternion.identity, this.transform);
+                    var obstacle = Instantiate(_obstaclePrefab, this.transform);
+                    obstacle.transform.localPosition = pos;
+                    obstacle.Filter = _pointer;
+
                     obstacle.OnTriggerExitRelay.AddListener(() =>
                     {
                         Score--;
+                        OnObstacleTouched?.Invoke();
 
                         GenerateRound();
                     });
+
+                    _authoredChildren.Add(obstacle.gameObject);
                 }
             } while (isInvalid);
         }
@@ -105,13 +174,13 @@ public class MinigameController : MonoBehaviour
     // Removes any active game objects spawned by the minigame.
     public void ClearSpawnedObjects()
     {
-        if (_authoredChildren == null)
-            return;
-
-        for (int i = 0; i < _authoredChildren.Length; i++)
+        for (int i = 0; i < _authoredChildren.Count; i++)
         {
-            Destroy(_authoredChildren[i]);
+            if (_authoredChildren[i] != null)
+                Destroy(_authoredChildren[i]);
         }
+
+        _authoredChildren.Clear();
     }
 
     /// <summary>
@@ -121,9 +190,9 @@ public class MinigameController : MonoBehaviour
     Vector3 GenerateRandomPoint()
     {
         Vector3 randomPoint = Random.insideUnitCircle;
-        randomPoint *= _radius;
-
         var deadzoneOffset = randomPoint.normalized * _deadzone;
+
+        randomPoint *= Random.Range(_deadzone, _radius - _deadzone);
 
         randomPoint += deadzoneOffset;
 
