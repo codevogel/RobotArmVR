@@ -59,7 +59,7 @@ public class RobotArmController : MonoBehaviour
     private bool emergencyStopEnabled;
     private bool axisButtonEnabled;
     private bool movementButtonEnabled=true;
-    private bool firstStart;
+    private bool firstStart=true;
 
     private bool armMoving;
 
@@ -124,6 +124,7 @@ public class RobotArmController : MonoBehaviour
             irc5controller.Activate(stop);
             return;
         }
+        //Unfreeze the emergency button when its not yet enabled
         buttons[4].FreezeButton(false);
     }
 
