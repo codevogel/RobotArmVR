@@ -9760,6 +9760,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 981900553329676778, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5fa174536a198ba448d33827497fe81a, type: 2}
     - target: {fileID: 1059305797421417766, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -10516,28 +10520,52 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 2013193494491455306}
+      objectReference: {fileID: 1775039881}
     - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 188489317}
     - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 188489317}
+    - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Activate
+      value: FreezeButton
       objectReference: {fileID: 0}
     - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: SetEmergencyStop
       objectReference: {fileID: 0}
     - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SetEmergencyStop
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: IRC5Controller, Assembly-CSharp
+      value: PushButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: RobotArmController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: RobotArmController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073630174048469983, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8073630174595372198, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: travelSpeed
@@ -11617,6 +11645,7 @@ GameObject:
   - component: {fileID: 1690276457}
   - component: {fileID: 1690276456}
   - component: {fileID: 1690276458}
+  - component: {fileID: 1690276459}
   - component: {fileID: 1690276453}
   m_Layer: 0
   m_Name: Onboarding Director
@@ -11808,6 +11837,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2e08121a645d94aae89c03b588ad4f14, type: 2}
     - {fileID: 11400000, guid: c56cc40473997d143aad1d645229949d, type: 2}
     - {fileID: 11400000, guid: b5f210e641b67a2438e95c9878ecc8a4, type: 2}
+    - {fileID: 11400000, guid: b635c940d472e0c4aba6cf7ee8587e8d, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -11927,6 +11957,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &1690276451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12152,6 +12184,35 @@ MonoBehaviour:
         - m_Target: {fileID: 967421761}
           m_TargetAssemblyTypeName: ChangeMaterialOnTriggerEnter, Assembly-CSharp
           m_MethodName: HighlightObject
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1690276459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690276446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8174327f4fd178645bb498da5725b184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SignalAssetEventPairs:
+  - <SignalAsset>k__BackingField: {fileID: 11400000, guid: b635c940d472e0c4aba6cf7ee8587e8d, type: 2}
+    <Events>k__BackingField:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 188489317}
+          m_TargetAssemblyTypeName: RobotArmController, Assembly-CSharp
+          m_MethodName: EnableButtonFunction
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -16858,6 +16919,10 @@ PrefabInstance:
       propertyPath: robotAudio
       value: 
       objectReference: {fileID: 8033909}
+    - target: {fileID: 7224979425097568670, guid: 626eab70c8df397429d23010c4e75eb2, type: 3}
+      propertyPath: irc5controller
+      value: 
+      objectReference: {fileID: 2013193494491455306}
     - target: {fileID: 7224979425097568670, guid: 626eab70c8df397429d23010c4e75eb2, type: 3}
       propertyPath: buttons.Array.size
       value: 5
