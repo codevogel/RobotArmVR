@@ -11,11 +11,11 @@ public class MinigameController : MonoBehaviour
     private float _timeStarted;
 
     public int Score { get; private set; }
-    public float TimeRemaining => Mathf.Clamp(_timeLimit - (Time.time - _timeStarted), 0, float.MaxValue);
+    public float TimeRemaining => Mathf.Clamp(TimeLimit - (Time.time - _timeStarted), 0, float.MaxValue);
     public bool IsBeingPlayed => _minigameCoroutine != null;
 
-    [SerializeField, Min(0)]
-    private float _timeLimit;
+    [field: SerializeField, Min(0)]
+    public float TimeLimit { get; set; }
     [SerializeField]
     private Collider _pointer;
     
@@ -53,6 +53,11 @@ public class MinigameController : MonoBehaviour
     [field: SerializeField]
     public UnityEvent OnObstacleTouched { get; private set; }
 
+    private void Start()
+    {
+        BeginMinigame();
+    }
+
     /// <summary>
     /// Resets the minigame stats and starts the minigame.
     /// </summary>
@@ -78,7 +83,7 @@ public class MinigameController : MonoBehaviour
     private IEnumerator MinigameCoroutine()
     {
         GenerateRound();
-        yield return new WaitForSeconds(_timeLimit);
+        yield return new WaitForSeconds(TimeLimit);
         ClearSpawnedObjects();
         _minigameCoroutine = null;
     }
