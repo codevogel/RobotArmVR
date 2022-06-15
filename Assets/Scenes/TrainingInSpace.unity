@@ -11596,6 +11596,7 @@ GameObject:
   - component: {fileID: 1690276457}
   - component: {fileID: 1690276456}
   - component: {fileID: 1690276458}
+  - component: {fileID: 1690276459}
   - component: {fileID: 1690276453}
   m_Layer: 0
   m_Name: Onboarding Director
@@ -11787,6 +11788,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2e08121a645d94aae89c03b588ad4f14, type: 2}
     - {fileID: 11400000, guid: c56cc40473997d143aad1d645229949d, type: 2}
     - {fileID: 11400000, guid: b5f210e641b67a2438e95c9878ecc8a4, type: 2}
+    - {fileID: 11400000, guid: b635c940d472e0c4aba6cf7ee8587e8d, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -11906,6 +11908,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &1690276451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12131,6 +12135,35 @@ MonoBehaviour:
         - m_Target: {fileID: 967421761}
           m_TargetAssemblyTypeName: ChangeMaterialOnTriggerEnter, Assembly-CSharp
           m_MethodName: HighlightObject
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1690276459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690276446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8174327f4fd178645bb498da5725b184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SignalAssetEventPairs:
+  - <SignalAsset>k__BackingField: {fileID: 11400000, guid: b635c940d472e0c4aba6cf7ee8587e8d, type: 2}
+    <Events>k__BackingField:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 188489317}
+          m_TargetAssemblyTypeName: RobotArmController, Assembly-CSharp
+          m_MethodName: EnableButtonFunction
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

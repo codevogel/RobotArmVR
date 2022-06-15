@@ -233,12 +233,15 @@ public class RobotArmController : MonoBehaviour
     {
         switch (buttonNumber)
         {
+            //Enable the switch axis button
             case 0:
                 axisButtonEnabled = true;
                 break;
+            //Enable the switch movement mode button
             case 1:
                 movementButtonEnabled = true;
                 break;
+            //Enable the emergency stop button
             case 2:
                 emergencyStopEnabled = true;
                 break;
