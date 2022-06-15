@@ -7,6 +7,8 @@ public class TouchButton : MonoBehaviour
     [SerializeField] private int phaseNumber;
     [SerializeField] private ButtonFunction buttonFunction;
 
+    [SerializeField] private RobotArmController robot;
+
     [HideInInspector]
     public bool locked;
 
@@ -37,6 +39,9 @@ public class TouchButton : MonoBehaviour
                 case ButtonFunction.EXITGAMEBUTTON:
                     Application.Quit();
                     break;
+                case ButtonFunction.DEBUG:
+                    robot.ChangeRobot(1);
+                    break;
             }
         }
     }
@@ -45,6 +50,7 @@ public class TouchButton : MonoBehaviour
     {
         PHASECHANGER,
         SKIPBUTTON,
-        EXITGAMEBUTTON
+        EXITGAMEBUTTON,
+        DEBUG
     }
 }

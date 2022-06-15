@@ -12,9 +12,9 @@ public class RobotArmController : MonoBehaviour
 {
 
     #region axis selection
-    public ArticulationBody[] articulationBodies = new ArticulationBody[6];
+    public GameObject[] robotArms;
+    private ArticulationBody[] articulationBodies = new ArticulationBody[6];
     private ArticulationJointController[] articulationJointControllers = new ArticulationJointController[6];
-    private Vector3 axis;
     public int selectedArticulator = 0;
     private bool axisSetOne = true;
     #endregion
@@ -34,7 +34,7 @@ public class RobotArmController : MonoBehaviour
     private JoystickInteractor joystickInteractor;
 
     [SerializeField]
-    private CustomIKManager IKManager;
+    private CustomIKManager[] IKManager;
 
     [HideInInspector]
     public CustomInteractor Interactor;
@@ -45,7 +45,7 @@ public class RobotArmController : MonoBehaviour
     private float joystickThreshold;
 
     [field: SerializeField]
-    private RobotAudio robotAudio;
+    private RobotAudio[] robotAudio;
 
     [SerializeField]
     private List<PushButton> buttons;
@@ -63,9 +63,11 @@ public class RobotArmController : MonoBehaviour
 
     private bool armMoving;
 
+    public int currentRobot;
 
     private void Awake()
     {
+        RobotArmSwitch(robotArms[0]);
         FlexpendantUIManager.Instance.SetAxis(articulationBodies);
         FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
     }
@@ -76,13 +78,32 @@ public class RobotArmController : MonoBehaviour
         Interactor = GetComponent<CustomInteractor>();
         linearMovement = GetComponent<LinearMovement>();
        
-        IKManager.movementEnabled = movementOnLinear;
+        IKManager[0].movementEnabled = movementOnLinear;
 
         for (int i = 0; i < articulationBodies.Length; i++)
         {
             articulationJointControllers[i] = articulationBodies[i].GetComponent<ArticulationJointController>();
         }
         ChangeMovementMode();
+    }
+
+    private void RobotArmSwitch(GameObject robotarm)
+    {
+        for (int x=0; x<articulationBodies.Length;x++)
+        {
+            if (x==0)
+            {
+                articulationBodies[x] = robotarm.transform.GetChild(0).GetComponent<ArticulationBody>();
+            }
+            else
+            {
+                articulationBodies[x] = articulationBodies[x - 1].transform.GetChild(1).GetComponent<ArticulationBody>();
+            }
+        }
+        for (int i = 0; i < articulationBodies.Length; i++)
+        {
+            articulationJointControllers[i] = articulationBodies[i].GetComponent<ArticulationJointController>();
+        }
     }
 
     private void FixedUpdate()
@@ -97,12 +118,12 @@ public class RobotArmController : MonoBehaviour
         {
             armMoving = true;
             
-            robotAudio.StartLoop();
+            robotAudio[currentRobot].StartLoop();
         }
         if (armMoving && !moved)
         {
             armMoving = false;
-            robotAudio.Stop();
+            robotAudio[currentRobot].Stop();
 
             foreach (ArticulationJointController art in articulationJointControllers)
             {
@@ -114,6 +135,13 @@ public class RobotArmController : MonoBehaviour
         {
             FlexpendantUIManager.Instance.UpdateAxis(selectedArticulator, articulationBodies[selectedArticulator].transform);
         }
+    }
+
+    public void ChangeRobot(int robot)
+    {
+        currentRobot = robot;
+        RobotArmSwitch(robotArms[currentRobot]);
+        linearMovement.ChangeRobot(robot);
     }
 
     public void SetEmergencyStop(bool stop)
@@ -178,14 +206,14 @@ public class RobotArmController : MonoBehaviour
             if (movementOnLinear)
             {
                 StopArticulation();
-                IKManager.enabled = true;
+                IKManager[currentRobot].enabled = true;
                 linearMovement.enabled = true;
-                linearMovement.followTarget.position = articulationBodies[5].transform.position;
+                linearMovement.followTarget[currentRobot].position = articulationBodies[5].transform.position;
             }
             else
             {
                 StopArticulation();
-                IKManager.enabled = false;
+                IKManager[currentRobot].enabled = false;
                 linearMovement.enabled = false;
             }
         }
