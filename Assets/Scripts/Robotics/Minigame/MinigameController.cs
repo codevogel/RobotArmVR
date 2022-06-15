@@ -10,8 +10,9 @@ public class MinigameController : MonoBehaviour
     private Coroutine _minigameCoroutine;
     private float _timeStarted;
 
-    public int Score { get; set; }
+    public int Score { get; private set; }
     public float TimeRemaining => Mathf.Clamp(_timeLimit - (Time.time - _timeStarted), 0, float.MaxValue);
+    public bool IsBeingPlayed => _minigameCoroutine != null;
 
     [SerializeField, Min(0)]
     private float _timeLimit;
