@@ -106,6 +106,10 @@ public class MinigameController : MonoBehaviour
     {
         Score = 0;
         _timeStarted = Time.time;
+
+        if (_minigameCoroutine != null)
+            StopCoroutine(_minigameCoroutine);
+
         _minigameCoroutine = StartCoroutine(MinigameCoroutine());
     }
 
@@ -116,7 +120,10 @@ public class MinigameController : MonoBehaviour
     public void EndMinigame()
     {
         if (_minigameCoroutine != null)
+        {
             StopCoroutine(_minigameCoroutine);
+            _minigameCoroutine = null;
+        }
 
         ClearSpawnedObjects();
     }
