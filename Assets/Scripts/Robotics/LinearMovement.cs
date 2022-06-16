@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class LinearMovement : MonoBehaviour
 {
-
-    [HideInInspector]
-    public bool inBounds;
-
     public Transform[] followTarget;
 
     public bool followingTarget;
@@ -33,14 +29,14 @@ public class LinearMovement : MonoBehaviour
 
     private void Start()
     {
-        CustomIKManager.PRef = followTarget[currentRobot].localPosition;
+        customIKManager[currentRobot].PRef = followTarget[currentRobot].localPosition;
     }
 
     private void Update()
     {
         if (followingTarget)
         {
-            CustomIKManager.PRef = followTarget[currentRobot].localPosition;
+            customIKManager[currentRobot].PRef = followTarget[currentRobot].localPosition;
         }
     }
 
@@ -83,7 +79,7 @@ public class LinearMovement : MonoBehaviour
     /// <param name="distance">the distance to move</param>
     private void _MoveTowards(Vector3 dir, float distance)
     {
-        if (inBounds)
+        if (customIKManager[currentRobot].inBounds)
         {
             Vector3 newPos = followTarget[currentRobot].localPosition;
             newPos += dir * distance;

@@ -34,7 +34,7 @@ public class RobotArmController : MonoBehaviour
     private JoystickInteractor joystickInteractor;
 
     [SerializeField]
-    private CustomIKManager[] IKManager;
+    private CustomIKManager[] IKManagers;
 
     [HideInInspector]
     public CustomInteractor Interactor;
@@ -77,33 +77,22 @@ public class RobotArmController : MonoBehaviour
         joystickInteractor = HandManager.Instance.RightController.GetComponent<JoystickInteractor>();
         Interactor = GetComponent<CustomInteractor>();
         linearMovement = GetComponent<LinearMovement>();
-       
-        IKManager[0].movementEnabled = movementOnLinear;
+
+        foreach (CustomIKManager ikManager in IKManagers)
+        {
+            ikManager.movementEnabled = movementOnLinear;
+        }
+
+        for (int x=1; x<IKManagers.Length;x++)
+        {
+            IKManagers[x].enabled = false;
+        }
 
         for (int i = 0; i < articulationBodies.Length; i++)
         {
             articulationJointControllers[i] = articulationBodies[i].GetComponent<ArticulationJointController>();
         }
         ChangeMovementMode();
-    }
-
-    private void RobotArmSwitch(GameObject robotarm)
-    {
-        for (int x=0; x<articulationBodies.Length;x++)
-        {
-            if (x==0)
-            {
-                articulationBodies[x] = robotarm.transform.GetChild(0).GetComponent<ArticulationBody>();
-            }
-            else
-            {
-                articulationBodies[x] = articulationBodies[x - 1].transform.GetChild(1).GetComponent<ArticulationBody>();
-            }
-        }
-        for (int i = 0; i < articulationBodies.Length; i++)
-        {
-            articulationJointControllers[i] = articulationBodies[i].GetComponent<ArticulationJointController>();
-        }
     }
 
     private void FixedUpdate()
@@ -137,10 +126,43 @@ public class RobotArmController : MonoBehaviour
         }
     }
 
+    private void RobotArmSwitch(GameObject robotarm)
+    {
+        for (int x = 0; x < articulationBodies.Length; x++)
+        {
+            if (x == 0)
+            {
+                articulationBodies[x] = robotarm.transform.GetChild(0).GetComponent<ArticulationBody>();
+            }
+            else
+            {
+                articulationBodies[x] = articulationBodies[x - 1].transform.GetChild(1).GetComponent<ArticulationBody>();
+            }
+        }
+        for (int i = 0; i < articulationBodies.Length; i++)
+        {
+            articulationJointControllers[i] = articulationBodies[i].GetComponent<ArticulationJointController>();
+        }
+    }
+
     public void ChangeRobot(int firstRobot)
     {
         RobotArmSwitch(robotArms[firstRobot]);
         linearMovement.ChangeRobot(firstRobot);
+
+        if (linearMovement)
+        {
+            if (firstRobot==0)
+            {
+                IKManagers[firstRobot + 1].enabled = false;
+            }
+            else
+            {
+                IKManagers[firstRobot - 1].enabled = false;
+            }
+            IKManagers[firstRobot].enabled = true;
+            linearMovement.followTarget[firstRobot].position = articulationBodies[5].transform.position;
+        }
     }
 
     public void SetEmergencyStop(bool stop)
@@ -205,14 +227,18 @@ public class RobotArmController : MonoBehaviour
             if (movementOnLinear)
             {
                 StopArticulation();
-                IKManager[currentRobot].enabled = true;
+                IKManagers[currentRobot].enabled = true;
                 linearMovement.enabled = true;
+                Debug.Log(linearMovement.followTarget[currentRobot].position);
                 linearMovement.followTarget[currentRobot].position = articulationBodies[5].transform.position;
+
+
+                Debug.Log(" 2 +  " + linearMovement.followTarget[currentRobot].position);
             }
             else
             {
                 StopArticulation();
-                IKManager[currentRobot].enabled = false;
+                IKManagers[currentRobot].enabled = false;
                 linearMovement.enabled = false;
             }
         }
