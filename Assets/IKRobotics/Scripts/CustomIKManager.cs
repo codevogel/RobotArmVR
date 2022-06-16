@@ -17,7 +17,9 @@ namespace IKManager
         private Vector3[] axis = new Vector3[6];            // local direction of each axis
         private Quaternion[] rotation = new Quaternion[6];  // local rotation(quaternion) of joint relative to its parent
         private Quaternion[] wRotation = new Quaternion[6]; // world rotation(quaternion) of joint
-        public static Vector3 PRef;                                // reference(target) position
+
+        //[HideInInspector]
+        public Vector3 PRef;                                // reference(target) position
         public static Vector3 RRef;                                // reference(target) pose
 
         private float lambda = 0.1f;                        // convergence rate
@@ -29,6 +31,9 @@ namespace IKManager
 
         [HideInInspector]
         public bool movementEnabled;
+
+        [HideInInspector]
+        public bool inBounds;
 
         void Start()
         {

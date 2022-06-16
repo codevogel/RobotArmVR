@@ -5,16 +5,12 @@ using UnityEngine;
 
 public class LinearMovement : MonoBehaviour
 {
-
-    [HideInInspector]
-    public bool inBounds;
-
-    public Transform followTarget;
+    public Transform[] followTarget;
 
     public bool followingTarget;
 
     [SerializeField]
-    private CustomIKManager customIKManager;
+    private CustomIKManager[] customIKManager;
 
     #region Continuous
     [field: SerializeField]
@@ -28,17 +24,25 @@ public class LinearMovement : MonoBehaviour
     private float incrementSize;
     #endregion
 
+    [HideInInspector]
+    public int currentRobot=0;
+
     private void Start()
     {
-        CustomIKManager.PRef = followTarget.localPosition;
+        customIKManager[currentRobot].PRef = followTarget[currentRobot].localPosition;
     }
 
     private void Update()
     {
         if (followingTarget)
         {
-            CustomIKManager.PRef = followTarget.localPosition;
+            customIKManager[currentRobot].PRef = followTarget[currentRobot].localPosition;
         }
+    }
+
+    public void ChangeRobot(int robotNumber)
+    {
+        currentRobot = robotNumber;
     }
 
     public void ChangeMode()
@@ -75,35 +79,35 @@ public class LinearMovement : MonoBehaviour
     /// <param name="distance">the distance to move</param>
     private void _MoveTowards(Vector3 dir, float distance)
     {
-        if (inBounds)
+        if (customIKManager[currentRobot].inBounds)
         {
-            Vector3 newPos = followTarget.localPosition;
+            Vector3 newPos = followTarget[currentRobot].localPosition;
             newPos += dir * distance;
-            followTarget.localPosition = newPos;
-            customIKManager.UpdateUI();
+            followTarget[currentRobot].localPosition = newPos;
+            customIKManager[currentRobot].UpdateUI();
         }
         else // only allow directions that make the robot go in bounds again
         {
-            if ((followTarget.localPosition.x > 0 && dir.x < 0) || (followTarget.localPosition.x < 0 && dir.x > 0))
+            if ((followTarget[currentRobot].localPosition.x > 0 && dir.x < 0) || (followTarget[currentRobot].localPosition.x < 0 && dir.x > 0))
             {
-                Vector3 newPos = followTarget.localPosition;
+                Vector3 newPos = followTarget[currentRobot].localPosition;
                 newPos.x += dir.x * distance;
-                followTarget.localPosition = newPos;
-                customIKManager.UpdateUI();
+                followTarget[currentRobot].localPosition = newPos;
+                customIKManager[currentRobot].UpdateUI();
             }
-            if ((followTarget.localPosition.y > 0 && dir.y < 0) || (followTarget.localPosition.y < 0 && dir.y > 0))
+            if ((followTarget[currentRobot].localPosition.y > 0 && dir.y < 0) || (followTarget[currentRobot].localPosition.y < 0 && dir.y > 0))
             {
-                Vector3 newPos = followTarget.localPosition;
+                Vector3 newPos = followTarget[currentRobot].localPosition;
                 newPos.y += dir.y * distance;
-                followTarget.localPosition = newPos;
-                customIKManager.UpdateUI();
+                followTarget[currentRobot].localPosition = newPos;
+                customIKManager[currentRobot].UpdateUI();
             }
-            if ((followTarget.localPosition.z > 0 && dir.z < 0) || (followTarget.localPosition.z < 0 && dir.z > 0))
+            if ((followTarget[currentRobot].localPosition.z > 0 && dir.z < 0) || (followTarget[currentRobot].localPosition.z < 0 && dir.z > 0))
             {
-                Vector3 newPos = followTarget.localPosition;
+                Vector3 newPos = followTarget[currentRobot].localPosition;
                 newPos.z += dir.z * distance;
-                followTarget.localPosition = newPos;
-                customIKManager.UpdateUI();
+                followTarget[currentRobot].localPosition = newPos;
+                customIKManager[currentRobot].UpdateUI();
             }
         }
     }
