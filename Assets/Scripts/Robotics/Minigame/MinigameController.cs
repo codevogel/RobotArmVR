@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class MinigameController : MonoBehaviour
 {
-    readonly private List<GameObject> _authoredChildren = new List<GameObject>();
+    readonly private List<OnTriggerColliderFilter> _authoredChildren = new List<OnTriggerColliderFilter>();
     private Coroutine _minigameCoroutine;
     private float _timeStarted;
 
@@ -18,7 +18,7 @@ public class MinigameController : MonoBehaviour
     public float TimeLimit { get; set; } = 120;
     [SerializeField]
     private Collider _pointer;
-    
+
     [Header("Bounds")]
     [SerializeField, Min(float.Epsilon)]
     private float _radius;
@@ -26,14 +26,16 @@ public class MinigameController : MonoBehaviour
     private float _deadzone;
     [SerializeField, Min(0)]
     private float _verticalRadius;
+    [SerializeField]
+    private float _verticalOffset;
     [SerializeField, Min(float.Epsilon)]
     private float _pointerRadius;
 
     [Header("Obstacles")]
     [SerializeField, Min(0)]
     private int _obstaclesPerRound;
-    [SerializeField]
-    private float _objectRadius;
+    //[SerializeField]
+    //private float _objectRadius;
 
     [Header("Goal")]
     [SerializeField]
@@ -75,6 +77,9 @@ public class MinigameController : MonoBehaviour
         ClearSpawnedObjects();
     }
 
+    /// <summary>
+    /// Kickstarts the minigame and stops after the time limit is reached.
+    /// </summary>
     private IEnumerator MinigameCoroutine()
     {
         GenerateRound();
@@ -96,9 +101,10 @@ public class MinigameController : MonoBehaviour
 
         ClearSpawnedObjects();
 
-        Vector3[] positions = new Vector3[_obstaclesPerRound + 1];
+        int toSpawn = _obstaclesPerRound + 1;
+        float radius = _goalPrefab.GetComponent<Collider>().bounds.extents.x * 1.2f;
 
-        for (int i = 0; i < positions.Length; i++)
+        for (int i = 0; i < toSpawn; i++)
         {
             Vector3 pos;
             bool isInvalid;
@@ -116,17 +122,19 @@ public class MinigameController : MonoBehaviour
                 pos = GenerateRandomPoint();
                 Vector3 worldPos = pos + transform.position;
 
-                // determine if the point is in range of the end effector
-                if (IsInsideRange(worldPos, _objectRadius, _pointer.transform.position, _pointerRadius))
+               
+
+                if (Physics.CheckSphere(worldPos, radius, -1, QueryTriggerInteraction.Collide))
                 {
                     isInvalid = true;
                     continue;
                 }
 
+                int childrenCount = _authoredChildren.Count;
                 // check previously generated points to prevent overlap
-                for (int j = 0; j < i; j++)
+                for (int j = 0; j < childrenCount; j++)
                 {
-                    if (IsInsideRange(worldPos, _objectRadius, positions[j] + transform.position, _objectRadius))
+                    if (IsInsideRange(worldPos, radius, _authoredChildren[j].transform.position, radius))
                     {
                         isInvalid = true;
                         break;
@@ -150,7 +158,7 @@ public class MinigameController : MonoBehaviour
                         GenerateRound();
                     });
 
-                    _authoredChildren.Add(goal.gameObject);
+                    _authoredChildren.Add(goal);
                 }
                 else
                 {
@@ -166,19 +174,21 @@ public class MinigameController : MonoBehaviour
                         GenerateRound();
                     });
 
-                    _authoredChildren.Add(obstacle.gameObject);
+                    _authoredChildren.Add(obstacle);
                 }
             } while (isInvalid);
         }
     }
 
-    // Removes any active game objects spawned by the minigame.
+    /// <summary>
+    /// Removes any active game objects spawned by the minigame.
+    /// </summary>
     public void ClearSpawnedObjects()
     {
         for (int i = 0; i < _authoredChildren.Count; i++)
         {
             if (_authoredChildren[i] != null)
-                Destroy(_authoredChildren[i]);
+                Destroy(_authoredChildren[i].gameObject);
         }
 
         _authoredChildren.Clear();
@@ -188,7 +198,7 @@ public class MinigameController : MonoBehaviour
     /// Generates a random point in a standing cylinder that can have a hole in the center.
     /// </summary>
     /// <returns> A random point in a standing cylinder.</returns>
-    Vector3 GenerateRandomPoint()
+    private Vector3 GenerateRandomPoint()
     {
         Vector3 randomPoint = Random.insideUnitCircle;
         var deadzoneOffset = randomPoint.normalized * _deadzone;
@@ -198,7 +208,7 @@ public class MinigameController : MonoBehaviour
         randomPoint += deadzoneOffset;
 
         randomPoint.z = randomPoint.y;
-        randomPoint.y = Random.value * _verticalRadius;
+        randomPoint.y = (Random.value * _verticalRadius) + _verticalOffset;
 
         return randomPoint;
     }
