@@ -158,6 +158,13 @@ public class TrainingScriptManager : MonoBehaviour
                     Newtime();
                 }
                 break;
+            //gloves
+            case 10:
+                if (currentPhase.phaseNumber == 4 && currentSubPhase.subPhaseNumber == 2)
+                {
+                    Newtime();
+                }
+                break;
         }
     }
 
