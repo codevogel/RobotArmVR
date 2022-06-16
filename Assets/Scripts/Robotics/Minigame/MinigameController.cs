@@ -15,7 +15,7 @@ public class MinigameController : MonoBehaviour
     public bool IsBeingPlayed => _minigameCoroutine != null;
 
     [field: SerializeField, Min(0)]
-    public float TimeLimit { get; set; }
+    public float TimeLimit { get; set; } = 120;
     [SerializeField]
     private Collider _pointer;
     
@@ -52,11 +52,6 @@ public class MinigameController : MonoBehaviour
 
     [field: SerializeField]
     public UnityEvent OnObstacleTouched { get; private set; }
-
-    private void Start()
-    {
-        BeginMinigame();
-    }
 
     /// <summary>
     /// Resets the minigame stats and starts the minigame.

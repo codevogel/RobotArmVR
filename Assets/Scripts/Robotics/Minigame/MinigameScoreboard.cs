@@ -47,7 +47,9 @@ public class MinigameScoreboard : MonoBehaviour
         // set the radial fill using the remaining time
         _radialIndicator.fillAmount = _minigame.TimeRemaining / _minigame.TimeLimit;
 
-        _timeRemainingMesh.text = _minigame.TimeRemaining.ToString();
+        _timeRemainingMesh.text = _minigame.TimeRemaining == 0 ? 
+            _minigame.TimeRemaining.ToString() : 
+            _minigame.TimeRemaining.ToString("0.0");
 
         _scoreMesh.text = _minigame.Score.ToString();
     }
