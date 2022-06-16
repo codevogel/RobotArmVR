@@ -158,7 +158,7 @@ public class MinigameController : MonoBehaviour
                     obstacle.transform.localPosition = pos;
                     obstacle.Filter = _pointer;
 
-                    obstacle.OnTriggerExitRelay.AddListener(() =>
+                    obstacle.OnTriggerEnterRelay.AddListener(() =>
                     {
                         Score--;
                         OnObstacleTouched?.Invoke();
