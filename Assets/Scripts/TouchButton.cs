@@ -7,11 +7,8 @@ public class TouchButton : MonoBehaviour
     [SerializeField] private int phaseNumber;
     [SerializeField] private ButtonFunction buttonFunction;
 
-    [SerializeField] private RobotArmController robot;
-
     [HideInInspector]
     public bool locked;
-    private bool firstRobot;
 
     /// <summary>
     /// Activation of the buttons function if the player touches it
@@ -40,17 +37,6 @@ public class TouchButton : MonoBehaviour
                 case ButtonFunction.EXITGAMEBUTTON:
                     Application.Quit();
                     break;
-                case ButtonFunction.DEBUG:
-                    if (firstRobot)
-                    {
-                        robot.ChangeRobot(0);
-                    }
-                    else
-                    {
-                        robot.ChangeRobot(1);
-                    }
-                    firstRobot = !firstRobot;
-                    break;
             }
         }
     }
@@ -59,7 +45,6 @@ public class TouchButton : MonoBehaviour
     {
         PHASECHANGER,
         SKIPBUTTON,
-        EXITGAMEBUTTON,
-        DEBUG
+        EXITGAMEBUTTON
     }
 }

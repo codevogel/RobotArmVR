@@ -36,6 +36,10 @@ public class Swapper : MonoBehaviour
 
             a.gameObject.SetActive(true);
             b.gameObject.SetActive(true);
+
+            List<Transform> tmp = toSwapA;
+            toSwapA = toSwapB;
+            toSwapB = tmp;
         }
     }
 }
