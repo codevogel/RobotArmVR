@@ -7,8 +7,8 @@ public class OnTriggerColliderFilter : MonoBehaviour
 {
     [field: SerializeField]
     public Collider Filter { get; set; }
-    [SerializeField] private UnityEvent _onTriggerEnter;
-    [SerializeField] private UnityEvent _onTriggerExit;
+    [field:SerializeField] public UnityEvent OnTriggerEnterRelay { get; private set; }
+    [field:SerializeField] public UnityEvent OnTriggerExitRelay { get; private set; }
 
 #if UNITY_EDITOR
     private void Awake()
@@ -28,12 +28,12 @@ public class OnTriggerColliderFilter : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other == Filter)
-            _onTriggerEnter.Invoke();
+            OnTriggerEnterRelay.Invoke();
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other == Filter)
-            _onTriggerExit.Invoke();
+            OnTriggerExitRelay.Invoke();
     }
 }
