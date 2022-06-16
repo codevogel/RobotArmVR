@@ -15699,16 +15699,44 @@ PrefabInstance:
     m_TransformParent: {fileID: 792867745}
     m_Modifications:
     - target: {fileID: 649980445172548201, guid: e91e9de2ee088824aadf7ef42e858fac, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 649980445172548201, guid: e91e9de2ee088824aadf7ef42e858fac, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 649980445172548201, guid: e91e9de2ee088824aadf7ef42e858fac, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1931799400}
+    - target: {fileID: 649980445172548201, guid: e91e9de2ee088824aadf7ef42e858fac, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1200492852}
+    - target: {fileID: 649980445172548201, guid: e91e9de2ee088824aadf7ef42e858fac, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 649980445172548201, guid: e91e9de2ee088824aadf7ef42e858fac, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: ResetRotations
       objectReference: {fileID: 0}
     - target: {fileID: 649980445172548201, guid: e91e9de2ee088824aadf7ef42e858fac, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: BeginMinigame
+      objectReference: {fileID: 0}
+    - target: {fileID: 649980445172548201, guid: e91e9de2ee088824aadf7ef42e858fac, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: ResetRobotRotations, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 649980445172548201, guid: e91e9de2ee088824aadf7ef42e858fac, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: MinigameController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 649980445172548201, guid: e91e9de2ee088824aadf7ef42e858fac, type: 3}
+      propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8723043784869955940, guid: e91e9de2ee088824aadf7ef42e858fac, type: 3}
       propertyPath: m_RootOrder
