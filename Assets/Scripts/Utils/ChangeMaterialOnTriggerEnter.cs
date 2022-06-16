@@ -15,8 +15,6 @@ public class ChangeMaterialOnTriggerEnter : MonoBehaviour
         {
             children.Add(child.GetChild(3));
         }
-
-
     }
 
     public void HighlightObject(int trigger)
@@ -26,9 +24,7 @@ public class ChangeMaterialOnTriggerEnter : MonoBehaviour
 
     public void ActivateDoor(int trigger)
     {
-        Debug.Log("In");
         boxCollider = transform.GetChild(trigger).GetComponent<BoxCollider>();
         boxCollider.enabled = true;
-        Debug.Log("Out");
     }
 }
