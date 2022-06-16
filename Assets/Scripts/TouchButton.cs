@@ -11,6 +11,7 @@ public class TouchButton : MonoBehaviour
 
     [HideInInspector]
     public bool locked;
+    private bool firstRobot;
 
     /// <summary>
     /// Activation of the buttons function if the player touches it
@@ -40,7 +41,15 @@ public class TouchButton : MonoBehaviour
                     Application.Quit();
                     break;
                 case ButtonFunction.DEBUG:
-                    robot.ChangeRobot(1);
+                    if (firstRobot)
+                    {
+                        robot.ChangeRobot(0);
+                    }
+                    else
+                    {
+                        robot.ChangeRobot(1);
+                    }
+                    firstRobot = !firstRobot;
                     break;
             }
         }

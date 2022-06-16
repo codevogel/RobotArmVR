@@ -137,11 +137,10 @@ public class RobotArmController : MonoBehaviour
         }
     }
 
-    public void ChangeRobot(int robot)
+    public void ChangeRobot(int firstRobot)
     {
-        currentRobot = robot;
-        RobotArmSwitch(robotArms[currentRobot]);
-        linearMovement.ChangeRobot(robot);
+        RobotArmSwitch(robotArms[firstRobot]);
+        linearMovement.ChangeRobot(firstRobot);
     }
 
     public void SetEmergencyStop(bool stop)
