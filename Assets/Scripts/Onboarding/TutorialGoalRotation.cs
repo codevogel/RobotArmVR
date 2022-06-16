@@ -201,7 +201,7 @@ public class TutorialGoalRotation : MonoBehaviour
     private IEnumerator WaitForDrive()
     {
         yield return new WaitForSeconds(0.2f);
-        linearMovement.followTarget.position = _trackPerStep[5].transform.position;
+        linearMovement.followTarget[linearMovement.currentRobot].position = _trackPerStep[5].transform.position;
     }
 
     [System.Serializable]

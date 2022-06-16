@@ -1360,19 +1360,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2f402ff922d7d468af5058b7103be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  articulationBodies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  robotArms: []
   selectedArticulator: 0
   rotateSpeed: 12
-  IKManager: {fileID: 0}
+  IKManagers: []
   Interactor: {fileID: 0}
   joystickThreshold: 0.25
-  robotAudio: {fileID: 0}
+  robotAudio:
+  - {fileID: 0}
   buttons:
   - {fileID: 0}
   - {fileID: 0}
@@ -1409,6 +1404,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  irc5controller: {fileID: 0}
+  currentRobot: 0
 --- !u!114 &7224979425097568671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1460,12 +1457,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27aa0f26607d98b46a8f48539635d27f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inBounds: 1
-  followTarget: {fileID: 0}
+  followTarget:
+  - {fileID: 0}
   followingTarget: 1
-  customIKManager: {fileID: 0}
+  customIKManager:
+  - {fileID: 0}
   <MovementSpeed>k__BackingField: 0.03
   incrementSize: 0.15
+  currentRobot: 0
 --- !u!54 &7224979425097568668
 Rigidbody:
   m_ObjectHideFlags: 0
