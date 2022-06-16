@@ -145,24 +145,28 @@ public class RobotArmController : MonoBehaviour
         }
     }
 
-    public void ChangeRobot(int firstRobot)
+    public void ChangeRobot(int robot)
     {
-        RobotArmSwitch(robotArms[firstRobot]);
-        linearMovement.ChangeRobot(firstRobot);
+        currentRobot = robot;
+        RobotArmSwitch(robotArms[robot]);
+        linearMovement.ChangeRobot(robot);
 
-        if (linearMovement)
+        if (movementOnLinear)
         {
-            if (firstRobot==0)
+            if (robot == 0)
             {
-                IKManagers[firstRobot + 1].enabled = false;
+                IKManagers[robot + 1].enabled = false;
             }
             else
             {
-                IKManagers[firstRobot - 1].enabled = false;
+                IKManagers[robot - 1].enabled = false;
             }
-            IKManagers[firstRobot].enabled = true;
-            linearMovement.followTarget[firstRobot].position = articulationBodies[5].transform.position;
+            Debug.Log("reached");
+            IKManagers[robot].enabled = true;
+            linearMovement.followTarget[robot].position = articulationBodies[5].transform.position;
+            return;
         }
+        
     }
 
     public void SetEmergencyStop(bool stop)
@@ -229,11 +233,7 @@ public class RobotArmController : MonoBehaviour
                 StopArticulation();
                 IKManagers[currentRobot].enabled = true;
                 linearMovement.enabled = true;
-                Debug.Log(linearMovement.followTarget[currentRobot].position);
                 linearMovement.followTarget[currentRobot].position = articulationBodies[5].transform.position;
-
-
-                Debug.Log(" 2 +  " + linearMovement.followTarget[currentRobot].position);
             }
             else
             {
