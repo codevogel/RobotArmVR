@@ -6,6 +6,7 @@ public class TouchButton : MonoBehaviour
 {
     [SerializeField] private int phaseNumber;
     [SerializeField] private ButtonFunction buttonFunction;
+    [SerializeField] private FlexpendantPickup pickUp;
 
     [HideInInspector]
     public bool locked;
@@ -31,6 +32,8 @@ public class TouchButton : MonoBehaviour
                 case ButtonFunction.SKIPBUTTON:
                     PhaseChanger.Instance.DeactivateWarning();
                     PhaseChanger.Instance.UnlockAllButtons();
+                    TrainingScriptManager.Instance.ChangePhase(phaseNumber);
+                    pickUp.SkipTutorial();
                     break;
 
                 //If the button is the exit button

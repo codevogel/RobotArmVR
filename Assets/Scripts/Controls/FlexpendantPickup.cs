@@ -21,4 +21,15 @@ public class FlexpendantPickup : MonoBehaviour
             customInteractor.OnAttachObject(flexPendant.transform);
         }
     }
+
+    public void SkipTutorial()
+    {
+        flexPendant.gameObject.SetActive(true);
+        flexPendant.transform.parent = HandManager.Instance.LeftController.transform;
+        flexPendant.transform.localPosition = HandManager.Instance.LeftController.transform.Find("Flexpendant-offset").localPosition;
+        flexPendant.transform.localRotation = HandManager.Instance.LeftController.transform.Find("Flexpendant-offset").localRotation;
+        flexPendant.transform.localScale = HandManager.Instance.LeftController.transform.Find("Flexpendant-offset").localScale;
+        customInteractor.transform.GetComponent<RobotArmController>().EnableButtons(true);
+        customInteractor.OnAttachObject(flexPendant.transform);
+    }
 }

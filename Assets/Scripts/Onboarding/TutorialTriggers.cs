@@ -35,12 +35,12 @@ public class TutorialTriggers : MonoBehaviour
             }
         }
 
-        if (CompareTag("P3"))
+        if (CompareTag("Axes"))
         {
             if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
             {
                 Timeline.Pause();
-                Timeline.time = 13440 / 60f;
+                Timeline.time = 5931 / 60f;
                 Timeline.Resume();
             }
         }
@@ -50,7 +50,7 @@ public class TutorialTriggers : MonoBehaviour
             if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
             {
                 Timeline.Pause();
-                Timeline.time = 13830 / 60f;
+                Timeline.time = 13795 / 60f;
                 Timeline.Resume();
             }
         }
@@ -60,7 +60,7 @@ public class TutorialTriggers : MonoBehaviour
             if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
             {
                 Timeline.Pause();
-                Timeline.time = 16500 / 60f;
+                Timeline.time = 16492 / 60f;
                 Timeline.Resume();
             }
         }
