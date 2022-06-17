@@ -69,7 +69,8 @@ public class TeleportManager : MonoBehaviour
     {
         // Raycast to teleport area
         RaycastHit hit;
-        if (Physics.Raycast(rayInteractor.transform.position, rayInteractor.transform.forward.normalized, out hit, teleportDistance))
+        LayerMask teleportLayerMask = 1<<3;
+        if (Physics.Raycast(rayInteractor.transform.position, rayInteractor.transform.forward.normalized, out hit, teleportDistance,teleportLayerMask))
         {
             // If raycast hit a teleport area
             CustomTeleportArea area = hit.transform.GetComponent<CustomTeleportArea>();
@@ -77,8 +78,8 @@ public class TeleportManager : MonoBehaviour
             {
                 // Request the teleport
                 area.RequestTeleport(rayInteractor.GetComponent<XRRayInteractor>(), hit);
+                TrainingScriptManager.Instance.ActivateTrigger(0);
             }
         }
     }
-
 }

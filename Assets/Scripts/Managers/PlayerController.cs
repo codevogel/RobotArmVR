@@ -115,6 +115,26 @@ public class PlayerController : MonoBehaviour
         if (leftRight.Equals(HandType.LEFT))
         {
             HandManager.Instance.LeftController.teleportControls.SwitchToTeleport(leftValues.JoystickAxis.y);
+            if (Mathf.Abs(controllerValues.JoystickAxis.x) > 0.75f)
+            {
+                TrainingScriptManager.Instance.ActivateTrigger(3);
+            }
+        }
+
+        if (leftRight.Equals(HandType.RIGHT))
+        {
+            if (Mathf.Abs(controllerValues.JoystickAxis.x) > 0.75f)
+            {
+                TrainingScriptManager.Instance.ActivateTrigger(7);
+            }
+        }
+
+        if (leftRight.Equals(HandType.RIGHT))
+        {
+            if (Mathf.Abs(controllerValues.JoystickAxis.y) > 0.75f)
+            {
+                TrainingScriptManager.Instance.ActivateTrigger(8);
+            }
         }
     }
 
@@ -128,6 +148,27 @@ public class PlayerController : MonoBehaviour
     {
         ControllerValues controllerValues = leftRight.Equals(HandType.LEFT) ? Left : Right;
         controllerValues.GripPressed = ctx.ReadValue<float>().Equals(1f) ? true : false;
+
+        PointAction pointAction = null;
+
+        if (leftRight.Equals(HandType.LEFT))
+        {
+            pointAction = HandManager.Instance.LeftController.GetComponent<PointAction>();
+        }
+        else
+        {
+            pointAction = HandManager.Instance.RightController.GetComponent<PointAction>();
+        }
+
+        if (ctx.canceled)
+        {
+            pointAction.ResetHoverCollision();
+        }
+
+        bool pressed = controllerValues.GripPressed;
+
+        TrainingScriptManager.Instance.ActivateTrigger(1);
+        pointAction.PointActivation(pressed, leftRight);
     }
 
     /// <summary>
@@ -140,8 +181,6 @@ public class PlayerController : MonoBehaviour
     {
         ControllerValues controllerValues = leftRight.Equals(HandType.LEFT) ? Left : Right;
         controllerValues.PrimaryButtonPressed = ctx.ReadValue<float>().Equals(1f) ? true : false;
-
-        robotController.ChangeAxisAction(controllerValues.PrimaryButtonPressed, leftRight);
     }
 
     /// <summary>
@@ -153,8 +192,6 @@ public class PlayerController : MonoBehaviour
     {
         ControllerValues controllerValues = leftRight.Equals(HandType.LEFT) ? Left : Right;
         controllerValues.SecondairyButtonPressed = ctx.ReadValue<float>().Equals(1f) ? true : false;
-
-        robotController.ChangeMovementMode(controllerValues.SecondairyButtonPressed, leftRight);
     }
 
 
@@ -171,10 +208,8 @@ public class PlayerController : MonoBehaviour
 
         bool pressed = controllerValues.TriggerPressed;
 
+        TrainingScriptManager.Instance.ActivateTrigger(4);
         robotController.SetPressureButton(pressed, leftRight);
-
-        XRCustomController controller = leftRight.Equals(HandType.LEFT) ? HandManager.Instance.LeftController : HandManager.Instance.RightController;
-        controller.PointAction(pressed);
     }
 
     /// <summary>

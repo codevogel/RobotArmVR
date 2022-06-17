@@ -88,23 +88,6 @@ public class XRCustomController : CustomActionBasedController
         _teleportControls = GetComponent<TeleportManager>();
     }
 
-    /// <summary>
-    /// Changes hand state from idle to point based on input.
-    /// Called by PlayerController. 
-    /// </summary>
-    /// <param name="point"></param>
-    public void PointAction(bool point)
-    {
-        if (point)
-        {
-            HandManager.Instance.ChangePose(HandPose.IDLE, HandPose.POINT, leftOrRight);
-        }
-        else
-        {
-            HandManager.Instance.ChangePose(HandPose.POINT, HandPose.IDLE, leftOrRight);
-        }
-    }
-
     #region Package overrides
 
     protected override void CustomEnableAllDirectActions()

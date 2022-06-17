@@ -5,58 +5,109 @@ using UnityEngine;
 
 public class LinearMovement : MonoBehaviour
 {
-    [field: SerializeField]
-    private float MovementSpeed { get; set; }
-
-    [HideInInspector]
-    public bool inBounds;
-
-    public Transform followTarget;
+    public Transform[] followTarget;
 
     public bool followingTarget;
 
+    [SerializeField]
+    private CustomIKManager[] customIKManager;
+
+    #region Continuous
+    [field: SerializeField]
+    private float MovementSpeed { get; set; }
+    #endregion
+
+    #region Increment
+    public static bool incremental = false; 
+    public static int incrementInterval = 10;
+    [field: SerializeField]
+    private float incrementSize;
+    #endregion
+
+    [HideInInspector]
+    public int currentRobot=0;
+
     private void Start()
     {
-        CustomIKManager.PRef = followTarget.localPosition;
+        customIKManager[currentRobot].PRef = followTarget[currentRobot].localPosition;
     }
 
     private void Update()
     {
         if (followingTarget)
         {
-            CustomIKManager.PRef = followTarget.localPosition;
+            customIKManager[currentRobot].PRef = followTarget[currentRobot].localPosition;
         }
     }
 
+    public void ChangeRobot(int robotNumber)
+    {
+        currentRobot = robotNumber;
+    }
+
+    public void ChangeMode()
+    {
+        incremental = !incremental;
+        FlexpendantUIManager.Instance.ChangeProperty(FlexpendantUIManager.Properties.INCREMENT, incremental ? 3 : 0);
+    }
+
+    /// <summary>
+    /// Move end effector towards dir
+    /// </summary>
+    /// <param name="dir">the direction to move to</param>
     public void MoveTowards(Vector3 dir)
     {
-        if (inBounds)
+        if (incremental)
         {
-            Vector3 newPos = followTarget.localPosition;
-            newPos.x += dir.x * MovementSpeed;
-            newPos.y += dir.y * MovementSpeed;
-            newPos.z += dir.z * MovementSpeed;
-            followTarget.localPosition = newPos;
+            // Incremental movement
+            if (Time.frameCount % incrementInterval == 0)
+            {
+                _MoveTowards(dir, incrementSize);
+            }
+        }
+        else
+        {
+            // Normal movement
+            _MoveTowards(dir, MovementSpeed);
+        }
+    }
+
+    /// <summary>
+    /// Move end effector towards dir by distance
+    /// </summary>
+    /// <param name="dir">the direction to move to</param>
+    /// <param name="distance">the distance to move</param>
+    private void _MoveTowards(Vector3 dir, float distance)
+    {
+        if (customIKManager[currentRobot].inBounds)
+        {
+            Vector3 newPos = followTarget[currentRobot].localPosition;
+            newPos += dir * distance;
+            followTarget[currentRobot].localPosition = newPos;
+            customIKManager[currentRobot].UpdateUI();
         }
         else // only allow directions that make the robot go in bounds again
         {
-            if ((followTarget.localPosition.x>0 && dir.x<0) || (followTarget.localPosition.x<0&&dir.x>0))
+            if ((followTarget[currentRobot].localPosition.x > 0 && dir.x < 0) || (followTarget[currentRobot].localPosition.x < 0 && dir.x > 0))
             {
-                Vector3 newPos = followTarget.localPosition;
-                newPos.x += dir.x * MovementSpeed;
-                followTarget.localPosition = newPos;
+                Vector3 newPos = followTarget[currentRobot].localPosition;
+                newPos.x += dir.x * distance;
+                followTarget[currentRobot].localPosition = newPos;
+                customIKManager[currentRobot].UpdateUI();
             }
-            if ((followTarget.localPosition.y > 0 && dir.y < 0) || (followTarget.localPosition.y < 0 && dir.y > 0))
+            if ((followTarget[currentRobot].localPosition.y > 0 && dir.y < 0) || (followTarget[currentRobot].localPosition.y < 0 && dir.y > 0))
             {
-                Vector3 newPos = followTarget.localPosition;
-                newPos.y += dir.y * MovementSpeed;
-                followTarget.localPosition = newPos;
+                Vector3 newPos = followTarget[currentRobot].localPosition;
+                newPos.y += dir.y * distance;
+                followTarget[currentRobot].localPosition = newPos;
+                customIKManager[currentRobot].UpdateUI();
             }
-            if ((followTarget.localPosition.z > 0 && dir.z < 0) || (followTarget.localPosition.z < 0 && dir.z > 0))
+            if ((followTarget[currentRobot].localPosition.z > 0 && dir.z < 0) || (followTarget[currentRobot].localPosition.z < 0 && dir.z > 0))
             {
-                Vector3 newPos = followTarget.localPosition;
-                newPos.z += dir.z * MovementSpeed;
-                followTarget.localPosition = newPos;
+                Vector3 newPos = followTarget[currentRobot].localPosition;
+                newPos.z += dir.z * distance;
+                followTarget[currentRobot].localPosition = newPos;
+                customIKManager[currentRobot].UpdateUI();
             }
         }
     }

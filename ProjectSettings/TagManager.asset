@@ -9,6 +9,23 @@ TagManager:
   - Flexpendant
   - AnimationManager
   - ArmBounds
+  - Can
+  - Logo
+  - Trash
+  - Teleport
+  - P1
+  - LeftHand
+  - RightHand
+  - LeftFinger
+  - RightFinger
+  - P3
+  - Poster
+  - Cage
+  - IRC5
+  - GlovePickup
+  - TrainingRoom
+  - ExpertRoom
+  - Axes
   layers:
   - Default
   - TransparentFX
@@ -18,13 +35,13 @@ TagManager:
   - UI
   - Right
   - Left
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - ButtonBox
+  - Button
+  - Bloom
+  - Flexpendant
+  - Outside
+  - RoomCollider
+  - Player
   - 
   - 
   - 
@@ -45,4 +62,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 4246934703
     locked: 0

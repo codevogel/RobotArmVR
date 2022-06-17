@@ -113,6 +113,7 @@ public class JoystickInteractor : MonoBehaviour
         Vector3 newAttachAngle = originalAttachAngle;
         newAttachAngle.z += Mathf.Clamp(tiltAngle, -tiltThreshhold, tiltThreshhold);
         attachpoint.localRotation = Quaternion.Euler(newAttachAngle);
+        TrainingScriptManager.Instance.ActivateTrigger(9);
     }
 
 

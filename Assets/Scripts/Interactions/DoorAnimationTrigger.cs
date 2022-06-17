@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorAnimationTrigger : MonoBehaviour
 {
     Animator _doorAnim;
+    private List<Collider> collided =  new List<Collider>();
 
     // Start is called before the first frame update
     void Start()
@@ -14,11 +15,16 @@ public class DoorAnimationTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        collided.Add(other);
         _doorAnim.SetBool("isOpen", true);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        _doorAnim.SetBool("isOpen", false);
+        collided.Remove(other);
+        if (collided.Count==0)
+        {
+            _doorAnim.SetBool("isOpen", false);
+        }
     }
 }

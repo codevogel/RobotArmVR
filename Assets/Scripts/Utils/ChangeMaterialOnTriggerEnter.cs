@@ -4,13 +4,27 @@ using UnityEngine;
 
 public class ChangeMaterialOnTriggerEnter : MonoBehaviour
 {
-    [SerializeField] private Material material;
+    [SerializeField] private Material materialBloom;
+    private List<Transform> children = new List<Transform>();
 
-    private void OnTriggerEnter(Collider other)
+    private BoxCollider boxCollider;
+
+    private void Start()
     {
-        if (other.GetComponent<MeshRenderer>()!=null)
+        foreach (Transform child in transform)
         {
-            other.transform.GetComponent<MeshRenderer>().material = material;
+            children.Add(child.GetChild(3));
         }
+    }
+
+    public void HighlightObject(int trigger)
+    {
+        children[trigger].GetComponent<MeshRenderer>().material = materialBloom;
+    }
+
+    public void ActivateDoor(int trigger)
+    {
+        boxCollider = transform.GetChild(trigger).GetComponent<BoxCollider>();
+        boxCollider.enabled = true;
     }
 }

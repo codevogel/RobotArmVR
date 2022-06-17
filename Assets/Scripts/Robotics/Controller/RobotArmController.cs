@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static HandManager;
@@ -11,18 +12,19 @@ public class RobotArmController : MonoBehaviour
 {
 
     #region axis selection
-    public ArticulationBody[] articulationBodies = new ArticulationBody[6];
+    public GameObject[] robotArms;
+    private ArticulationBody[] articulationBodies = new ArticulationBody[6];
     private ArticulationJointController[] articulationJointControllers = new ArticulationJointController[6];
-    private Vector3 axis;
     public int selectedArticulator = 0;
     private bool axisSetOne = true;
     #endregion
 
     #region Movement modifiers
-    public float moveSpeed;
     public float rotateSpeed;
 
     private RotationDirection rotationDirection;
+
+    public static bool emergencyStop;
     #endregion
 
     private bool movementOnLinear = true;
@@ -32,7 +34,7 @@ public class RobotArmController : MonoBehaviour
     private JoystickInteractor joystickInteractor;
 
     [SerializeField]
-    private CustomIKManager IKManager;
+    private CustomIKManager[] IKManagers;
 
     [HideInInspector]
     public CustomInteractor Interactor;
@@ -42,75 +44,205 @@ public class RobotArmController : MonoBehaviour
     [SerializeField]
     private float joystickThreshold;
 
+    [field: SerializeField]
+    private RobotAudio[] robotAudio;
+
+    [SerializeField]
+    private List<PushButton> buttons;
+
+    public UnityEvent OnPressureButtonDown;
+    public UnityEvent OnPressureButtonUp;
+
+    [SerializeField]
+    private IRC5Controller irc5controller;
+
+    private bool emergencyStopEnabled;
+    private bool axisButtonEnabled;
+    private bool movementButtonEnabled=true;
+    private bool firstStart=true;
+
+    private bool armMoving;
+
+    public int currentRobot;
+
+    private void Awake()
+    {
+        RobotArmSwitch(robotArms[0]);
+        FlexpendantUIManager.Instance.SetAxis(articulationBodies);
+        FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
+    }
+
     private void Start()
     {
         joystickInteractor = HandManager.Instance.RightController.GetComponent<JoystickInteractor>();
         Interactor = GetComponent<CustomInteractor>();
         linearMovement = GetComponent<LinearMovement>();
 
-        FlexpendantUIManager.Instance.SetAxis(articulationBodies);
-        FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
-        IKManager.movementEnabled = movementOnLinear;
+        foreach (CustomIKManager ikManager in IKManagers)
+        {
+            ikManager.movementEnabled = movementOnLinear;
+        }
 
+        for (int x=1; x<IKManagers.Length;x++)
+        {
+            IKManagers[x].enabled = false;
+        }
 
+        for (int i = 0; i < articulationBodies.Length; i++)
+        {
+            articulationJointControllers[i] = articulationBodies[i].GetComponent<ArticulationJointController>();
+        }
+        ChangeMovementMode();
+    }
+
+    private void FixedUpdate()
+    {
+        bool moved = false;
+        if (pressureButtonHeld && !emergencyStop)
+        {
+            moved = MoveArm();
+        }
+
+        if (!armMoving && moved)
+        {
+            armMoving = true;
+            
+            robotAudio[currentRobot].StartLoop();
+        }
+        if (armMoving && !moved)
+        {
+            armMoving = false;
+            robotAudio[currentRobot].Stop();
+
+            foreach (ArticulationJointController art in articulationJointControllers)
+            {
+                art.rotationState= RotationDirection.None;
+            }
+        }
+
+        if (armMoving)
+        {
+            FlexpendantUIManager.Instance.UpdateAxis(selectedArticulator, articulationBodies[selectedArticulator].transform);
+        }
+    }
+
+    private void RobotArmSwitch(GameObject robotarm)
+    {
+        for (int x = 0; x < articulationBodies.Length; x++)
+        {
+            if (x == 0)
+            {
+                articulationBodies[x] = robotarm.transform.GetChild(0).GetComponent<ArticulationBody>();
+            }
+            else
+            {
+                articulationBodies[x] = articulationBodies[x - 1].transform.GetChild(1).GetComponent<ArticulationBody>();
+            }
+        }
         for (int i = 0; i < articulationBodies.Length; i++)
         {
             articulationJointControllers[i] = articulationBodies[i].GetComponent<ArticulationJointController>();
         }
     }
 
-    private void FixedUpdate()
+    public void ChangeRobot(int robot)
     {
-        if (pressureButtonHeld)
+        currentRobot = robot;
+        RobotArmSwitch(robotArms[robot]);
+        linearMovement.ChangeRobot(robot);
+
+        if (movementOnLinear)
         {
-            MoveArm();
-            FlexpendantUIManager.Instance.UpdateAxis(selectedArticulator, articulationBodies[selectedArticulator].transform);
+            if (robot == 0)
+            {
+                IKManagers[robot + 1].enabled = false;
+            }
+            else
+            {
+                IKManagers[robot - 1].enabled = false;
+            }
+            Debug.Log("reached");
+            IKManagers[robot].enabled = true;
+            linearMovement.followTarget[robot].position = articulationBodies[5].transform.position;
+            return;
+        }
+        
+    }
+
+    public void SetEmergencyStop(bool stop)
+    {
+        if (emergencyStopEnabled)
+        {
+            emergencyStop = stop;
+            irc5controller.Activate(stop);
+            return;
+        }
+        //Unfreeze the emergency button when its not yet enabled
+        buttons[4].FreezeButton(false);
+    }
+
+    
+    public void EnableButtons(bool enabled)
+    {
+        foreach (PushButton button in buttons)
+        {
+            button.rb.isKinematic = !enabled;
+            if (button.frozen)
+            {
+                button.rb.isKinematic = true;
+            }
+        }
+    }
+
+    public void ResetButtons()
+    {
+        foreach (PushButton button in buttons)
+        {
+            button.Reset();
         }
     }
 
     /// <summary>
     /// Update axes
     /// </summary>
-    public void ChangeAxisAction(bool input, HandType leftRight)
+    public void ChangeAxisAction()
     {
-        if (leftRight.Equals(HandType.LEFT))
-        {
-            return;
-        }
-        if (input.Equals(true))
+        if (axisButtonEnabled)
         {
             axisSetOne = !axisSetOne;
             FlexpendantUIManager.Instance.ChangeAxisSet(axisSetOne);
         }
     }
 
-    public void ChangeMovementMode(bool input, HandType leftRight)
+    public void ChangeMovementMode()
     {
-        if (leftRight.Equals(HandType.LEFT))
+        if (movementButtonEnabled)
         {
-            return;
-        }
-        if (input.Equals(true))
-        {
+            //If the function is called during the start
+            if (firstStart)
+            {
+                movementButtonEnabled = false;
+                firstStart = false;
+            }
+
             movementOnLinear = !movementOnLinear;
             FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
 
             if (movementOnLinear)
             {
                 StopArticulation();
-                IKManager.enabled = true;
+                IKManagers[currentRobot].enabled = true;
                 linearMovement.enabled = true;
-                linearMovement.followTarget.position = articulationBodies[5].transform.position;
+                linearMovement.followTarget[currentRobot].position = articulationBodies[5].transform.position;
             }
             else
             {
                 StopArticulation();
-                IKManager.enabled = false;
+                IKManagers[currentRobot].enabled = false;
                 linearMovement.enabled = false;
             }
         }
     }
-
 
     /// <summary>
     /// Used to control the pressure button.
@@ -129,27 +261,66 @@ public class RobotArmController : MonoBehaviour
         if (heldDevice == null)
             return;
 
-
         if (heldDevice.transform.name == "Flexpendant")
         {
+            if (pressureButtonHeld != input)
+            {
+                if (input)
+                {
+                    OnPressureButtonDown.Invoke();
+                }
+                else
+                {
+                    OnPressureButtonUp.Invoke();
+                }
+            }
             pressureButtonHeld = input;
         }
     }
 
     /// <summary>
-    /// Alters the selection and directionModifier
+    /// Enables a buttons functionality depending on the number given
     /// </summary>
-    private void MoveArm()
+    /// <param name="buttonNumber">The button that needs to be enabled</param>
+    public void EnableButtonFunction(int buttonNumber)
     {
-        if (movementOnLinear)
+        switch (buttonNumber)
         {
-            LinearMovement();
-            return;
+            //Enable the switch axis button
+            case 0:
+                axisButtonEnabled = true;
+                break;
+            //Enable the switch movement mode button
+            case 1:
+                movementButtonEnabled = true;
+                break;
+            //Enable the emergency stop button
+            case 2:
+                emergencyStopEnabled = true;
+                break;
         }
-        ManualMovement();
     }
 
-    private void LinearMovement()
+
+    /// <summary>
+    /// Alters the selection and directionModifier
+    /// </summary>
+    private bool MoveArm()
+    {
+        bool moved;
+        if (movementOnLinear)
+        {
+            LinearMovement(out moved);
+        }
+        else
+        {
+            ManualMovement(out moved);
+        }
+
+        return moved;
+    }
+
+    private void LinearMovement(out bool moved)
     {
         Vector3 direction = new Vector3();
 
@@ -163,17 +334,17 @@ public class RobotArmController : MonoBehaviour
             direction.x = PlayerController.Right.JoystickAxis.y;
             direction.z = -PlayerController.Right.JoystickAxis.x;
         }
+        moved = direction != Vector3.zero;
         linearMovement.MoveTowards(direction);
     }
 
-    private void ManualMovement()
+    private void ManualMovement(out bool moved)
     {
-        bool move = false;
         Vector2 joystickInput = PlayerController.Right.JoystickAxis;
 
-        HandleInput(out move, joystickInput);
+        HandleInput(out moved, joystickInput);
 
-        if (move)
+        if (moved)
         {
             articulationBodies[selectedArticulator].GetComponent<ArticulationJointController>().rotationState = rotationDirection;
         }
