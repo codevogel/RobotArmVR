@@ -105,12 +105,11 @@ public class MinigameController : MonoBehaviour
     public void BeginMinigame()
     {
         Score = 0;
-        _timeStarted = Time.time;
 
         if (_minigameCoroutine != null)
             StopCoroutine(_minigameCoroutine);
 
-        _minigameCoroutine = StartCoroutine(MinigameCoroutine());
+        GenerateRound();
     }
 
     /// <summary>
@@ -133,7 +132,8 @@ public class MinigameController : MonoBehaviour
     /// </summary>
     private IEnumerator MinigameCoroutine()
     {
-        GenerateRound();
+        _timeStarted = Time.time;
+
         yield return new WaitForSeconds(TimeLimit);
         ClearSpawnedObjects();
         _minigameCoroutine = null;
@@ -217,6 +217,10 @@ public class MinigameController : MonoBehaviour
                         Score++;
                         OnGoalTouched?.Invoke();
 
+                        if (_minigameCoroutine == null)
+                            _minigameCoroutine = StartCoroutine(MinigameCoroutine());
+
+
                         GenerateRound();
                     });
 
@@ -230,8 +234,15 @@ public class MinigameController : MonoBehaviour
 
                     obstacle.OnTriggerEnterRelay.AddListener(() =>
                     {
-                        Score--;
+                        if (Score > 0)
+                        {
+                            Score--;
+                        }
                         OnObstacleTouched?.Invoke();
+
+
+                        if (_minigameCoroutine == null)
+                            _minigameCoroutine = StartCoroutine(MinigameCoroutine());
 
                         GenerateRound();
                     });

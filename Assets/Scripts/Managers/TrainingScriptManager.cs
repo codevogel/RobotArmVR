@@ -228,7 +228,10 @@ public class TrainingScriptManager : MonoBehaviour
     /// </summary>
     private void CheckPhaseButton()
     {
-        phaseChanger.ActivatePhaseButton(currentPhase.phaseNumber);
+        if (currentPhase.phaseNumber<=3)
+        {
+            phaseChanger.ActivatePhaseButton(currentPhase.phaseNumber);
+        }
     }
 
     /// <summary>
