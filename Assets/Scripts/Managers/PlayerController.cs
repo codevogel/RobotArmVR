@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerController Instance { get; private set; }
 
-
     private static ControllerValues leftValues, rightValues;
     public static ControllerValues Left { get { return leftValues; } }
     public static ControllerValues Right { get { return rightValues; } }
@@ -208,7 +207,11 @@ public class PlayerController : MonoBehaviour
 
         bool pressed = controllerValues.TriggerPressed;
 
-        TrainingScriptManager.Instance.ActivateTrigger(4);
+        if (leftRight.Equals(HandType.LEFT))
+        {
+            TrainingScriptManager.Instance.ActivateTrigger(4);
+        }
+        
         robotController.SetPressureButton(pressed, leftRight);
     }
 
