@@ -295,63 +295,70 @@
         "phaseNumber": "3",
         "phaseName": "Safety",
         "startTime": "13887",
-        "subPhases": [
-            {
-                "subPhaseNumber": "0",
-                "message": "On this poster you can find the main safety rules",
-                "startTime": "13892",
-                "endTime": "14321"
-            },
+      "subPhases": [
+        {
+          "subPhaseNumber": "0",
+          "message": "On this poster you can find the main safety rules",
+          "startTime": "13892",
+          "endTime": "14321"
+        },
 
-            {
-                "subPhaseNumber": "1",
-                "message": "Always follow these rules when operating the robot arm",
-                "startTime": "14326",
-                "endTime": "14761"
-            },
+        {
+          "subPhaseNumber": "1",
+          "message": "Always follow these rules when operating the robot arm",
+          "startTime": "14326",
+          "endTime": "14761"
+        },
 
-            {
-                "subPhaseNumber": "2",
-                "message": "If an accident occurs, you can press 1 of 3 emergency buttons",
-                "startTime": "14766",
-                "endTime": "15201"
-            },
+        {
+          "subPhaseNumber": "2",
+          "message": "If an accident occurs, you can press 1 of 2 emergency buttons",
+          "startTime": "14766",
+          "endTime": "15201"
+        },
 
-            {
-                "subPhaseNumber": "3",
-                "message": "The brakes will then lock the robot arm immediately",
-                "startTime": "15206",
-                "endTime": "15641"
-            },
+        {
+          "subPhaseNumber": "3",
+          "message": "The brakes will then lock the robot arm immediately",
+          "startTime": "15206",
+          "endTime": "15641"
+        },
 
-            {
-                "subPhaseNumber": "4",
-                "message": "The first one is on the flexpendant",
-                "startTime": "15646",
-                "endTime": "16021"
-            },
+        {
+          "subPhaseNumber": "4",
+          "message": "The first one is on the flexpendant",
+          "startTime": "15646",
+          "endTime": "16021"
+        },
 
-            {
-                "subPhaseNumber": "5",
-                "message": "The second one is when you enter the cage while the robot arm is running",
-                "startTime": "16584",
-                "endTime": "17098"
-            },
+        {
+          "subPhaseNumber": "5",
+          "message": "To unlock the robot arm again you have to press this button on the IRC5",
+          "startTime": "16584",
+          "endTime": "17098"
+        },
 
-            {
-                "subPhaseNumber": "6",
-                "message": "And the third one is on the IRC5",
-                "startTime": "17906",
-                "endTime": "18248"
-            },
+        {
+          "subPhaseNumber": "6",
+          "message": "And the second emergency button is the red one on the IRC5",
+          "startTime": "17906",
+          "endTime": "18248"
+        },
 
-            {
-                "subPhaseNumber": "7",
-                "message": "To unlock the robot arm you have to press this button on the IRC5",
-                "startTime": "18253",
-                "endTime": "18730"
-            }
-        ]
+        {
+          "subPhaseNumber": "8",
+          "message": "In this training there is no automatic mode yet",
+          "startTime": "18253",
+          "endTime": "18730"
+        },
+
+        {
+          "subPhaseNumber": "9",
+          "message": "But the robot arm will also shut down when you enter the cage while the robot arm is running in automatic mode",
+          "startTime": "18253",
+          "endTime": "18730"
+        }
+      ]
     },
     {
         "phaseNumber": "4",
