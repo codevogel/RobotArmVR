@@ -12,15 +12,27 @@ using UnityEngine.UI;
 [DisallowMultipleComponent]
 public class MinigameScoreboard : MonoBehaviour
 {
-    [SerializeField, Tooltip("The minigame that will be observed by this scoreboard")]
+    /// <summary>
+    /// The minigame that will be observed by this scoreboard.
+    /// </summary>
+    [SerializeField, Tooltip("The minigame that will be observed by this scoreboard.")]
     MinigameController _minigame;
 
+    /// <summary>
+    /// The text mesh that will be used to display the current remaining time.
+    /// </summary>
     [SerializeField, Tooltip("The text mesh that will be used to display the current remaining time.")]
     TextMeshProUGUI _timeRemainingMesh;
 
+    /// <summary>
+    /// The text mesh that will be used to display the current score.
+    /// </summary>
     [SerializeField, Tooltip("The text mesh that will be used to display the current score.")]
     TextMeshProUGUI _scoreMesh;
 
+    /// <summary>
+    /// The image that acts as a visual count down by redusing the circular fill.
+    /// </summary>
     [SerializeField, Tooltip("The image that acts as a visual count down by redusing the circular fill.")]
     Image _radialIndicator;
 
