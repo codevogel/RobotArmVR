@@ -234,6 +234,8 @@ public class RobotArmController : MonoBehaviour
                 IKManagers[currentRobot].enabled = true;
                 linearMovement.enabled = true;
                 linearMovement.followTarget[currentRobot].position = articulationBodies[5].transform.position;
+
+                linearMovement.RecalculatePreviousAngle();
             }
             else
             {
