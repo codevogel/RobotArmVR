@@ -1,35 +1,83 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
 
+/// <summary>
+/// An authoring component for handling a per axis rotation tutorial.
+/// </summary>
 public class TutorialGoalRotation : MonoBehaviour
 {
-    [SerializeField] Step[] _steps;
-    [SerializeField, Range(0, 180)] float _tollerance;
-    [SerializeField, Min(0)] float _timeRequired;
+    /// <summary>
+    /// The steps in the tutorial.
+    /// </summary>
+    [SerializeField, Tooltip("The steps in the tutorial.")]
+    private Step[] _steps;
 
-    [SerializeField] UnityEvent _onAdvancedStep;
-    [SerializeField] UnityEvent _onCompletion;
+    /// <summary>
+    /// The angle from the center of cone in which the rotation will be accepted for the steps.
+    /// </summary>
+    [SerializeField, Range(0, 180), Tooltip("The angle from the center of cone in which the rotation will be accepted for the steps.")]
+    private float _tollerance;
 
-    [SerializeField] ArticulationBody[] _trackPerStep;
+    /// <summary>
+    /// The time you need to be inside of the tollerance zone to advance to the next step.
+    /// </summary>
+    [SerializeField, Min(0), Tooltip("The time you need to be inside of the tollerance zone to advance to the next step.")]
+    private float _timeRequired;
 
-    [SerializeField]
-    private LinearMovement linearMovement;
+    /// <summary>
+    /// The event that will fire when the user advances to the next step in the tutorial.
+    /// </summary>
+    [SerializeField, Tooltip("The event that will fire when the user advances to the next step in the tutorial.")]
+    private UnityEvent _onAdvancedStep;
 
-    private ArticulationDrive[] initPosition= new ArticulationDrive[6];
+    /// <summary>
+    /// The event that will fire when the user has gone through all steps in the tutorial.
+    /// </summary>
+    [SerializeField, Tooltip("The event that will fire when the user has gone through all steps in the tutorial.")]
+    private UnityEvent _onCompletion;
 
+    /// <summary>
+    /// The parts of the robot arm that should be observed at the start of each step.
+    /// </summary>
+    [SerializeField, Tooltip("The parts of the robot arm that should be observed at the start of each step.")]
+    private ArticulationBody[] _trackPerStep;
+
+    /// <summary>
+    /// Used to reset articulation drives.
+    /// </summary>
+    [SerializeField, Tooltip("Used to reset articulation drives.")]
+    private LinearMovement _linearMovement;
+
+    /// <summary>
+    /// The initial state of the drives of the articulation bodies.
+    /// </summary>
+    private ArticulationDrive[] _initPosition = new ArticulationDrive[6];
+
+    /// <summary>
+    /// The current step in the tutorial.
+    /// </summary>
     int _currentStepIndex;
-    Coroutine _currentCoroutine;
-    private bool tutorialActive;
 
+    /// <summary>
+    /// The coroutine that waits for a certain amount of time before advancing to the next step.
+    /// </summary>
+    Coroutine _advanceCoroutine;
 
+    /// <summary>
+    /// Determines if the tutorial is currently active.
+    /// </summary>
+    private bool _tutorialActive;
+
+    /// <summary>
+    /// Records the initial state of the articulation bodies.
+    /// </summary>
     private void Start()
     {
-        for (int x = 0; x < initPosition.Length; x++)
+        for (int x = 0; x < _initPosition.Length; x++)
         {
-            initPosition[x] = _trackPerStep[x].xDrive;
+            _initPosition[x] = _trackPerStep[x].xDrive;
         }
     }
 
@@ -57,9 +105,12 @@ public class TutorialGoalRotation : MonoBehaviour
 
         RecordRotation();
 
-        tutorialActive = true;
+        _tutorialActive = true;
     }
 
+    /// <summary>
+    /// Handles the rotation of the hologram and determines of the axis is in the right rotation.
+    /// </summary>
     private void FixedUpdate()
     {
         var currentStep = _steps[_currentStepIndex];
@@ -80,17 +131,17 @@ public class TutorialGoalRotation : MonoBehaviour
         // if the observed axis rotation is close enough to the step's goal rotation, start advancing to the next step.
         if (angle <= _tollerance)
         {
-            if (_currentCoroutine == null)
+            if (_advanceCoroutine == null)
             {
-                _currentCoroutine = StartCoroutine(Advance());
+                _advanceCoroutine = StartCoroutine(Advance());
             }
         }
         else
         {
-            if (_currentCoroutine != null)
+            if (_advanceCoroutine != null)
             {
-                StopCoroutine(_currentCoroutine);
-                _currentCoroutine = null;
+                StopCoroutine(_advanceCoroutine);
+                _advanceCoroutine = null;
             }
         }
     }
@@ -103,7 +154,7 @@ public class TutorialGoalRotation : MonoBehaviour
         if (_timeRequired > 0)
             yield return new WaitForSeconds(_timeRequired);
 
-        _currentCoroutine = null;
+        _advanceCoroutine = null;
 
         // reset the highlight of the completed step
         var currentStep = _steps[_currentStepIndex];
@@ -162,6 +213,9 @@ public class TutorialGoalRotation : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Records the rotational state of the observed axis per step.
+    /// </summary>
     private void RecordRotation()
     {
         var currentStep = _steps[_currentStepIndex];
@@ -174,9 +228,12 @@ public class TutorialGoalRotation : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Reset the rotation of the observed articulation bodies
+    /// </summary>
     public void ResetRotation()
     {
-        if (tutorialActive)
+        if (_tutorialActive)
         {
             var currentStep = _steps[_currentStepIndex];
 
@@ -190,36 +247,63 @@ public class TutorialGoalRotation : MonoBehaviour
         }
         else
         {
-            for (int x=0; x<initPosition.Length;x++)
+            for (int x = 0; x < _initPosition.Length; x++)
             {
-                _trackPerStep[x].xDrive = initPosition[x];
+                _trackPerStep[x].xDrive = _initPosition[x];
                 StartCoroutine(WaitForDrive());
             }
         }
     }
 
+    /// <summary>
+    /// waits for the drives to have cooled down.
+    /// </summary>
     private IEnumerator WaitForDrive()
     {
         yield return new WaitForSeconds(0.2f);
-        linearMovement.followTarget[linearMovement.currentRobot].position = _trackPerStep[5].transform.position;
+        _linearMovement.followTarget[_linearMovement.currentRobot].position = _trackPerStep[5].transform.position;
     }
 
+    /// <summary>
+    /// A step in the rotation tutorial that can be configured to trach a specific axis.
+    /// </summary>
     [System.Serializable]
     public class Step
     {
+        /// <summary>
+        /// The object who's rotation will be observed.
+        /// </summary>
         [field: SerializeField, Tooltip("The object who's rotation will be observed.")]
         public Transform Observing { get; private set; }
 
+        /// <summary>
+        /// The object acting as a guide for the end position.
+        /// </summary>
         [field: SerializeField, Tooltip("The object acting as a guide for the end position.")]
         public Transform Highlight { get; private set; }
 
-        [field: SerializeField, Tooltip("The desired rotation of the axis")]
+        /// <summary>
+        /// The desired rotation of the axis.
+        /// </summary>
+        [field: SerializeField, Tooltip("The desired rotation of the axis.")]
         public float TargetRotation { get; private set; }
 
+        /// <summary>
+        /// The axis to be tested.
+        /// </summary>
         [field: SerializeField, Tooltip("The axis to be tested.")]
         public Axis Axis { get; private set; }
+
+        /// <summary>
+        /// The initial rotation state of the observed bodies.
+        /// </summary>
+        [HideInInspector]
         public ArticulationDrive[] InitialRotations { get; set; }
     }
+
+    /// <summary>
+    /// The axis to track the rotation on.
+    /// </summary>
     public enum Axis { X, Y, Z }
 }
 
