@@ -146,14 +146,14 @@ public class TrainingScriptManager : MonoBehaviour
                 break;
             //Back / Forth
             case 8:
-                if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 3)
+                if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 4)
                 {
                     Newtime();
                 }
                 break;
             //Up / Down
             case 9:
-                if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 4)
+                if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 5)
                 {
                     Newtime();
                 }

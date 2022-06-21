@@ -25,6 +25,7 @@ public class PushButton : MonoBehaviour
 
     private Vector3 original;
     private bool triggered;
+    private bool buttonEnabled;
 
     public bool frozen;
 
@@ -44,15 +45,17 @@ public class PushButton : MonoBehaviour
         rb.transform.localPosition = new Vector3(original.x, Mathf.Clamp(rb.transform.localPosition.y, original.y - travelDistance, original.y), original.z);
 
         // Check if button is up
-        if (triggered && rb.transform.localPosition.y >= original.y - toleranceY)
+        if (triggered && rb.transform.localPosition.y >= original.y - toleranceY && buttonEnabled)
         {
+            buttonEnabled = false;
             triggered = false;
             OnButtonUp.Invoke();
         }
         // Check if button is down
-        if (!triggered && rb.transform.localPosition.y <= original.y - travelDistance + toleranceY)
+        if (!triggered && rb.transform.localPosition.y <= original.y - travelDistance + toleranceY &&!buttonEnabled)
         {
             triggered = true;
+            buttonEnabled = true;
             OnButtonDown.Invoke();
         }
     }

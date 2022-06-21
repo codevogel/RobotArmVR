@@ -58,6 +58,7 @@ public class RobotArmController : MonoBehaviour
 
     private bool emergencyStopEnabled;
     private bool axisButtonEnabled;
+    private bool incrementEnabled;
     private bool movementButtonEnabled=true;
     private bool firstStart=true;
 
