@@ -11,6 +11,9 @@ public class TouchButton : MonoBehaviour
     [HideInInspector]
     public bool locked;
 
+    public delegate void OnPhaseChangeHandler (int phaseNumber);
+    public static event OnPhaseChangeHandler OnPhaseChange;
+
     /// <summary>
     /// Activation of the buttons function if the player touches it
     /// </summary>
@@ -26,6 +29,7 @@ public class TouchButton : MonoBehaviour
                 //If the button is a button on the phase changing menu, change to the correct training phase
                 case ButtonFunction.PHASECHANGER:
                     TrainingScriptManager.Instance.ChangePhase(phaseNumber);
+                    OnPhaseChange?.Invoke(phaseNumber);
                     break;
 
                 //If the button is on the warning message, deactivate the warning
@@ -33,6 +37,7 @@ public class TouchButton : MonoBehaviour
                     PhaseChanger.Instance.DeactivateWarning();
                     PhaseChanger.Instance.UnlockAllButtons();
                     TrainingScriptManager.Instance.ChangePhase(phaseNumber);
+                    OnPhaseChange?.Invoke(phaseNumber);
                     pickUp.SkipTutorial();
                     break;
 

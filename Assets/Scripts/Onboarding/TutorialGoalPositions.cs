@@ -49,6 +49,27 @@ public class TutorialGoalPositions : MonoBehaviour
     Coroutine _advanceCoroutine;
 
     /// <summary>
+    /// Starts listening to phase change events.
+    /// </summary>
+    private void OnEnable()
+    {
+        TouchButton.OnPhaseChange += HandlePhaseChanged;
+    }
+
+    /// <summary>
+    /// Stops listening to phase change events.
+    /// </summary>
+    private void OnDisable()
+    {
+        TouchButton.OnPhaseChange -= HandlePhaseChanged;
+    }
+
+    /// <summary>
+    /// Stops the tutorial when the phase is changed.
+    /// </summary>
+    private void HandlePhaseChanged(int _) => Stop();
+
+    /// <summary>
     /// Resets the active goal positions and starts with the first one.
     /// </summary>
     public void Begin()
@@ -62,6 +83,15 @@ public class TutorialGoalPositions : MonoBehaviour
         _colliders[0].gameObject.SetActive(true);
 
         _onBeginSequence.Invoke();
+    }
+
+    /// <summary>
+    /// Turn off the current highlight.
+    /// </summary>
+    public void Stop()
+    {
+        if (_currentGoal < _colliders.Length)
+            _colliders[_currentGoal].gameObject.SetActive(false);
     }
 
     /// <summary>
