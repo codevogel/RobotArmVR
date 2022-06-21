@@ -59,7 +59,7 @@ public class AssistantLookTowardsPlayer : MonoBehaviour
     /// <summary>
     /// Sets the state for looking at the player.
     /// </summary>
-    /// <param name="activate"> True if the assistant should be looking at the player. False to stop looking at the player.</param>
+    /// <param name="activate"> True if the assistant should be looking at the player.</param>
     public void Active(bool activate)
     {
         _active = activate;
