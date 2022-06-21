@@ -55,22 +55,22 @@ public class TutorialTriggers : MonoBehaviour
             }
         }
 
-        if (CompareTag("Cage"))
-        {
-            if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
-            {
-                Timeline.Pause();
-                Timeline.time = 16492 / 60f;
-                Timeline.Resume();
-            }
-        }
-
         if (CompareTag("IRC5"))
         {
             if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
             {
                 Timeline.Pause();
-                Timeline.time = 17679 / 60f;
+                Timeline.time = 16995 / 60f;
+                Timeline.Resume();
+            }
+        }
+
+        if (CompareTag("Cage"))
+        {
+            if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
+            {
+                Timeline.Pause();
+                Timeline.time = 17515 / 60f;
                 Timeline.Resume();
             }
         }

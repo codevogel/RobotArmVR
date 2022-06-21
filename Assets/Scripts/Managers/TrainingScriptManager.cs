@@ -167,7 +167,7 @@ public class TrainingScriptManager : MonoBehaviour
                 break;
             //Unlock Robot Arm
             case 11:
-                if (currentPhase.phaseNumber == 3 && currentSubPhase.subPhaseNumber == 5 || currentPhase.phaseNumber == 3 && currentSubPhase.subPhaseNumber == 7)
+                if (currentPhase.phaseNumber == 3 && currentSubPhase.subPhaseNumber == 6)
                 {
                     Newtime();
                 }
