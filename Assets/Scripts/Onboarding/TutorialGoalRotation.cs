@@ -27,6 +27,12 @@ public class TutorialGoalRotation : MonoBehaviour
     private float _timeRequired;
 
     /// <summary>
+    /// Determines if the current rotation should be captured for advancing to the next step.
+    /// </summary>
+    [SerializeField, Tooltip("Determines if the current rotation should be captured for advancing to the next step.")]
+    private bool _capture;
+
+    /// <summary>
     /// The event that will fire when the user advances to the next step in the tutorial.
     /// </summary>
     [SerializeField, Tooltip("The event that will fire when the user advances to the next step in the tutorial.")]
@@ -111,7 +117,7 @@ public class TutorialGoalRotation : MonoBehaviour
     /// <summary>
     /// Handles the rotation of the hologram and determines of the axis is in the right rotation.
     /// </summary>
-    private void FixedUpdate()
+    private void Update()
     {
         var currentStep = _steps[_currentStepIndex];
 
@@ -126,7 +132,16 @@ public class TutorialGoalRotation : MonoBehaviour
         // counter rotate the highlight to make it appear as if it is not rotating
         currentStep.Highlight.localRotation = Quaternion.Inverse(currentStep.Observing.localRotation) * targetRotation;
 
+        // don't check for the angle if it should not be captured at this point in time
+        if (!_capture)
+            return;
+
         var angle = Quaternion.Angle(currentStep.Observing.localRotation, targetRotation);
+
+        if (currentStep.AllowSymetrical)
+        {
+            angle = Mathf.Min(angle, 180 - angle);
+        }
 
         // if the observed axis rotation is close enough to the step's goal rotation, start advancing to the next step.
         if (angle <= _tollerance)
@@ -229,7 +244,7 @@ public class TutorialGoalRotation : MonoBehaviour
     }
 
     /// <summary>
-    /// Reset the rotation of the observed articulation bodies
+    /// Reset the rotation of the observed articulation bodies.
     /// </summary>
     public void ResetRotation()
     {
@@ -252,6 +267,21 @@ public class TutorialGoalRotation : MonoBehaviour
                 _trackPerStep[x].xDrive = _initPosition[x];
                 StartCoroutine(WaitForDrive());
             }
+        }
+    }
+
+    /// <summary>
+    /// Sets the current capture state for determining if the angle is within tollerance.
+    /// </summary>
+    /// <param name="value"> True if the current angle should be captured.</param>
+    public void EnableCapture(bool value)
+    {
+        _capture = value;
+
+        if (_advanceCoroutine != null)
+        {
+            StopCoroutine(_advanceCoroutine);
+            _advanceCoroutine = null;
         }
     }
 
@@ -287,6 +317,12 @@ public class TutorialGoalRotation : MonoBehaviour
         /// </summary>
         [field: SerializeField, Tooltip("The desired rotation of the axis.")]
         public float TargetRotation { get; private set; }
+
+        /// <summary>
+        /// Determines if a mirror rotation should be accepted for this step.
+        /// </summary>
+        [field: SerializeField, Tooltip("Determines if a mirror rotation should be accepted for this step.")]
+        public bool AllowSymetrical { get; private set; }
 
         /// <summary>
         /// The axis to be tested.
