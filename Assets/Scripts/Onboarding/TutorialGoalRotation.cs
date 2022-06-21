@@ -96,10 +96,19 @@ public class TutorialGoalRotation : MonoBehaviour
 
         this.enabled = true;
 
+        Step currentStep;
+
+        // turn off previously active highlight
+        if(_currentStepIndex < _steps.Length)
+        {
+            currentStep = _steps[_currentStepIndex];
+            currentStep.Highlight.gameObject.SetActive(false);
+        }
+        
         _currentStepIndex = default;
 
         // set the first highlight to the goal rotation
-        var currentStep = _steps[_currentStepIndex];
+        currentStep = _steps[_currentStepIndex];
         currentStep.Highlight.gameObject.SetActive(true);
         currentStep.Highlight.rotation = currentStep.Axis switch
         {
@@ -112,6 +121,21 @@ public class TutorialGoalRotation : MonoBehaviour
         RecordRotation();
 
         _tutorialActive = true;
+    }
+
+    /// <summary>
+    /// Turn off the current highlight.
+    /// </summary>
+    public void Stop()
+    {
+        Step currentStep;
+
+        // turn off active highlight
+        if (_currentStepIndex < _steps.Length)
+        {
+            currentStep = _steps[_currentStepIndex];
+            currentStep.Highlight.gameObject.SetActive(false);
+        }
     }
 
     /// <summary>
