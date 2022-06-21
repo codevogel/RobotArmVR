@@ -184,7 +184,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 12
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -3952,31 +3952,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1204603523317580261, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.187
+      value: 11.032
       objectReference: {fileID: 0}
     - target: {fileID: 1204603523317580261, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.444
+      value: 0.375
       objectReference: {fileID: 0}
     - target: {fileID: 1204603523317580261, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.674
+      value: 7.862
       objectReference: {fileID: 0}
     - target: {fileID: 1204603523317580261, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.93621296
       objectReference: {fileID: 0}
     - target: {fileID: 1204603523317580261, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1204603523317580261, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.35143316
       objectReference: {fileID: 0}
     - target: {fileID: 1204603523317580261, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1204603523317580261, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3984,7 +3984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1204603523317580261, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -41.15
       objectReference: {fileID: 0}
     - target: {fileID: 1204603523317580261, guid: eee022051019c644d8ede8511426581c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -8942,7 +8942,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 12
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -9038,7 +9038,7 @@ MonoBehaviour:
   _obstaclesPerRound: 4
   _pointer: {fileID: 1200492851}
   _radius: 4
-  _deadzone: 1
+  _deadzone: 2
   _verticalRadius: 3
   _verticalOffset: 1
   _goalPrefab: {fileID: 8512013116014930380, guid: 0151bfed79fc5db4493b205b4e53e8e3, type: 3}
@@ -9512,15 +9512,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1222023690825812021, guid: d407b4b520a4b4b168854ca63b3e7532, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.0017751481
+      value: 0.0029135505
       objectReference: {fileID: 0}
     - target: {fileID: 1222023690825812021, guid: d407b4b520a4b4b168854ca63b3e7532, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.0017751477
+      value: 0.00291355
       objectReference: {fileID: 0}
     - target: {fileID: 1222023690825812021, guid: d407b4b520a4b4b168854ca63b3e7532, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.0017751481
+      value: 0.0029135505
       objectReference: {fileID: 0}
     - target: {fileID: 1222023690825812021, guid: d407b4b520a4b4b168854ca63b3e7532, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9532,7 +9532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1222023690825812021, guid: d407b4b520a4b4b168854ca63b3e7532, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.037
+      value: 5.04
       objectReference: {fileID: 0}
     - target: {fileID: 1222023690825812021, guid: d407b4b520a4b4b168854ca63b3e7532, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9552,7 +9552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1222023690825812021, guid: d407b4b520a4b4b168854ca63b3e7532, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.5161
+      value: -0.53
       objectReference: {fileID: 0}
     - target: {fileID: 1222023690825812021, guid: d407b4b520a4b4b168854ca63b3e7532, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -11223,6 +11223,18 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2155893286205024901, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 2155893286205024901, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2155893286205024901, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.006
+      objectReference: {fileID: 0}
     - target: {fileID: 2258900754116830288, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_Name
       value: RobotAssistant
@@ -11310,6 +11322,10 @@ PrefabInstance:
     - target: {fileID: 4603956465532249665, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: _headVerticalRotationBounds.Min
       value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184922596162377002, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
+      propertyPath: MaxDistance
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5185679357163416771, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11453,7 +11469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6357922626770203071, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.717
+      value: -0.723
       objectReference: {fileID: 0}
     - target: {fileID: 6357922626770203071, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11473,11 +11489,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6357922626770203071, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.898
       objectReference: {fileID: 0}
     - target: {fileID: 6357922626770203071, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.419
       objectReference: {fileID: 0}
     - target: {fileID: 6357922626770203071, guid: 76a5fb4b5e7346347ad7df57fbc44430, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11675,6 +11691,10 @@ PrefabInstance:
       propertyPath: buttonAudioSource
       value: 
       objectReference: {fileID: 326001610}
+    - target: {fileID: 650172269664194410, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1083607476494426571, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -11715,6 +11735,14 @@ PrefabInstance:
       propertyPath: buttonAudioSource
       value: 
       objectReference: {fileID: 326001610}
+    - target: {fileID: 2198040928138577303, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: MaxDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884121006433257416, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3875107668792214367, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_Name
       value: Flexpendant
@@ -11791,6 +11819,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: a7fc5fee340da4068b75e001afa90079, type: 3}
+    - target: {fileID: 7026730358383776611, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: MaxDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026730358504220547, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: MaxDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026730359041524182, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: MaxDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7102749657932274036, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_LocalScale.x
       value: 50
@@ -11850,6 +11890,30 @@ PrefabInstance:
     - target: {fileID: 7627366596484580302, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752720754583249474, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752720754583249474, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 13.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752720754583249474, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7952646721696656503, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7952646721696656503, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 13.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7952646721696656503, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8029446910894539256, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_UseGravity
@@ -11986,6 +12050,10 @@ PrefabInstance:
     - target: {fileID: 8073630175659533706, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8239039443182619923, guid: 52088ca3966c84047b525842237efeb1, type: 3}
+      propertyPath: MaxDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8859726701809088052, guid: 52088ca3966c84047b525842237efeb1, type: 3}
       propertyPath: m_RootOrder
@@ -14461,7 +14529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 649980445172548201, guid: e91e9de2ee088824aadf7ef42e858fac, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_FloatArgument
-      value: 22000
+      value: 21467
       objectReference: {fileID: 0}
     - target: {fileID: 649980445172548201, guid: e91e9de2ee088824aadf7ef42e858fac, type: 3}
       propertyPath: OnButtonDown.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_FloatArgument
@@ -16057,15 +16125,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1222023690825812021, guid: d407b4b520a4b4b168854ca63b3e7532, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.0017751481
+      value: 0.0027982683
       objectReference: {fileID: 0}
     - target: {fileID: 1222023690825812021, guid: d407b4b520a4b4b168854ca63b3e7532, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.0017751477
+      value: 0.0027982679
       objectReference: {fileID: 0}
     - target: {fileID: 1222023690825812021, guid: d407b4b520a4b4b168854ca63b3e7532, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.0017751481
+      value: 0.0027982683
       objectReference: {fileID: 0}
     - target: {fileID: 1222023690825812021, guid: d407b4b520a4b4b168854ca63b3e7532, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16077,7 +16145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1222023690825812021, guid: d407b4b520a4b4b168854ca63b3e7532, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.802
+      value: -2.91
       objectReference: {fileID: 0}
     - target: {fileID: 1222023690825812021, guid: d407b4b520a4b4b168854ca63b3e7532, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17446,7 +17514,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 15
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -17481,7 +17549,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
