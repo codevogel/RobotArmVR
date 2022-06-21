@@ -88,6 +88,27 @@ public class TutorialGoalRotation : MonoBehaviour
     }
 
     /// <summary>
+    /// Starts listening to phase change events.
+    /// </summary>
+    private void OnEnable()
+    {
+        TouchButton.OnPhaseChange += HandlePhaseChanged;
+    }
+
+    /// <summary>
+    /// Stops listening to phase change events.
+    /// </summary>
+    private void OnDisable()
+    {
+        TouchButton.OnPhaseChange -= HandlePhaseChanged;
+    }
+
+    /// <summary>
+    /// Stops the tutorial when the phase is changed.
+    /// </summary>
+    private void HandlePhaseChanged(int _) => Stop();
+
+    /// <summary>
     /// Resets the active goal rotation and starts with the first one.
     /// </summary>
     public void Begin()
