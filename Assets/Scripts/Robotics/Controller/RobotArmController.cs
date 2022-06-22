@@ -58,6 +58,7 @@ public class RobotArmController : MonoBehaviour
 
     private bool emergencyStopEnabled;
     private bool axisButtonEnabled;
+    private bool incrementEnabled;
     private bool movementButtonEnabled=true;
     private bool firstStart=true;
 
@@ -68,12 +69,13 @@ public class RobotArmController : MonoBehaviour
     private void Awake()
     {
         RobotArmSwitch(robotArms[0]);
-        FlexpendantUIManager.Instance.SetAxis(articulationBodies);
-        FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
     }
 
     private void Start()
     {
+        FlexpendantUIManager.Instance.SetAxis(articulationBodies);
+        FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
+
         joystickInteractor = HandManager.Instance.RightController.GetComponent<JoystickInteractor>();
         Interactor = GetComponent<CustomInteractor>();
         linearMovement = GetComponent<LinearMovement>();

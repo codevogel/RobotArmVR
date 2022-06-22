@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Mathf.Abs(controllerValues.JoystickAxis.y) > 0.75f)
             {
-                TrainingScriptManager.Instance.ActivateTrigger(8);
+                TrainingScriptManager.Instance.ActivateTrigger(9);
             }
         }
     }
