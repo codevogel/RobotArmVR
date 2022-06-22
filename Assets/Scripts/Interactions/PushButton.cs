@@ -48,7 +48,7 @@ public class PushButton : MonoBehaviour
         rb.transform.localPosition = new Vector3(original.x, Mathf.Clamp(rb.transform.localPosition.y, original.y - travelDistance, original.y), original.z);
 
         // Check if button is up
-        if (triggered && rb.transform.localPosition.y >= original.y - toleranceY )
+        if (triggered && rb.transform.localPosition.y >= original.y - toleranceY)
         {
             triggered = false;
             OnButtonUp.Invoke();

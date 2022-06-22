@@ -154,6 +154,7 @@ public class JoystickInteractor : MonoBehaviour
         {
             // Free hand from joystick
             transform.parent = originalParent;
+            joystickPivot.transform.localRotation = Quaternion.identity;
             rightHandController.enableInputTracking = true;
             HandManager.Instance.ChangePose(HandPose.JOYSTICK_GRAB, HandPose.IDLE, HandType.RIGHT);
         }
