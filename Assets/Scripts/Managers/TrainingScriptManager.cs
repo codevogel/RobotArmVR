@@ -144,35 +144,35 @@ public class TrainingScriptManager : MonoBehaviour
                     Newtime();
                 }
                 break;
-            //Back / Forth
+            //Increment button
             case 8:
+                if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 3)
+                {
+                    Newtime();
+                }
+                break;
+            //Back / Forth
+            case 9:
                 if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 4)
                 {
                     Newtime();
                 }
                 break;
             //Up / Down
-            case 9:
+            case 10:
                 if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 5)
                 {
                     Newtime();
                 }
                 break;
             //Flexpendant Emergency Button
-            case 10:
+            case 11:
                 if (currentPhase.phaseNumber == 3 && currentSubPhase.subPhaseNumber == 4)
                 {
                     Newtime();
                 }
                 break;
             //Unlock Robot Arm
-            case 11:
-                if (currentPhase.phaseNumber == 3 && currentSubPhase.subPhaseNumber == 6)
-                {
-                    Newtime();
-                }
-                break;
-            //IRC5 Emergency Button
             case 12:
                 if (currentPhase.phaseNumber == 3 && currentSubPhase.subPhaseNumber == 6)
                 {

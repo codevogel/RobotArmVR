@@ -149,8 +149,11 @@ public class HandManager : MonoBehaviour
                 }
                 break;
             case HandPose.JOYSTICK_GRAB:
-                handAnimator.SetTrigger("JoystickGrab");
-                hasSwitched = true;
+                if (leftRight.Equals(HandType.RIGHT))
+                {
+                    handAnimator.SetTrigger("JoystickGrab");
+                    hasSwitched = true;
+                }
                 break;
             case HandPose.GRAB:
                 if (isIdle && GetHeldObject(leftRight) != null)
