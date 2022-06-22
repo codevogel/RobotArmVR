@@ -183,8 +183,10 @@ public class TrainingScriptManager : MonoBehaviour
     /// <param name="phaseNumber">What phase it needs to change to</param>
     public void ChangePhase(int phaseNumber)
     {
+        textWriter.Clear();
         currentPhase = phases[phaseNumber];
         currentSubPhase = phases[phaseNumber].subPhases[0];
+
         CheckTimeLineDifference(currentPhase.startTime);
 
         CheckPhaseButton();
