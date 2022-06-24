@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3251782710528260270}
   - component: {fileID: 5346808323011336007}
   - component: {fileID: 1540458336633479002}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 6583813255700504890}
   - component: {fileID: 5671699396596368151}
   - component: {fileID: 598278597506964102}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 965693010959369079}
   - component: {fileID: 1604016932843249596}
   - component: {fileID: 1666579480370581993}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,6 +390,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 22a61767ffa3345c89c0c1d2d69b992d, type: 3}
       propertyPath: m_Name
       value: SlidingDoorHue
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 22a61767ffa3345c89c0c1d2d69b992d, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22a61767ffa3345c89c0c1d2d69b992d, type: 3}
