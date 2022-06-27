@@ -144,22 +144,43 @@ public class TrainingScriptManager : MonoBehaviour
                     Newtime();
                 }
                 break;
-            //Back / Forth
+            //Increment button
             case 8:
+                if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 6)
+                {
+                    Newtime();
+                }
+                break;
+            //Back / Forth
+            case 9:
                 if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 3)
                 {
                     Newtime();
                 }
                 break;
             //Up / Down
-            case 9:
+            case 10:
                 if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 4)
                 {
                     Newtime();
                 }
                 break;
+            //Flexpendant Emergency Button
+            case 11:
+                if (currentPhase.phaseNumber == 3 && currentSubPhase.subPhaseNumber == 4)
+                {
+                    Newtime();
+                }
+                break;
+            //Unlock Robot Arm
+            case 12:
+                if (currentPhase.phaseNumber == 3 && currentSubPhase.subPhaseNumber == 6)
+                {
+                    Newtime();
+                }
+                break;
             //gloves
-            case 10:
+            case 13:
                 if (currentPhase.phaseNumber == 4 && currentSubPhase.subPhaseNumber == 2)
                 {
                     Newtime();
@@ -183,8 +204,10 @@ public class TrainingScriptManager : MonoBehaviour
     /// <param name="phaseNumber">What phase it needs to change to</param>
     public void ChangePhase(int phaseNumber)
     {
+        textWriter.Clear();
         currentPhase = phases[phaseNumber];
         currentSubPhase = phases[phaseNumber].subPhases[0];
+
         CheckTimeLineDifference(currentPhase.startTime);
 
         CheckPhaseButton();
@@ -204,11 +227,6 @@ public class TrainingScriptManager : MonoBehaviour
             textWriter.Write(currentSubPhase.message);
         }
         changeByButton = false;
-
-        //Originally used in the confirmation menu
-        //CheckTimeLineDifference(currentSubPhase.startTime);
-
-        CheckPhaseButton();
     }
 
     /// <summary>
@@ -240,10 +258,6 @@ public class TrainingScriptManager : MonoBehaviour
     /// <param name="newTime">Time to change to</param>
     private void CheckTimeLineDifference(int newTime)
     {
-        if (currentSubPhase.subPhaseNumber==15)
-        {
-            Debug.Log(newTime + "newtime, " + timeLine.time*60 + "timeline time");
-        }
         int timeDifference = Math.Abs(Mathf.RoundToInt((float)timeLine.time * 60) - newTime);
         if (timeDifference > differenceAllowance)
         {

@@ -137,7 +137,7 @@ public class HandManager : MonoBehaviour
         bool hasSwitched = false;
 
         XRCustomController currentController = leftRight.Equals(HandType.LEFT) ? LeftController : RightController;
-        
+
         switch (toPose)
         {
             case HandPose.IDLE:
@@ -149,7 +149,7 @@ public class HandManager : MonoBehaviour
                 }
                 break;
             case HandPose.JOYSTICK_GRAB:
-                if (isIdle)
+                if (leftRight.Equals(HandType.RIGHT))
                 {
                     handAnimator.SetTrigger("JoystickGrab");
                     hasSwitched = true;

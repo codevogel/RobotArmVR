@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// UI button which can be hovered over with a raycast
+/// </summary>
 public class UIHoverButton : MonoBehaviour
 {
     [SerializeField] private float hoverActivationTime;
@@ -37,11 +40,18 @@ public class UIHoverButton : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Saves the subphase to which the button will change
+    /// </summary>
+    /// <param name="subPhaseAmount">The number of the subphase</param>
     public void SubPhaseToRevertTo(int subPhaseAmount)
     {
         newSubPhase = subPhaseAmount;
     }
 
+    /// <summary>
+    /// Activates an action dependent on what function the button has
+    /// </summary>
     private void ActivationAction()
     {
         if (transform.name.Equals("Resume") || transform.name.Equals("Continue"))
@@ -77,6 +87,10 @@ public class UIHoverButton : MonoBehaviour
         TrainingScriptManager.Instance.CloseCanvas();
     }
 
+    /// <summary>
+    /// Timer which the loadcircle uses
+    /// </summary>
+    /// <param name="input">If the timer should be active</param>
     public void TimerActive(bool input)
     {
         timerActive = input;

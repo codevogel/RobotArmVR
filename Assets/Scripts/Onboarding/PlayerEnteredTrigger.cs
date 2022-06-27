@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Checks if the player has teleported to a given position
+/// </summary>
 public class PlayerEnteredTrigger : MonoBehaviour
 {
     [SerializeField] UnityEvent _onPlayerEntered;

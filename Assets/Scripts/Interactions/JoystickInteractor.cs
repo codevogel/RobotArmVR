@@ -113,7 +113,7 @@ public class JoystickInteractor : MonoBehaviour
         Vector3 newAttachAngle = originalAttachAngle;
         newAttachAngle.z += Mathf.Clamp(tiltAngle, -tiltThreshhold, tiltThreshhold);
         attachpoint.localRotation = Quaternion.Euler(newAttachAngle);
-        TrainingScriptManager.Instance.ActivateTrigger(9);
+        TrainingScriptManager.Instance.ActivateTrigger(10);
     }
 
 
@@ -154,6 +154,7 @@ public class JoystickInteractor : MonoBehaviour
         {
             // Free hand from joystick
             transform.parent = originalParent;
+            joystickPivot.transform.localRotation = Quaternion.identity;
             rightHandController.enableInputTracking = true;
             HandManager.Instance.ChangePose(HandPose.JOYSTICK_GRAB, HandPose.IDLE, HandType.RIGHT);
         }

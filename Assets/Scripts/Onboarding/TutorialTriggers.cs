@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
+/// <summary>
+/// Activate a trigger for the onboarding director to change to a specific phase,
+///  values of the time can be found in the JSON file
+/// </summary>
 public class TutorialTriggers : MonoBehaviour
 {
     [SerializeField] PlayableDirector Timeline;
@@ -50,17 +54,7 @@ public class TutorialTriggers : MonoBehaviour
             if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
             {
                 Timeline.Pause();
-                Timeline.time = 13795 / 60f;
-                Timeline.Resume();
-            }
-        }
-
-        if (CompareTag("Cage"))
-        {
-            if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
-            {
-                Timeline.Pause();
-                Timeline.time = 16492 / 60f;
+                Timeline.time = 14095 / 60f;
                 Timeline.Resume();
             }
         }
@@ -70,7 +64,17 @@ public class TutorialTriggers : MonoBehaviour
             if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
             {
                 Timeline.Pause();
-                Timeline.time = 17679 / 60f;
+                Timeline.time = 16995 / 60f;
+                Timeline.Resume();
+            }
+        }
+
+        if (CompareTag("Cage"))
+        {
+            if (other.CompareTag("ControllerLeft") || other.CompareTag("ControllerRight"))
+            {
+                Timeline.Pause();
+                Timeline.time = 17815 / 60f;
                 Timeline.Resume();
             }
         }

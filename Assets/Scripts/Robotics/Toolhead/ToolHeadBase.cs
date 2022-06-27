@@ -3,24 +3,58 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using static FlexpendantUIManager;
 
-#if UNITY_EDITOR
+#if UNITY_ASSERTIONS
 using UnityEngine.Assertions;
 #endif
 
+/// <summary>
+/// The base class for <see cref="ToolHeadBase{TToolState}"/>
+/// </summary>
+/// <remarks> Prefer inheriting from <see cref="ToolHeadBase{TToolState}"/>.</remarks>
 [RequireComponent(typeof(Rigidbody),typeof(XRGrabInteractable))]
 public abstract class ToolHeadBase : MonoBehaviour
 {
-    [SerializeField] private Vector3 _localHeadAttachOffset;
-    [SerializeField] private Vector3 _rotation;
+    /// <summary>
+    /// The local position the tool head should have when attaching to the end effector.
+    /// </summary>
+    [SerializeField, Tooltip("The local position the tool head should have when attaching to the end effector.")] 
+    private Vector3 _localHeadAttachOffset;
+
+    /// <summary>
+    /// The local rotation the toolhead should have when attaching to the end effector.
+    /// </summary>
+    [SerializeField, Tooltip("The local rotation the tool head should have when attaching to the end effector.")] 
+    private Vector3 _rotation;
+
+    /// <summary>
+    /// The authoring component on the robot arm.
+    /// </summary>
     private ToolHeadController _controller;
 
-    [SerializeField]
-    private int toolNumber;
+    /// <summary>
+    /// Identifies what tool this is.
+    /// </summary>
+    [SerializeField, Tooltip("Identifies what tool this is.")]
+    private int _toolId;
 
+    /// <summary>
+    /// Determines if the tool head is attachable to an end effector.
+    /// </summary>
     public bool Attachable { get; set; }
+
+    /// <summary>
+    /// The tool head's rigidbody.
+    /// </summary>
     public Rigidbody Rigidbody { get; private set; }
+
+    /// <summary>
+    /// The component used for handling grabbing objects.
+    /// </summary>
     public XRGrabInteractable GrabInteractable { get; private set; }
 
+    /// <summary>
+    /// The offset the toolhead should be placed at.
+    /// </summary>
     public Vector3 HeadAttachOffset => Quaternion.Euler(_rotation) * Vector3.Scale(_localHeadAttachOffset, this.transform.localScale);
 
     private void Awake()
@@ -45,8 +79,9 @@ public abstract class ToolHeadBase : MonoBehaviour
         _controller = toolHeadController;
         toolHeadController.CurrentTool = this;
 
-        GrabInteractable.interactionManager.CancelInteractableSelection((IXRSelectInteractable)GrabInteractable);//Check if this works after code cleanup
+        GrabInteractable.interactionManager.CancelInteractableSelection((IXRSelectInteractable)GrabInteractable);
 
+        // puts the toolhead at the right position and rotation
         transform.localPosition = Vector3.zero;
         transform.SetParent(toolHeadController.ToolHeadAttachPoint.transform, false);
         transform.localPosition -= HeadAttachOffset;
@@ -54,7 +89,7 @@ public abstract class ToolHeadBase : MonoBehaviour
 
         Rigidbody.isKinematic = true;
 
-        FlexpendantUIManager.Instance.ChangeProperty(Properties.TOOL, toolNumber);
+        FlexpendantUIManager.Instance.ChangeProperty(Properties.TOOL, _toolId);
     }
 
     /// <summary>
@@ -85,31 +120,21 @@ public abstract class ToolHeadBase : MonoBehaviour
     /// </summary>
     /// <param name="toolStateValue"></param>
     public abstract void SetToolState(int toolStateValue);
-
-#if UNITY_EDITOR
-    protected virtual void OnDrawGizmosSelected()
-    {
-        var previousColor = Gizmos.color;
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(this.transform.position + (Quaternion.Euler(_rotation - this.transform.localEulerAngles + this.transform.eulerAngles) * Vector3.Scale(_localHeadAttachOffset, this.transform.localScale)), 0.025f);
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawSphere(this.transform.position + (Quaternion.Euler(this.transform.eulerAngles) * Vector3.Scale(_localHeadAttachOffset, this.transform.localScale)), 0.0125f);
-
-        Gizmos.color = previousColor;
-    }
-#endif
 }
 
+/// <summary>
+/// The base class for a tool head component that can be attached to the end effector of a robot arm.
+/// </summary>
+/// <typeparam name="TToolState"> The set of states the tool head can be in.</typeparam>
 public abstract class ToolHeadBase<TToolState> : ToolHeadBase
     where TToolState : unmanaged, Enum
 {
     public TToolState CurrentState { get; protected set; }
 
     /// <summary>
-    /// Set the tool's current state.
+    /// Sets the current state of the tool head.
     /// </summary>
-    /// <param name="toolState"></param>
+    /// <param name="toolState"> The desired state of the tool head.</param>
     public abstract void SetToolState(TToolState toolState);
 
     /// <summary>
@@ -119,7 +144,7 @@ public abstract class ToolHeadBase<TToolState> : ToolHeadBase
     /// <param name="toolStateValue"></param>
     public override void SetToolState(int toolStateValue)
     {
-#if UNITY_EDITOR
+#if UNITY_ASSERTIONS
         // safety check die alleen in editor wordt gedaan
         var values = Enum.GetValues(typeof(TToolState));
         bool found = false;

@@ -8,6 +8,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static HandManager;
 
+/// <summary>
+/// Controls in which state the robot is and how it can be controlled
+/// </summary>
 public class RobotArmController : MonoBehaviour
 {
 
@@ -58,6 +61,7 @@ public class RobotArmController : MonoBehaviour
 
     private bool emergencyStopEnabled;
     private bool axisButtonEnabled;
+    private bool incrementEnabled;
     private bool movementButtonEnabled=true;
     private bool firstStart=true;
 
@@ -68,12 +72,13 @@ public class RobotArmController : MonoBehaviour
     private void Awake()
     {
         RobotArmSwitch(robotArms[0]);
-        FlexpendantUIManager.Instance.SetAxis(articulationBodies);
-        FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
     }
 
     private void Start()
     {
+        FlexpendantUIManager.Instance.SetAxis(articulationBodies);
+        FlexpendantUIManager.Instance.ChangeDirectionDisplay(movementOnLinear);
+
         joystickInteractor = HandManager.Instance.RightController.GetComponent<JoystickInteractor>();
         Interactor = GetComponent<CustomInteractor>();
         linearMovement = GetComponent<LinearMovement>();
@@ -126,6 +131,10 @@ public class RobotArmController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Switches between the robot arms in the scene
+    /// </summary>
+    /// <param name="robotarm">Robot arm to switch to</param>
     private void RobotArmSwitch(GameObject robotarm)
     {
         for (int x = 0; x < articulationBodies.Length; x++)
@@ -145,6 +154,10 @@ public class RobotArmController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Changes all references and values to control a different robot
+    /// </summary>
+    /// <param name="robot">Robot to control</param>
     public void ChangeRobot(int robot)
     {
         currentRobot = robot;
@@ -161,7 +174,6 @@ public class RobotArmController : MonoBehaviour
             {
                 IKManagers[robot - 1].enabled = false;
             }
-            Debug.Log("reached");
             IKManagers[robot].enabled = true;
             linearMovement.followTarget[robot].position = articulationBodies[5].transform.position;
             return;
@@ -169,6 +181,10 @@ public class RobotArmController : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Set the state of the emergency stop
+    /// </summary>
+    /// <param name="stop">Activate or deactivate emergency stop</param>
     public void SetEmergencyStop(bool stop)
     {
         if (emergencyStopEnabled)
@@ -181,7 +197,10 @@ public class RobotArmController : MonoBehaviour
         buttons[4].FreezeButton(false);
     }
 
-    
+    /// <summary>
+    /// Enable all pushbuttons on the flexpendant
+    /// </summary>
+    /// <param name="enabled">Enable or disable the buttons</param>
     public void EnableButtons(bool enabled)
     {
         foreach (PushButton button in buttons)
@@ -194,6 +213,9 @@ public class RobotArmController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Reset all pushbuttons on the flexpendant
+    /// </summary>
     public void ResetButtons()
     {
         foreach (PushButton button in buttons)
@@ -214,6 +236,9 @@ public class RobotArmController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Change the movement mode between linear and axis movement
+    /// </summary>
     public void ChangeMovementMode()
     {
         if (movementButtonEnabled)
@@ -234,6 +259,8 @@ public class RobotArmController : MonoBehaviour
                 IKManagers[currentRobot].enabled = true;
                 linearMovement.enabled = true;
                 linearMovement.followTarget[currentRobot].position = articulationBodies[5].transform.position;
+
+                linearMovement.RecalculatePreviousAngle();
             }
             else
             {
@@ -320,6 +347,10 @@ public class RobotArmController : MonoBehaviour
         return moved;
     }
 
+    /// <summary>
+    /// Handles the linearmovement of the robot
+    /// </summary>
+    /// <param name="moved">Return if the robot has moved</param>
     private void LinearMovement(out bool moved)
     {
         Vector3 direction = new Vector3();
@@ -338,6 +369,10 @@ public class RobotArmController : MonoBehaviour
         linearMovement.MoveTowards(direction);
     }
 
+    /// <summary>
+    /// Handles the axis movement
+    /// </summary>
+    /// <param name="moved"></param>
     private void ManualMovement(out bool moved)
     {
         Vector2 joystickInput = PlayerController.Right.JoystickAxis;
@@ -354,6 +389,11 @@ public class RobotArmController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles the input for the axis movement
+    /// </summary>
+    /// <param name="move">Return if the robot is moved</param>
+    /// <param name="joystickInput">The input from the joystick movement</param>
     private void HandleInput(out bool move, Vector2 joystickInput)
     {
         if (joystickInteractor.joystickPressed)
@@ -397,6 +437,9 @@ public class RobotArmController : MonoBehaviour
         move = false;
     }
 
+    /// <summary>
+    /// Stop all movement from the articulation bodies on the robot
+    /// </summary>
     private void StopArticulation()
     {
         foreach (ArticulationJointController articulationController in articulationJointControllers)

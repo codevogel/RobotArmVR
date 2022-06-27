@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Changes the color of the gloves
+/// </summary>
 public class GloveColourChanger : MonoBehaviour
 {
 
@@ -14,6 +17,9 @@ public class GloveColourChanger : MonoBehaviour
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
     }
 
+    /// <summary>
+    /// Changes the color of the gloves
+    /// </summary>
     public void ChangeColour()
     {
         meshRenderer.material.color = gloveColour;

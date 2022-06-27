@@ -3,16 +3,71 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
 
+/// <summary>
+/// An authoring component for handling the tutorial for moving the end effector to a specific position.
+/// </summary>
 public class TutorialGoalPositions : MonoBehaviour
 {
-    [SerializeField, Min(0)] float timeRequiredInside;
-    [SerializeField] OnTriggerColliderFilter[] _colliders;
-    [SerializeField] UnityEvent _onBeginSequence;
-    [SerializeField] UnityEvent _onAdvancedStep;
-    [SerializeField] UnityEvent _onCompletion;
+    /// <summary>
+    /// The time you need to be inside of the goal to advance to the next step.
+    /// </summary>
+    [SerializeField, Min(0),Tooltip("The time you need to be inside of the goal to advance to the next step.")]
+    private float timeRequiredInside;
 
+    /// <summary>
+    /// The goals that the user will have to move into.
+    /// </summary>
+    [SerializeField, Tooltip("The goals that the user will have to move into.")] 
+    private OnTriggerColliderFilter[] _colliders;
+
+    /// <summary>
+    /// The event that fires when the sequence has begun.
+    /// </summary>
+    [SerializeField, Tooltip("The event that fires when the sequence has begun.")] 
+    private UnityEvent _onBeginSequence;
+
+    /// <summary>
+    /// The event that fires when the user advances to the next step.
+    /// </summary>
+    [SerializeField, Tooltip("The event that fires when the user advances to the next step.")] 
+    private UnityEvent _onAdvancedStep;
+
+    /// <summary>
+    /// The event that fires when the user has completed the training segment.
+    /// </summary>
+    [SerializeField, Tooltip("The event that fires when the user has completed the training segment.")] 
+    private UnityEvent _onCompletion;
+
+    /// <summary>
+    /// The current step in the tutorial.
+    /// </summary>
     int _currentGoal;
+
+    /// <summary>
+    /// The coroutine that waits for a certain amount of time before advancing to the next step.
+    /// </summary>
     Coroutine _advanceCoroutine;
+
+    /// <summary>
+    /// Starts listening to phase change events.
+    /// </summary>
+    private void OnEnable()
+    {
+        TouchButton.OnPhaseChange += HandlePhaseChanged;
+    }
+
+    /// <summary>
+    /// Stops listening to phase change events.
+    /// </summary>
+    private void OnDisable()
+    {
+        TouchButton.OnPhaseChange -= HandlePhaseChanged;
+    }
+
+    /// <summary>
+    /// Stops the tutorial when the phase is changed.
+    /// </summary>
+    private void HandlePhaseChanged(int _) => Stop();
 
     /// <summary>
     /// Resets the active goal positions and starts with the first one.
@@ -21,17 +76,22 @@ public class TutorialGoalPositions : MonoBehaviour
     {
         Assert.IsTrue(_colliders.Length > 0, $"({this.gameObject.name} {nameof(TutorialGoalPositions)}) Must have at least one collider goal.");
 
-#if UNITY_EDITOR
-        if(_currentGoal < _colliders.Length)
-#else
-        Assert.IsTrue(_currentGoal < _colliders.Length, $"{nameof(_currentGoal)} is in an illegal state");
-#endif
+        if (_currentGoal < _colliders.Length)
             _colliders[_currentGoal].gameObject.SetActive(false);
 
         _currentGoal = 0;
         _colliders[0].gameObject.SetActive(true);
 
         _onBeginSequence.Invoke();
+    }
+
+    /// <summary>
+    /// Turn off the current highlight.
+    /// </summary>
+    public void Stop()
+    {
+        if (_currentGoal < _colliders.Length)
+            _colliders[_currentGoal].gameObject.SetActive(false);
     }
 
     /// <summary>

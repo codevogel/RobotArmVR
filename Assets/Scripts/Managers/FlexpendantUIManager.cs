@@ -5,6 +5,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Updates the UI of the flexpendant
+/// </summary>
 public class FlexpendantUIManager : MonoBehaviour
 {
     private Transform propertyParent;
@@ -64,6 +67,10 @@ public class FlexpendantUIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Set the axis value on the UI at the beginning
+    /// </summary>
+    /// <param name="axis">The axis that needs to be set</param>
     public void SetAxis(ArticulationBody[] axis)
     {
         for (int x = 0; x < axis.Length; x++)
@@ -73,22 +80,38 @@ public class FlexpendantUIManager : MonoBehaviour
         ChangePositionDisplay();
     }
 
+    /// <summary>
+    /// Update the axis value on the UI
+    /// </summary>
+    /// <param name="axis"></param>
+    /// <param name="axisTransform"></param>
     public void UpdateAxis(int axis, Transform axisTransform)
     {
         axisValues[axis].axisRotation = ChangeAxis(axis, axisTransform);
         ChangePositionDisplay();
     }
 
+    /// <summary>
+    /// Change the xyz positions in linear movement
+    /// </summary>
+    /// <param name="flange"></param>
     public void ChangeFlangePosition(Transform flange)
     {
         flangeTransform = flange;
         ChangePositionDisplay();
     }
 
+    /// <summary>
+    /// Change the specific axis value dependent on the input
+    /// </summary>
+    /// <param name="axis">The axis that needs to be change</param>
+    /// <param name="axisTransform">The value of the axis which needs to be changed to</param>
+    /// <returns></returns>
     public float ChangeAxis(int axis, Transform axisTransform)
     {
         float axisValue = 0;
 
+        //Grab the specific rotational value from the transform
         switch (axis)
         {
             case 0:
@@ -107,6 +130,7 @@ public class FlexpendantUIManager : MonoBehaviour
                 break;
         }
 
+        //Calculate if the value should move over to positive or negative 
         switch (axis)
         {
             case 0:
@@ -143,6 +167,11 @@ public class FlexpendantUIManager : MonoBehaviour
         return axisValue;
     }
 
+    /// <summary>
+    /// Change a specific property displayed on the flexpendant
+    /// </summary>
+    /// <param name="property">The property to which it needs to change</param>
+    /// <param name="option">The option to which it needs to change to</param>
     public void ChangeProperty(Properties property, int option)
     {
         switch (property)
@@ -212,17 +241,24 @@ public class FlexpendantUIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Update the joystick indicator on the flexpendant
+    /// </summary>
+    /// <param name="linear">Check whether the robot is in linear mode</param>
     public void ChangeDirectionDisplay(bool linear)
     {
         isLinear = linear;
         TextMeshProUGUI text = joystickDirectionParent.GetChild(0).GetComponent<TextMeshProUGUI>();
 
+        //Change the joystick indicator to the linear-mode directions
         if (!isLinear)
         {
             text.characterSpacing = spacingNonLinear;
             ChangeAxisSet(true);
             return;
         }
+
+        //Change the joystick indicator to the axis-mode directions
         text.text = "XYZ";
         text.characterSpacing = spacingLinear;
         joystickDirectionParent.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/" + middleJoystickPicture1);
@@ -230,6 +266,10 @@ public class FlexpendantUIManager : MonoBehaviour
         ChangeProperty(Properties.MOVEMENT_MODE, 2);
     }
 
+    /// <summary>
+    /// Change the joystick indicator between both axis indication possiblities
+    /// </summary>
+    /// <param name="axisSetOne">Check whether the axis mode is on set one or two</param>
     public void ChangeAxisSet(bool axisSetOne)
     {
         if (!isLinear)
@@ -250,6 +290,9 @@ public class FlexpendantUIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Update the displayed axis values
+    /// </summary>
     private void ChangePositionDisplay()
     {
         positionParent.GetChild(2).GetComponent<TextMeshProUGUI>().text = null;
@@ -260,6 +303,7 @@ public class FlexpendantUIManager : MonoBehaviour
         {
             positionParent.GetChild(1).GetComponent<TextMeshProUGUI>().text = "1: \n2: \n3: \n4: \n5: \n6: ";
 
+            //Update each individual axis in axis mode and show if its positive or negative
             for (int x = 0; x < axisValues.Length - 1; x++)
             {
                 switch (x)
@@ -267,6 +311,7 @@ public class FlexpendantUIManager : MonoBehaviour
                     case 0:
                     case 2:
                     case 4:
+                        //Display the value in negative
                         if (axisValues[x].negative)
                         {
                             message += "-"+Math.Round(axisValues[x].axisRotation, 2) + "°\n";
@@ -295,6 +340,7 @@ public class FlexpendantUIManager : MonoBehaviour
         }
         positionParent.GetChild(1).GetComponent<TextMeshProUGUI>().text = "X: \nY: \nZ:"; //"nq1: \nq2: \nq3: \nq4: "
 
+        //Update the XYZ coordinates of the end effector of the robot
         for (int x = 0; x < axisValues.Length; x++)
         {
             switch (x)
@@ -306,31 +352,24 @@ public class FlexpendantUIManager : MonoBehaviour
                     break;
                 case 1:
                     float percentileY = CalculatePercentile(minPosition.y, maxPosition.y, flangeTransform.position.z);
-                    //Start at max as the percentage should be inverted
                     message += Math.Round(Mathf.Lerp(maxRangeY, minRangeY, percentileY), 2) + " mm\n";
                     break;
                 case 2:
                     float percentileZ = CalculatePercentile(minPosition.z, maxPosition.z, flangeTransform.position.y);
                     message += Math.Round(Mathf.Lerp(minRangeZ, maxRangeZ, percentileZ), 2) + " mm\n";
                     break;
-                //Left in cases for the rotation quaternion of the robot arm
-                /*case 3:
-                    message += Math.Round(flangeTransform.rotation.y, 3)+ "\n";
-                    break;
-                case 4:
-                    message += Math.Round(flangeTransform.rotation.y, 3) + "\n";
-                    break;
-                case 5:
-                    message += Math.Round(flangeTransform.rotation.z, 3) + "\n";
-                    break;
-                case 6:
-                    message += Math.Round(flangeTransform.rotation.w, 3) + "\n";
-                    break;*/
             }
         }
         textToChange.text = message;
     }
 
+    /// <summary>
+    /// Calculate which percent the X/Y/Z coordinate is between its minimum and maximum value
+    /// </summary>
+    /// <param name="min">Minimum value of coordinate</param>
+    /// <param name="max">Maximum value of coordinate</param>
+    /// <param name="value">Value of coordinate</param>
+    /// <returns></returns>
     private float CalculatePercentile(float min, float max, float value)
     {
         float basePercentage = Mathf.InverseLerp(min,max,value);
@@ -345,6 +384,9 @@ public class FlexpendantUIManager : MonoBehaviour
         INCREMENT
     }
 
+    /// <summary>
+    /// Holds the value of an axis and if it is negative or not
+    /// </summary>
     public class Axis
     {
         public float axisRotation;

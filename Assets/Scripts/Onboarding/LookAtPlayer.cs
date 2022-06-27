@@ -14,6 +14,9 @@ public class LookAtPlayer : MonoBehaviour
     [field: SerializeField, Tooltip("Determines if the rotation should be flipped. Used for things like UI Elements.")]
     public bool Flipped { get; set; }
 
+    /// <summary>
+    /// The player that should be looked at.
+    /// </summary>
     private Transform _player;
 
     /// <summary>

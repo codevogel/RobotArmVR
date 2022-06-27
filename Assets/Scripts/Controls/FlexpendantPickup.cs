@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Attaches the flexpendant to the left hand when needed
+/// </summary>
 public class FlexpendantPickup : MonoBehaviour
 {
 
     public GameObject flexPendant;
     public CustomInteractor customInteractor;
 
+    /// <summary>
+    /// Attaches the flexpendant after touching the hologram
+    /// </summary>
+    /// <param name="other"></param>
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("ControllerLeft"))
@@ -22,6 +29,9 @@ public class FlexpendantPickup : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Attaches the flexpendant after skipping the tutorial
+    /// </summary>
     public void SkipTutorial()
     {
         flexPendant.gameObject.SetActive(true);

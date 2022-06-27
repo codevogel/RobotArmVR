@@ -22,9 +22,13 @@ public class PushButton : MonoBehaviour
     [field: SerializeField]
     private float toleranceY = 0.05f;
 
+    [SerializeField]
+    private float delayTime=0.5f;
 
     private Vector3 original;
     private bool triggered;
+    private bool delayed;
+    private float timer;
 
     public bool frozen;
 
@@ -50,11 +54,20 @@ public class PushButton : MonoBehaviour
             OnButtonUp.Invoke();
         }
         // Check if button is down
-        if (!triggered && rb.transform.localPosition.y <= original.y - travelDistance + toleranceY)
+        if (!triggered && rb.transform.localPosition.y <= original.y - travelDistance + toleranceY && !delayed)
         {
             triggered = true;
+            delayed = true;
+            timer = 0;
             OnButtonDown.Invoke();
         }
+
+        if (timer > delayTime)
+        {
+            delayed = false;
+        }
+
+        timer += Time.deltaTime;
     }
 
     private void FixedUpdate()

@@ -48,30 +48,54 @@ public class MinigameController : MonoBehaviour
     [field: SerializeField, Min(0), Tooltip("The amount of time in seconds the player has to score points in a minigame session.")]
     public float TimeLimit { get; set; } = 120;
 
+    /// <summary>
+    /// The amount of additional obstacles to try spawning in to increase difficulty.
+    /// </summary>
     [SerializeField, Min(0), Tooltip("The amount of additional obstacles to try spawning in to increase difficulty.")]
     private int _obstaclesPerRound;
 
+    /// <summary>
+    /// The pointer the player has to move into the goals to score points.
+    /// </summary>
     [SerializeField, Tooltip("The pointer the player has to move into the goals to score points.")]
     private Collider _pointer;
 
+    /// <summary>
+    /// The radius in which goals and obstacles will be spawned.
+    /// </summary>
     [Header("Bounds")]
     [SerializeField, Min(float.Epsilon), Tooltip("The radius in which goals and obstacles will be spawned.")]
     private float _radius;
 
+    /// <summary>
+    /// The radius from the center in which no objects can be spawned.
+    /// </summary>
     [SerializeField, Min(0), Tooltip("The radius from the center in which no objects can be spawned.")]
     private float _deadzone;
 
+    /// <summary>
+    /// The vertical extend in which goals and obstacles can be spawned.
+    /// </summary>
     [SerializeField, Min(0), Tooltip("The vertical extend in which goals and obstacles can be spawned.")]
     private float _verticalRadius;
 
+    /// <summary>
+    /// The vertical offset to move the space objects can be spawned in up and down.
+    /// </summary>
     [SerializeField, Tooltip("The vertical offset to move the space objects can be spawned in up and down.")]
     private float _verticalOffset;
 
+    /// <summary>
+    /// The prefab used as a template to spawn in goal objects.
+    /// </summary>
     [Header("Prefabs")]
-    [SerializeField, Tooltip("The prefab used as a template to spawn in goal objects")]
+    [SerializeField, Tooltip("The prefab used as a template to spawn in goal objects.")]
     private OnTriggerColliderFilter _goalPrefab;
 
-    [SerializeField, Tooltip("The prefab used as a template to spawn in obstacle objects")]
+    /// <summary>
+    /// The prefab used as a template to spawn in obstacle objects.
+    /// </summary>
+    [SerializeField, Tooltip("The prefab used as a template to spawn in obstacle objects.")]
     private OnTriggerColliderFilter _obstaclePrefab;
 
     /// <summary>
