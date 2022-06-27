@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles the linear movement of the robot
+/// </summary>
 public class LinearMovement : MonoBehaviour
 {
     public Transform[] followTarget;
@@ -43,6 +46,10 @@ public class LinearMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Change the robot which is moved
+    /// </summary>
+    /// <param name="robotNumber">Robot which it needs to move</param>
     public void ChangeRobot(int robotNumber)
     {
         currentRobot = robotNumber;
@@ -50,6 +57,9 @@ public class LinearMovement : MonoBehaviour
         RecalculatePreviousAngle();
     }
 
+    /// <summary>
+    /// Change the incremental mode
+    /// </summary>
     public void ChangeMode()
     {
         incremental = !incremental;

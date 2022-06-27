@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Activates the huelights around the door entrance
+/// </summary>
 public class ChangeMaterialOnTriggerEnter : MonoBehaviour
 {
     [SerializeField] private Material materialBloom;
@@ -17,11 +20,19 @@ public class ChangeMaterialOnTriggerEnter : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Change the bloom of the correct door
+    /// </summary>
+    /// <param name="trigger">The correct door</param>
     public void HighlightObject(int trigger)
     {
         children[trigger].GetComponent<MeshRenderer>().material = materialBloom;
     }
 
+    /// <summary>
+    /// Allow the doors to be teleported through
+    /// </summary>
+    /// <param name="trigger">The correct door</param>
     public void ActivateDoor(int trigger)
     {
         boxCollider = transform.GetChild(trigger).GetComponent<BoxCollider>();
