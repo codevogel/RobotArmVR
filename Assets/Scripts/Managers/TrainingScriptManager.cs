@@ -146,21 +146,21 @@ public class TrainingScriptManager : MonoBehaviour
                 break;
             //Increment button
             case 8:
-                if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 3)
+                if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 6)
                 {
                     Newtime();
                 }
                 break;
             //Back / Forth
             case 9:
-                if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 4)
+                if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 3)
                 {
                     Newtime();
                 }
                 break;
             //Up / Down
             case 10:
-                if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 5)
+                if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 4)
                 {
                     Newtime();
                 }
