@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Resets the robot to a neutral beginning position
+/// </summary>
 public class ResetRobotRotations : MonoBehaviour
 {
     [SerializeField] private LinearMovement linearMovement;
@@ -18,6 +21,9 @@ public class ResetRobotRotations : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resets the articulationbodies drive of the robot
+    /// </summary>
     public void ResetRotations()
     {
         for (int x = 0; x < articulationBodies.Length; x++)
@@ -27,6 +33,10 @@ public class ResetRobotRotations : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Small delay between the articulationdrive change to avoid overriding by the articulationbody
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator WaitForDrive()
     {
         yield return new WaitForSeconds(0.2f);

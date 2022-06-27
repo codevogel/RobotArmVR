@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Enables or disables the emergency light on the IRC5
+/// </summary>
 [RequireComponent(typeof(AudioSource))]
 public class IRC5Controller : MonoBehaviour
 {

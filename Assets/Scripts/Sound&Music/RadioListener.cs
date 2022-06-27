@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Receives a broadcast from the radio broadcaster
+/// </summary>
 [RequireComponent(typeof(AudioSource))]
 public class RadioListener : MonoBehaviour
 {

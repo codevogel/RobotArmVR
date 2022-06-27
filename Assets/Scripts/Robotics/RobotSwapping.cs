@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Swaps the active robot which is being controlled
+/// </summary>
 [RequireComponent(typeof(Swapper))]
 public class RobotSwapping : MonoBehaviour
 {

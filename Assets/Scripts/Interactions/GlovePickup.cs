@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// Changes the color of the hands after picking up the gloves
+/// </summary>
 [RequireComponent(typeof(DisplayCaseOpener))]
 public class GlovePickup : MonoBehaviour
 {
@@ -13,6 +15,10 @@ public class GlovePickup : MonoBehaviour
         displayCaseOpener = GetComponent<DisplayCaseOpener>();
     }
 
+    /// <summary>
+    /// Changes the color of the hands after picking up the gloves
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         if (displayCaseOpener.open)

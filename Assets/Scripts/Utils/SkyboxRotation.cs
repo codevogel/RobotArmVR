@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Rotates the skybox material
+/// </summary>
 public class SkyboxRotation : MonoBehaviour
 {
     [SerializeField]

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
+/// <summary>
+/// Activate a trigger for the onboarding director to change to a specific phase,
+///  values of the time can be found in the JSON file
+/// </summary>
 public class TutorialTriggers : MonoBehaviour
 {
     [SerializeField] PlayableDirector Timeline;

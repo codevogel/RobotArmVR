@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Check if the robot stays within its movement bounds
+/// </summary>
 public class ArmBoundsCheck : MonoBehaviour
 {
     [SerializeField]

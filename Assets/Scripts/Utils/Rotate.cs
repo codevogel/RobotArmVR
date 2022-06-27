@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Rotates and bobs an object up and down
+/// </summary>
 public class Rotate : MonoBehaviour
 {
     [SerializeField] private float rotateSpeed;

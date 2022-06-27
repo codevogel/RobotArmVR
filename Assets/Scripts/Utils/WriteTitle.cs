@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// Writes the title text 
+/// </summary>
 public class WriteTitle : MonoBehaviour
 {
     private TextMeshProUGUI textHolder;
@@ -13,12 +16,10 @@ public class WriteTitle : MonoBehaviour
         textHolder = GetComponent<TextMeshProUGUI>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /// <summary>
+    /// Writes the title text
+    /// </summary>
+    /// <param name="text">The text that needs to be written</param>
     public void WriteText(string text)
     {
         textHolder.text = string.Empty;

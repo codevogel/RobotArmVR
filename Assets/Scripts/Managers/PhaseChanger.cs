@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Updates the phase changing menus in the scene
+/// </summary>
 public class PhaseChanger : MonoBehaviour
 {
     [SerializeField] private GameObject[] phaseMenus;

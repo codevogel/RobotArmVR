@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// UI buttons which can be touched with the press pose
+/// </summary>
 public class TouchButton : MonoBehaviour
 {
     [SerializeField] private int phaseNumber;
