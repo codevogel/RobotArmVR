@@ -146,7 +146,7 @@ public class TrainingScriptManager : MonoBehaviour
                 break;
             //Increment button
             case 8:
-                if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 3)
+                if (currentPhase.phaseNumber == 2 && currentSubPhase.subPhaseNumber == 6)
                 {
                     Newtime();
                 }
