@@ -8,6 +8,7 @@ public class PhaseChanger : MonoBehaviour
     [SerializeField] private Transform[] contentHolders;
     [SerializeField] private float lockTimeButtons;
 
+    private List<GameObject> exitButtons = new List<GameObject>();
     private float timer;
     private bool locked;
 
@@ -16,6 +17,14 @@ public class PhaseChanger : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        foreach (GameObject menu in phaseMenus)
+        {
+            exitButtons.Add(menu.transform.GetChild(0).GetChild(0).gameObject);
+        }
     }
 
     private void Update()
@@ -90,8 +99,16 @@ public class PhaseChanger : MonoBehaviour
                 child.GetComponent<TouchButton>().locked = locked;
             }
         }
+
+        foreach (GameObject exitButton in exitButtons)
+        {
+            exitButton.GetComponent<TouchButton>().locked = locked;
+        }
     }
 
+    /// <summary>
+    /// Enable the button after the delay is completed
+    /// </summary>
     public void UnlockPushingButtons()
     {
         foreach (Transform content in contentHolders)
@@ -100,6 +117,11 @@ public class PhaseChanger : MonoBehaviour
             {
                 child.GetComponent<TouchButton>().locked = locked;
             }
+        }
+
+        foreach (GameObject exitButton in exitButtons)
+        {
+            exitButton.GetComponent<TouchButton>().locked = locked;
         }
     }
 }
