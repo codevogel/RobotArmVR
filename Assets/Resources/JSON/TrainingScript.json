@@ -411,13 +411,27 @@
 
     {
       "phaseNumber": "5",
+      "phaseName": "Pre-Minigame",
+      "startTime": "21667",
+      "subPhases": [
+        {
+          "subPhaseNumber": "0",
+          "message": "",
+          "startTime": "21667",
+          "endTime": "21765"
+        }
+      ]
+    },
+
+    {
+      "phaseNumber": "6",
       "phaseName": "Minigame",
       "startTime": "21765",
       "subPhases": [
         {
           "subPhaseNumber": "0",
           "message": "Move the end-effector in the green sphere while dodging the red ones",
-          "startTime": "21767",
+          "startTime": "21765",
           "endTime": "21855"
         }
       ]

@@ -13,7 +13,7 @@ public class PhaseChanger : MonoBehaviour
 
     public static PhaseChanger Instance { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         Instance = this;
     }
